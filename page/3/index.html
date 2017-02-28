@@ -292,6 +292,160 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/06/10/利用leakcanay检测android内存泄露/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/06/10/利用leakcanay检测android内存泄露/" itemprop="url">
+                  利用leakcanary检测android内存泄露
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-10T15:21:24+08:00">
+                2015-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/06/10/利用leakcanay检测android内存泄露/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/10/利用leakcanay检测android内存泄露/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>leakcanary的知识就不在这里普及了，随便Google下就知道</p>
+<h3 id="项目集成"><a href="#项目集成" class="headerlink" title="项目集成"></a>项目集成</h3><p>直接说在项目中怎么操作，如下：<br>1、在 build.gradle 中加入引用，不同的编译使用不同的引用：</p>
+<pre><code>dependencies {
+  debugCompile &apos;com.squareup.leakcanary:leakcanary-android:1.3&apos;
+  releaseCompile &apos;com.squareup.leakcanary:leakcanary-android-no-op:1.3&apos;
+}
+</code></pre><p>2、在你的项目的 Application 中：</p>
+<pre><code>public class ExampleApplication extends Application {
+
+  @Override public void onCreate() {
+    super.onCreate();
+    LeakCanary.install(this);    //加上这一句
+  }}
+</code></pre><p>这样， 重新打包安装之后 ，在操作测试该APP的过程中，如果检测到某个 activity 有内存泄露，LeakCanary 就是自动地显示一个通知。</p>
+<h3 id="具体实践"><a href="#具体实践" class="headerlink" title="具体实践"></a>具体实践</h3><p>具体以我们口袋助理来介绍下：</p>
+<p>1、在build.gradle 中加入引用</p>
+<p>2、在MoaApplication.java中的onCreate方法中加入</p>
+<pre><code>LeakCanary.install(this);
+</code></pre><p>3、故意造一个内存泄露的地方<br>以创建工作汇报为例：将CreateWorkReportActivity.java中的EditText变量改为静态的(static)</p>
+<p>4、编译打包查看效果</p>
+<ul>
+<li>这个时候安装应用到手机，会自动安装一个Leaks应用<br>注：有的手机需要重启下才能看到Leaks应用，比如我用的华为手机就是这样</li>
+</ul>
+<p>5、检查是否真的如我们预期的一样：在创建工作汇报的时候存在内存泄露<br>创建一个工作汇报，回到汇报列表，此时我们会发现收到了一个Leaks的通知<br>如图：</p>
+<img src="/2015/06/10/利用leakcanay检测android内存泄露/leak-notify.jpg" alt="leak-notify.jpg" title="">
+<p>点击该通知，进入Leaks，可以查看到详细的该内存泄露的调用信息，从而定位到该内存泄露<br>如图：</p>
+<img src="/2015/06/10/利用leakcanay检测android内存泄露/leak-info.jpg" alt="leak-info.jpg" title="">
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/05/10/利用drozer进行Android渗透测试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -913,6 +1067,188 @@ oplogSize=100 #这里是指定oplog表数据大小（太大了不支持）
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/03/10/centos下安装mongodb记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/10/centos下安装mongodb记录/" itemprop="url">
+                  centos下安装mongodb记录
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-10T19:26:20+08:00">
+                2015-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/03/10/centos下安装mongodb记录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/10/centos下安装mongodb记录/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>1、卸载已有mongodb数据库</p>
+<pre><code>/etc/init.d/mongod stop
+yum erase $(rpm -qa | grep mongodb-org)
+</code></pre><p>删除mongodb相关目录文件等，例如：</p>
+<pre><code>rm -r /var/log/mongodb/
+rm -r /var/lib/mongo
+</code></pre><p>2、下载最新mongodb</p>
+<pre><code>wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.9.tgz
+</code></pre><p>3、移动下载文件并解压</p>
+<pre><code>mv ./mongodb-linux-x86_64-rhel62-3.2.9.tgz /usr/local/src/
+tar -xvf mongodb-linux-x86_64-rhel62-3.2.9.tgz
+</code></pre><p>4、移动解压文件</p>
+<pre><code>mv ./mongodb-linux-x86_64-rhel62-3.2.9 /usr/local/mongodb
+</code></pre><p>5、创建mongodb相关目录</p>
+<pre><code>mkdir -p /home/ts/db/mongodb/data
+mkdir -p /home/ts/db/mongodb/log
+</code></pre><p>6、创建并编辑mongodb配置文件</p>
+<pre><code>vim /home/ts/db/mongodb/mongodb.conf
+</code></pre><h3 id="配置mongodb环境变量"><a href="#配置mongodb环境变量" class="headerlink" title="配置mongodb环境变量"></a>配置mongodb环境变量</h3><pre><code>vim /etc/profile
+</code></pre><p>加入如下语句：</p>
+<pre><code># mongodb set
+export MONGODB=/usr/local/mongodb
+PATH=$PATH:$MONGODB/bin
+</code></pre><p>立即生效：</p>
+<pre><code>source /etc/profile
+</code></pre><h3 id="配置开机启动"><a href="#配置开机启动" class="headerlink" title="配置开机启动"></a>配置开机启动</h3><pre><code>vim /etc/rc.d/init.d/mongod
+</code></pre><p>注：必须在该文件开头写上：       </p>
+<pre><code># chkconfig: 2345 10 90
+# description: mongod ....
+</code></pre><p>设置：</p>
+<pre><code>chmod +x /etc/rc.d/init.d/mongod
+chkconfig mongod on
+</code></pre><p>PS：/etc/init.d/ 是 /etc/rc.d/init.d/ 的软链接</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/03/04/linux下部署redmine/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1255,188 +1591,6 @@ ErrorDocument 403 &quot;For security reasons, this URL is only accessible using 
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/02/10/centos下安装mongodb记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tunsuy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headpic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鱼儿塘">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/02/10/centos下安装mongodb记录/" itemprop="url">
-                  centos下安装mongodb记录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-10T19:26:20+08:00">
-                2015-02-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongodb/" itemprop="url" rel="index">
-                    <span itemprop="name">mongodb</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/02/10/centos下安装mongodb记录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/10/centos下安装mongodb记录/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>1、卸载已有mongodb数据库</p>
-<pre><code>/etc/init.d/mongod stop
-yum erase $(rpm -qa | grep mongodb-org)
-</code></pre><p>删除mongodb相关目录文件等，例如：</p>
-<pre><code>rm -r /var/log/mongodb/
-rm -r /var/lib/mongo
-</code></pre><p>2、下载最新mongodb</p>
-<pre><code>wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.9.tgz
-</code></pre><p>3、移动下载文件并解压</p>
-<pre><code>mv ./mongodb-linux-x86_64-rhel62-3.2.9.tgz /usr/local/src/
-tar -xvf mongodb-linux-x86_64-rhel62-3.2.9.tgz
-</code></pre><p>4、移动解压文件</p>
-<pre><code>mv ./mongodb-linux-x86_64-rhel62-3.2.9 /usr/local/mongodb
-</code></pre><p>5、创建mongodb相关目录</p>
-<pre><code>mkdir -p /home/ts/db/mongodb/data
-mkdir -p /home/ts/db/mongodb/log
-</code></pre><p>6、创建并编辑mongodb配置文件</p>
-<pre><code>vim /home/ts/db/mongodb/mongodb.conf
-</code></pre><h3 id="配置mongodb环境变量"><a href="#配置mongodb环境变量" class="headerlink" title="配置mongodb环境变量"></a>配置mongodb环境变量</h3><pre><code>vim /etc/profile
-</code></pre><p>加入如下语句：</p>
-<pre><code># mongodb set
-export MONGODB=/usr/local/mongodb
-PATH=$PATH:$MONGODB/bin
-</code></pre><p>立即生效：</p>
-<pre><code>source /etc/profile
-</code></pre><h3 id="配置开机启动"><a href="#配置开机启动" class="headerlink" title="配置开机启动"></a>配置开机启动</h3><pre><code>vim /etc/rc.d/init.d/mongod
-</code></pre><p>注：必须在该文件开头写上：       </p>
-<pre><code># chkconfig: 2345 10 90
-# description: mongod ....
-</code></pre><p>设置：</p>
-<pre><code>chmod +x /etc/rc.d/init.d/mongod
-chkconfig mongod on
-</code></pre><p>PS：/etc/init.d/ 是 /etc/rc.d/init.d/ 的软链接</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1486,7 +1640,7 @@ chkconfig mongod on
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1504,7 +1658,7 @@ chkconfig mongod on
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
