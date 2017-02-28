@@ -89,25 +89,31 @@
 
 
 
-<meta name="description" content="安装步骤1、安装ruby环境——使用rvm比较方便2、使用bitnami-redmine一键式安装包3、远程访问不了——关闭防火墙即可4、phpmyadmin无法远程访问——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf修改如下：    
+<meta name="description" content="安装步骤1、安装ruby环境——使用rvm比较方便
+2、使用bitnami-redmine一键式安装包  
+3、远程访问不了——关闭防火墙即可  
+4、phpmyadmin无法远程访问——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf修改如下：    
 # AuthType Basic
-# AuthName phpMyAdmin
-#">
+# AuthName phpMy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux下部署redmine">
 <meta property="og:url" content="https://tunsuy.github.io/2015/03/04/linux下部署redmine/index.html">
 <meta property="og:site_name" content="鱼儿塘">
-<meta property="og:description" content="安装步骤1、安装ruby环境——使用rvm比较方便2、使用bitnami-redmine一键式安装包3、远程访问不了——关闭防火墙即可4、phpmyadmin无法远程访问——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf修改如下：    
+<meta property="og:description" content="安装步骤1、安装ruby环境——使用rvm比较方便
+2、使用bitnami-redmine一键式安装包  
+3、远程访问不了——关闭防火墙即可  
+4、phpmyadmin无法远程访问——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf修改如下：    
 # AuthType Basic
-# AuthName phpMyAdmin
-#">
-<meta property="og:updated_time" content="2017-02-28T01:41:13.563Z">
+# AuthName phpMy">
+<meta property="og:updated_time" content="2017-02-28T06:20:02.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux下部署redmine">
-<meta name="twitter:description" content="安装步骤1、安装ruby环境——使用rvm比较方便2、使用bitnami-redmine一键式安装包3、远程访问不了——关闭防火墙即可4、phpmyadmin无法远程访问——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf修改如下：    
+<meta name="twitter:description" content="安装步骤1、安装ruby环境——使用rvm比较方便
+2、使用bitnami-redmine一键式安装包  
+3、远程访问不了——关闭防火墙即可  
+4、phpmyadmin无法远程访问——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf修改如下：    
 # AuthType Basic
-# AuthName phpMyAdmin
-#">
+# AuthName phpMy">
 
 
 
@@ -416,7 +422,10 @@
       
 
       
-        <h4 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h4><p>1、安装ruby环境——使用rvm比较方便<br>2、使用bitnami-redmine一键式安装包<br>3、远程访问不了<br>——关闭防火墙即可<br>4、phpmyadmin无法远程访问<br>——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf<br>修改如下：<br>    <directory "="" opt="" redmine-2.6.0-3="" apps="" phpmyadmin="" htdocs"=""></directory></p>
+        <h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>1、安装ruby环境——使用rvm比较方便</p>
+<p>2、使用bitnami-redmine一键式安装包  </p>
+<p>3、远程访问不了<br>——关闭防火墙即可  </p>
+<p>4、phpmyadmin无法远程访问<br>——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf<br>修改如下：<br>    <directory "="" opt="" redmine-2.6.0-3="" apps="" phpmyadmin="" htdocs"=""></directory></p>
 <pre><code># AuthType Basic
 # AuthName phpMyAdmin
 # AuthUserFile &quot;/opt/redmine-2.6.0-3/apache2/users&quot;
@@ -441,10 +450,11 @@ ErrorDocument 403 &quot;For security reasons, this URL is only accessible using 
 
 &lt;/Directory&gt;
 </code></pre><p>其中红色部分为修改部分<br>重启服务即可：/opt/redmine-2.6.0-3/ctlscript.sh restart</p>
-<h4 id="操作redmine的数据库"><a href="#操作redmine的数据库" class="headerlink" title="操作redmine的数据库"></a>操作redmine的数据库</h4><ul>
-<li>redmine使用的数据库为mysql，如果在终端直接输入mysql命令，则是直接调用的你以前装的mysql，而不是redmine的mysql</li>
-<li>redmine的mysql相关命令的路径为/opt/redmine-2.6.0-3/mysql/bin/</li>
-<li>redmine数据库默认有几个用户，一是你安装时填写的用户名和密码，使用这个用户登录mysql是看不到redmine的数据库的；</li>
+<h3 id="操作redmine的数据库"><a href="#操作redmine的数据库" class="headerlink" title="操作redmine的数据库"></a>操作redmine的数据库</h3><p>1、 redmine使用的数据库为mysql，如果在终端直接输入mysql命令，则是直接调用的你以前装的mysql，而不是redmine的mysql</p>
+<p>2、redmine的mysql相关命令的路径为/opt/redmine-2.6.0-3/mysql/bin/</p>
+<p>3、redmine数据库默认有几个用户</p>
+<ul>
+<li>一是你安装时填写的用户名和密码，使用这个用户登录mysql是看不到redmine的数据库的；</li>
 <li>二是root用户，密码跟你安装时填写的密码一样，这个可以看到所有的数据库</li>
 </ul>
 
@@ -508,8 +518,8 @@ ErrorDocument 403 &quot;For security reasons, this URL is only accessible using 
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/02/27/本地化乌云网操作记录/" rel="next" title="本地化乌云网操作记录">
-                <i class="fa fa-chevron-left"></i> 本地化乌云网操作记录
+              <a href="/2015/02/20/hexo-github博客部署问题记录/" rel="next" title="hexo+github博客部署问题记录">
+                <i class="fa fa-chevron-left"></i> hexo+github博客部署问题记录
               </a>
             
           </div>
@@ -605,7 +615,7 @@ ErrorDocument 403 &quot;For security reasons, this URL is only accessible using 
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -614,7 +624,7 @@ ErrorDocument 403 &quot;For security reasons, this URL is only accessible using 
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -667,7 +677,7 @@ ErrorDocument 403 &quot;For security reasons, this URL is only accessible using 
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装步骤"><span class="nav-number">1.</span> <span class="nav-text">安装步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作redmine的数据库"><span class="nav-number">2.</span> <span class="nav-text">操作redmine的数据库</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装步骤"><span class="nav-number">1.</span> <span class="nav-text">安装步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作redmine的数据库"><span class="nav-number">2.</span> <span class="nav-text">操作redmine的数据库</span></a></li></ol></div>
             
 
           </div>

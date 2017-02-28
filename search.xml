@@ -3,79 +3,86 @@
   
     
     <entry>
-      <title><![CDATA[基于docker的moa服务]]></title>
-      <url>%2F2017%2F02%2F28%2F%E5%9F%BA%E4%BA%8Edocker%E7%9A%84moa%E6%9C%8D%E5%8A%A1%2F</url>
-      <content type="text"></content>
-    </entry>
-
-    
-    <entry>
-      <title><![CDATA[ios：UIWebView与WKWebView注意事项]]></title>
-      <url>%2F2017%2F02%2F28%2Fios%EF%BC%9AUIWebView%E4%B8%8EWKWebView%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%2F</url>
-      <content type="text"></content>
-    </entry>
-
-    
-    <entry>
-      <title><![CDATA[ios：https/ATS改造过程]]></title>
-      <url>%2F2017%2F02%2F28%2Fios%EF%BC%9Ahttps-ATS%E6%94%B9%E9%80%A0%E8%BF%87%E7%A8%8B%2F</url>
-      <content type="text"></content>
-    </entry>
-
-    
-    <entry>
       <title><![CDATA[自编译mongo3.2测试]]></title>
-      <url>%2F2017%2F02%2F28%2F%E8%87%AA%E7%BC%96%E8%AF%91mongo3-2%E6%B5%8B%E8%AF%95%2F</url>
-      <content type="text"></content>
-    </entry>
-
-    
-    <entry>
-      <title><![CDATA[ios：性能之卡顿检测]]></title>
-      <url>%2F2017%2F02%2F28%2Fios%EF%BC%9A%E6%80%A7%E8%83%BD%E4%B9%8B%E5%8D%A1%E9%A1%BF%E6%A3%80%E6%B5%8B%2F</url>
-      <content type="text"></content>
-    </entry>
-
-    
-    <entry>
-      <title><![CDATA[redmine-数据统计]]></title>
-      <url>%2F2017%2F02%2F28%2Fredmine-%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%2F</url>
-      <content type="text"></content>
-    </entry>
-
-    
-    <entry>
-      <title><![CDATA[docker自定义daemon选项]]></title>
-      <url>%2F2017%2F02%2F28%2Fdocker%E8%87%AA%E5%AE%9A%E4%B9%89daemon%E9%80%89%E9%A1%B9%2F</url>
-      <content type="text"></content>
-    </entry>
-
-    
-    <entry>
-      <title><![CDATA[代码扫描之API调用版本检查]]></title>
-      <url>%2F2017%2F02%2F28%2F%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F%E4%B9%8BAPI%E8%B0%83%E7%94%A8%E7%89%88%E6%9C%AC%E6%A3%80%E6%9F%A5%2F</url>
-      <content type="text"></content>
-    </entry>
-
-    
-    <entry>
-      <title><![CDATA[selenium远程启动浏览器]]></title>
-      <url>%2F2017%2F02%2F28%2Fselenium%E8%BF%9C%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8%2F</url>
-      <content type="text"></content>
+      <url>%2F2016%2F12%2F09%2F%E8%87%AA%E7%BC%96%E8%AF%91mongo3-2%E6%B5%8B%E8%AF%95%2F</url>
+      <content type="text"><![CDATA[简介公司将mongodb删除机制进行了自定义，改动了相关源码，故需要配合测试mongodb的功能是否正常 检查服务器1、检查mongo启动情况 netstat -anpt | grep mong* | grep 0.0.0.0 mongoa --port 27020（相应的端口）——进入mongo 2、100集群数据库情况 cat /etc/hosts | grep db——在169.100下查看 ——3个数据库分片（sh0，sh1，sh2）——2个统计分片（statis-sh0，statis-sh1） 也可以这样查看： 进入mongos（169.100下） 进入config数据库中db.shards.find() 常用功能测试主备切换1、shard0： 随便进入一个sh0节点服务器通过/etc/hosts可以查看到（169.100下） 查看sh0集群情况rs.status() 找到sh0主节点服务器，并进入执行rs.stepDown(）——切换主备 检查主备切换是否成功rs.status()——集群情况 2、依次对shard1、shard2集群进行主备切换 3、也可以关注下主备切换的日志情况 find / -name mongo*.log（找到各mongo进程log） chunk迁移（以迁移customer.info表为例）1、查看迁移之前的chunk情况 use config db.chunks.find({&quot;_id&quot;:/customer.info-did_10000*/, &quot;ns&quot;:&quot;customer.info&quot;}).pretty() { &quot;_id&quot; : &quot;customer.info-did_10000custmid_100&quot;, &quot;lastmod&quot; : Timestamp(135, 0), &quot;lastmodEpoch&quot; : ObjectId(&quot;54ae3eaaf3a2f2e7d3726927&quot;), &quot;ns&quot; : &quot;customer.info&quot;, &quot;min&quot; : { &quot;did&quot; : NumberLong(10000), &quot;custmid&quot; : NumberLong(100) }, &quot;max&quot; : { &quot;did&quot; : NumberLong(10000), &quot;custmid&quot; : NumberLong(1948) }, &quot;shard&quot; : &quot;shard0&quot; } { &quot;_id&quot; : &quot;customer.info-did_10000custmid_1948&quot;, &quot;lastmod&quot; : Timestamp(136, 0), &quot;lastmodEpoch&quot; : ObjectId(&quot;54ae3eaaf3a2f2e7d3726927&quot;), &quot;ns&quot; : &quot;customer.info&quot;, &quot;min&quot; : { &quot;did&quot; : NumberLong(10000), &quot;custmid&quot; : NumberLong(1948) }, &quot;max&quot; : { &quot;did&quot; : NumberLong(10039), &quot;custmid&quot; : NumberLong(451) }, &quot;shard&quot; : &quot;shard2&quot; } 2、执行迁移命令 sh.moveChunk(&quot;customer.info&quot;, {did:10000,custmid:100}, &quot;shard1&quot;) 或者 db.adminCommand({moveChunk:&quot;customer.info&quot;, find:{did:10000,custmid:100}, to:&quot;shard1&quot;}) PS：一般执行命令都有这两种方式 sh. 方式可以不用切换数据库执行 db. 方式必须在admin数据库下PS：迁移条件必须包含片键 3、查看迁移情况 use config db.chunks.find({&quot;_id&quot;:/customer.info-did_10000*/, &quot;ns&quot;:&quot;customer.info&quot;}).pretty() 4、也可以关注下主备切换的日志情况 find / -name mongo*.log（找到各mongo进程log） chunk分裂1、查看chunk分裂前情况 use config db.chunks.find({&quot;_id&quot;:/customer.info-did_10000*/, &quot;ns&quot;:&quot;customer.info&quot;}).pretty() 2、指定分裂点 sh.splitAt(&quot;customer.info&quot;, {&quot;did&quot;:10000, &quot;custmid&quot;:500}) 3、检查分裂情况 db.chunks.find({&quot;_id&quot;:/customer.info-did_10000*/, &quot;ns&quot;:&quot;customer.info&quot;}).pretty() 其他1、重启moa服务PS：因为有的服务可能有缓存，所有在操作了数据库之后需要重启服务才能重新读取数据库数据 2、检查各模块功能情况PS：因为涉及到php、go、c的mongo库，所以需要覆盖以下测试 web端、PC端、运营、统计 主要关注点——涉及数据库读写操作的功能——大量读写操作情况——导入导出情况——私有云服务器接入情况——数据删除情况——数据恢复情况 3、检查服务器资源情况PS：可以写一个小的脚本（超过一定的阈值则输出到log里面），然后一直在后台运行，然后操作业务最后测试完之后，检查log文件中的资源记录情况]]></content>
     </entry>
 
     
     <entry>
       <title><![CDATA[mongodb集群3.0.X升级3.2.X]]></title>
-      <url>%2F2017%2F02%2F28%2Fmongodb%E9%9B%86%E7%BE%A43-0-X%E5%8D%87%E7%BA%A73-2-X%2F</url>
-      <content type="text"></content>
+      <url>%2F2016%2F10%2F15%2Fmongodb%E9%9B%86%E7%BE%A43-0-X%E5%8D%87%E7%BA%A73-2-X%2F</url>
+      <content type="text"><![CDATA[简介该文章主要根据官方英文文档来操作的 官方文档：https://docs.mongodb.com/manual/release-notes/3.2-upgrade/ 升级步骤准备工作1、下载二进制文件 wget https://www.mongodb.com/dr/fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.10.tgz 2、将该文件放入所有的节点服务器下并解压 tar -zxvf XXXX 3、备份configdb（可选）在每个configdb服务器执行： cp -r /home/moa/db/configdb/data/ /home/moa/db/configdb/data_bak/ 4、关闭均衡器 查看均衡器状态sh.getBalancerState() 关闭sh.stopBalancer() 检查数据没有在迁移use config while( sh.isBalancerRunning() ) { print(&quot;waiting...&quot;); sleep(1000); } 开始升级1、首先升级分片01.1 升级分片0集群中的secondary节点 停掉该mongod0进程—kill pid 使用最新mongodb进程替换掉mongod0 备份：mv /usr/local/mongodb/bin/mongod0 /usr/local/mongodb/bin/mongod0.bak 替换：cp /home/mongodb-linux-x86_64-rhel62-3.2.10/bin/mongod /usr/local/mongodb/bin/mongod0 启动该mongod0进程—/etc/init.d/mongod0 restart 按照1.1方法依次升级其他的secondary节点ps：在确认上一个secondary状态正常的情况再进行 rs.status() 1.2 升级分片0集群中的primary节点 停掉primary—rs.stepDown() 检查是否产生了新的primary—rs.status()ps：在其他两个节点查看 按照1的方法升级其他分片 1.3 更新选举协议在primary节点执行以下操作： cfg=rs.conf(); cfg.protocolVersion=1; rs.reconfig(cfg); 2、升级分片1按照1中的方法进行 3、升级config 服务器 顺序：需要按照mongos中配置的逆序升级 cat /home/moa/db/mongos/mongos.conf ——configdb=config0.moadb.com,config1.moadb.com,config2.moadb.com 所以升级顺序应该是：config2、config1、config0 升级：按照1中方法进行（只是这里变成了mongocfgd） 4、升级mognos服务器按照1中方法进行（只是这样换成了mongos） 5、替换掉所以的mongo工具（可选） cp ./mongodb-linux-x86_64-rhel62-3.2.10/bin/* /usr/local/mongodb/bin/]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[redmine-数据统计]]></title>
+      <url>%2F2016%2F10%2F08%2Fredmine-%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%2F</url>
+      <content type="text"><![CDATA[项目说明语言：python语言 1、地址：https://github.com/tunsuy/redmine_statis 2、统计维度： 个人迭代bug数 模块迭代bug数 个人网上问题数 个人迭代工作粒度 个人遗留问题数 如果要加上其他维度的统计，也是非常简单的 redmine表说明1、表issues—用来存放issue的标准字段。 2、表custom_fields—该表字段都和创建自定义字段的web页面看到的选择项很像。 3、表custom_values—该表可以用custom_field_id字段和custom_fields表的id关联。 而customized_id 可以和issues表的id相关联 表关联1、三个表issues, custom_fields和custom_values在一起表达了这么个关系。 2、一个issue的标准字段来自issues表，扩展字段来自custom_fields表，而custom_values和前custom_fields表关联，一起表示一个issue的某个自定义字段的值。 3、当表示issue的自定义字段时，custom_fields.type的值是 ‘IssueCustomField’ 而custom_values.customized_type的值是’Issue’. 4、所有issue的自定义字段值可以先将custom_fields表和custom_values表关联，获得如下结果： select customized_id as issue_id,custom_field_id,type,name,default_value,value from custom_fields a inner join custom_values b on a.id =b.custom_field_id and a.type = &apos;IssueCustomField&apos; and b.customized_type=&apos;Issue&apos; limit 2; 由此可以看出redmine的设计是用记录行数来表示扩展字段的值，所以可以不受mysql表字段的限制。 访问权限基本知识了解：1、授予用户redmine_static 在指定ip下 以 密码 moatest 访问 bitnami_redmine 的 select和excute操作 grant select,excute on bitnami_redmine.* to &apos;redmine_static&apos;@&apos;200.200.169.162&apos; identified by &apos;moatest&apos; 2、查询mysql所有用户 select user,host,password from mysql.user; 3、刷新权限设置 flush privileges; 4、查询 指定IP 下 用户redmine_static 的数据库权限 show grants for &apos;redmine_static&apos;@&apos;200.200.169.162&apos;\G 5、取消用户的操作权限 revoke select on bitnami_redmine.* from &apos;redmine_static&apos;@&apos;200.200.169.162&apos; identified by &apos;moatest&apos;; 6、授予所有操作权限 grant all privileges on bitnami_redmine.* to &apos;redmine_static&apos;@&apos;200.200.169.162&apos; identified by &apos;moatest&apos;; 7、删除用户 drop user redmine_static@&apos;%&apos;; 8、创建用户 create user redmine_static@&apos;%&apos; identified by &apos;moatest&apos;; redmine统计说明以我们公司项目为例1、项目地址：200.200.169.1622、在redmine服务器中新增一个mysql用户：redmine_static/moatest——该用户只能在169.162中以用户名和密码的方式访问——见如上2说明 使用1、切换python环境：pyenv activate venv27102、切换到项目路径3、执行：python main.py [统计开始时间 统计结束时间] eg：python main.py 2016-9-1 2016-12-31]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[ios：UIWebView与WKWebView注意事项]]></title>
+      <url>%2F2016%2F09%2F28%2Fios%EF%BC%9AUIWebView%E4%B8%8EWKWebView%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%2F</url>
+      <content type="text"><![CDATA[基本介绍1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 运行的上下文环境 JSContext 注入对象 Bridge； 2、WKWebView 使用的 WebKit 框架，交互时为 webkit.messageHandlers 注入对象 测试注意事项1、加载速度 2、占用内存 3、缓存问题：H5页面更新了，app端显示还是老的，不同的ios系统处理方式不一样 4、cookie问题页面很多，不断切换浏览，cookie失效等 5、跨域问题webkit框架不允许跨域，比如从一个http页面对https发起请求 6、request拦截问题有可能之前用的好好的hybrid框架，换了wkwebview之后，有些就不起作用了 7、本地html文件加载不同的ios系统不一样 8、手势操作 参考链接http://mp.weixin.qq.com/s/18xXQWboHcjybd_VtcTmUg##]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[ios：https/ATS改造过程]]></title>
+      <url>%2F2016%2F09%2F21%2Fios%EF%BC%9Ahttps-ATS%E6%94%B9%E9%80%A0%E8%BF%87%E7%A8%8B%2F</url>
+      <content type="text"><![CDATA[背景苹果官方宣称今年底将全面强制启动https的支持1、不安全的HTTP链接将会遭到拦截 2、而且系统 Foundation 框架下的相关网络请求，将不再默认使用 HTTP等不安全的网络协议，而默认采用 TLS 1. 服务端改造1、服务器需要改造的地方： ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。 通讯中的加密套件配置要求支持列出的正向保密。 数字证书必须使用sha256或者更高级的签名哈希算法，并且保证密钥是2048位及以上的RSA密钥或者256位及以上的ECC密钥。 2、服务器ATS在线检查： https://www.qcloud.com/product/ssl#userDefined10 官方建议1、苹果官方是推荐使用NSURLSession去做HTTP请求的 2、虽然说NSURLConnection同样支持ATS方面的特性，两者的默认行为上有些不一样所以应该尽早切换到NSURLSession上，避免产生一些不必要错误。 项目改造1、要么将info.plist中的allow全部改成NO 2、要么在提交审批的时候向苹果说明 测试1、抓包查看所有请求情况ps：推荐Charles——mac下很好用的一款抓包软件 2、在项目im中浏览https网址和http网址https://www.baidu.com——SSL错误原因： 百度自身服务器ssl协议没有指定支持TSLv1.0解决：(参考) 服务器自身配置下 在Info.plist里配置，指定支持TSLv1.0https://github.com/sinaweibosdk/weibo_ios_sdk 参考链接http://www.liuchungui.com/blog/2015/10/11/ios9zhi-gua-pei-ats/https://my.oschina.net/vimfung/blog/494687?_t_t_t=0.1896578531749944https://onevcat.com/2016/06/ios-10-ats/]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[代码扫描之API调用版本检查]]></title>
+      <url>%2F2016%2F09%2F18%2F%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F%E4%B9%8BAPI%E8%B0%83%E7%94%A8%E7%89%88%E6%9C%AC%E6%A3%80%E6%9F%A5%2F</url>
+      <content type="text"><![CDATA[项目简介语言：python语言 该项目是对工程项目代码进行全面扫描，发现其是否有代码层面的bug目前第一版支持了ios下的api版本控制的扫描检查后续将逐渐支持其他方面的代码检查，比如是否有内存溢出，数组越界等，支持检查项可配置 完整的项目源码地址：https://github.com/tunsuy/iOS-code-scan 该项目现已很好的服务于公司的ios项目代码扫描中，有效的检测出很多开发人员疏忽的api版本使用问题 下面只对api版本控制检查进行实现讲解 实现思路扫描ios项目，将所有的api方法原型依次提取出来，跟ios官方定义的版本进行比对；检查对那些有版本限制的api，在代码中是否有相应的条件判断 那么这就涉及到如下几个问题1、需要知道ios库中所有的api版本信息情况2、需要提取出代码中所有的api调用并重新组装成方法原型3、需要知道该方法原型调用是否在相应的条件判断中4、条件判断可能是多层嵌套的5、方法调用可能特别复杂，跨度可能特别大6、方法调用可能是多层嵌套的 解决方案如下1、使用爬虫将ios库的api版本信息抓取下来，并存储在数据库中——主要定义三个表：framework、class、api2、逐个文件逐行扫描，以方法调用的固有特征（比如：[class1 fun_1.1:[class2 fun_2] fun_1.2:xx]），提取出方法原型——当然要完整的一个不漏的提取出所有方法，处理逻辑还是很复杂的3、根据方法原型读取api数据库，获取其对应的sdk版本4、如果有版本限制，则检查其是否处于条件判断中——需要保持条件判断的上下文信息，多层if嵌套的匹配等 使用技术爬虫：使用了python的scrapy框架备注：1、scrapy startproject ScrapyIOSAPI—创建一个爬虫项目2、scrapy shell “https://developer.apple.com/reference?language=objc&quot;—shell调试方法——eg: response.xpath(&apos;//div[@class=&quot;task-symbols&quot;]/div[@class=&quot;symbol clm&quot;]/a/code/text()&apos;) 3、scrapy crawl spider_name—执行爬虫 数据库：sqlite轻量级数据库 整个项目采用Python实现： 数据库连接技术 多线程技术 抽象类和类继承、生成器等高级技术 对ios代码规范的建议对于版本控制，统一使用宏定义代码不要一行写多条语句，尽量按照ios开发规范来写代码]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[ios：性能之卡顿检测]]></title>
+      <url>%2F2016%2F08%2F11%2Fios%EF%BC%9A%E6%80%A7%E8%83%BD%E4%B9%8B%E5%8D%A1%E9%A1%BF%E6%A3%80%E6%B5%8B%2F</url>
+      <content type="text"><![CDATA[项目简介地址：https://github.com/tunsuy/iOSMonitorLag 该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果 方案一 基于RunLoop背景1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作等等放到了主线,所以主线程中包含的这些大量计算、IO、绘制都有可能造成卡顿. 2、在Xcode中已经集成了非常方便的调试工具Instruments,它可以帮助我们在开发测试阶段分析软件运行的性能消耗 原理1、监控卡顿,最直接就是找到主线程都在干些啥玩意儿.我们知道一个线程的消息事件处理都是依赖于NSRunLoop来驱动,所以要知道线程正在调用什么方法,就需要从NSRunLoop来入手 2、发现NSRunLoop调用方法主要就是在kCFRunLoopBeforeSources和kCFRunLoopBeforeWaiting之间,还有kCFRunLoopAfterWaiting之后,也就是如果我们发现这两个时间内耗时太长,那么就可以判定出此时主线程卡顿. 缺点这种方式，当主线程中注册了timer等很多附加的东西时，会不断唤醒主线程，就会大量的调用observer回调，造成一定程度上的性能损耗 方案二 基于线程背景简单来说，主线程为了达到接近60fps的绘制效率，不能在UI线程有单个超过（1/60s≈16ms）的计算任务。通过Instrument设置16ms的采样率可以检测出大部分这种费时的任务，但有以下缺点： Instrument profile一次重新编译，时间较长。 只能针对特定的操作场景进行检测，要预先知道卡顿产生的场景。 每次猜测，更改，再猜测再以此循环，需要重新profile。我们的目标方案是，检测能够自动发生，并不需要开发人员做任何预先配置或profile。运行时发现卡顿能即时通知开发人员导致卡顿的函数调用栈。 原理1、最理想的方案是让UI线程“主动汇报”当前耗时的任务，听起来简单做起来不轻松。 2、我们可以假设这样一套机制：每隔16ms让UI线程来报道一次，如果16ms之后UI线程没来报道，那就一定是在执行某个耗时的任务。 下面是以接入口袋助理测试的效果图 最后但是像在口袋助理这样大型负责的项目中，这些方法都存在一些弊端，监测出来的也不一定是真的由于代码问题引起的，这只是可以作为一种自动提醒机制，让开发者自行去检查下提示的代码是否真的存在性能缺陷]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[docker自定义daemon选项]]></title>
+      <url>%2F2016%2F06%2F15%2Fdocker%E8%87%AA%E5%AE%9A%E4%B9%89daemon%E9%80%89%E9%A1%B9%2F</url>
+      <content type="text"><![CDATA[前提可以定义的选项为如下列出来的 docker-current daemon --help 方案一1、分别定义各环境文件 eg：/etc/sysconfig/docker-storage /etc/sysconfig/docker-network 该文件中可以自定义环境变量 2、在/usr/lib/systemd/system/docker.service文件中引入环境文件 eg：EnvironmentFile=-/etc/sysconfig/docker-storage EnvironmentFile=-/etc/sysconfig/docker-network 并使用其环境变量 ExecStart=/usr/bin/docker-current daemon \ $DOCKER_STORAGE_OPTIONS \ $DOCKER_NETWORK_OPTIONS \ 备注：也可以将所有的自定义选项定义在一个文件中 例：将官方镜像仓库替换为阿里云镜像仓库 前提：注册阿里云用户，此时才会获取到一个私有的镜像仓库地址https://cr.console.aliyun.com/ 在/etc/sysconfig/docker中的option变量中加上如下选项--registry-mirror=https://u6nqa61i.mirror.aliyuncs.com 重启docker：systemctl restart docker 方案二直接在/usr/lib/systemd/system/docker.service文件中加入选项 eg：ExecStart=/usr/bin/docker-current daemon \ --exec-opt native.cgroupdriver=systemd \ --insecure-registry docker.ts.com:5000 方案三使用daemon.json文件官方文档：https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file路径：/etc/docker/daemon.json备注：使用此方案不要与其他方案相混合使用，否则docker启动的时候会报错]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[基于docker的moa服务]]></title>
+      <url>%2F2016%2F06%2F02%2F%E5%9F%BA%E4%BA%8Edocker%E7%9A%84moa%E6%9C%8D%E5%8A%A1%2F</url>
+      <content type="text"><![CDATA[简介该文章主要讲解将公司的server服务docker化的具体过程，从中可以看到很多docker相关知识的使用以及网络配置等操作文中还设计到自己实现的关于docker自动化配置的两个脚本，供大家学习参考 docker化步骤1、将初始安装包拷贝到容器主机上 2、在主机上拉取一个centos6.7的docker镜像ps：因为官方的docker镜像都是轻量级的，所有很多linux下的命令都没有 方法一 就是要么自己将所有的命令工具都安装了 方法二 找一个别人建好的docker镜像 3、将主机上的安装包共享给容器，并交互式形式启动 docker run -t -i --name moa_centos7 -v /home/tunsuy/toContainer:/home/tunsuy/fromHost centos:centos7 /bin/bash 4、因为没有空白机的公有云安装包，所以这里以私有云空白安装包来安装ps：./install.sh -m test -d public_clound——参考./install.sh脚本实现 5、安装过程中可能会遇到一些问题 提示没有xx命令——一律 yum install xx 即可 提示连接不上mongodb——中断安装（其实moa依赖的一些软件环境已经安装成功了）——参考其他虚拟机公有云的mongodb安装情况，调整该docker容器中的mongodb并成功启动 6、单独安装公有云升级包（该包中需要包含dbserver服务包） 7、安装包成功之后，检查各项服务是否成功（包括web、流程、商店等） 可能会发现mysql安装异常——手动安装：进入私有云空白安装包中的init目录下，运行./install.sh————安装过程中可能会报错，缺少某些依赖————依次yum install安装（有的可能需要自己下载安装） 8、所有的服务都检查无误时，制作镜像并上传 搭建私有仓库（按照官方文档做就可以了，这里不详细写） 将容器制作为镜像docker commit --author &quot;ts&quot; --message &quot;更正moaserver初始化包环境&quot; 容器名 docker.ts.com:5000/moaserver_env:init 上传镜像到私有仓库 docker push docker.ts.com:5000/moaserver_env:init ps：配置私有仓库http访问编辑文件：vim /etc/sysconfig/docker添加以下内容 OPTIONS=&apos;--selinux-enabled --insecure-registry=docker.ts.com:5000&apos; 或者编辑文件：vim /usr/lib/systemd/system/docker.service添加以下内容 ExecStart=/usr/bin/docker-current daemon \ --exec-opt native.cgroupdriver=systemd \ $OPTIONS \ $DOCKER_STORAGE_OPTIONS \ $DOCKER_NETWORK_OPTIONS \ $ADD_REGISTRY \ $BLOCK_REGISTRY \ $INSECURE_REGISTRY \ --insecure-registry docker.ts.com:5000 注：centos7的防火墙使用的是firewalld，因为之前对iptables比较熟， 所以可以关掉firewalld，安装iptables服务 systemctl stop firewalld systemctl mask firewalld yum install iptables-services 服务使用1、从私有仓库拉取该镜像并使用 docker run -t -i --name=moaserver_env --net=&quot;none&quot; -v /home/tunsuy/toContainer:/home/tunsuy/fromHost docker.ts.com:5000/moaserver_env:init /bin/bash ps：这里采用none的网络方式，是因为想自己配置所有网络 2、配置容器IP这里使用我写的一个工具脚本：sh bind_addr.sh moaserver_env 172.17.0.2ps：需要在主机上执行，而不是在容器中脚本地址：https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关 3、source /etc/profileps：由于之前在镜像中配置的环境变量，在容器中不能自动生效（原因不明） 4、启动mongo和mysql /etc/init.d/mongod start /etc/init.d/mysqlaccd stop /etc/init.d/mysqld start 5、更新hosts文件 将模板文件写入hosts：cat /home/tunsuy/fromHost/host_templet &gt;&gt; /etc/hosts 将hosts中的IP改成容器ip mdbg -p 23808 -o changeip oldip=172.17.0.1,newip=172.17.0.2ps：容器的/etc/hosts、/etc/resolv.conf文件是挂载在宿主机中的 6、启动moa服务 /etc/init.d/moa start 7、想要外部访问该docker，还需要进行主机和容器的端口映射有两种方式： 在新建一个容器的时候就指定（一般都是这样） 在已生成的容器中动态配置：主要还是基于iptables来设置（因为docker的原理实际上也是这样的）因为之前我们在创建容器的时候没有指定，所以这里以第二种来配置iptables -A DOCKER ! -i docker0 -o docker0 -p tcp --dport 443 -d 172.17.0.1 -j ACCEPT iptables -t nat -A POSTROUTING -p tcp --dport 443 -s 172.17.0.1 -d 172.17.0.1 -j MASQUERADE iptables -t nat -A DOCKER ! -i dokcer0 -p tcp --dport 443 -j DNAT --to-destination 172.17.0.1:443 ps：为了方便，写了一个工具脚本sh docker_expose.sh moaserver_env 172.17.0.2 add 4432:443 脚本地址：[https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关](https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关) 注：查看iptables情况 iptables -nvxL --line-numbers iptables -t nat -nvxL --line-numbers 不足之处因为所有的容器都是基于宿主机的，最多通过修改时区来设置，也就只能偏移24小时网上有一种方案，不知可行不：https://github.com/wolfcw/libfaketime/ 参考链接https://yeasy.gitbooks.io/docker_practice/content/cases/supervisor.html]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[selenium远程启动浏览器]]></title>
+      <url>%2F2016%2F04%2F14%2Fselenium%E8%BF%9C%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8%2F</url>
+      <content type="text"><![CDATA[方案一通过selenium-server1、相关下载 下载server：http://seleniumhq.org/download/ 下载chrome-driver：https://sites.google.com/a/chromium.org/chromedriver/downloads 2、在浏览器主机的终端上执行命令： java -Dwebdriver.chrome.driver=&quot;D:\chromedriver.exe&quot; -jar selenium-server.jar 3、接下来就可以在其他主机上编写测试脚本并执行了：以python为例 下载基本python的selenium库：pip install selenium 编写示例脚本如下： from selenium import webdriver from selenium.webdriver.common.desired_capabilities import DesiredCapabilities driver = webdriver.Remote( command_executor=&apos;http://200.200.105.63:4444/wd/hub&apos;, desired_capabilities=webdriver.DesiredCapabilities.CHROME) driver.get(&apos;https://200.200.169.165&apos;); 方案二直接使用driver1、按照1中的下载好相应的浏览器驱动 2、在浏览器主机的终端上执行命令： chromedriver.exe --whitelisted-ips=&quot;200.200.169.162&quot; 3、编写示例脚本如下： from selenium import webdriver driver = webdriver.Remote( command_executor=&apos;http://200.200.105.63:9515&apos;, desired_capabilities=DesiredCapabilities.CHROME) driver.get(&apos;https://200.200.169.165&apos;);]]></content>
     </entry>
 
     
     <entry>
       <title><![CDATA[redmine迁移：从windows下迁移到linux]]></title>
-      <url>%2F2017%2F02%2F27%2Fredmine%E8%BF%81%E7%A7%BB%EF%BC%9A%E4%BB%8Ewindows%E4%B8%8B%E8%BF%81%E7%A7%BB%E5%88%B0linux%2F</url>
-      <content type="text"><![CDATA[迁移步骤1、在linux下将redmine安装好2、从原来的服务器上（windows）导出数据库文件（sql文件）3、将现在的服务器（linux）上的redmine数据库清空注：是清空，不能删除，因为删除会导致之后访问不了，具体原因可能是兼容问题4、将2步中导出来的sql文件导入3步中清空的redmine数据库中注：可能返回结果会提示说有错误，记下出错的表5、将出错的表重新删除再导入注：记住是删除，不是清空到目前为止数据库文件已经全部导入成功了6、附件的导入——将原来的服务器上的redmine中files文件拷贝到现在的服务器上的相同目录下 至此全部迁移数据已完成 问题及解决方法：1、redmine的rtx提醒收到的连接还是原来服务器的链接排查： 查看邮件配置文件是否正确——正确 通过rtx提醒的脚本调试发现redmine传递给rtx的提醒内容就是提问题时填写的内容（也就是数据库中的内容） 于是进入数据库中相应表（setting）查看，问题真是出在这里：这个表有个字段是设置hostname的，填写的还是以前的url（因为是导入以前的数据嘛） 解决：将该字段改为正确的访问ip即可 2、导入之后redmine上的时间显示不对排查：查看服务器时间——问题确实出在这里解决：将服务器时间设为当前时间 3、无法上传附件排查： 上传一个附件，没有返回错误，但是就是显示不出来 查看数据库，确实没有插入进去 既然能查看以前的附件，为什么迁移过来后就上传不了呢？ 联想：附件目录（files）是不是只有可读权限啊 解决： 将files目录设置为可读写权限（chmod 777 ./files/*） 重启服务，再次上传，成功]]></content>
+      <url>%2F2015%2F10%2F27%2Fredmine%E8%BF%81%E7%A7%BB%EF%BC%9A%E4%BB%8Ewindows%E4%B8%8B%E8%BF%81%E7%A7%BB%E5%88%B0linux%2F</url>
+      <content type="text"><![CDATA[迁移步骤1、在linux下将redmine安装好 2、从原来的服务器上（windows）导出数据库文件（sql文件） 3、将现在的服务器（linux）上的redmine数据库清空注：是清空，不能删除，因为删除会导致之后访问不了，具体原因可能是兼容问题 4、将2步中导出来的sql文件导入3步中清空的redmine数据库中注：可能返回结果会提示说有错误，记下出错的表 5、将出错的表重新删除再导入注：记住是删除，不是清空到目前为止数据库文件已经全部导入成功了 6、附件的导入——将原来的服务器上的redmine中files文件拷贝到现在的服务器上的相同目录下 至此全部迁移数据已完成 问题及解决方法：1、redmine的rtx提醒收到的连接还是原来服务器的链接排查： 查看邮件配置文件是否正确——正确 通过rtx提醒的脚本调试发现redmine传递给rtx的提醒内容就是提问题时填写的内容（也就是数据库中的内容） 于是进入数据库中相应表（setting）查看，问题真是出在这里：这个表有个字段是设置hostname的，填写的还是以前的url（因为是导入以前的数据嘛） 解决：将该字段改为正确的访问ip即可 2、导入之后redmine上的时间显示不对排查：查看服务器时间——问题确实出在这里解决：将服务器时间设为当前时间 3、无法上传附件排查： 上传一个附件，没有返回错误，但是就是显示不出来 查看数据库，确实没有插入进去 既然能查看以前的附件，为什么迁移过来后就上传不了呢？ 联想：附件目录（files）是不是只有可读权限啊 解决： 将files目录设置为可读写权限（chmod 777 ./files/*） 重启服务，再次上传，成功]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[本地化乌云网操作记录]]></title>
+      <url>%2F2015%2F04%2F27%2F%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B9%8C%E4%BA%91%E7%BD%91%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95%2F</url>
+      <content type="text"><![CDATA[基于第三方项目：https://github.com/hanc00l/wooyun_public 准备工作python环境： 多版本共存pyenv 虚拟环境virtualenv 安装命令： pyenv install 2.7.10 pyenv global 2.7.10 pyenv virtualenv 2.7.10 venv2710 具体操作步骤1、进入虚拟环境 pyenv activate venv2710 2、安装Flask（一个基于python的web开发微框架） http://docs.jinkan.org/docs/flask/ pip install Flask 3、安装 Scrapy（一个基于python的爬虫框架）http://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/install.html pip install Scrapy 备注：需要Twisted&gt;=10.0.0 wget https://pypi.python.org/packages/source/T/Twisted/Twisted-15.2.1.tar.bz2 解压安装：python setup.py install 4、安装pymongo pip install pymongo 5、启动web进入项目的flask目录下：python app.py 6、开始爬虫进入项目下的wooyun目录： scrapy crawl wooyun -a page_max=0 -a update=true 进入项目下的wooyun_drops目录： scrapy crawl wooyun -a page_max=0 -a update=true 备注：提示缺少PIL—http://www.pythonware.com/products/pil/ wget http://effbot.org/downloads/Imaging-1.1.7.tar.gz 解压安装：python setup.py install 还可能遇到的问题virtualenv的环境无法import sqlite3报错信息如下： #python Python 2.7.9 (default, Feb 10 2015, 01:40:34) [GCC 4.4.7 20120313 (Red Hat 4.4.7-11)] on linux2 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information. &gt;&gt;&gt; import sqlite3 Traceback (most recent call last): File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt; File &quot;/root/.pyenv/versions/2.7.9/lib/python2.7/sqlite3/__init__.py&quot;, line 24, in &lt;module&gt; from dbapi2 import * File &quot;/root/.pyenv/versions/2.7.9/lib/python2.7/sqlite3/dbapi2.py&quot;, line 28, in &lt;module&gt; from _sqlite3 import * ImportError: No module named _sqlite3 谷歌了一下，原因是安装了多套python环境，virtualenv使用的那套python没有_sqlite3.so这个文件。没用virtualenv的时候，使用的是另外一套python的_sqlite3.so，所以解决方法是先安装sqlite-devel，然后重新编译virtualenv使用的那套python，操作步骤如下，因为我使用的pyenv，所以是连带virtualenv一起安装的。 先退出virtualenv的python环境，安装sqlite-devel yum -y install sqlite-devel 重新安装pyenv curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash 删掉原有的python环境、重新安装python环境 7、mongodb+elasticsearchPS： mongodb使用elasticsearch必须要是集群下 编辑/home/ts/db/mongodb/mongodb.conf ，增加：replSet=rs0 #这里是指定replSet的名字 oplogSize=100 #这里是指定oplog表数据大小（太大了不支持） 重启动mongodbservice mongodb restart 进入mongodb shell，初始化replicSetrs.initiate( {&quot;_id&quot; : &quot;rs0&quot;, &quot;version&quot; : 1, &quot;members&quot; : [ { &quot;_id&quot; : 0, &quot;host&quot; : &quot;127.0.0.1:27017&quot; } ]}) 备注：rs.initiate初始化字段详情见：https://docs.mongodb.com/manual/reference/replica-configuration/#replsetgetconfig-output]]></content>
     </entry>
 
     
@@ -89,28 +96,21 @@
     <entry>
       <title><![CDATA[linux下部署redmine]]></title>
       <url>%2F2015%2F03%2F04%2Flinux%E4%B8%8B%E9%83%A8%E7%BD%B2redmine%2F</url>
-      <content type="text"><![CDATA[安装步骤1、安装ruby环境——使用rvm比较方便2、使用bitnami-redmine一键式安装包3、远程访问不了——关闭防火墙即可4、phpmyadmin无法远程访问——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf修改如下： # AuthType Basic # AuthName phpMyAdmin # AuthUserFile &quot;/opt/redmine-2.6.0-3/apache2/users&quot; # Require valid-user AllowOverride None &lt;IfModule php5_module&gt; php_value upload_max_filesize 80M php_value post_max_size 80M &lt;/IfModule&gt; &lt;IfVersion &lt; 2.3 &gt; Order allow,deny Allow from all Satisfy all &lt;/IfVersion&gt; &lt;IfVersion &gt;= 2.3&gt; Require all granted # Require local &lt;/IfVersion&gt; ErrorDocument 403 &quot;For security reasons, this URL is only accessible using localhost (127.0.0.1) as the hostname.&quot; &lt;/Directory&gt; 其中红色部分为修改部分重启服务即可：/opt/redmine-2.6.0-3/ctlscript.sh restart 操作redmine的数据库 redmine使用的数据库为mysql，如果在终端直接输入mysql命令，则是直接调用的你以前装的mysql，而不是redmine的mysql redmine的mysql相关命令的路径为/opt/redmine-2.6.0-3/mysql/bin/ redmine数据库默认有几个用户，一是你安装时填写的用户名和密码，使用这个用户登录mysql是看不到redmine的数据库的； 二是root用户，密码跟你安装时填写的密码一样，这个可以看到所有的数据库]]></content>
-    </entry>
-
-    
-    <entry>
-      <title><![CDATA[本地化乌云网操作记录]]></title>
-      <url>%2F2015%2F02%2F27%2F%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B9%8C%E4%BA%91%E7%BD%91%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95%2F</url>
-      <content type="text"><![CDATA[基于第三方项目：https://github.com/hanc00l/wooyun_public 准备工作python环境： 多版本共存pyenv 虚拟环境virtualenv 安装命令： pyenv install 2.7.10 pyenv global 2.7.10 pyenv virtualenv 2.7.10 venv2710 具体操作步骤1、进入虚拟环境 pyenv activate venv2710 2、安装Flask（一个基于python的web开发微框架） http://docs.jinkan.org/docs/flask/ pip install Flask 3、安装 Scrapy（一个基于python的爬虫框架）http://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/install.html pip install Scrapy 备注：需要Twisted&gt;=10.0.0 wget https://pypi.python.org/packages/source/T/Twisted/Twisted-15.2.1.tar.bz2 解压安装：python setup.py install 4、安装pymongo pip install pymongo 5、启动web进入项目的flask目录下：python app.py 6、开始爬虫进入项目下的wooyun目录： scrapy crawl wooyun -a page_max=0 -a update=true 进入项目下的wooyun_drops目录： scrapy crawl wooyun -a page_max=0 -a update=true 备注：提示缺少PIL—http://www.pythonware.com/products/pil/ wget http://effbot.org/downloads/Imaging-1.1.7.tar.gz 解压安装：python setup.py install 还可以遇到的问题virtualenv的环境无法import sqlite3报错信息如下： #python Python 2.7.9 (default, Feb 10 2015, 01:40:34) [GCC 4.4.7 20120313 (Red Hat 4.4.7-11)] on linux2 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information. &gt;&gt;&gt; import sqlite3 Traceback (most recent call last): File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt; File &quot;/root/.pyenv/versions/2.7.9/lib/python2.7/sqlite3/__init__.py&quot;, line 24, in &lt;module&gt; from dbapi2 import * File &quot;/root/.pyenv/versions/2.7.9/lib/python2.7/sqlite3/dbapi2.py&quot;, line 28, in &lt;module&gt; from _sqlite3 import * ImportError: No module named _sqlite3 谷歌了一下，原因是安装了多套python环境，virtualenv使用的那套python没有_sqlite3.so这个文件。没用virtualenv的时候，使用的是另外一套python的_sqlite3.so，所以解决方法是先安装sqlite-devel，然后重新编译virtualenv使用的那套python，操作步骤如下，因为我使用的pyenv，所以是连带virtualenv一起安装的。 先退出virtualenv的python环境，安装sqlite-devel yum -y install sqlite-devel 重新安装pyenv curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash 删掉原有的python环境、重新安装python环境 7、mongodb+elasticsearchPS： mongodb使用elasticsearch必须要是集群下 编辑/home/ts/db/mongodb/mongodb.conf ，增加：replSet=rs0 #这里是指定replSet的名字 oplogSize=100 #这里是指定oplog表数据大小（太大了不支持） 重启动mongodbservice mongodb restart 进入mongodb shell，初始化replicSetrs.initiate( {&quot;_id&quot; : &quot;rs0&quot;, &quot;version&quot; : 1, &quot;members&quot; : [ { &quot;_id&quot; : 0, &quot;host&quot; : &quot;127.0.0.1:27017&quot; } ]}) 备注：rs.initiate初始化字段详情见：https://docs.mongodb.com/manual/reference/replica-configuration/#replsetgetconfig-output]]></content>
+      <content type="text"><![CDATA[安装步骤1、安装ruby环境——使用rvm比较方便 2、使用bitnami-redmine一键式安装包 3、远程访问不了——关闭防火墙即可 4、phpmyadmin无法远程访问——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf修改如下： # AuthType Basic # AuthName phpMyAdmin # AuthUserFile &quot;/opt/redmine-2.6.0-3/apache2/users&quot; # Require valid-user AllowOverride None &lt;IfModule php5_module&gt; php_value upload_max_filesize 80M php_value post_max_size 80M &lt;/IfModule&gt; &lt;IfVersion &lt; 2.3 &gt; Order allow,deny Allow from all Satisfy all &lt;/IfVersion&gt; &lt;IfVersion &gt;= 2.3&gt; Require all granted # Require local &lt;/IfVersion&gt; ErrorDocument 403 &quot;For security reasons, this URL is only accessible using localhost (127.0.0.1) as the hostname.&quot; &lt;/Directory&gt; 其中红色部分为修改部分重启服务即可：/opt/redmine-2.6.0-3/ctlscript.sh restart 操作redmine的数据库1、 redmine使用的数据库为mysql，如果在终端直接输入mysql命令，则是直接调用的你以前装的mysql，而不是redmine的mysql 2、redmine的mysql相关命令的路径为/opt/redmine-2.6.0-3/mysql/bin/ 3、redmine数据库默认有几个用户 一是你安装时填写的用户名和密码，使用这个用户登录mysql是看不到redmine的数据库的； 二是root用户，密码跟你安装时填写的密码一样，这个可以看到所有的数据库]]></content>
     </entry>
 
     
     <entry>
       <title><![CDATA[hexo+github博客部署问题记录]]></title>
       <url>%2F2015%2F02%2F20%2Fhexo-github%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%2F</url>
-      <content type="text"><![CDATA[1.博客简介现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客 搭建博客一般有几种方式：1、全部自己实现：包括服务器、自己做网站、购买域名等——费时费力费钱2、租用云服务器，采用静态博客生成工具：但是云服务器一般也是要付费的 那有没有免费的呢？答案是有的，那就是github 这里再说下静态博客工具+github的原理：以hexo+github为例（其他的静态博客生成工具类似） 静态博客一般就是帮我们将博客的外观和框架做成了模型，用户只需要专注于写文章（一般都支持使用md格式文档），然后使用博客工具命令生成静态网页；所以你将这些网页和资源放在任何web服务器上都可以运行 既然放在任何的web服务器上都可以运行，那么久有了github为我们提供的免费托管服务器，我们只需要将我们的静态网页和资源上传到github上即可 hexo+github的具体安装部署这里就不多说了，网上教程很多 2.问题记录这里只记录一个网上很少有的问题ps：囧，偏偏我遇到了 1、推送hexo博客内容到github出现错误： error: The requested URL returned error: 403 Forbidden 安装网上的方式都试了，都不行最后解决方法如下： 修改站点配置文件 _config.ymlrepository: git@github.com:tunsuy/tunsuy.github.io.git ps：之前是使用的https，不知道为什么不行 3.好文推荐Hexo的分类和标签设置Hexo官方文档主题next官方文档]]></content>
+      <content type="text"><![CDATA[博客简介现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客 搭建博客一般有几种方式：1、全部自己实现：包括服务器、自己做网站、购买域名等——费时费力费钱2、租用云服务器，采用静态博客生成工具：但是云服务器一般也是要付费的 那有没有免费的呢？答案是有的，那就是github 这里再说下静态博客工具+github的原理：以hexo+github为例（其他的静态博客生成工具类似） 静态博客一般就是帮我们将博客的外观和框架做成了模型，用户只需要专注于写文章（一般都支持使用md格式文档），然后使用博客工具命令生成静态网页；所以你将这些网页和资源放在任何web服务器上都可以运行 既然放在任何的web服务器上都可以运行，那么久有了github为我们提供的免费托管服务器，我们只需要将我们的静态网页和资源上传到github上即可 hexo+github的具体安装部署这里就不多说了，网上教程很多 问题记录这里只记录一个网上很少有的问题ps：囧，偏偏我遇到了 1、推送hexo博客内容到github出现错误： error: The requested URL returned error: 403 Forbidden 安装网上的方式都试了，都不行最后解决方法如下： 修改站点配置文件 _config.ymlrepository: git@github.com:tunsuy/tunsuy.github.io.git ps：之前是使用的https，不知道为什么不行 好文推荐Hexo的分类和标签设置Hexo官方文档主题next官方文档]]></content>
     </entry>
 
     
     <entry>
       <title><![CDATA[centos下安装mongodb记录]]></title>
       <url>%2F2015%2F02%2F10%2Fcentos%E4%B8%8B%E5%AE%89%E8%A3%85mongodb%E8%AE%B0%E5%BD%95%2F</url>
-      <content type="text"><![CDATA[安装步骤1、卸载已有mongodb数据库 /etc/init.d/mongod stop yum erase $(rpm -qa | grep mongodb-org) 删除mongodb相关目录文件等，例如： rm -r /var/log/mongodb/ rm -r /var/lib/mongo 2、下载最新mongodb wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.9.tgz 3、移动下载文件并解压 mv ./mongodb-linux-x86_64-rhel62-3.2.9.tgz /usr/local/src/ tar -xvf mongodb-linux-x86_64-rhel62-3.2.9.tgz 4、移动解压文件 mv ./mongodb-linux-x86_64-rhel62-3.2.9 /usr/local/mongodb 5、创建mongodb相关目录 mkdir -p /home/ts/db/mongodb/data mkdir -p /home/ts/db/mongodb/log 6、创建并编辑mongodb配置文件 vim /home/ts/db/mongodb/mongodb.conf 7、配置mongodb环境变量 vim /etc/profile 加入如下语句： # mongodb set export MONGODB=/usr/local/mongodb PATH=$PATH:$MONGODB/bin 立即生效： source /etc/profile 8、配置开机启动 vim /etc/rc.d/init.d/mongod 注：必须在该文件开头写上： # chkconfig: 2345 10 90 # description: mongod .... 设置： chmod +x /etc/rc.d/init.d/mongod chkconfig mongod on PS：/etc/init.d/ 是 /etc/rc.d/init.d/ 的软链接]]></content>
+      <content type="text"><![CDATA[安装步骤1、卸载已有mongodb数据库 /etc/init.d/mongod stop yum erase $(rpm -qa | grep mongodb-org) 删除mongodb相关目录文件等，例如： rm -r /var/log/mongodb/ rm -r /var/lib/mongo 2、下载最新mongodb wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.9.tgz 3、移动下载文件并解压 mv ./mongodb-linux-x86_64-rhel62-3.2.9.tgz /usr/local/src/ tar -xvf mongodb-linux-x86_64-rhel62-3.2.9.tgz 4、移动解压文件 mv ./mongodb-linux-x86_64-rhel62-3.2.9 /usr/local/mongodb 5、创建mongodb相关目录 mkdir -p /home/ts/db/mongodb/data mkdir -p /home/ts/db/mongodb/log 6、创建并编辑mongodb配置文件 vim /home/ts/db/mongodb/mongodb.conf 配置mongodb环境变量vim /etc/profile 加入如下语句： # mongodb set export MONGODB=/usr/local/mongodb PATH=$PATH:$MONGODB/bin 立即生效： source /etc/profile 配置开机启动vim /etc/rc.d/init.d/mongod 注：必须在该文件开头写上： # chkconfig: 2345 10 90 # description: mongod .... 设置： chmod +x /etc/rc.d/init.d/mongod chkconfig mongod on PS：/etc/init.d/ 是 /etc/rc.d/init.d/ 的软链接]]></content>
     </entry>
 
     
