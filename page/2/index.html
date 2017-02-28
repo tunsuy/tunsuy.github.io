@@ -233,16 +233,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
 
       
         <li class="menu-item menu-item-search">
@@ -294,6 +284,1222 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/07/10/appium-ios自动化入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/10/appium-ios自动化入门/" itemprop="url">
+                  appium-ios自动化入门
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-10T15:13:01+08:00">
+                2016-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/10/appium-ios自动化入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/appium-ios自动化入门/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  </p>
+<p>这次先介绍appium的使用过程，后续有时间会看下其源码实现机制。</p>
+<p>在mac下配置appium的自动化测试环境在这里就不说了，网上很多</p>
+<p>因为查了下appium针对ios的自动化测试，网上的资料比较少，且说得不是很清楚，故这篇文章主要介绍怎样使用appium自动化测试自己的项目。</p>
+<p>这些操作步骤均是自己亲自操作并实践通过的</p>
+<p>这里已自己实现的一个简单的ios app来一步步介绍<br>这篇文章先介绍在模拟器下运行的情况</p>
+<h3 id="编译ios-app"><a href="#编译ios-app" class="headerlink" title="编译ios app"></a>编译ios app</h3><p>命令行操作</p>
+<pre><code>$ cd /Users/xxx/Documents/lesFour/
+
+$ xcodebuild -sdk iphonesimulator
+</code></pre><p>备注：</p>
+<ul>
+<li>官网上的介绍中是这样写的：xcodebuild -sdk iphonesimulator6.0，表示编译成ios6版本的<br>这里要说明的就是 如果你在这里指定了版本号，那么你就必须修改编译文件为对应的版本，不然运行不成功</li>
+<li>这条命令会在项目目录下产生一个 build 文件夹，等下我们会用到里面的一些文件</li>
+<li>关于 在命令行下编译 ios项目的知识 会在后续简单的介绍</li>
+</ul>
+<h3 id="下载并更新appium-ruby项目库"><a href="#下载并更新appium-ruby项目库" class="headerlink" title="下载并更新appium-ruby项目库"></a>下载并更新appium-ruby项目库</h3><p>切换到你喜欢的目录下，下载appium-ruby库</p>
+<pre><code>$ git clone https://github.com/appium/sample-code.git
+
+$ cd /Users/tunsuy/sample-code/sample-code/examples/ruby/
+</code></pre><p>因为mac自带ruby，所有这里直接更新项目依赖即可<br>    $ gem install bundle</p>
+<pre><code>$ bundle update
+</code></pre><h3 id="开始测试自己的项目"><a href="#开始测试自己的项目" class="headerlink" title="开始测试自己的项目"></a>开始测试自己的项目</h3><p>1、这里先运行一下官方的测试程序检查是否配置正确</p>
+<ul>
+<li><p>在mac下启动一个终端，开启appium-server</p>
+<pre><code>$ appium
+info: Welcome to Appium v1.3.5 (REV a124a15677e26b33db16e81c4b3b34d9c6b8cac9)
+info: Appium REST http interface listener started on 0.0.0.0:4723
+info: Console LogLevel: debug
+——启动成功
+</code></pre></li>
+<li><p>另启动一个终端</p>
+<pre><code>$ cd /Users/xxx/sample-code/sample-code/examples/ruby/
+$ rspec simple_test.rb
+</code></pre><p>注：这时可以看到appium-server所在的终端正在持续打出一系列日志，然后可以看到模拟器启动并测试成功</p>
+</li>
+</ul>
+<p>2、自动化测试自己的项目</p>
+<ul>
+<li>拷贝项目目录下之前编译产生的 build文件夹 到 /Users/xxx/sample-code/sample-code/apps/TestApp/ 目录下，覆盖掉已有的build文件夹（你也可以先备份再覆盖）  </li>
+<li><p>修改/Users/xxx/sample-code/sample-code/examples/ruby/目录下的simple_test.rb文件  </p>
+<pre><code>$ vi simple_test.rb
+</code></pre><p>修改为：</p>
+<pre><code>APP_PATH = &apos;../../apps/TestApp/build/Release-iphonesimulator/lesThree.app&apos; 为自己的路径
+</code></pre><p>同时将 module Calculator 整个模块注释掉，也是自己的自动化代码，你也可以先不写，先看启动效果</p>
+</li>
+<li><p>启动测试</p>
+<pre><code>$ rspec simple_test.rb
+</code></pre></li>
+<li><p>输出结果：</p>
+<pre><code>No examples found.
+Finished in 0.00012 seconds
+0 examples, 0 failures
+</code></pre><p>因为没有写测试代码，所有这里显示 0个案例，0个错误<br>程序正常被启动起来了，如下图所示：  </p>
+<img src="/2016/07/10/appium-ios自动化入门/appium-ios.jpg" alt="appium-ios.jpg" title="">
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/06/28/calabash-ios初体验/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/28/calabash-ios初体验/" itemprop="url">
+                  calabash-ios安装详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-28T14:48:31+08:00">
+                2016-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/06/28/calabash-ios初体验/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/28/calabash-ios初体验/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  </p>
+<p>这次先介绍calabash的使用过程，后续有时间会看下其源码实现机制。</p>
+<h3 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h3><p>这里以我自身的安装成功经历记录如下：<br>1、启动终端</p>
+<p>2、切换到被测项目路径下</p>
+<pre><code>cd /Users/XXX/Documents/lesFour/
+</code></pre><p>3、安装 calabash-cucumber gem包</p>
+<pre><code>gem install calabash-cucumber
+</code></pre><p>4、生成 features文件夹</p>
+<pre><code>calabash-ios gen
+</code></pre><h3 id="集成项目"><a href="#集成项目" class="headerlink" title="集成项目"></a>集成项目</h3><p>1、设置 xcode 项目<br>I.复制项目target文件<br>右键如下图红色部分  </p>
+<img src="/2016/06/28/calabash-ios初体验/targetcp.jpg" alt="targetcp.jpg" title="">
+<p>弹出提示框，选择Duplicate，弹出如窗口，选择如下图所示  </p>
+<img src="/2016/06/28/calabash-ios初体验/targetcf.jpg" alt="targetcf.jpg" title="">
+<p>复制出来如下图所示，名称为lesThree copy， 双击该项目，改名为lesThree-cal（根据你自己的项目名称来设置）</p>
+
+<p>II.修改复制项目的各处名称<br>如下图点击，再下拉框中选择管理项目</p>
+<img src="/2016/06/28/calabash-ios初体验/targetrn.jpg" alt="targetrn.jpg" title="">
+<p>弹出如下窗口，修改为如图所示名称（根据你自己的项目而定）</p>
+<img src="/2016/06/28/calabash-ios初体验/targetrnfs.jpg" alt="targetrnfs.jpg" title="">
+<p>点击完成，进入如下图所示，修改为如图所示名称</p>
+<img src="/2016/06/28/calabash-ios初体验/targetrnfs1.jpg" alt="targetrnfs1.jpg" title="">
+<p>III.导入calabash.framework框架<br>将你项目目录下的calabash.framework拖到xcode项目中的Frameworks文件夹中，（如没有该文件夹，请创建），如图所示</p>
+<img src="/2016/06/28/calabash-ios初体验/importfm.jpg" alt="importfm.jpg" title="">
+<p>再弹出的窗口中设置如图所示</p>
+<img src="/2016/06/28/calabash-ios初体验/importfmcp.jpg" alt="importfmcp.jpg" title="">
+<p>IV.导入CFNetwork.framework<br>如图所示导入</p>
+<img src="/2016/06/28/calabash-ios初体验/linkfm.jpg" alt="linkfm.jpg" title="">
+<p>V.设置other linker flag<br>如下图所示设置</p>
+<img src="/2016/06/28/calabash-ios初体验/linkflag.jpg" alt="linkflag.jpg" title="">
+<h3 id="测试安装"><a href="#测试安装" class="headerlink" title="测试安装"></a>测试安装</h3><p>再模拟器中运行该cal项目，窗口控制台输出如下信息则表示配置成功</p>
+<pre><code>2015-03-06 17:27:50.105 lesThree-cal[3279:55236] Started LPHTTP server on port 37265
+2015-03-06 17:27:52.441 lesThree-cal[3279:55421] Bonjour Service Published: domain(local.) type(_http._tcp.) name(Calabash Server)
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/06/20/calabash-android原理分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/20/calabash-android原理分析/" itemprop="url">
+                  calabash-android原理分析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-20T15:16:39+08:00">
+                2016-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/06/20/calabash-android原理分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/20/calabash-android原理分析/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在前面已经简单的介绍了calabash-ios的原理，这里将继续分析calabash-Android端的原理</p>
+<h3 id="原理解析"><a href="#原理解析" class="headerlink" title="原理解析"></a>原理解析</h3><p>calabash-android架构其实与IOS是相同的</p>
+<p>1、内部使用核心为cucumber的calabash的脚本在运行测试的时候会在虚拟机/真机上预装一个web服务器，这个web服务器就是解释calabash的脚本，</p>
+<p>2、因为calabash-Android是基于robotium框架的，所以在机器上预装的web-server会将下发下来的calabash脚本解释为robotium的脚本，然后向测试app发送robotium的脚本，</p>
+<p>3、因为robotium框架就是封装的google测试框架instumentation，所以app拿到robotium脚本后，将其解释为instumentation命令向被测试的app发送这些命令，被测试的app执行这些命令，然后将结果返回。</p>
+<h3 id="系统架构图"><a href="#系统架构图" class="headerlink" title="系统架构图"></a>系统架构图</h3><p>calabash-Android整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
+<img src="/2016/06/20/calabash-android原理分析/calabash-android.jpg" alt="calabash-android.jpg" title="">
+<h4 id="框架图解释如下："><a href="#框架图解释如下：" class="headerlink" title="框架图解释如下："></a>框架图解释如下：</h4><p>1、Runner 负责接受用户指令，并对其进行数据校验、指令转换等操作，之后将其交由客户端处理（这里的客户端是指运行在pc上的用户自己编写的代码），</p>
+<p>2、instrumentation test server就是预装在设备上的web-server，客户端在接收到指令之后，将指令发送给它，请求其执行对应操作，</p>
+<p>3、web-server在接收到指令之后，解释该命令并与app进行交互，</p>
+<p>4、所有执行结果最终会被收集到 Results 中。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/06/15/docker自定义daemon选项/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/15/docker自定义daemon选项/" itemprop="url">
+                  docker自定义daemon选项
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-15T12:10:23+08:00">
+                2016-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/06/15/docker自定义daemon选项/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/15/docker自定义daemon选项/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>可以定义的选项为如下列出来的</p>
+<pre><code>docker-current daemon --help
+</code></pre><h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>1、分别定义各环境文件</p>
+<pre><code>eg：/etc/sysconfig/docker-storage
+/etc/sysconfig/docker-network
+</code></pre><p>该文件中可以自定义环境变量</p>
+<p>2、在/usr/lib/systemd/system/docker.service文件中引入环境文件</p>
+<pre><code>eg：EnvironmentFile=-/etc/sysconfig/docker-storage
+EnvironmentFile=-/etc/sysconfig/docker-network
+</code></pre><p>并使用其环境变量</p>
+<pre><code>ExecStart=/usr/bin/docker-current daemon \
+      $DOCKER_STORAGE_OPTIONS \
+      $DOCKER_NETWORK_OPTIONS \
+</code></pre><p>备注：也可以将所有的自定义选项定义在一个文件中</p>
+<p>例：将官方镜像仓库替换为阿里云镜像仓库</p>
+<ul>
+<li>前提：注册阿里云用户，此时才会获取到一个私有的镜像仓库地址<pre><code>https://cr.console.aliyun.com/
+</code></pre></li>
+<li>在/etc/sysconfig/docker中的option变量中加上如下选项<pre><code>--registry-mirror=https://u6nqa61i.mirror.aliyuncs.com
+</code></pre></li>
+<li>重启docker：<pre><code>systemctl restart docker
+</code></pre></li>
+</ul>
+<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>直接在/usr/lib/systemd/system/docker.service文件中加入选项</p>
+<pre><code>eg：ExecStart=/usr/bin/docker-current daemon \
+      --exec-opt native.cgroupdriver=systemd \
+      --insecure-registry docker.ts.com:5000
+</code></pre><h3 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h3><p>使用daemon.json文件<br>官方文档：<a href="https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file" target="_blank" rel="external">https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file</a><br>路径：/etc/docker/daemon.json<br>备注：使用此方案不要与其他方案相混合使用，否则docker启动的时候会报错</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/06/02/基于docker的moa服务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/02/基于docker的moa服务/" itemprop="url">
+                  基于docker的moa服务
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-02T12:15:17+08:00">
+                2016-06-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/06/02/基于docker的moa服务/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/基于docker的moa服务/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>该文章主要讲解将公司的server服务docker化的具体过程，从中可以看到很多docker相关知识的使用以及网络配置等操作<br>文中还设计到自己实现的关于docker自动化配置的两个脚本，供大家学习参考</p>
+<h3 id="docker化步骤"><a href="#docker化步骤" class="headerlink" title="docker化步骤"></a>docker化步骤</h3><p>1、将初始安装包拷贝到容器主机上</p>
+<p>2、在主机上拉取一个centos6.7的docker镜像<br>ps：因为官方的docker镜像都是轻量级的，所有很多linux下的命令都没有</p>
+<ul>
+<li>方法一 就是要么自己将所有的命令工具都安装了</li>
+<li>方法二 找一个别人建好的docker镜像</li>
+</ul>
+<p>3、将主机上的安装包共享给容器，并交互式形式启动</p>
+<pre><code>docker run -t -i --name moa_centos7 -v /home/tunsuy/toContainer:/home/tunsuy/fromHost centos:centos7 /bin/bash
+</code></pre><p>4、因为没有空白机的公有云安装包，所以这里以私有云空白安装包来安装<br>ps：./install.sh -m test -d public_clound<br>——参考./install.sh脚本实现</p>
+<p>5、安装过程中可能会遇到一些问题  </p>
+<ul>
+<li>提示没有xx命令——一律 yum install xx 即可</li>
+<li>提示连接不上mongodb<br>——中断安装（其实moa依赖的一些软件环境已经安装成功了）<br>——参考其他虚拟机公有云的mongodb安装情况，调整该docker容器中的mongodb并成功启动</li>
+</ul>
+<p>6、单独安装公有云升级包（该包中需要包含dbserver服务包）</p>
+<p>7、安装包成功之后，检查各项服务是否成功（包括web、流程、商店等）  </p>
+<ul>
+<li>可能会发现mysql安装异常<br>——手动安装：进入私有云空白安装包中的init目录下，运行./install.sh<br>————安装过程中可能会报错，缺少某些依赖<br>————依次yum install安装（有的可能需要自己下载安装）</li>
+</ul>
+<p>8、所有的服务都检查无误时，制作镜像并上传</p>
+<ul>
+<li>搭建私有仓库（按照官方文档做就可以了，这里不详细写）</li>
+<li>将容器制作为镜像<pre><code>docker commit --author &quot;ts&quot; --message &quot;更正moaserver初始化包环境&quot; 容器名 docker.ts.com:5000/moaserver_env:init
+</code></pre></li>
+<li><p>上传镜像到私有仓库</p>
+<pre><code>docker push docker.ts.com:5000/moaserver_env:init
+</code></pre><p>ps：配置私有仓库http访问<br>编辑文件：vim /etc/sysconfig/docker<br>添加以下内容</p>
+<pre><code>OPTIONS=&apos;--selinux-enabled --insecure-registry=docker.ts.com:5000&apos;
+</code></pre><p>或者编辑文件：vim /usr/lib/systemd/system/docker.service<br>添加以下内容</p>
+<pre><code>  ExecStart=/usr/bin/docker-current daemon \
+    --exec-opt native.cgroupdriver=systemd \
+    $OPTIONS \
+    $DOCKER_STORAGE_OPTIONS \
+    $DOCKER_NETWORK_OPTIONS \
+    $ADD_REGISTRY \
+    $BLOCK_REGISTRY \
+    $INSECURE_REGISTRY \
+--insecure-registry docker.ts.com:5000
+</code></pre></li>
+</ul>
+<p>注：centos7的防火墙使用的是firewalld，因为之前对iptables比较熟，<br>     所以可以关掉firewalld，安装iptables服务  </p>
+<pre><code>systemctl stop firewalld
+systemctl mask firewalld
+yum install iptables-services
+</code></pre><h3 id="服务使用"><a href="#服务使用" class="headerlink" title="服务使用"></a>服务使用</h3><p>1、从私有仓库拉取该镜像并使用</p>
+<pre><code>docker run -t -i --name=moaserver_env --net=&quot;none&quot; -v /home/tunsuy/toContainer:/home/tunsuy/fromHost docker.ts.com:5000/moaserver_env:init /bin/bash
+</code></pre><p>  ps：这里采用none的网络方式，是因为想自己配置所有网络</p>
+<p>2、配置容器IP<br>这里使用我写的一个工具脚本：sh bind_addr.sh moaserver_env 172.17.0.2<br>ps：需要在主机上执行，而不是在容器中<br>脚本地址：<br><a href="https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关" target="_blank" rel="external">https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关</a></p>
+<p>3、source /etc/profile<br>ps：由于之前在镜像中配置的环境变量，在容器中不能自动生效（原因不明）</p>
+<p>4、启动mongo和mysql</p>
+<pre><code>/etc/init.d/mongod start
+/etc/init.d/mysqlaccd stop
+/etc/init.d/mysqld start
+</code></pre><p>5、更新hosts文件</p>
+<ul>
+<li>将模板文件写入hosts：<pre><code>cat /home/tunsuy/fromHost/host_templet &gt;&gt; /etc/hosts
+</code></pre></li>
+<li>将hosts中的IP改成容器ip</li>
+<li>mdbg -p 23808 -o changeip oldip=172.17.0.1,newip=172.17.0.2<br>ps：容器的/etc/hosts、/etc/resolv.conf文件是挂载在宿主机中的</li>
+</ul>
+<p>6、启动moa服务</p>
+<pre><code>/etc/init.d/moa start
+</code></pre><p>7、想要外部访问该docker，还需要进行主机和容器的端口映射<br>有两种方式：</p>
+<ul>
+<li>在新建一个容器的时候就指定（一般都是这样）</li>
+<li>在已生成的容器中动态配置：主要还是基于iptables来设置（因为docker的原理实际上也是这样的）<br>因为之前我们在创建容器的时候没有指定，所以这里以第二种来配置<pre><code>iptables -A DOCKER ! -i docker0 -o docker0 -p tcp --dport 443 -d 172.17.0.1 -j ACCEPT
+iptables -t nat -A POSTROUTING -p tcp --dport 443 -s 172.17.0.1 -d 172.17.0.1 -j MASQUERADE
+iptables -t nat -A DOCKER ! -i dokcer0 -p tcp --dport 443 -j DNAT --to-destination 172.17.0.1:443
+</code></pre>   ps：为了方便，写了一个工具脚本<pre><code>sh docker_expose.sh moaserver_env 172.17.0.2 add 4432:443
+</code></pre>  脚本地址：<pre><code>[https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关](https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关)
+</code></pre></li>
+</ul>
+<p>注：查看iptables情况</p>
+<pre><code>iptables -nvxL --line-numbers
+iptables -t nat -nvxL --line-numbers
+</code></pre><h3 id="不足之处"><a href="#不足之处" class="headerlink" title="不足之处"></a>不足之处</h3><p>因为所有的容器都是基于宿主机的，最多通过修改时区来设置，也就只能偏移24小时<br>网上有一种方案，不知可行不：<a href="https://github.com/wolfcw/libfaketime/" target="_blank" rel="external">https://github.com/wolfcw/libfaketime/</a></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://yeasy.gitbooks.io/docker_practice/content/cases/supervisor.html" target="_blank" rel="external">https://yeasy.gitbooks.io/docker_practice/content/cases/supervisor.html</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/" itemprop="url">
+                  iOS下使用UI-Testing进行发包前Checklist检查
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-19T15:16:22+08:00">
+                2016-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/19/iOS下使用XCTest进行发包前Checklist检查/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="UI-Testing简介"><a href="#UI-Testing简介" class="headerlink" title="UI Testing简介"></a>UI Testing简介</h3><p>1、UI Testing 是基于 XCTest 测试框架的。XCTest 作为 OCUnit 的替代者，目前是 iOS 单元测试框架不二之选，很多其他测试框架也基于 XCTest 封装。XCTest 有如下特点：</p>
+<ul>
+<li>测试用例需要继承 XCTestCase</li>
+<li>有类似 Junit 的 setup 或者 teardown方法</li>
+<li>还算不错的 Assertions</li>
+<li>和 Xcode 深度集成</li>
+<li>可以使用 Xcode server 的持续集成。支持 Swift 和 Objective-C</li>
+</ul>
+<p>2、那 UI Testing 在 XCTest 的基础上实际上是扩展了几个类，协议<br>所以本质上 UI Testing 还是 XCTest，所以写用例的时候，还是需要遵从 XCTest 的规则</p>
+<p>3、UI Testing 需要依靠 Accessibility 来定位元素。UI Testing 可以通过你的应用提供的 Accessibility 功能来与你的应用连接，这样就解决了设备大小不一的问题。如果你重新调整了 UI 中的某些元素，你也不用重写整套测试。当然实现 Accessibility 的本质不是为了使用 UI Testing，而是为了能帮助行动不便的用户更好地使用你的应用。</p>
+<h3 id="具体实践"><a href="#具体实践" class="headerlink" title="具体实践"></a>具体实践</h3><p>Xcode 7中创建新工程时，可以选择是否要包含UI测试——这里就不演示了  </p>
+<p>下面说说在已有工程的时候，怎么进行UI Testing<br>1、再项目工程中增加一个target<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target1.jpg" alt="target1.jpg" title=""></p>
+<p>如图中1所示点击添加UI Testing Bundle<br>添加之后如图中2、3所示。</p>
+<p>2、编写测试类或者测试方法<br>在图中3所示中的.m文件中添加测试方法，<br>当然实际项目中，肯定是根据各自的模块自己新建一系列的类及方法<br>（注：测试类及其测试方法必须按照XCTest的命令规则及要求来）</p>
+<p>3、运行测试用例<br>可以直接在导航栏中点击test运行整个UI用例 也可以如图中所示<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target2.jpg" alt="target2.jpg" title=""></p>
+<p>点击用例右边的勾运行单个用例</p>
+<p>UI testing 也具有录制功能 如图<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target3.jpg" alt="target3.jpg" title=""></p>
+<p>点击图中所示 它将重新启动app ，然后你的每一步操作都将在你鼠标所在处自动生成OC代码<br>（注：由于UI testing 刚出来 所以录制出来的代码可能不是很规范 需要手动改一下。不过作为官方推出来的东西，以后肯定会变得更简单强大）</p>
+<h3 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h3><p>UI testing到底适用于什么地方呢  </p>
+<p>个人认为用来做一些简单的发包前check list比较合适</p>
+<p>比如 我们项目在迭代发包钱都需要测试或者开发自己跑一遍check list ，作为程序员，这些简单重复的操作交给程序来运行就好了。<br>因为UI testing 可以使用OC语言来写 所以对于开发来说 这将是非常简单的。</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>具体的UI testing API 可以参看官方文档 不多比较简单</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/04/14/selenium远程启动浏览器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/14/selenium远程启动浏览器/" itemprop="url">
+                  selenium远程启动浏览器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-14T19:08:23+08:00">
+                2016-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/selenium/" itemprop="url" rel="index">
+                    <span itemprop="name">selenium</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/04/14/selenium远程启动浏览器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/14/selenium远程启动浏览器/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>通过selenium-server<br>1、相关下载</p>
+<ul>
+<li>下载server：<a href="http://seleniumhq.org/download/" target="_blank" rel="external">http://seleniumhq.org/download/</a></li>
+<li>下载chrome-driver：<a href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank" rel="external">https://sites.google.com/a/chromium.org/chromedriver/downloads</a></li>
+</ul>
+<p>2、在浏览器主机的终端上执行命令：</p>
+<pre><code>java -Dwebdriver.chrome.driver=&quot;D:\chromedriver.exe&quot; -jar selenium-server.jar
+</code></pre><p>3、接下来就可以在其他主机上编写测试脚本并执行了：以python为例</p>
+<ul>
+<li>下载基本python的selenium库：<pre><code>pip install selenium
+</code></pre></li>
+<li><p>编写示例脚本如下：</p>
+<pre><code>from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
+driver = webdriver.Remote(
+   command_executor=&apos;http://200.200.105.63:4444/wd/hub&apos;,
+   desired_capabilities=webdriver.DesiredCapabilities.CHROME)
+
+driver.get(&apos;https://200.200.169.165&apos;);
+</code></pre></li>
+</ul>
+<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>直接使用driver<br>1、按照1中的下载好相应的浏览器驱动</p>
+<p>2、在浏览器主机的终端上执行命令：</p>
+<pre><code>chromedriver.exe --whitelisted-ips=&quot;200.200.169.162&quot;
+</code></pre><p>3、编写示例脚本如下：</p>
+<pre><code>from selenium import webdriver
+
+driver = webdriver.Remote(
+   command_executor=&apos;http://200.200.105.63:9515&apos;,
+   desired_capabilities=DesiredCapabilities.CHROME)
+
+driver.get(&apos;https://200.200.169.165&apos;);
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -480,7 +1686,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/04/27/本地化乌云网操作记录/">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/06/12/calabash-ios原理分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tunsuy">
@@ -502,8 +1708,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/04/27/本地化乌云网操作记录/" itemprop="url">
-                  本地化乌云网操作记录
+                <a class="post-title-link" href="/2015/06/12/calabash-ios原理分析/" itemprop="url">
+                  calabash-ios原理分析
                 </a>
               
             
@@ -519,8 +1725,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-27T19:26:51+08:00">
-                2015-04-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-12T15:10:51+08:00">
+                2015-06-12
               </time>
             
 
@@ -530,28 +1736,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -560,8 +1744,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2015/04/27/本地化乌云网操作记录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/27/本地化乌云网操作记录/" itemprop="commentCount"></span>
+                <a href="/2015/06/12/calabash-ios原理分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/12/calabash-ios原理分析/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -589,68 +1773,23 @@
       
         
           
-            <p>基于第三方项目：<a href="https://github.com/hanc00l/wooyun_public" target="_blank" rel="external">https://github.com/hanc00l/wooyun_public</a></p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>python环境：  </p>
+            <p>calabash同时支持ios和Android平台，这里只介绍ios平台。</p>
+<h3 id="系统架构图"><a href="#系统架构图" class="headerlink" title="系统架构图"></a>系统架构图</h3><p>calabash-ios整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
+<img src="/2015/06/12/calabash-ios原理分析/calabash-ios.jpg" alt="calabash-ios.jpg" title="">
+<h3 id="框架分析"><a href="#框架分析" class="headerlink" title="框架分析"></a>框架分析</h3><p>接上图</p>
 <ul>
-<li>多版本共存pyenv</li>
-<li>虚拟环境virtualenv</li>
-</ul>
-<p>安装命令：</p>
-<pre><code>pyenv install 2.7.10
-pyenv global 2.7.10
-pyenv virtualenv 2.7.10 venv2710
-</code></pre><h3 id="具体操作步骤"><a href="#具体操作步骤" class="headerlink" title="具体操作步骤"></a>具体操作步骤</h3><p>1、进入虚拟环境</p>
-<pre><code>pyenv activate venv2710
-</code></pre><p>2、安装Flask（一个基于python的web开发微框架）</p>
-<pre><code>http://docs.jinkan.org/docs/flask/
-pip install Flask
-</code></pre><p>3、安装 Scrapy（一个基于python的爬虫框架）<br><a href="http://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/install.html" target="_blank" rel="external">http://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/install.html</a></p>
-<pre><code>pip install Scrapy
-</code></pre><p>备注：需要Twisted&gt;=10.0.0  </p>
-<pre><code>wget https://pypi.python.org/packages/source/T/Twisted/Twisted-15.2.1.tar.bz2  
-解压安装：python setup.py install
-</code></pre><p>4、安装pymongo</p>
-<pre><code>pip install pymongo
-</code></pre><p>5、启动web<br>进入项目的flask目录下：python app.py</p>
-<p>6、开始爬虫<br>进入项目下的wooyun目录：</p>
-<pre><code>scrapy crawl wooyun -a page_max=0 -a update=true
-</code></pre><p>进入项目下的wooyun_drops目录：</p>
-<pre><code>scrapy crawl wooyun -a page_max=0 -a update=true
-</code></pre><p>备注：提示缺少PIL—<br><a href="http://www.pythonware.com/products/pil/" target="_blank" rel="external">http://www.pythonware.com/products/pil/</a></p>
-<pre><code>wget http://effbot.org/downloads/Imaging-1.1.7.tar.gz
-解压安装：python setup.py install
-</code></pre><h3 id="还可能遇到的问题"><a href="#还可能遇到的问题" class="headerlink" title="还可能遇到的问题"></a>还可能遇到的问题</h3><p>virtualenv的环境无法import sqlite3<br>报错信息如下：</p>
-<pre><code>#python
-Python 2.7.9 (default, Feb 10 2015, 01:40:34)
-[GCC 4.4.7 20120313 (Red Hat 4.4.7-11)] on linux2
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-&gt;&gt;&gt; import sqlite3
-Traceback (most recent call last):
-  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-  File &quot;/root/.pyenv/versions/2.7.9/lib/python2.7/sqlite3/__init__.py&quot;, line 24, in &lt;module&gt;
-    from dbapi2 import *
-  File &quot;/root/.pyenv/versions/2.7.9/lib/python2.7/sqlite3/dbapi2.py&quot;, line 28, in &lt;module&gt;
-    from _sqlite3 import *
-ImportError: No module named _sqlite3
-</code></pre><p>谷歌了一下，原因是安装了多套python环境，virtualenv使用的那套python没有_sqlite3.so这个文件。<br>没用virtualenv的时候，使用的是另外一套python的_sqlite3.so，<br>所以解决方法是先安装sqlite-devel，<br>然后重新编译virtualenv使用的那套python，<br>操作步骤如下，因为我使用的pyenv，所以是连带virtualenv一起安装的。  </p>
-<ul>
-<li><p>先退出virtualenv的python环境，安装sqlite-devel</p>
-<pre><code>yum -y install sqlite-devel  
-</code></pre></li>
-<li><p>重新安装pyenv</p>
-<pre><code>curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
-</code></pre></li>
-<li>删掉原有的python环境、重新安装python环境</li>
-</ul>
-<p>7、mongodb+elasticsearch<br>PS： mongodb使用elasticsearch必须要是集群下</p>
-<ul>
-<li>编辑/home/ts/db/mongodb/mongodb.conf ，增加：<pre><code>replSet=rs0 #这里是指定replSet的名字
-oplogSize=100 #这里是指定oplog表数据大小（太大了不支持）
-</code></pre></li>
-<li>重启动mongodb<pre><code>service mongodb restart
-</code></pre></li>
-<li>进入mongodb shell，初始化replicSet<pre><code>rs.initiate( {&quot;_id&quot; : &quot;rs0&quot;, &quot;version&quot; : 1, &quot;members&quot; : [ { &quot;_id&quot; : 0, &quot;host&quot; : &quot;127.0.0.1:27017&quot; } ]})
-</code></pre>备注：rs.initiate初始化字段详情见：<a href="https://docs.mongodb.com/manual/reference/replica-configuration/#replsetgetconfig-output" target="_blank" rel="external">https://docs.mongodb.com/manual/reference/replica-configuration/#replsetgetconfig-output</a></li>
+<li><p>其中，Runner 负责接受用户指令，并对其进行数据校验、指令转换等操作</p>
+</li>
+<li><p>之后将其交给客户端处理（这里的客户端是指运行pc上的代码）</p>
+</li>
+<li><p>客户端将指令发送给对应服务器http server（这里的服务器就是编译进app中的calabash.framework），请求其执行对应操作</p>
+</li>
+<li><p>client-server两者之间通过 JSON 格式的数据进行交互</p>
+</li>
+<li><p>所有执行结果最终会被收集到 Results 中。</p>
+</li>
+<li><p>Calabash-iOS 服务器是基于Frank构建的，Frank也是一种基于cucumber的自动化测试框架。</p>
+</li>
 </ul>
 
           
@@ -692,7 +1831,7 @@ oplogSize=100 #这里是指定oplog表数据大小（太大了不支持）
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/03/15/gitbook使用相关/">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/06/10/利用leakcanay检测android内存泄露/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tunsuy">
@@ -714,8 +1853,8 @@ oplogSize=100 #这里是指定oplog表数据大小（太大了不支持）
             
               
                 
-                <a class="post-title-link" href="/2015/03/15/gitbook使用相关/" itemprop="url">
-                  gitbook使用相关
+                <a class="post-title-link" href="/2015/06/10/利用leakcanay检测android内存泄露/" itemprop="url">
+                  利用leakcanary检测android内存泄露
                 </a>
               
             
@@ -731,8 +1870,8 @@ oplogSize=100 #这里是指定oplog表数据大小（太大了不支持）
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-15T19:25:49+08:00">
-                2015-03-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-10T15:21:24+08:00">
+                2015-06-10
               </time>
             
 
@@ -742,28 +1881,6 @@ oplogSize=100 #这里是指定oplog表数据大小（太大了不支持）
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -772,8 +1889,8 @@ oplogSize=100 #这里是指定oplog表数据大小（太大了不支持）
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2015/03/15/gitbook使用相关/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/15/gitbook使用相关/" itemprop="commentCount"></span>
+                <a href="/2015/06/10/利用leakcanay检测android内存泄露/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/10/利用leakcanay检测android内存泄露/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -801,558 +1918,33 @@ oplogSize=100 #这里是指定oplog表数据大小（太大了不支持）
       
         
           
-            <p>gitbook的安装就不多说了，网上很多，很容易</p>
-<p>下面说几个自定义相关的问题</p>
-<p>1、自定义页面样式  </p>
+            <p>leakcanary的知识就不在这里普及了，随便Google下就知道</p>
+<h3 id="项目集成"><a href="#项目集成" class="headerlink" title="项目集成"></a>项目集成</h3><p>直接说在项目中怎么操作，如下：<br>1、在 build.gradle 中加入引用，不同的编译使用不同的引用：</p>
+<pre><code>dependencies {
+  debugCompile &apos;com.squareup.leakcanary:leakcanary-android:1.3&apos;
+  releaseCompile &apos;com.squareup.leakcanary:leakcanary-android-no-op:1.3&apos;
+}
+</code></pre><p>2、在你的项目的 Application 中：</p>
+<pre><code>public class ExampleApplication extends Application {
+
+  @Override public void onCreate() {
+    super.onCreate();
+    LeakCanary.install(this);    //加上这一句
+  }}
+</code></pre><p>这样， 重新打包安装之后 ，在操作测试该APP的过程中，如果检测到某个 activity 有内存泄露，LeakCanary 就是自动地显示一个通知。</p>
+<h3 id="具体实践"><a href="#具体实践" class="headerlink" title="具体实践"></a>具体实践</h3><p>具体以我们口袋助理来介绍下：</p>
+<p>1、在build.gradle 中加入引用</p>
+<p>2、在MoaApplication.java中的onCreate方法中加入</p>
+<pre><code>LeakCanary.install(this);
+</code></pre><p>3、故意造一个内存泄露的地方<br>以创建工作汇报为例：将CreateWorkReportActivity.java中的EditText变量改为静态的(static)</p>
+<p>4、编译打包查看效果</p>
 <ul>
-<li>默认样式是在：./_book/gitbook/style.css<br>ps：增加样式只会覆盖自己定义的样式，其他的不变</li>
-<li>在gitbook项目根目录下，创建styles目录<br>注：一定要在该目录下创建，在其他目录下创建在gitbook build的时候会被清除掉</li>
-<li>在styles目录下创建website.css——该文件是对gitbook页面样式的自定义</li>
-<li>编辑book.json文件：加入<pre><code>&quot;styles&quot;: {
-      &quot;website&quot;: &quot;styles/website.css&quot;
- },
-</code></pre></li>
-<li>编译gitbook build</li>
-<li>运行gitbook serve——就可以看到效果了</li>
+<li>这个时候安装应用到手机，会自动安装一个Leaks应用<br>注：有的手机需要重启下才能看到Leaks应用，比如我用的华为手机就是这样</li>
 </ul>
-<p>2、自定义插件  </p>
-<ul>
-<li>增加插件”plugins”: [“toggle-chapters”,”splitter”],</li>
-<li>去掉插件”plugins”: [“-toggle-chapters”,”splitter”],<br>—在前面加上’—‘即可</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/03/04/linux下部署redmine/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tunsuy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headpic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鱼儿塘">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/03/04/linux下部署redmine/" itemprop="url">
-                  linux下部署redmine
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-04T19:23:51+08:00">
-                2015-03-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redmine/" itemprop="url" rel="index">
-                    <span itemprop="name">redmine</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/03/04/linux下部署redmine/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/04/linux下部署redmine/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>1、安装ruby环境——使用rvm比较方便</p>
-<p>2、使用bitnami-redmine一键式安装包  </p>
-<p>3、远程访问不了<br>——关闭防火墙即可  </p>
-<p>4、phpmyadmin无法远程访问<br>——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf<br>修改如下：<br>    <directory "="" opt="" redmine-2.6.0-3="" apps="" phpmyadmin="" htdocs"=""></directory></p>
-<pre><code># AuthType Basic
-# AuthName phpMyAdmin
-# AuthUserFile &quot;/opt/redmine-2.6.0-3/apache2/users&quot;
-# Require valid-user
-AllowOverride None
-    &lt;IfModule php5_module&gt;
-            php_value upload_max_filesize 80M
-php_value post_max_size 80M
-    &lt;/IfModule&gt;
-
-&lt;IfVersion &lt; 2.3 &gt;
-Order allow,deny
-Allow from all
-Satisfy all
-&lt;/IfVersion&gt;
-&lt;IfVersion &gt;= 2.3&gt;
-Require all granted
-# Require local
-&lt;/IfVersion&gt;
-ErrorDocument 403 &quot;For security reasons, this URL is only accessible using localhost (127.0.0.1) as the hostname.&quot;
-
-
-&lt;/Directory&gt;
-</code></pre><p>其中红色部分为修改部分<br>重启服务即可：/opt/redmine-2.6.0-3/ctlscript.sh restart</p>
-<h3 id="操作redmine的数据库"><a href="#操作redmine的数据库" class="headerlink" title="操作redmine的数据库"></a>操作redmine的数据库</h3><p>1、 redmine使用的数据库为mysql，如果在终端直接输入mysql命令，则是直接调用的你以前装的mysql，而不是redmine的mysql</p>
-<p>2、redmine的mysql相关命令的路径为/opt/redmine-2.6.0-3/mysql/bin/</p>
-<p>3、redmine数据库默认有几个用户</p>
-<ul>
-<li>一是你安装时填写的用户名和密码，使用这个用户登录mysql是看不到redmine的数据库的；</li>
-<li>二是root用户，密码跟你安装时填写的密码一样，这个可以看到所有的数据库</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/02/20/hexo-github博客部署问题记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tunsuy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headpic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鱼儿塘">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/02/20/hexo-github博客部署问题记录/" itemprop="url">
-                  hexo+github博客部署问题记录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-20T14:46:31+08:00">
-                2015-02-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/blog/" itemprop="url" rel="index">
-                    <span itemprop="name">blog</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/02/20/hexo-github博客部署问题记录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/20/hexo-github博客部署问题记录/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="博客简介"><a href="#博客简介" class="headerlink" title="博客简介"></a>博客简介</h3><p>现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客  </p>
-<p>搭建博客一般有几种方式：<br>1、全部自己实现：包括服务器、自己做网站、购买域名等——费时费力费钱<br>2、租用云服务器，采用静态博客生成工具：但是云服务器一般也是要付费的</p>
-<p>那有没有免费的呢？<br>答案是有的，那就是github</p>
-<p>这里再说下静态博客工具+github的原理：<br>以hexo+github为例（其他的静态博客生成工具类似）  </p>
-<ul>
-<li>静态博客一般就是帮我们将博客的外观和框架做成了模型，用户只需要专注于写文章（一般都支持使用md格式文档），然后使用博客工具命令生成静态网页；所以你将这些网页和资源放在任何web服务器上都可以运行  </li>
-<li>既然放在任何的web服务器上都可以运行，那么久有了github为我们提供的免费托管服务器，我们只需要将我们的静态网页和资源上传到github上即可</li>
-</ul>
-<p>hexo+github的具体安装部署这里就不多说了，网上教程很多</p>
-<h3 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h3><p>这里只记录一个网上很少有的问题<br>ps：囧，偏偏我遇到了</p>
-<p>1、推送hexo博客内容到github<br>出现错误：</p>
-<pre><code>error: The requested URL returned error: 403 Forbidden
-</code></pre><p>安装网上的方式都试了，都不行<br>最后解决方法如下：</p>
-<ul>
-<li>修改站点配置文件 _config.yml<pre><code>repository: git@github.com:tunsuy/tunsuy.github.io.git
-</code></pre>ps：之前是使用的https，不知道为什么不行</li>
-</ul>
-<h3 id="好文推荐"><a href="#好文推荐" class="headerlink" title="好文推荐"></a>好文推荐</h3><p><a href="http://ijiaober.github.io/2014/08/05/hexo/hexo-04/" target="_blank" rel="external">Hexo的分类和标签设置</a><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo官方文档</a><br><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">主题next官方文档</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/02/10/centos下安装mongodb记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tunsuy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headpic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鱼儿塘">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/02/10/centos下安装mongodb记录/" itemprop="url">
-                  centos下安装mongodb记录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-10T19:26:20+08:00">
-                2015-02-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongodb/" itemprop="url" rel="index">
-                    <span itemprop="name">mongodb</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/02/10/centos下安装mongodb记录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/10/centos下安装mongodb记录/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>1、卸载已有mongodb数据库</p>
-<pre><code>/etc/init.d/mongod stop
-yum erase $(rpm -qa | grep mongodb-org)
-</code></pre><p>删除mongodb相关目录文件等，例如：</p>
-<pre><code>rm -r /var/log/mongodb/
-rm -r /var/lib/mongo
-</code></pre><p>2、下载最新mongodb</p>
-<pre><code>wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.9.tgz
-</code></pre><p>3、移动下载文件并解压</p>
-<pre><code>mv ./mongodb-linux-x86_64-rhel62-3.2.9.tgz /usr/local/src/
-tar -xvf mongodb-linux-x86_64-rhel62-3.2.9.tgz
-</code></pre><p>4、移动解压文件</p>
-<pre><code>mv ./mongodb-linux-x86_64-rhel62-3.2.9 /usr/local/mongodb
-</code></pre><p>5、创建mongodb相关目录</p>
-<pre><code>mkdir -p /home/ts/db/mongodb/data
-mkdir -p /home/ts/db/mongodb/log
-</code></pre><p>6、创建并编辑mongodb配置文件</p>
-<pre><code>vim /home/ts/db/mongodb/mongodb.conf
-</code></pre><h3 id="配置mongodb环境变量"><a href="#配置mongodb环境变量" class="headerlink" title="配置mongodb环境变量"></a>配置mongodb环境变量</h3><pre><code>vim /etc/profile
-</code></pre><p>加入如下语句：</p>
-<pre><code># mongodb set
-export MONGODB=/usr/local/mongodb
-PATH=$PATH:$MONGODB/bin
-</code></pre><p>立即生效：</p>
-<pre><code>source /etc/profile
-</code></pre><h3 id="配置开机启动"><a href="#配置开机启动" class="headerlink" title="配置开机启动"></a>配置开机启动</h3><pre><code>vim /etc/rc.d/init.d/mongod
-</code></pre><p>注：必须在该文件开头写上：       </p>
-<pre><code># chkconfig: 2345 10 90
-# description: mongod ....
-</code></pre><p>设置：</p>
-<pre><code>chmod +x /etc/rc.d/init.d/mongod
-chkconfig mongod on
-</code></pre><p>PS：/etc/init.d/ 是 /etc/rc.d/init.d/ 的软链接</p>
+<p>5、检查是否真的如我们预期的一样：在创建工作汇报的时候存在内存泄露<br>创建一个工作汇报，回到汇报列表，此时我们会发现收到了一个Leaks的通知<br>如图：</p>
+<img src="/2015/06/10/利用leakcanay检测android内存泄露/leak-notify.jpg" alt="leak-notify.jpg" title="">
+<p>点击该通知，进入Leaks，可以查看到详细的该内存泄露的调用信息，从而定位到该内存泄露<br>如图：</p>
+<img src="/2015/06/10/利用leakcanay检测android内存泄露/leak-info.jpg" alt="leak-info.jpg" title="">
 
           
         
@@ -1388,7 +1980,7 @@ chkconfig mongod on
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1433,7 +2025,7 @@ chkconfig mongod on
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1451,7 +2043,7 @@ chkconfig mongod on
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

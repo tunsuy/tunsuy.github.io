@@ -233,16 +233,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
 
       
         <li class="menu-item menu-item-search">
@@ -294,6 +284,287 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2017/02/28/实现浏览器中实时查看iOS日志/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/28/实现浏览器中实时查看iOS日志/" itemprop="url">
+                  实现浏览器中实时查看iOS日志
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-28T15:32:34+08:00">
+                2017-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/28/实现浏览器中实时查看iOS日志/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/实现浏览器中实时查看iOS日志/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>项目地址：<a href="https://github.com/tunsuy/TSiOSLogWebBrowser" target="_blank" rel="external">https://github.com/tunsuy/TSiOSLogWebBrowser</a></p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在测试ios App过程中，有很多时候我们需要一边操作一遍查看输出日志</p>
+<p>对于有mac机的来说，当然在xcode下自己打包测试查看日志那是非常方便的，但是大部分的测试是没有mac机的。</p>
+<p>虽然开发也有将日志写入文件，但是每次操作完了再去打开文件查看，非常不方便</p>
+<p>那有没有一种类似xcode输出日志的方式呢<br>答案就是今天要说的这个： 直接用浏览器实时查看输出的log信息</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>就是在app里面内置一个http server服务器，浏览器作为请求客户端，将app的操作日志实时的输出到浏览器中。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>使用了一个开源框架 GCDWebServer 作为http server<br>具体实现见github项目地址</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>1、将手机置于电脑的同一网络，  </p>
+<p>2、然后在浏览器上输入 手机IP：port（端口是在代码中任意指定的），<br>然后就可以开始测试app了，你将会看到浏览器中会实时显示你的操作日志出来，跟xcode下查看日志的方式一样，</p>
+<p>注：浏览器页面支持 跟随日志自动滚动 ；非常方便</p>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><img src="/2017/02/28/实现浏览器中实时查看iOS日志/ioslog.jpg" alt="ioslog.jpg" title="">
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2017/02/28/App三方交互逻辑实践/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/28/App三方交互逻辑实践/" itemprop="url">
+                  App三方交互逻辑实践
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-28T15:28:06+08:00">
+                2017-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/28/App三方交互逻辑实践/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/App三方交互逻辑实践/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><p>之前有一个公司项目与第三方应用交互的逻辑需要全面测试，那么怎样才能测试到整个交互的所有环节呢</p>
+<p>那就是需要一个实际的第三方，并且这个第三方需要包括server端和app端</p>
+<p>既然是测试，那么我们只需要将公司项目跟三方有交互的接口做个全面的测试即可，不在乎这个三方是怎样的形式</p>
+<p>那么这就好办了，自己实现一个这个的三方项目</p>
+<h3 id="交互逻辑图"><a href="#交互逻辑图" class="headerlink" title="交互逻辑图"></a>交互逻辑图</h3><p>1、口袋助理跳转第三方app逻辑示意图：</p>
+<img src="/2017/02/28/App三方交互逻辑实践/moa2app.jpg" alt="moa2app.jpg" title="">
+<p>2、第三方跳转口袋助理逻辑示意图：</p>
+<img src="/2017/02/28/App三方交互逻辑实践/app2moa.jpg" alt="app2moa.jpg" title="">
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>server端：go语言实现<br>app端：iOS</p>
+<p>根据相关协议从代码层面详细的测试每个交互接口：</p>
+<ul>
+<li>兼容性</li>
+<li>容错性</li>
+<li>健壮性</li>
+</ul>
+<p>项目地址：<a href="https://github.com/tunsuy/AppInteractive" target="_blank" rel="external">https://github.com/tunsuy/AppInteractive</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1596,7 +1867,7 @@ rs.reconfig(cfg);
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/06/15/docker自定义daemon选项/">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/07/18/redmine系统二次开发之search功能/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tunsuy">
@@ -1618,8 +1889,8 @@ rs.reconfig(cfg);
             
               
                 
-                <a class="post-title-link" href="/2016/06/15/docker自定义daemon选项/" itemprop="url">
-                  docker自定义daemon选项
+                <a class="post-title-link" href="/2016/07/18/redmine系统二次开发之search功能/" itemprop="url">
+                  redmine系统二次开发之search功能
                 </a>
               
             
@@ -1635,8 +1906,8 @@ rs.reconfig(cfg);
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-15T12:10:23+08:00">
-                2016-06-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-18T12:30:24+08:00">
+                2016-07-18
               </time>
             
 
@@ -1646,28 +1917,6 @@ rs.reconfig(cfg);
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -1676,8 +1925,8 @@ rs.reconfig(cfg);
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/06/15/docker自定义daemon选项/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/15/docker自定义daemon选项/" itemprop="commentCount"></span>
+                <a href="/2016/07/18/redmine系统二次开发之search功能/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/18/redmine系统二次开发之search功能/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1705,444 +1954,46 @@ rs.reconfig(cfg);
       
         
           
-            <h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>可以定义的选项为如下列出来的</p>
-<pre><code>docker-current daemon --help
-</code></pre><h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>1、分别定义各环境文件</p>
-<pre><code>eg：/etc/sysconfig/docker-storage
-/etc/sysconfig/docker-network
-</code></pre><p>该文件中可以自定义环境变量</p>
-<p>2、在/usr/lib/systemd/system/docker.service文件中引入环境文件</p>
-<pre><code>eg：EnvironmentFile=-/etc/sysconfig/docker-storage
-EnvironmentFile=-/etc/sysconfig/docker-network
-</code></pre><p>并使用其环境变量</p>
-<pre><code>ExecStart=/usr/bin/docker-current daemon \
-      $DOCKER_STORAGE_OPTIONS \
-      $DOCKER_NETWORK_OPTIONS \
-</code></pre><p>备注：也可以将所有的自定义选项定义在一个文件中</p>
-<p>例：将官方镜像仓库替换为阿里云镜像仓库</p>
+            <h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>该项目主要是对redmine进行简单的二次开发，满足以下需求：<br>在redmine的select选择框中，如果选项特别多，那么选择是非常考验眼力的，可能眼睛看花了都找不到<br>那么就考虑对所有的select框增加搜索功能</p>
+<p>项目地址：<a href="https://github.com/tunsuy/redmine_select_search" target="_blank" rel="external">https://github.com/tunsuy/redmine_select_search</a></p>
+<h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>使用了chosen插件：<a href="https://harvesthq.github.io/chosen/" target="_blank" rel="external">https://harvesthq.github.io/chosen/</a></p>
+<p>1、下载该插件</p>
+<p>2、添加文件到项目目录中</p>
 <ul>
-<li>前提：注册阿里云用户，此时才会获取到一个私有的镜像仓库地址<pre><code>https://cr.console.aliyun.com/
-</code></pre></li>
-<li>在/etc/sysconfig/docker中的option变量中加上如下选项<pre><code>--registry-mirror=https://u6nqa61i.mirror.aliyuncs.com
-</code></pre></li>
-<li>重启docker：<pre><code>systemctl restart docker
-</code></pre></li>
+<li><p>将chosen.jquery.js文件添加到./apps/redmine/htdocs/public/javascripts/</p>
+</li>
+<li><p>将chosen.css、chosen-sprite.png添加到 ./apps/redmine/htdocs/public/stylesheets/  </p>
+</li>
 </ul>
-<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>直接在/usr/lib/systemd/system/docker.service文件中加入选项</p>
-<pre><code>eg：ExecStart=/usr/bin/docker-current daemon \
-      --exec-opt native.cgroupdriver=systemd \
-      --insecure-registry docker.ts.com:5000
-</code></pre><h3 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h3><p>使用daemon.json文件<br>官方文档：<a href="https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file" target="_blank" rel="external">https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file</a><br>路径：/etc/docker/daemon.json<br>备注：使用此方案不要与其他方案相混合使用，否则docker启动的时候会报错</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/06/02/基于docker的moa服务/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tunsuy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headpic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鱼儿塘">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/02/基于docker的moa服务/" itemprop="url">
-                  基于docker的moa服务
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-02T12:15:17+08:00">
-                2016-06-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/06/02/基于docker的moa服务/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/基于docker的moa服务/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>该文章主要讲解将公司的server服务docker化的具体过程，从中可以看到很多docker相关知识的使用以及网络配置等操作<br>文中还设计到自己实现的关于docker自动化配置的两个脚本，供大家学习参考</p>
-<h3 id="docker化步骤"><a href="#docker化步骤" class="headerlink" title="docker化步骤"></a>docker化步骤</h3><p>1、将初始安装包拷贝到容器主机上</p>
-<p>2、在主机上拉取一个centos6.7的docker镜像<br>ps：因为官方的docker镜像都是轻量级的，所有很多linux下的命令都没有</p>
+<p>3、引入js文件</p>
 <ul>
-<li>方法一 就是要么自己将所有的命令工具都安装了</li>
-<li>方法二 找一个别人建好的docker镜像</li>
-</ul>
-<p>3、将主机上的安装包共享给容器，并交互式形式启动</p>
-<pre><code>docker run -t -i --name moa_centos7 -v /home/tunsuy/toContainer:/home/tunsuy/fromHost centos:centos7 /bin/bash
-</code></pre><p>4、因为没有空白机的公有云安装包，所以这里以私有云空白安装包来安装<br>ps：./install.sh -m test -d public_clound<br>——参考./install.sh脚本实现</p>
-<p>5、安装过程中可能会遇到一些问题  </p>
-<ul>
-<li>提示没有xx命令——一律 yum install xx 即可</li>
-<li>提示连接不上mongodb<br>——中断安装（其实moa依赖的一些软件环境已经安装成功了）<br>——参考其他虚拟机公有云的mongodb安装情况，调整该docker容器中的mongodb并成功启动</li>
-</ul>
-<p>6、单独安装公有云升级包（该包中需要包含dbserver服务包）</p>
-<p>7、安装包成功之后，检查各项服务是否成功（包括web、流程、商店等）  </p>
-<ul>
-<li>可能会发现mysql安装异常<br>——手动安装：进入私有云空白安装包中的init目录下，运行./install.sh<br>————安装过程中可能会报错，缺少某些依赖<br>————依次yum install安装（有的可能需要自己下载安装）</li>
-</ul>
-<p>8、所有的服务都检查无误时，制作镜像并上传</p>
-<ul>
-<li>搭建私有仓库（按照官方文档做就可以了，这里不详细写）</li>
-<li>将容器制作为镜像<pre><code>docker commit --author &quot;ts&quot; --message &quot;更正moaserver初始化包环境&quot; 容器名 docker.ts.com:5000/moaserver_env:init
-</code></pre></li>
-<li><p>上传镜像到私有仓库</p>
-<pre><code>docker push docker.ts.com:5000/moaserver_env:init
-</code></pre><p>ps：配置私有仓库http访问<br>编辑文件：vim /etc/sysconfig/docker<br>添加以下内容</p>
-<pre><code>OPTIONS=&apos;--selinux-enabled --insecure-registry=docker.ts.com:5000&apos;
-</code></pre><p>或者编辑文件：vim /usr/lib/systemd/system/docker.service<br>添加以下内容</p>
-<pre><code>  ExecStart=/usr/bin/docker-current daemon \
-    --exec-opt native.cgroupdriver=systemd \
-    $OPTIONS \
-    $DOCKER_STORAGE_OPTIONS \
-    $DOCKER_NETWORK_OPTIONS \
-    $ADD_REGISTRY \
-    $BLOCK_REGISTRY \
-    $INSECURE_REGISTRY \
---insecure-registry docker.ts.com:5000
+<li>编辑 ./apps/redmine/htdocs/app/helpers/application_helper.rb<br>在下面方法处加入：<pre><code>def javascript_heads
+    tags = javascript_include_tag(&apos;jquery-1.11.1-ui-1.11.0-ujs-3.1.1&apos;, &apos;application&apos;, &apos;chosen.jquery&apos;)
+    unless User.current.pref.warn_on_leaving_unsaved == &apos;0&apos;
+      tags &lt;&lt; &quot;\n&quot;.html_safe + javascript_tag(&quot;$(window).load(function(){ warnLeavingUnsaved(&apos;#{escape_javascript l(:text_warn_on_leaving_unsaved)}&apos;); });&quot;)
+    end
+    tags
+end
 </code></pre></li>
 </ul>
-<p>注：centos7的防火墙使用的是firewalld，因为之前对iptables比较熟，<br>     所以可以关掉firewalld，安装iptables服务  </p>
-<pre><code>systemctl stop firewalld
-systemctl mask firewalld
-yum install iptables-services
-</code></pre><h3 id="服务使用"><a href="#服务使用" class="headerlink" title="服务使用"></a>服务使用</h3><p>1、从私有仓库拉取该镜像并使用</p>
-<pre><code>docker run -t -i --name=moaserver_env --net=&quot;none&quot; -v /home/tunsuy/toContainer:/home/tunsuy/fromHost docker.ts.com:5000/moaserver_env:init /bin/bash
-</code></pre><p>  ps：这里采用none的网络方式，是因为想自己配置所有网络</p>
-<p>2、配置容器IP<br>这里使用我写的一个工具脚本：sh bind_addr.sh moaserver_env 172.17.0.2<br>ps：需要在主机上执行，而不是在容器中<br>脚本地址：<br><a href="https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关" target="_blank" rel="external">https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关</a></p>
-<p>3、source /etc/profile<br>ps：由于之前在镜像中配置的环境变量，在容器中不能自动生效（原因不明）</p>
-<p>4、启动mongo和mysql</p>
-<pre><code>/etc/init.d/mongod start
-/etc/init.d/mysqlaccd stop
-/etc/init.d/mysqld start
-</code></pre><p>5、更新hosts文件</p>
+<p>4、引入css文件</p>
 <ul>
-<li>将模板文件写入hosts：<pre><code>cat /home/tunsuy/fromHost/host_templet &gt;&gt; /etc/hosts
-</code></pre></li>
-<li>将hosts中的IP改成容器ip</li>
-<li>mdbg -p 23808 -o changeip oldip=172.17.0.1,newip=172.17.0.2<br>ps：容器的/etc/hosts、/etc/resolv.conf文件是挂载在宿主机中的</li>
+<li>编辑 ./apps/redmine/htdocs/app/views/layouts/base.html.erb<br>在<head>标签处加入：<pre><code>&lt;%= stylesheet_link_tag &apos;chosen&apos;, :media =&gt; &apos;all&apos; %&gt;
+</code></pre></head></li>
 </ul>
-<p>6、启动moa服务</p>
-<pre><code>/etc/init.d/moa start
-</code></pre><p>7、想要外部访问该docker，还需要进行主机和容器的端口映射<br>有两种方式：</p>
+<p>5、实现</p>
 <ul>
-<li>在新建一个容器的时候就指定（一般都是这样）</li>
-<li>在已生成的容器中动态配置：主要还是基于iptables来设置（因为docker的原理实际上也是这样的）<br>因为之前我们在创建容器的时候没有指定，所以这里以第二种来配置<pre><code>iptables -A DOCKER ! -i docker0 -o docker0 -p tcp --dport 443 -d 172.17.0.1 -j ACCEPT
-iptables -t nat -A POSTROUTING -p tcp --dport 443 -s 172.17.0.1 -d 172.17.0.1 -j MASQUERADE
-iptables -t nat -A DOCKER ! -i dokcer0 -p tcp --dport 443 -j DNAT --to-destination 172.17.0.1:443
-</code></pre>   ps：为了方便，写了一个工具脚本<pre><code>sh docker_expose.sh moaserver_env 172.17.0.2 add 4432:443
-</code></pre>  脚本地址：<pre><code>[https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关](https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关)
-</code></pre></li>
+<li>在./apps/redmine/htdocs/public/javascripts/application.js文件中添加实现代码</li>
 </ul>
-<p>注：查看iptables情况</p>
-<pre><code>iptables -nvxL --line-numbers
-iptables -t nat -nvxL --line-numbers
-</code></pre><h3 id="不足之处"><a href="#不足之处" class="headerlink" title="不足之处"></a>不足之处</h3><p>因为所有的容器都是基于宿主机的，最多通过修改时区来设置，也就只能偏移24小时<br>网上有一种方案，不知可行不：<a href="https://github.com/wolfcw/libfaketime/" target="_blank" rel="external">https://github.com/wolfcw/libfaketime/</a></p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://yeasy.gitbooks.io/docker_practice/content/cases/supervisor.html" target="_blank" rel="external">https://yeasy.gitbooks.io/docker_practice/content/cases/supervisor.html</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/04/14/selenium远程启动浏览器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tunsuy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headpic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鱼儿塘">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/14/selenium远程启动浏览器/" itemprop="url">
-                  selenium远程启动浏览器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-14T19:08:23+08:00">
-                2016-04-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/selenium/" itemprop="url" rel="index">
-                    <span itemprop="name">selenium</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/04/14/selenium远程启动浏览器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/14/selenium远程启动浏览器/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>通过selenium-server<br>1、相关下载</p>
+<p>具体代码见项目地址</p>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>直接Hook前端代码实现</p>
+<p>1、加入拼音支持</p>
+<p>2、实现</p>
 <ul>
-<li>下载server：<a href="http://seleniumhq.org/download/" target="_blank" rel="external">http://seleniumhq.org/download/</a></li>
-<li>下载chrome-driver：<a href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank" rel="external">https://sites.google.com/a/chromium.org/chromedriver/downloads</a></li>
+<li>在./apps/redmine/htdocs/public/javascripts/application.js文件中添加实现代码</li>
 </ul>
-<p>2、在浏览器主机的终端上执行命令：</p>
-<pre><code>java -Dwebdriver.chrome.driver=&quot;D:\chromedriver.exe&quot; -jar selenium-server.jar
-</code></pre><p>3、接下来就可以在其他主机上编写测试脚本并执行了：以python为例</p>
-<ul>
-<li>下载基本python的selenium库：<pre><code>pip install selenium
-</code></pre></li>
-<li><p>编写示例脚本如下：</p>
-<pre><code>from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+<p>具体代码见项目地址</p>
 
-driver = webdriver.Remote(
-   command_executor=&apos;http://200.200.105.63:4444/wd/hub&apos;,
-   desired_capabilities=webdriver.DesiredCapabilities.CHROME)
-
-driver.get(&apos;https://200.200.169.165&apos;);
-</code></pre></li>
-</ul>
-<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>直接使用driver<br>1、按照1中的下载好相应的浏览器驱动</p>
-<p>2、在浏览器主机的终端上执行命令：</p>
-<pre><code>chromedriver.exe --whitelisted-ips=&quot;200.200.169.162&quot;
-</code></pre><p>3、编写示例脚本如下：</p>
-<pre><code>from selenium import webdriver
-
-driver = webdriver.Remote(
-   command_executor=&apos;http://200.200.105.63:9515&apos;,
-   desired_capabilities=DesiredCapabilities.CHROME)
-
-driver.get(&apos;https://200.200.169.165&apos;);
-</code></pre>
           
         
       
@@ -2177,7 +2028,7 @@ driver.get(&apos;https://200.200.169.165&apos;);
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2222,7 +2073,7 @@ driver.get(&apos;https://200.200.169.165&apos;);
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2240,7 +2091,7 @@ driver.get(&apos;https://200.200.169.165&apos;);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
