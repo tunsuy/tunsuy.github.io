@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="linux,mongdb," />
 
 
 
@@ -89,15 +89,37 @@
 
 
 
-<meta name="description" content="一切只为变得更好">
-<meta property="og:type" content="website">
-<meta property="og:title" content="鱼儿塘">
-<meta property="og:url" content="https://tunsuy.github.io/archives/index.html">
+<meta name="description" content="安装步骤1、卸载已有mongodb数据库
+/etc/init.d/mongod stop
+yum erase $(rpm -qa | grep mongodb-org)
+删除mongodb相关目录文件等，例如：
+rm -r /var/log/mongodb/
+rm -r /var/lib/mongo
+2、下载最新mongodb
+wget https://fastdl.mongodb.org/lin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos下安装mongodb记录">
+<meta property="og:url" content="https://tunsuy.github.io/2015/02/10/centos下安装mongodb记录/index.html">
 <meta property="og:site_name" content="鱼儿塘">
-<meta property="og:description" content="一切只为变得更好">
+<meta property="og:description" content="安装步骤1、卸载已有mongodb数据库
+/etc/init.d/mongod stop
+yum erase $(rpm -qa | grep mongodb-org)
+删除mongodb相关目录文件等，例如：
+rm -r /var/log/mongodb/
+rm -r /var/lib/mongo
+2、下载最新mongodb
+wget https://fastdl.mongodb.org/lin">
+<meta property="og:updated_time" content="2017-02-28T01:41:13.369Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="鱼儿塘">
-<meta name="twitter:description" content="一切只为变得更好">
+<meta name="twitter:title" content="centos下安装mongodb记录">
+<meta name="twitter:description" content="安装步骤1、卸载已有mongodb数据库
+/etc/init.d/mongod stop
+yum erase $(rpm -qa | grep mongodb-org)
+删除mongodb相关目录文件等，例如：
+rm -r /var/log/mongodb/
+rm -r /var/lib/mongo
+2、下载最新mongodb
+wget https://fastdl.mongodb.org/lin">
 
 
 
@@ -125,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="https://tunsuy.github.io/archives/"/>
+  <link rel="canonical" href="https://tunsuy.github.io/2015/02/10/centos下安装mongodb记录/"/>
 
 
 
 
 
-  <title> 归档 | 鱼儿塘 </title>
+  <title> centos下安装mongodb记录 | 鱼儿塘 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -156,7 +178,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -302,263 +324,257 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 6 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/27/redmine迁移：从windows下迁移到linux/" itemprop="url">
-              
-                <span itemprop="name">redmine迁移：从windows下迁移到linux</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-27T19:24:22+08:00"
-              content="2017-02-27" >
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/03/15/gitbook使用相关/" itemprop="url">
-              
-                <span itemprop="name">gitbook使用相关</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-03-15T19:25:49+08:00"
-              content="2015-03-15" >
-          03-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/03/04/linux下部署redmine/" itemprop="url">
-              
-                <span itemprop="name">linux下部署redmine</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-03-04T19:23:51+08:00"
-              content="2015-03-04" >
-          03-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/02/27/本地化乌云网操作记录/" itemprop="url">
-              
-                <span itemprop="name">本地化乌云网操作记录</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-02-27T19:26:51+08:00"
-              content="2015-02-27" >
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/02/20/hexo-github博客部署问题记录/" itemprop="url">
-              
-                <span itemprop="name">hexo+github博客部署问题记录</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-02-20T14:46:31+08:00"
-              content="2015-02-20" >
-          02-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/02/10/centos下安装mongodb记录/" itemprop="url">
-              
-                <span itemprop="name">centos下安装mongodb记录</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-02-10T19:26:20+08:00"
-              content="2015-02-10" >
-          02-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/02/10/centos下安装mongodb记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                centos下安装mongodb记录
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-10T19:26:20+08:00">
+                2015-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/02/10/centos下安装mongodb记录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/10/centos下安装mongodb记录/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h4><p>1、卸载已有mongodb数据库</p>
+<pre><code>/etc/init.d/mongod stop
+yum erase $(rpm -qa | grep mongodb-org)
+</code></pre><p>删除mongodb相关目录文件等，例如：</p>
+<pre><code>rm -r /var/log/mongodb/
+rm -r /var/lib/mongo
+</code></pre><p>2、下载最新mongodb</p>
+<pre><code>wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.9.tgz
+</code></pre><p>3、移动下载文件并解压</p>
+<pre><code>mv ./mongodb-linux-x86_64-rhel62-3.2.9.tgz /usr/local/src/
+tar -xvf mongodb-linux-x86_64-rhel62-3.2.9.tgz
+</code></pre><p>4、移动解压文件</p>
+<pre><code>mv ./mongodb-linux-x86_64-rhel62-3.2.9 /usr/local/mongodb
+</code></pre><p>5、创建mongodb相关目录</p>
+<pre><code>mkdir -p /home/ts/db/mongodb/data
+mkdir -p /home/ts/db/mongodb/log
+</code></pre><p>6、创建并编辑mongodb配置文件</p>
+<pre><code>vim /home/ts/db/mongodb/mongodb.conf
+</code></pre><p>7、配置mongodb环境变量</p>
+<pre><code>vim /etc/profile
+</code></pre><p>加入如下语句：</p>
+<pre><code># mongodb set
+export MONGODB=/usr/local/mongodb
+PATH=$PATH:$MONGODB/bin
+</code></pre><p>立即生效：</p>
+<pre><code>source /etc/profile
+</code></pre><p>8、配置开机启动</p>
+<pre><code>vim /etc/rc.d/init.d/mongod
+</code></pre><p>注：必须在该文件开头写上：       </p>
+<pre><code># chkconfig: 2345 10 90
+# description: mongod ....
+</code></pre><p>设置：</p>
+<pre><code>chmod +x /etc/rc.d/init.d/mongod
+chkconfig mongod on
+</code></pre><p>PS：/etc/init.d/ 是 /etc/rc.d/init.d/ 的软链接</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="tunsuy WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="tunsuy Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/mongdb/" rel="tag"># mongdb</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/02/20/hexo-github博客部署问题记录/" rel="prev" title="hexo+github博客部署问题记录">
+                hexo+github博客部署问题记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
           
 
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/02/10/centos下安装mongodb记录/"
+           data-title="centos下安装mongodb记录" data-url="https://tunsuy.github.io/2015/02/10/centos下安装mongodb记录/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -578,8 +594,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/headpic.jpg"
@@ -655,6 +680,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装步骤"><span class="nav-number">1.</span> <span class="nav-text">安装步骤</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -767,11 +808,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   

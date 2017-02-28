@@ -314,7 +314,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2017/02/27/hexo-github博客部署问题记录/">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2017/02/27/redmine迁移：从windows下迁移到linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tunsuy">
@@ -336,8 +336,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/27/hexo-github博客部署问题记录/" itemprop="url">
-                  hexo+github博客部署问题记录
+                <a class="post-title-link" href="/2017/02/27/redmine迁移：从windows下迁移到linux/" itemprop="url">
+                  redmine迁移：从windows下迁移到linux
                 </a>
               
             
@@ -353,7 +353,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-27T14:46:31+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-27T19:24:22+08:00">
                 2017-02-27
               </time>
             
@@ -364,6 +364,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redmine/" itemprop="url" rel="index">
+                    <span itemprop="name">redmine</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -372,8 +394,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/27/hexo-github博客部署问题记录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/27/hexo-github博客部署问题记录/" itemprop="commentCount"></span>
+                <a href="/2017/02/27/redmine迁移：从windows下迁移到linux/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/27/redmine迁移：从windows下迁移到linux/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -401,7 +423,940 @@
       
         
           
+            <h4 id="迁移步骤"><a href="#迁移步骤" class="headerlink" title="迁移步骤"></a>迁移步骤</h4><p>1、在linux下将redmine安装好<br>2、从原来的服务器上（windows）导出数据库文件（sql文件）<br>3、将现在的服务器（linux）上的redmine数据库清空<br>注：是清空，不能删除，因为删除会导致之后访问不了，具体原因可能是兼容问题<br>4、将2步中导出来的sql文件导入3步中清空的redmine数据库中<br>注：可能返回结果会提示说有错误，记下出错的表<br>5、将出错的表重新删除再导入<br>注：记住是删除，不是清空<br>到目前为止数据库文件已经全部导入成功了<br>6、附件的导入<br>——将原来的服务器上的redmine中files文件拷贝到现在的服务器上的相同目录下  </p>
+<p>至此全部迁移数据已完成</p>
+<h4 id="问题及解决方法："><a href="#问题及解决方法：" class="headerlink" title="问题及解决方法："></a>问题及解决方法：</h4><p>1、redmine的rtx提醒收到的连接还是原来服务器的链接<br>排查：</p>
+<ul>
+<li>查看邮件配置文件是否正确——正确</li>
+<li>通过rtx提醒的脚本调试<br>发现redmine传递给rtx的提醒内容就是提问题时填写的内容（也就是数据库中的内容）</li>
+<li>于是进入数据库中相应表（setting）查看，问题真是出在这里：<br>这个表有个字段是设置hostname的，填写的还是以前的url（因为是导入以前的数据嘛）  </li>
+</ul>
+<p>解决：将该字段改为正确的访问ip即可</p>
+<p>2、导入之后redmine上的时间显示不对<br>排查：查看服务器时间——问题确实出在这里<br>解决：将服务器时间设为当前时间</p>
+<p>3、无法上传附件<br>排查：</p>
+<ul>
+<li>上传一个附件，没有返回错误，但是就是显示不出来</li>
+<li>查看数据库，确实没有插入进去</li>
+<li>既然能查看以前的附件，为什么迁移过来后就上传不了呢？</li>
+<li>联想：附件目录（files）是不是只有可读权限啊</li>
+</ul>
+<p>解决：</p>
+<ul>
+<li>将files目录设置为可读写权限（chmod 777 ./files/*）</li>
+<li>重启服务，再次上传，成功</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/03/15/gitbook使用相关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
             
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/15/gitbook使用相关/" itemprop="url">
+                  gitbook使用相关
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-15T19:25:49+08:00">
+                2015-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/03/15/gitbook使用相关/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/15/gitbook使用相关/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>gitbook的安装就不多说了，网上很多，很容易</p>
+<p>下面说几个自定义相关的问题</p>
+<p>1、自定义页面样式  </p>
+<ul>
+<li>默认样式是在：./_book/gitbook/style.css<br>ps：增加样式只会覆盖自己定义的样式，其他的不变</li>
+<li>在gitbook项目根目录下，创建styles目录<br>注：一定要在该目录下创建，在其他目录下创建在gitbook build的时候会被清除掉</li>
+<li>在styles目录下创建website.css——该文件是对gitbook页面样式的自定义</li>
+<li>编辑book.json文件：加入<pre><code>&quot;styles&quot;: {
+      &quot;website&quot;: &quot;styles/website.css&quot;
+ },
+</code></pre></li>
+<li>编译gitbook build</li>
+<li>运行gitbook serve——就可以看到效果了</li>
+</ul>
+<p>2、自定义插件  </p>
+<ul>
+<li>增加插件”plugins”: [“toggle-chapters”,”splitter”],</li>
+<li>去掉插件”plugins”: [“-toggle-chapters”,”splitter”],<br>—在前面加上’—‘即可</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/03/04/linux下部署redmine/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/04/linux下部署redmine/" itemprop="url">
+                  linux下部署redmine
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-04T19:23:51+08:00">
+                2015-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redmine/" itemprop="url" rel="index">
+                    <span itemprop="name">redmine</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/03/04/linux下部署redmine/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/04/linux下部署redmine/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h4><p>1、安装ruby环境——使用rvm比较方便<br>2、使用bitnami-redmine一键式安装包<br>3、远程访问不了<br>——关闭防火墙即可<br>4、phpmyadmin无法远程访问<br>——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf<br>修改如下：<br>    <directory "="" opt="" redmine-2.6.0-3="" apps="" phpmyadmin="" htdocs"=""></directory></p>
+<pre><code># AuthType Basic
+# AuthName phpMyAdmin
+# AuthUserFile &quot;/opt/redmine-2.6.0-3/apache2/users&quot;
+# Require valid-user
+AllowOverride None
+    &lt;IfModule php5_module&gt;
+            php_value upload_max_filesize 80M
+php_value post_max_size 80M
+    &lt;/IfModule&gt;
+
+&lt;IfVersion &lt; 2.3 &gt;
+Order allow,deny
+Allow from all
+Satisfy all
+&lt;/IfVersion&gt;
+&lt;IfVersion &gt;= 2.3&gt;
+Require all granted
+# Require local
+&lt;/IfVersion&gt;
+ErrorDocument 403 &quot;For security reasons, this URL is only accessible using localhost (127.0.0.1) as the hostname.&quot;
+
+
+&lt;/Directory&gt;
+</code></pre><p>其中红色部分为修改部分<br>重启服务即可：/opt/redmine-2.6.0-3/ctlscript.sh restart</p>
+<h4 id="操作redmine的数据库"><a href="#操作redmine的数据库" class="headerlink" title="操作redmine的数据库"></a>操作redmine的数据库</h4><ul>
+<li>redmine使用的数据库为mysql，如果在终端直接输入mysql命令，则是直接调用的你以前装的mysql，而不是redmine的mysql</li>
+<li>redmine的mysql相关命令的路径为/opt/redmine-2.6.0-3/mysql/bin/</li>
+<li>redmine数据库默认有几个用户，一是你安装时填写的用户名和密码，使用这个用户登录mysql是看不到redmine的数据库的；</li>
+<li>二是root用户，密码跟你安装时填写的密码一样，这个可以看到所有的数据库</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/02/27/本地化乌云网操作记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/02/27/本地化乌云网操作记录/" itemprop="url">
+                  本地化乌云网操作记录
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-27T19:26:51+08:00">
+                2015-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/02/27/本地化乌云网操作记录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/27/本地化乌云网操作记录/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>基于第三方项目：<a href="https://github.com/hanc00l/wooyun_public" target="_blank" rel="external">https://github.com/hanc00l/wooyun_public</a></p>
+<h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>python环境：  </p>
+<ul>
+<li>多版本共存pyenv</li>
+<li>虚拟环境virtualenv</li>
+</ul>
+<p>安装命令：</p>
+<pre><code>pyenv install 2.7.10
+pyenv global 2.7.10
+pyenv virtualenv 2.7.10 venv2710
+</code></pre><h4 id="具体操作步骤"><a href="#具体操作步骤" class="headerlink" title="具体操作步骤"></a>具体操作步骤</h4><p>1、进入虚拟环境</p>
+<pre><code>pyenv activate venv2710
+</code></pre><p>2、安装Flask（一个基于python的web开发微框架）</p>
+<pre><code>http://docs.jinkan.org/docs/flask/
+pip install Flask
+</code></pre><p>3、安装 Scrapy（一个基于python的爬虫框架）<br><a href="http://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/install.html" target="_blank" rel="external">http://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/install.html</a></p>
+<pre><code>pip install Scrapy
+</code></pre><p>备注：需要Twisted&gt;=10.0.0  </p>
+<pre><code>wget https://pypi.python.org/packages/source/T/Twisted/Twisted-15.2.1.tar.bz2  
+解压安装：python setup.py install
+</code></pre><p>4、安装pymongo</p>
+<pre><code>pip install pymongo
+</code></pre><p>5、启动web<br>进入项目的flask目录下：python app.py</p>
+<p>6、开始爬虫<br>进入项目下的wooyun目录：</p>
+<pre><code>scrapy crawl wooyun -a page_max=0 -a update=true
+</code></pre><p>进入项目下的wooyun_drops目录：</p>
+<pre><code>scrapy crawl wooyun -a page_max=0 -a update=true
+</code></pre><p>备注：提示缺少PIL—<br><a href="http://www.pythonware.com/products/pil/" target="_blank" rel="external">http://www.pythonware.com/products/pil/</a></p>
+<pre><code>wget http://effbot.org/downloads/Imaging-1.1.7.tar.gz
+解压安装：python setup.py install
+</code></pre><h4 id="还可以遇到的问题"><a href="#还可以遇到的问题" class="headerlink" title="还可以遇到的问题"></a>还可以遇到的问题</h4><p>virtualenv的环境无法import sqlite3<br>报错信息如下：</p>
+<pre><code>#python
+Python 2.7.9 (default, Feb 10 2015, 01:40:34)
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-11)] on linux2
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import sqlite3
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;/root/.pyenv/versions/2.7.9/lib/python2.7/sqlite3/__init__.py&quot;, line 24, in &lt;module&gt;
+    from dbapi2 import *
+  File &quot;/root/.pyenv/versions/2.7.9/lib/python2.7/sqlite3/dbapi2.py&quot;, line 28, in &lt;module&gt;
+    from _sqlite3 import *
+ImportError: No module named _sqlite3
+</code></pre><p>谷歌了一下，原因是安装了多套python环境，virtualenv使用的那套python没有_sqlite3.so这个文件。<br>没用virtualenv的时候，使用的是另外一套python的_sqlite3.so，<br>所以解决方法是先安装sqlite-devel，<br>然后重新编译virtualenv使用的那套python，<br>操作步骤如下，因为我使用的pyenv，所以是连带virtualenv一起安装的。  </p>
+<ul>
+<li><p>先退出virtualenv的python环境，安装sqlite-devel</p>
+<pre><code>yum -y install sqlite-devel  
+</code></pre></li>
+<li><p>重新安装pyenv</p>
+<pre><code>curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+</code></pre></li>
+<li>删掉原有的python环境、重新安装python环境</li>
+</ul>
+<p>7、mongodb+elasticsearch<br>PS： mongodb使用elasticsearch必须要是集群下</p>
+<ul>
+<li>编辑/home/ts/db/mongodb/mongodb.conf ，增加：<pre><code>replSet=rs0 #这里是指定replSet的名字
+oplogSize=100 #这里是指定oplog表数据大小（太大了不支持）
+</code></pre></li>
+<li>重启动mongodb<pre><code>service mongodb restart
+</code></pre></li>
+<li>进入mongodb shell，初始化replicSet<pre><code>rs.initiate( {&quot;_id&quot; : &quot;rs0&quot;, &quot;version&quot; : 1, &quot;members&quot; : [ { &quot;_id&quot; : 0, &quot;host&quot; : &quot;127.0.0.1:27017&quot; } ]})
+</code></pre>备注：rs.initiate初始化字段详情见：<a href="https://docs.mongodb.com/manual/reference/replica-configuration/#replsetgetconfig-output" target="_blank" rel="external">https://docs.mongodb.com/manual/reference/replica-configuration/#replsetgetconfig-output</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/02/20/hexo-github博客部署问题记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/02/20/hexo-github博客部署问题记录/" itemprop="url">
+                  hexo+github博客部署问题记录
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-20T14:46:31+08:00">
+                2015-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/blog/" itemprop="url" rel="index">
+                    <span itemprop="name">blog</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/02/20/hexo-github博客部署问题记录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/20/hexo-github博客部署问题记录/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="博客简介"><a href="#博客简介" class="headerlink" title="博客简介"></a>博客简介</h4><p>现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客  </p>
+<p>搭建博客一般有几种方式：<br>1、全部自己实现：包括服务器、自己做网站、购买域名等——费时费力费钱<br>2、租用云服务器，采用静态博客生成工具：但是云服务器一般也是要付费的</p>
+<p>那有没有免费的呢？<br>答案是有的，那就是github</p>
+<p>这里再说下静态博客工具+github的原理：<br>以hexo+github为例（其他的静态博客生成工具类似）  </p>
+<ul>
+<li>静态博客一般就是帮我们将博客的外观和框架做成了模型，用户只需要专注于写文章（一般都支持使用md格式文档），然后使用博客工具命令生成静态网页；所以你将这些网页和资源放在任何web服务器上都可以运行  </li>
+<li>既然放在任何的web服务器上都可以运行，那么久有了github为我们提供的免费托管服务器，我们只需要将我们的静态网页和资源上传到github上即可</li>
+</ul>
+<p>hexo+github的具体安装部署这里就不多说了，网上教程很多</p>
+<h4 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h4><p>这里只记录一个网上很少有的问题<br>ps：囧，偏偏我遇到了</p>
+<p>1、推送hexo博客内容到github<br>出现错误：</p>
+<pre><code>error: The requested URL returned error: 403 Forbidden
+</code></pre><p>安装网上的方式都试了，都不行<br>最后解决方法如下：</p>
+<ul>
+<li>修改站点配置文件 _config.yml<pre><code>repository: git@github.com:tunsuy/tunsuy.github.io.git
+</code></pre>ps：之前是使用的https，不知道为什么不行</li>
+</ul>
+<h4 id="好文推荐"><a href="#好文推荐" class="headerlink" title="好文推荐"></a>好文推荐</h4><p><a href="http://ijiaober.github.io/2014/08/05/hexo/hexo-04/" target="_blank" rel="external">Hexo的分类和标签设置</a><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo官方文档</a><br><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">主题next官方文档</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2015/02/10/centos下安装mongodb记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/02/10/centos下安装mongodb记录/" itemprop="url">
+                  centos下安装mongodb记录
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-10T19:26:20+08:00">
+                2015-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/02/10/centos下安装mongodb记录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/10/centos下安装mongodb记录/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h4><p>1、卸载已有mongodb数据库</p>
+<pre><code>/etc/init.d/mongod stop
+yum erase $(rpm -qa | grep mongodb-org)
+</code></pre><p>删除mongodb相关目录文件等，例如：</p>
+<pre><code>rm -r /var/log/mongodb/
+rm -r /var/lib/mongo
+</code></pre><p>2、下载最新mongodb</p>
+<pre><code>wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.9.tgz
+</code></pre><p>3、移动下载文件并解压</p>
+<pre><code>mv ./mongodb-linux-x86_64-rhel62-3.2.9.tgz /usr/local/src/
+tar -xvf mongodb-linux-x86_64-rhel62-3.2.9.tgz
+</code></pre><p>4、移动解压文件</p>
+<pre><code>mv ./mongodb-linux-x86_64-rhel62-3.2.9 /usr/local/mongodb
+</code></pre><p>5、创建mongodb相关目录</p>
+<pre><code>mkdir -p /home/ts/db/mongodb/data
+mkdir -p /home/ts/db/mongodb/log
+</code></pre><p>6、创建并编辑mongodb配置文件</p>
+<pre><code>vim /home/ts/db/mongodb/mongodb.conf
+</code></pre><p>7、配置mongodb环境变量</p>
+<pre><code>vim /etc/profile
+</code></pre><p>加入如下语句：</p>
+<pre><code># mongodb set
+export MONGODB=/usr/local/mongodb
+PATH=$PATH:$MONGODB/bin
+</code></pre><p>立即生效：</p>
+<pre><code>source /etc/profile
+</code></pre><p>8、配置开机启动</p>
+<pre><code>vim /etc/rc.d/init.d/mongod
+</code></pre><p>注：必须在该文件开头写上：       </p>
+<pre><code># chkconfig: 2345 10 90
+# description: mongod ....
+</code></pre><p>设置：</p>
+<pre><code>chmod +x /etc/rc.d/init.d/mongod
+chkconfig mongod on
+</code></pre><p>PS：/etc/init.d/ 是 /etc/rc.d/init.d/ 的软链接</p>
+
           
         
       
@@ -477,14 +1432,28 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
           
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>

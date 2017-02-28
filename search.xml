@@ -3,9 +3,44 @@
   
     
     <entry>
+      <title><![CDATA[redmine迁移：从windows下迁移到linux]]></title>
+      <url>%2F2017%2F02%2F27%2Fredmine%E8%BF%81%E7%A7%BB%EF%BC%9A%E4%BB%8Ewindows%E4%B8%8B%E8%BF%81%E7%A7%BB%E5%88%B0linux%2F</url>
+      <content type="text"><![CDATA[迁移步骤1、在linux下将redmine安装好2、从原来的服务器上（windows）导出数据库文件（sql文件）3、将现在的服务器（linux）上的redmine数据库清空注：是清空，不能删除，因为删除会导致之后访问不了，具体原因可能是兼容问题4、将2步中导出来的sql文件导入3步中清空的redmine数据库中注：可能返回结果会提示说有错误，记下出错的表5、将出错的表重新删除再导入注：记住是删除，不是清空到目前为止数据库文件已经全部导入成功了6、附件的导入——将原来的服务器上的redmine中files文件拷贝到现在的服务器上的相同目录下 至此全部迁移数据已完成 问题及解决方法：1、redmine的rtx提醒收到的连接还是原来服务器的链接排查： 查看邮件配置文件是否正确——正确 通过rtx提醒的脚本调试发现redmine传递给rtx的提醒内容就是提问题时填写的内容（也就是数据库中的内容） 于是进入数据库中相应表（setting）查看，问题真是出在这里：这个表有个字段是设置hostname的，填写的还是以前的url（因为是导入以前的数据嘛） 解决：将该字段改为正确的访问ip即可 2、导入之后redmine上的时间显示不对排查：查看服务器时间——问题确实出在这里解决：将服务器时间设为当前时间 3、无法上传附件排查： 上传一个附件，没有返回错误，但是就是显示不出来 查看数据库，确实没有插入进去 既然能查看以前的附件，为什么迁移过来后就上传不了呢？ 联想：附件目录（files）是不是只有可读权限啊 解决： 将files目录设置为可读写权限（chmod 777 ./files/*） 重启服务，再次上传，成功]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[gitbook使用相关]]></title>
+      <url>%2F2015%2F03%2F15%2Fgitbook%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3%2F</url>
+      <content type="text"><![CDATA[gitbook的安装就不多说了，网上很多，很容易 下面说几个自定义相关的问题 1、自定义页面样式 默认样式是在：./_book/gitbook/style.cssps：增加样式只会覆盖自己定义的样式，其他的不变 在gitbook项目根目录下，创建styles目录注：一定要在该目录下创建，在其他目录下创建在gitbook build的时候会被清除掉 在styles目录下创建website.css——该文件是对gitbook页面样式的自定义 编辑book.json文件：加入&quot;styles&quot;: { &quot;website&quot;: &quot;styles/website.css&quot; }, 编译gitbook build 运行gitbook serve——就可以看到效果了 2、自定义插件 增加插件”plugins”: [“toggle-chapters”,”splitter”], 去掉插件”plugins”: [“-toggle-chapters”,”splitter”],—在前面加上’—‘即可]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[linux下部署redmine]]></title>
+      <url>%2F2015%2F03%2F04%2Flinux%E4%B8%8B%E9%83%A8%E7%BD%B2redmine%2F</url>
+      <content type="text"><![CDATA[安装步骤1、安装ruby环境——使用rvm比较方便2、使用bitnami-redmine一键式安装包3、远程访问不了——关闭防火墙即可4、phpmyadmin无法远程访问——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf修改如下： # AuthType Basic # AuthName phpMyAdmin # AuthUserFile &quot;/opt/redmine-2.6.0-3/apache2/users&quot; # Require valid-user AllowOverride None &lt;IfModule php5_module&gt; php_value upload_max_filesize 80M php_value post_max_size 80M &lt;/IfModule&gt; &lt;IfVersion &lt; 2.3 &gt; Order allow,deny Allow from all Satisfy all &lt;/IfVersion&gt; &lt;IfVersion &gt;= 2.3&gt; Require all granted # Require local &lt;/IfVersion&gt; ErrorDocument 403 &quot;For security reasons, this URL is only accessible using localhost (127.0.0.1) as the hostname.&quot; &lt;/Directory&gt; 其中红色部分为修改部分重启服务即可：/opt/redmine-2.6.0-3/ctlscript.sh restart 操作redmine的数据库 redmine使用的数据库为mysql，如果在终端直接输入mysql命令，则是直接调用的你以前装的mysql，而不是redmine的mysql redmine的mysql相关命令的路径为/opt/redmine-2.6.0-3/mysql/bin/ redmine数据库默认有几个用户，一是你安装时填写的用户名和密码，使用这个用户登录mysql是看不到redmine的数据库的； 二是root用户，密码跟你安装时填写的密码一样，这个可以看到所有的数据库]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[本地化乌云网操作记录]]></title>
+      <url>%2F2015%2F02%2F27%2F%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B9%8C%E4%BA%91%E7%BD%91%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95%2F</url>
+      <content type="text"><![CDATA[基于第三方项目：https://github.com/hanc00l/wooyun_public 准备工作python环境： 多版本共存pyenv 虚拟环境virtualenv 安装命令： pyenv install 2.7.10 pyenv global 2.7.10 pyenv virtualenv 2.7.10 venv2710 具体操作步骤1、进入虚拟环境 pyenv activate venv2710 2、安装Flask（一个基于python的web开发微框架） http://docs.jinkan.org/docs/flask/ pip install Flask 3、安装 Scrapy（一个基于python的爬虫框架）http://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/install.html pip install Scrapy 备注：需要Twisted&gt;=10.0.0 wget https://pypi.python.org/packages/source/T/Twisted/Twisted-15.2.1.tar.bz2 解压安装：python setup.py install 4、安装pymongo pip install pymongo 5、启动web进入项目的flask目录下：python app.py 6、开始爬虫进入项目下的wooyun目录： scrapy crawl wooyun -a page_max=0 -a update=true 进入项目下的wooyun_drops目录： scrapy crawl wooyun -a page_max=0 -a update=true 备注：提示缺少PIL—http://www.pythonware.com/products/pil/ wget http://effbot.org/downloads/Imaging-1.1.7.tar.gz 解压安装：python setup.py install 还可以遇到的问题virtualenv的环境无法import sqlite3报错信息如下： #python Python 2.7.9 (default, Feb 10 2015, 01:40:34) [GCC 4.4.7 20120313 (Red Hat 4.4.7-11)] on linux2 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information. &gt;&gt;&gt; import sqlite3 Traceback (most recent call last): File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt; File &quot;/root/.pyenv/versions/2.7.9/lib/python2.7/sqlite3/__init__.py&quot;, line 24, in &lt;module&gt; from dbapi2 import * File &quot;/root/.pyenv/versions/2.7.9/lib/python2.7/sqlite3/dbapi2.py&quot;, line 28, in &lt;module&gt; from _sqlite3 import * ImportError: No module named _sqlite3 谷歌了一下，原因是安装了多套python环境，virtualenv使用的那套python没有_sqlite3.so这个文件。没用virtualenv的时候，使用的是另外一套python的_sqlite3.so，所以解决方法是先安装sqlite-devel，然后重新编译virtualenv使用的那套python，操作步骤如下，因为我使用的pyenv，所以是连带virtualenv一起安装的。 先退出virtualenv的python环境，安装sqlite-devel yum -y install sqlite-devel 重新安装pyenv curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash 删掉原有的python环境、重新安装python环境 7、mongodb+elasticsearchPS： mongodb使用elasticsearch必须要是集群下 编辑/home/ts/db/mongodb/mongodb.conf ，增加：replSet=rs0 #这里是指定replSet的名字 oplogSize=100 #这里是指定oplog表数据大小（太大了不支持） 重启动mongodbservice mongodb restart 进入mongodb shell，初始化replicSetrs.initiate( {&quot;_id&quot; : &quot;rs0&quot;, &quot;version&quot; : 1, &quot;members&quot; : [ { &quot;_id&quot; : 0, &quot;host&quot; : &quot;127.0.0.1:27017&quot; } ]}) 备注：rs.initiate初始化字段详情见：https://docs.mongodb.com/manual/reference/replica-configuration/#replsetgetconfig-output]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[hexo+github博客部署问题记录]]></title>
-      <url>%2F2017%2F02%2F27%2Fhexo-github%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%2F</url>
-      <content type="text"></content>
+      <url>%2F2015%2F02%2F20%2Fhexo-github%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%2F</url>
+      <content type="text"><![CDATA[博客简介现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客 搭建博客一般有几种方式：1、全部自己实现：包括服务器、自己做网站、购买域名等——费时费力费钱2、租用云服务器，采用静态博客生成工具：但是云服务器一般也是要付费的 那有没有免费的呢？答案是有的，那就是github 这里再说下静态博客工具+github的原理：以hexo+github为例（其他的静态博客生成工具类似） 静态博客一般就是帮我们将博客的外观和框架做成了模型，用户只需要专注于写文章（一般都支持使用md格式文档），然后使用博客工具命令生成静态网页；所以你将这些网页和资源放在任何web服务器上都可以运行 既然放在任何的web服务器上都可以运行，那么久有了github为我们提供的免费托管服务器，我们只需要将我们的静态网页和资源上传到github上即可 hexo+github的具体安装部署这里就不多说了，网上教程很多 问题记录这里只记录一个网上很少有的问题ps：囧，偏偏我遇到了 1、推送hexo博客内容到github出现错误： error: The requested URL returned error: 403 Forbidden 安装网上的方式都试了，都不行最后解决方法如下： 修改站点配置文件 _config.ymlrepository: git@github.com:tunsuy/tunsuy.github.io.git ps：之前是使用的https，不知道为什么不行 好文推荐Hexo的分类和标签设置Hexo官方文档主题next官方文档]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[centos下安装mongodb记录]]></title>
+      <url>%2F2015%2F02%2F10%2Fcentos%E4%B8%8B%E5%AE%89%E8%A3%85mongodb%E8%AE%B0%E5%BD%95%2F</url>
+      <content type="text"><![CDATA[安装步骤1、卸载已有mongodb数据库 /etc/init.d/mongod stop yum erase $(rpm -qa | grep mongodb-org) 删除mongodb相关目录文件等，例如： rm -r /var/log/mongodb/ rm -r /var/lib/mongo 2、下载最新mongodb wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.9.tgz 3、移动下载文件并解压 mv ./mongodb-linux-x86_64-rhel62-3.2.9.tgz /usr/local/src/ tar -xvf mongodb-linux-x86_64-rhel62-3.2.9.tgz 4、移动解压文件 mv ./mongodb-linux-x86_64-rhel62-3.2.9 /usr/local/mongodb 5、创建mongodb相关目录 mkdir -p /home/ts/db/mongodb/data mkdir -p /home/ts/db/mongodb/log 6、创建并编辑mongodb配置文件 vim /home/ts/db/mongodb/mongodb.conf 7、配置mongodb环境变量 vim /etc/profile 加入如下语句： # mongodb set export MONGODB=/usr/local/mongodb PATH=$PATH:$MONGODB/bin 立即生效： source /etc/profile 8、配置开机启动 vim /etc/rc.d/init.d/mongod 注：必须在该文件开头写上： # chkconfig: 2345 10 90 # description: mongod .... 设置： chmod +x /etc/rc.d/init.d/mongod chkconfig mongod on PS：/etc/init.d/ 是 /etc/rc.d/init.d/ 的软链接]]></content>
     </entry>
 
     
