@@ -397,9 +397,9 @@ oplogSize=100 #这里是指定oplog表数据大小（太大了不支持）
     <link href="https://tunsuy.github.io/2015/02/20/hexo-github%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
     <id>https://tunsuy.github.io/2015/02/20/hexo-github博客部署问题记录/</id>
     <published>2015-02-20T06:46:31.000Z</published>
-    <updated>2017-02-28T03:04:31.791Z</updated>
+    <updated>2017-02-28T03:07:01.692Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="博客简介"><a href="#博客简介" class="headerlink" title="博客简介"></a>博客简介</h3><p>现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客  </p>
+    <content type="html"><![CDATA[<h3 id="1-博客简介"><a href="#1-博客简介" class="headerlink" title="1.博客简介"></a>1.博客简介</h3><p>现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客  </p>
 <p>搭建博客一般有几种方式：<br>1、全部自己实现：包括服务器、自己做网站、购买域名等——费时费力费钱<br>2、租用云服务器，采用静态博客生成工具：但是云服务器一般也是要付费的</p>
 <p>那有没有免费的呢？<br>答案是有的，那就是github</p>
 <p>这里再说下静态博客工具+github的原理：<br>以hexo+github为例（其他的静态博客生成工具类似）  </p>
@@ -408,7 +408,7 @@ oplogSize=100 #这里是指定oplog表数据大小（太大了不支持）
 <li>既然放在任何的web服务器上都可以运行，那么久有了github为我们提供的免费托管服务器，我们只需要将我们的静态网页和资源上传到github上即可</li>
 </ul>
 <p>hexo+github的具体安装部署这里就不多说了，网上教程很多</p>
-<h3 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h3><p>这里只记录一个网上很少有的问题<br>ps：囧，偏偏我遇到了</p>
+<h3 id="2-问题记录"><a href="#2-问题记录" class="headerlink" title="2.问题记录"></a>2.问题记录</h3><p>这里只记录一个网上很少有的问题<br>ps：囧，偏偏我遇到了</p>
 <p>1、推送hexo博客内容到github<br>出现错误：</p>
 <pre><code>error: The requested URL returned error: 403 Forbidden
 </code></pre><p>安装网上的方式都试了，都不行<br>最后解决方法如下：</p>
@@ -416,13 +416,13 @@ oplogSize=100 #这里是指定oplog表数据大小（太大了不支持）
 <li>修改站点配置文件 _config.yml<pre><code>repository: git@github.com:tunsuy/tunsuy.github.io.git
 </code></pre>ps：之前是使用的https，不知道为什么不行</li>
 </ul>
-<h3 id="好文推荐"><a href="#好文推荐" class="headerlink" title="好文推荐"></a>好文推荐</h3><p><a href="http://ijiaober.github.io/2014/08/05/hexo/hexo-04/" target="_blank" rel="external">Hexo的分类和标签设置</a><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo官方文档</a><br><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">主题next官方文档</a></p>
+<h3 id="3-好文推荐"><a href="#3-好文推荐" class="headerlink" title="3.好文推荐"></a>3.好文推荐</h3><p><a href="http://ijiaober.github.io/2014/08/05/hexo/hexo-04/" target="_blank" rel="external">Hexo的分类和标签设置</a><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo官方文档</a><br><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">主题next官方文档</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;博客简介&quot;&gt;&lt;a href=&quot;#博客简介&quot; class=&quot;headerlink&quot; title=&quot;博客简介&quot;&gt;&lt;/a&gt;博客简介&lt;/h3&gt;&lt;p&gt;现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客  &lt;/p&gt;
-&lt;p&gt;搭建博客一般有几种
+      &lt;h3 id=&quot;1-博客简介&quot;&gt;&lt;a href=&quot;#1-博客简介&quot; class=&quot;headerlink&quot; title=&quot;1.博客简介&quot;&gt;&lt;/a&gt;1.博客简介&lt;/h3&gt;&lt;p&gt;现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客  &lt;/p&gt;
+&lt;p&gt;搭
     
     </summary>
     

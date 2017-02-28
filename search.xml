@@ -103,7 +103,7 @@
     <entry>
       <title><![CDATA[hexo+github博客部署问题记录]]></title>
       <url>%2F2015%2F02%2F20%2Fhexo-github%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%2F</url>
-      <content type="text"><![CDATA[博客简介现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客 搭建博客一般有几种方式：1、全部自己实现：包括服务器、自己做网站、购买域名等——费时费力费钱2、租用云服务器，采用静态博客生成工具：但是云服务器一般也是要付费的 那有没有免费的呢？答案是有的，那就是github 这里再说下静态博客工具+github的原理：以hexo+github为例（其他的静态博客生成工具类似） 静态博客一般就是帮我们将博客的外观和框架做成了模型，用户只需要专注于写文章（一般都支持使用md格式文档），然后使用博客工具命令生成静态网页；所以你将这些网页和资源放在任何web服务器上都可以运行 既然放在任何的web服务器上都可以运行，那么久有了github为我们提供的免费托管服务器，我们只需要将我们的静态网页和资源上传到github上即可 hexo+github的具体安装部署这里就不多说了，网上教程很多 问题记录这里只记录一个网上很少有的问题ps：囧，偏偏我遇到了 1、推送hexo博客内容到github出现错误： error: The requested URL returned error: 403 Forbidden 安装网上的方式都试了，都不行最后解决方法如下： 修改站点配置文件 _config.ymlrepository: git@github.com:tunsuy/tunsuy.github.io.git ps：之前是使用的https，不知道为什么不行 好文推荐Hexo的分类和标签设置Hexo官方文档主题next官方文档]]></content>
+      <content type="text"><![CDATA[1.博客简介现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客 搭建博客一般有几种方式：1、全部自己实现：包括服务器、自己做网站、购买域名等——费时费力费钱2、租用云服务器，采用静态博客生成工具：但是云服务器一般也是要付费的 那有没有免费的呢？答案是有的，那就是github 这里再说下静态博客工具+github的原理：以hexo+github为例（其他的静态博客生成工具类似） 静态博客一般就是帮我们将博客的外观和框架做成了模型，用户只需要专注于写文章（一般都支持使用md格式文档），然后使用博客工具命令生成静态网页；所以你将这些网页和资源放在任何web服务器上都可以运行 既然放在任何的web服务器上都可以运行，那么久有了github为我们提供的免费托管服务器，我们只需要将我们的静态网页和资源上传到github上即可 hexo+github的具体安装部署这里就不多说了，网上教程很多 2.问题记录这里只记录一个网上很少有的问题ps：囧，偏偏我遇到了 1、推送hexo博客内容到github出现错误： error: The requested URL returned error: 403 Forbidden 安装网上的方式都试了，都不行最后解决方法如下： 修改站点配置文件 _config.ymlrepository: git@github.com:tunsuy/tunsuy.github.io.git ps：之前是使用的https，不知道为什么不行 3.好文推荐Hexo的分类和标签设置Hexo官方文档主题next官方文档]]></content>
     </entry>
 
     
