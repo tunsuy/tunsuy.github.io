@@ -104,9 +104,9 @@
 有类似 Junit 的 setup 或者 teardown方法
 还算不错的 Assertions
 和 Xcode 深度集">
-<meta property="og:image" content="https://tunsuy.github.io/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target1.jpg">
-<meta property="og:image" content="https://tunsuy.github.io/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target2.jpg">
-<meta property="og:image" content="https://tunsuy.github.io/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target3.jpg">
+<meta property="og:image" content="https://tunsuy.github.io/iOS下使用XCTest进行发包前Checklist检查.html/target1.jpg">
+<meta property="og:image" content="https://tunsuy.github.io/iOS下使用XCTest进行发包前Checklist检查.html/target2.jpg">
+<meta property="og:image" content="https://tunsuy.github.io/iOS下使用XCTest进行发包前Checklist检查.html/target3.jpg">
 <meta property="og:updated_time" content="2017-02-28T12:24:31.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS下使用UI-Testing进行发包前Checklist检查">
@@ -116,7 +116,7 @@
 有类似 Junit 的 setup 或者 teardown方法
 还算不错的 Assertions
 和 Xcode 深度集">
-<meta name="twitter:image" content="https://tunsuy.github.io/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target1.jpg">
+<meta name="twitter:image" content="https://tunsuy.github.io/iOS下使用XCTest进行发包前Checklist检查.html/target1.jpg">
 
 
 
@@ -404,12 +404,12 @@
 <p>2、那 UI Testing 在 XCTest 的基础上实际上是扩展了几个类，协议<br>所以本质上 UI Testing 还是 XCTest，所以写用例的时候，还是需要遵从 XCTest 的规则</p>
 <p>3、UI Testing 需要依靠 Accessibility 来定位元素。UI Testing 可以通过你的应用提供的 Accessibility 功能来与你的应用连接，这样就解决了设备大小不一的问题。如果你重新调整了 UI 中的某些元素，你也不用重写整套测试。当然实现 Accessibility 的本质不是为了使用 UI Testing，而是为了能帮助行动不便的用户更好地使用你的应用。</p>
 <h3 id="具体实践"><a href="#具体实践" class="headerlink" title="具体实践"></a>具体实践</h3><p>Xcode 7中创建新工程时，可以选择是否要包含UI测试——这里就不演示了  </p>
-<p>下面说说在已有工程的时候，怎么进行UI Testing<br>1、再项目工程中增加一个target<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target1.jpg" alt="target1.jpg" title=""></p>
+<p>下面说说在已有工程的时候，怎么进行UI Testing<br>1、再项目工程中增加一个target<br><img src="/iOS下使用XCTest进行发包前Checklist检查.html/target1.jpg" alt="target1.jpg" title=""></p>
 <p>如图中1所示点击添加UI Testing Bundle<br>添加之后如图中2、3所示。</p>
 <p>2、编写测试类或者测试方法<br>在图中3所示中的.m文件中添加测试方法，<br>当然实际项目中，肯定是根据各自的模块自己新建一系列的类及方法<br>（注：测试类及其测试方法必须按照XCTest的命令规则及要求来）</p>
-<p>3、运行测试用例<br>可以直接在导航栏中点击test运行整个UI用例 也可以如图中所示<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target2.jpg" alt="target2.jpg" title=""></p>
+<p>3、运行测试用例<br>可以直接在导航栏中点击test运行整个UI用例 也可以如图中所示<br><img src="/iOS下使用XCTest进行发包前Checklist检查.html/target2.jpg" alt="target2.jpg" title=""></p>
 <p>点击用例右边的勾运行单个用例</p>
-<p>UI testing 也具有录制功能 如图<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target3.jpg" alt="target3.jpg" title=""></p>
+<p>UI testing 也具有录制功能 如图<br><img src="/iOS下使用XCTest进行发包前Checklist检查.html/target3.jpg" alt="target3.jpg" title=""></p>
 <p>点击图中所示 它将重新启动app ，然后你的每一步操作都将在你鼠标所在处自动生成OC代码<br>（注：由于UI testing 刚出来 所以录制出来的代码可能不是很规范 需要手动改一下。不过作为官方推出来的东西，以后肯定会变得更简单强大）</p>
 <h3 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h3><p>UI testing到底适用于什么地方呢  </p>
 <p>个人认为用来做一些简单的发包前check list比较合适</p>

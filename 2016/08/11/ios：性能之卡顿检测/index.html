@@ -98,15 +98,15 @@
 <meta property="og:description" content="项目简介地址：https://github.com/tunsuy/iOSMonitorLag
 该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果
 方案一 基于RunLoop背景1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作">
-<meta property="og:image" content="https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/卡顿图1.jpg">
-<meta property="og:image" content="https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/卡顿图2.jpg">
+<meta property="og:image" content="https://tunsuy.github.io/ios：性能之卡顿检测.html/卡顿图1.jpg">
+<meta property="og:image" content="https://tunsuy.github.io/ios：性能之卡顿检测.html/卡顿图2.jpg">
 <meta property="og:updated_time" content="2017-02-28T06:20:02.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios：性能之卡顿检测">
 <meta name="twitter:description" content="项目简介地址：https://github.com/tunsuy/iOSMonitorLag
 该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果
 方案一 基于RunLoop背景1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作">
-<meta name="twitter:image" content="https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/卡顿图1.jpg">
+<meta name="twitter:image" content="https://tunsuy.github.io/ios：性能之卡顿检测.html/卡顿图1.jpg">
 
 
 
@@ -421,8 +421,8 @@
 <h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p>1、最理想的方案是让UI线程“主动汇报”当前耗时的任务，听起来简单做起来不轻松。</p>
 <p>2、我们可以假设这样一套机制：每隔16ms让UI线程来报道一次，如果16ms之后UI线程没来报道，那就一定是在执行某个耗时的任务。</p>
 <p>下面是以接入口袋助理测试的效果图</p>
-<img src="/2016/08/11/ios：性能之卡顿检测/卡顿图1.jpg" alt="卡顿图1.jpg" title="">
-<img src="/2016/08/11/ios：性能之卡顿检测/卡顿图2.jpg" alt="卡顿图2.jpg" title="">
+<img src="/ios：性能之卡顿检测.html/卡顿图1.jpg" alt="卡顿图1.jpg" title="">
+<img src="/ios：性能之卡顿检测.html/卡顿图2.jpg" alt="卡顿图2.jpg" title="">
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>但是像在口袋助理这样大型负责的项目中，这些方法都存在一些弊端，监测出来的也不一定是真的由于代码问题引起的，<br>这只是可以作为一种自动提醒机制，让开发者自行去检查下提示的代码是否真的存在性能缺陷</p>
 
       
