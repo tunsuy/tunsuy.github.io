@@ -13,6 +13,6 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://www.zaoanx.com/sitemap.xml
-Sitemap: http://www.zaoanx.com/baidusitemap.xml
+Sitemap: https://tunsuy.github.io/sitemap.xml
+Sitemap: https://tunsuy.github.io/baidusitemap.xml
 
