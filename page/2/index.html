@@ -434,7 +434,7 @@ $ rspec simple_test.rb
 Finished in 0.00012 seconds
 0 examples, 0 failures
 </code></pre><p>因为没有写测试代码，所有这里显示 0个案例，0个错误<br>程序正常被启动起来了，如下图所示：  </p>
-<img src="/appium-ios自动化入门.html/appium-ios.jpg" alt="appium-ios.jpg" title="">
+<img src="/2016/07/10/appium-ios自动化入门/appium-ios.jpg" alt="appium-ios.jpg" title="">
 </li>
 </ul>
 
@@ -574,25 +574,25 @@ Finished in 0.00012 seconds
 </code></pre><p>4、生成 features文件夹</p>
 <pre><code>calabash-ios gen
 </code></pre><h3 id="集成项目"><a href="#集成项目" class="headerlink" title="集成项目"></a>集成项目</h3><p>1、设置 xcode 项目<br>I.复制项目target文件<br>右键如下图红色部分  </p>
-<img src="/calabash-ios安装详解.html/targetcp.jpg" alt="targetcp.jpg" title="">
+<img src="/2016/06/28/calabash-ios安装详解/targetcp.jpg" alt="targetcp.jpg" title="">
 <p>弹出提示框，选择Duplicate，弹出如窗口，选择如下图所示  </p>
-<img src="/calabash-ios安装详解.html/targetcf.jpg" alt="targetcf.jpg" title="">
+<img src="/2016/06/28/calabash-ios安装详解/targetcf.jpg" alt="targetcf.jpg" title="">
 <p>复制出来如下图所示，名称为lesThree copy， 双击该项目，改名为lesThree-cal（根据你自己的项目名称来设置）</p>
 
 <p>II.修改复制项目的各处名称<br>如下图点击，再下拉框中选择管理项目</p>
-<img src="/calabash-ios安装详解.html/targetrn.jpg" alt="targetrn.jpg" title="">
+<img src="/2016/06/28/calabash-ios安装详解/targetrn.jpg" alt="targetrn.jpg" title="">
 <p>弹出如下窗口，修改为如图所示名称（根据你自己的项目而定）</p>
-<img src="/calabash-ios安装详解.html/targetrnfs.jpg" alt="targetrnfs.jpg" title="">
+<img src="/2016/06/28/calabash-ios安装详解/targetrnfs.jpg" alt="targetrnfs.jpg" title="">
 <p>点击完成，进入如下图所示，修改为如图所示名称</p>
-<img src="/calabash-ios安装详解.html/targetrnfs1.jpg" alt="targetrnfs1.jpg" title="">
+<img src="/2016/06/28/calabash-ios安装详解/targetrnfs1.jpg" alt="targetrnfs1.jpg" title="">
 <p>III.导入calabash.framework框架<br>将你项目目录下的calabash.framework拖到xcode项目中的Frameworks文件夹中，（如没有该文件夹，请创建），如图所示</p>
-<img src="/calabash-ios安装详解.html/importfm.jpg" alt="importfm.jpg" title="">
+<img src="/2016/06/28/calabash-ios安装详解/importfm.jpg" alt="importfm.jpg" title="">
 <p>再弹出的窗口中设置如图所示</p>
-<img src="/calabash-ios安装详解.html/importfmcp.jpg" alt="importfmcp.jpg" title="">
+<img src="/2016/06/28/calabash-ios安装详解/importfmcp.jpg" alt="importfmcp.jpg" title="">
 <p>IV.导入CFNetwork.framework<br>如图所示导入</p>
-<img src="/calabash-ios安装详解.html/linkfm.jpg" alt="linkfm.jpg" title="">
+<img src="/2016/06/28/calabash-ios安装详解/linkfm.jpg" alt="linkfm.jpg" title="">
 <p>V.设置other linker flag<br>如下图所示设置</p>
-<img src="/calabash-ios安装详解.html/linkflag.jpg" alt="linkflag.jpg" title="">
+<img src="/2016/06/28/calabash-ios安装详解/linkflag.jpg" alt="linkflag.jpg" title="">
 <h3 id="测试安装"><a href="#测试安装" class="headerlink" title="测试安装"></a>测试安装</h3><p>再模拟器中运行该cal项目，窗口控制台输出如下信息则表示配置成功</p>
 <pre><code>2015-03-06 17:27:50.105 lesThree-cal[3279:55236] Started LPHTTP server on port 37265
 2015-03-06 17:27:52.441 lesThree-cal[3279:55421] Bonjour Service Published: domain(local.) type(_http._tcp.) name(Calabash Server)
@@ -729,7 +729,7 @@ Finished in 0.00012 seconds
 <p>2、因为calabash-Android是基于robotium框架的，所以在机器上预装的web-server会将下发下来的calabash脚本解释为robotium的脚本，然后向测试app发送robotium的脚本，</p>
 <p>3、因为robotium框架就是封装的google测试框架instumentation，所以app拿到robotium脚本后，将其解释为instumentation命令向被测试的app发送这些命令，被测试的app执行这些命令，然后将结果返回。</p>
 <h3 id="系统架构图"><a href="#系统架构图" class="headerlink" title="系统架构图"></a>系统架构图</h3><p>calabash-Android整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
-<img src="/calabash-android原理分析.html/calabash-android.jpg" alt="calabash-android.jpg" title="">
+<img src="/2016/06/20/calabash-android原理分析/calabash-android.jpg" alt="calabash-android.jpg" title="">
 <h4 id="框架图解释如下："><a href="#框架图解释如下：" class="headerlink" title="框架图解释如下："></a>框架图解释如下：</h4><p>1、Runner 负责接受用户指令，并对其进行数据校验、指令转换等操作，之后将其交由客户端处理（这里的客户端是指运行在pc上的用户自己编写的代码），</p>
 <p>2、instrumentation test server就是预装在设备上的web-server，客户端在接收到指令之后，将指令发送给它，请求其执行对应操作，</p>
 <p>3、web-server在接收到指令之后，解释该命令并与app进行交互，</p>
@@ -1276,12 +1276,12 @@ iptables -t nat -nvxL --line-numbers
 <p>2、那 UI Testing 在 XCTest 的基础上实际上是扩展了几个类，协议<br>所以本质上 UI Testing 还是 XCTest，所以写用例的时候，还是需要遵从 XCTest 的规则</p>
 <p>3、UI Testing 需要依靠 Accessibility 来定位元素。UI Testing 可以通过你的应用提供的 Accessibility 功能来与你的应用连接，这样就解决了设备大小不一的问题。如果你重新调整了 UI 中的某些元素，你也不用重写整套测试。当然实现 Accessibility 的本质不是为了使用 UI Testing，而是为了能帮助行动不便的用户更好地使用你的应用。</p>
 <h3 id="具体实践"><a href="#具体实践" class="headerlink" title="具体实践"></a>具体实践</h3><p>Xcode 7中创建新工程时，可以选择是否要包含UI测试——这里就不演示了  </p>
-<p>下面说说在已有工程的时候，怎么进行UI Testing<br>1、再项目工程中增加一个target<br><img src="/iOS下使用XCTest进行发包前Checklist检查.html/target1.jpg" alt="target1.jpg" title=""></p>
+<p>下面说说在已有工程的时候，怎么进行UI Testing<br>1、再项目工程中增加一个target<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target1.jpg" alt="target1.jpg" title=""></p>
 <p>如图中1所示点击添加UI Testing Bundle<br>添加之后如图中2、3所示。</p>
 <p>2、编写测试类或者测试方法<br>在图中3所示中的.m文件中添加测试方法，<br>当然实际项目中，肯定是根据各自的模块自己新建一系列的类及方法<br>（注：测试类及其测试方法必须按照XCTest的命令规则及要求来）</p>
-<p>3、运行测试用例<br>可以直接在导航栏中点击test运行整个UI用例 也可以如图中所示<br><img src="/iOS下使用XCTest进行发包前Checklist检查.html/target2.jpg" alt="target2.jpg" title=""></p>
+<p>3、运行测试用例<br>可以直接在导航栏中点击test运行整个UI用例 也可以如图中所示<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target2.jpg" alt="target2.jpg" title=""></p>
 <p>点击用例右边的勾运行单个用例</p>
-<p>UI testing 也具有录制功能 如图<br><img src="/iOS下使用XCTest进行发包前Checklist检查.html/target3.jpg" alt="target3.jpg" title=""></p>
+<p>UI testing 也具有录制功能 如图<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target3.jpg" alt="target3.jpg" title=""></p>
 <p>点击图中所示 它将重新启动app ，然后你的每一步操作都将在你鼠标所在处自动生成OC代码<br>（注：由于UI testing 刚出来 所以录制出来的代码可能不是很规范 需要手动改一下。不过作为官方推出来的东西，以后肯定会变得更简单强大）</p>
 <h3 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h3><p>UI testing到底适用于什么地方呢  </p>
 <p>个人认为用来做一些简单的发包前check list比较合适</p>
@@ -1774,7 +1774,7 @@ driver.get(&apos;https://200.200.169.165&apos;);
           
             <p>calabash同时支持ios和Android平台，这里只介绍ios平台。</p>
 <h3 id="系统架构图"><a href="#系统架构图" class="headerlink" title="系统架构图"></a>系统架构图</h3><p>calabash-ios整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
-<img src="/calabash-ios原理分析.html/calabash-ios.jpg" alt="calabash-ios.jpg" title="">
+<img src="/2015/06/12/calabash-ios原理分析/calabash-ios.jpg" alt="calabash-ios.jpg" title="">
 <h3 id="框架分析"><a href="#框架分析" class="headerlink" title="框架分析"></a>框架分析</h3><p>接上图</p>
 <p>1、其中，Runner 负责接受用户指令，并对其进行数据校验、指令转换等操作</p>
 <p>2、之后将其交给客户端处理（这里的客户端是指运行pc上的代码）</p>
@@ -1933,9 +1933,9 @@ driver.get(&apos;https://200.200.169.165&apos;);
 <li>这个时候安装应用到手机，会自动安装一个Leaks应用<br>注：有的手机需要重启下才能看到Leaks应用，比如我用的华为手机就是这样</li>
 </ul>
 <p>5、检查是否真的如我们预期的一样：在创建工作汇报的时候存在内存泄露<br>创建一个工作汇报，回到汇报列表，此时我们会发现收到了一个Leaks的通知<br>如图：</p>
-<img src="/利用leakcanay检测android内存泄露.html/leak-notify.jpg" alt="leak-notify.jpg" title="">
+<img src="/2015/06/10/利用leakcanay检测android内存泄露/leak-notify.jpg" alt="leak-notify.jpg" title="">
 <p>点击该通知，进入Leaks，可以查看到详细的该内存泄露的调用信息，从而定位到该内存泄露<br>如图：</p>
-<img src="/利用leakcanay检测android内存泄露.html/leak-info.jpg" alt="leak-info.jpg" title="">
+<img src="/2015/06/10/利用leakcanay检测android内存泄露/leak-info.jpg" alt="leak-info.jpg" title="">
 
           
         

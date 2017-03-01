@@ -386,9 +386,9 @@
 <p>既然是测试，那么我们只需要将公司项目跟三方有交互的接口做个全面的测试即可，不在乎这个三方是怎样的形式</p>
 <p>那么这就好办了，自己实现一个这个的三方项目</p>
 <h3 id="交互逻辑图"><a href="#交互逻辑图" class="headerlink" title="交互逻辑图"></a>交互逻辑图</h3><p>1、口袋助理跳转第三方app逻辑示意图：</p>
-<img src="/App三方交互逻辑实践.html/moa2app.jpg" alt="moa2app.jpg" title="">
+<img src="/2017/11/16/App三方交互逻辑实践/moa2app.jpg" alt="moa2app.jpg" title="">
 <p>2、第三方跳转口袋助理逻辑示意图：</p>
-<img src="/App三方交互逻辑实践.html/app2moa.jpg" alt="app2moa.jpg" title="">
+<img src="/2017/11/16/App三方交互逻辑实践/app2moa.jpg" alt="app2moa.jpg" title="">
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>server端：go语言实现<br>app端：iOS</p>
 <p>具体实现见github项目地址</p>
 <p>根据相关协议从代码层面详细的测试每个交互接口：</p>
@@ -534,7 +534,7 @@
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>1、将手机置于电脑的同一网络，  </p>
 <p>2、然后在浏览器上输入 手机IP：port（端口是在代码中任意指定的），<br>然后就可以开始测试app了，你将会看到浏览器中会实时显示你的操作日志出来，跟xcode下查看日志的方式一样，</p>
 <p>注：浏览器页面支持 跟随日志自动滚动 ；非常方便</p>
-<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><img src="/实现浏览器中实时查看iOS日志.html/ioslog.jpg" alt="ioslog.jpg" title="">
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><img src="/2017/09/23/实现浏览器中实时查看iOS日志/ioslog.jpg" alt="ioslog.jpg" title="">
 
           
         
@@ -1824,8 +1824,8 @@ rs.reconfig(cfg);
 <h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p>1、最理想的方案是让UI线程“主动汇报”当前耗时的任务，听起来简单做起来不轻松。</p>
 <p>2、我们可以假设这样一套机制：每隔16ms让UI线程来报道一次，如果16ms之后UI线程没来报道，那就一定是在执行某个耗时的任务。</p>
 <p>下面是以接入口袋助理测试的效果图</p>
-<img src="/ios：性能之卡顿检测.html/卡顿图1.jpg" alt="卡顿图1.jpg" title="">
-<img src="/ios：性能之卡顿检测.html/卡顿图2.jpg" alt="卡顿图2.jpg" title="">
+<img src="/2016/08/11/ios：性能之卡顿检测/卡顿图1.jpg" alt="卡顿图1.jpg" title="">
+<img src="/2016/08/11/ios：性能之卡顿检测/卡顿图2.jpg" alt="卡顿图2.jpg" title="">
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>但是像在口袋助理这样大型负责的项目中，这些方法都存在一些弊端，监测出来的也不一定是真的由于代码问题引起的，<br>这只是可以作为一种自动提醒机制，让开发者自行去检查下提示的代码是否真的存在性能缺陷</p>
 
           
