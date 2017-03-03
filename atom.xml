@@ -799,7 +799,7 @@ EnvironmentFile=-/etc/sysconfig/docker-network
     <link href="https://tunsuy.github.io/2016/06/02/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84moa%E6%9C%8D%E5%8A%A1/"/>
     <id>https://tunsuy.github.io/2016/06/02/基于docker的moa服务/</id>
     <published>2016-06-02T04:15:17.000Z</published>
-    <updated>2017-02-28T06:20:02.704Z</updated>
+    <updated>2017-03-03T09:20:46.289Z</updated>
     
     <content type="html"><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>该文章主要讲解将公司的server服务docker化的具体过程，从中可以看到很多docker相关知识的使用以及网络配置等操作<br>文中还设计到自己实现的关于docker自动化配置的两个脚本，供大家学习参考</p>
 <h3 id="docker化步骤"><a href="#docker化步骤" class="headerlink" title="docker化步骤"></a>docker化步骤</h3><p>1、将初始安装包拷贝到容器主机上</p>
@@ -808,27 +808,13 @@ EnvironmentFile=-/etc/sysconfig/docker-network
 <li>方法一 就是要么自己将所有的命令工具都安装了</li>
 <li>方法二 找一个别人建好的docker镜像</li>
 </ul>
-<p>3、将主机上的安装包共享给容器，并交互式形式启动</p>
-<pre><code>docker run -t -i --name moa_centos7 -v /home/tunsuy/toContainer:/home/tunsuy/fromHost centos:centos7 /bin/bash
-</code></pre><p>4、因为没有空白机的公有云安装包，所以这里以私有云空白安装包来安装<br>ps：./install.sh -m test -d public_clound<br>——参考./install.sh脚本实现</p>
-<p>5、安装过程中可能会遇到一些问题  </p>
+<p>3、将主机上的安装包共享给容器，并交互式形式启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">docker run -t -i --name moa_centos7 -v /home/tunsuy/toContainer:/home/tunsuy/fromHost centos:centos7 /bin/bash</div></pre></td></tr></table></figure></p>
+<p>4、因为没有空白机的公有云安装包，所以这里以私有云空白安装包来安装<br>ps：<figure class="highlight sh"><figcaption><span>./install.sh -m test -d public_clound  ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">——参考./install.sh脚本实现</div><div class="line"></div><div class="line">5、安装过程中可能会遇到一些问题  </div><div class="line">* 提示没有xx命令——一律```sh  yum install xx ```即可</div><div class="line">* 提示连接不上mongodb  </div><div class="line">——中断安装（其实moa依赖的一些软件环境已经安装成功了）  </div><div class="line">——参考其他虚拟机公有云的mongodb安装情况，调整该docker容器中的mongodb并成功启动</div><div class="line"></div><div class="line">6、单独安装公有云升级包（该包中需要包含dbserver服务包）</div><div class="line"></div><div class="line">7、安装包成功之后，检查各项服务是否成功（包括web、流程、商店等）  </div><div class="line">* 可能会发现mysql安装异常  </div><div class="line">——手动安装：进入私有云空白安装包中的init目录下，运行./install.sh  </div><div class="line">————安装过程中可能会报错，缺少某些依赖  </div><div class="line">————依次yum install安装（有的可能需要自己下载安装）</div><div class="line"></div><div class="line">8、所有的服务都检查无误时，制作镜像并上传</div><div class="line">* 搭建私有仓库（按照官方文档做就可以了，这里不详细写）</div><div class="line">* 将容器制作为镜像</div><div class="line">        ```sh  </div><div class="line"></div><div class="line">        docker commit --author <span class="string">"ts"</span> --message <span class="string">"更正moaserver初始化包环境"</span> 容器名 docker.ts.com:5000/moaserver_env:init</div></pre></td></tr></table></figure></p>
 <ul>
-<li>提示没有xx命令——一律 yum install xx 即可</li>
-<li>提示连接不上mongodb<br>——中断安装（其实moa依赖的一些软件环境已经安装成功了）<br>——参考其他虚拟机公有云的mongodb安装情况，调整该docker容器中的mongodb并成功启动</li>
-</ul>
-<p>6、单独安装公有云升级包（该包中需要包含dbserver服务包）</p>
-<p>7、安装包成功之后，检查各项服务是否成功（包括web、流程、商店等）  </p>
-<ul>
-<li>可能会发现mysql安装异常<br>——手动安装：进入私有云空白安装包中的init目录下，运行./install.sh<br>————安装过程中可能会报错，缺少某些依赖<br>————依次yum install安装（有的可能需要自己下载安装）</li>
-</ul>
-<p>8、所有的服务都检查无误时，制作镜像并上传</p>
-<ul>
-<li>搭建私有仓库（按照官方文档做就可以了，这里不详细写）</li>
-<li>将容器制作为镜像<pre><code>docker commit --author &quot;ts&quot; --message &quot;更正moaserver初始化包环境&quot; 容器名 docker.ts.com:5000/moaserver_env:init
+<li>上传镜像到私有仓库<pre><code><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">docker push docker.ts.com:5000/moaserver_env:init</div></pre></td></tr></table></figure>
 </code></pre></li>
-<li><p>上传镜像到私有仓库</p>
-<pre><code>docker push docker.ts.com:5000/moaserver_env:init
-</code></pre><p>ps：配置私有仓库http访问<br>编辑文件：vim /etc/sysconfig/docker<br>添加以下内容</p>
+</ul>
+<p>ps：配置私有仓库http访问<br>编辑文件：vim /etc/sysconfig/docker<br>添加以下内容</p>
 <pre><code>OPTIONS=&apos;--selinux-enabled --insecure-registry=docker.ts.com:5000&apos;
 </code></pre><p>或者编辑文件：vim /usr/lib/systemd/system/docker.service<br>添加以下内容</p>
 <pre><code>  ExecStart=/usr/bin/docker-current daemon \
@@ -840,9 +826,7 @@ EnvironmentFile=-/etc/sysconfig/docker-network
     $BLOCK_REGISTRY \
     $INSECURE_REGISTRY \
 --insecure-registry docker.ts.com:5000
-</code></pre></li>
-</ul>
-<p>注：centos7的防火墙使用的是firewalld，因为之前对iptables比较熟，<br>     所以可以关掉firewalld，安装iptables服务  </p>
+</code></pre><p>注：centos7的防火墙使用的是firewalld，因为之前对iptables比较熟，<br>     所以可以关掉firewalld，安装iptables服务  </p>
 <pre><code>systemctl stop firewalld
 systemctl mask firewalld
 yum install iptables-services
