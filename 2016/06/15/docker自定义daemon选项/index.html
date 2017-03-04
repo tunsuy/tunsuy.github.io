@@ -108,37 +108,28 @@
 
 
 
-<meta name="description" content="前提可以定义的选项为如下列出来的
+<meta name="description" content="一、 前提可以定义的选项为如下列出来的
 docker-current daemon --help
-方案一1、分别定义各环境文件
-eg：/etc/sysconfig/docker-storage
-/etc/sysconfig/docker-network
+二、 方案一1、 分别定义各环境文件12eg：/etc/sysconfig/docker-storage/etc/sysconfig/docker-network
 该文件中可以自定义环境变量
-2、在/usr/lib/systemd/system/docker.service文件中引入环境文件
-eg：Environm">
+2、 引入环境文件在/usr/lib/systemd/system/docker.service文件中引入环境">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker自定义daemon选项">
 <meta property="og:url" content="https://tunsuy.github.io/2016/06/15/docker自定义daemon选项/index.html">
 <meta property="og:site_name" content="鱼儿塘">
-<meta property="og:description" content="前提可以定义的选项为如下列出来的
+<meta property="og:description" content="一、 前提可以定义的选项为如下列出来的
 docker-current daemon --help
-方案一1、分别定义各环境文件
-eg：/etc/sysconfig/docker-storage
-/etc/sysconfig/docker-network
+二、 方案一1、 分别定义各环境文件12eg：/etc/sysconfig/docker-storage/etc/sysconfig/docker-network
 该文件中可以自定义环境变量
-2、在/usr/lib/systemd/system/docker.service文件中引入环境文件
-eg：Environm">
-<meta property="og:updated_time" content="2017-02-28T06:20:02.527Z">
+2、 引入环境文件在/usr/lib/systemd/system/docker.service文件中引入环境">
+<meta property="og:updated_time" content="2017-03-04T08:54:13.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker自定义daemon选项">
-<meta name="twitter:description" content="前提可以定义的选项为如下列出来的
+<meta name="twitter:description" content="一、 前提可以定义的选项为如下列出来的
 docker-current daemon --help
-方案一1、分别定义各环境文件
-eg：/etc/sysconfig/docker-storage
-/etc/sysconfig/docker-network
+二、 方案一1、 分别定义各环境文件12eg：/etc/sysconfig/docker-storage/etc/sysconfig/docker-network
 该文件中可以自定义环境变量
-2、在/usr/lib/systemd/system/docker.service文件中引入环境文件
-eg：Environm">
+2、 引入环境文件在/usr/lib/systemd/system/docker.service文件中引入环境">
 
 
 
@@ -448,34 +439,26 @@ eg：Environm">
       
 
       
-        <h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>可以定义的选项为如下列出来的</p>
+        <h1 id="一、-前提"><a href="#一、-前提" class="headerlink" title="一、 前提"></a>一、 前提</h1><p>可以定义的选项为如下列出来的</p>
 <pre><code>docker-current daemon --help
-</code></pre><h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>1、分别定义各环境文件</p>
-<pre><code>eg：/etc/sysconfig/docker-storage
-/etc/sysconfig/docker-network
-</code></pre><p>该文件中可以自定义环境变量</p>
-<p>2、在/usr/lib/systemd/system/docker.service文件中引入环境文件</p>
-<pre><code>eg：EnvironmentFile=-/etc/sysconfig/docker-storage
-EnvironmentFile=-/etc/sysconfig/docker-network
-</code></pre><p>并使用其环境变量</p>
-<pre><code>ExecStart=/usr/bin/docker-current daemon \
-      $DOCKER_STORAGE_OPTIONS \
-      $DOCKER_NETWORK_OPTIONS \
-</code></pre><p>备注：也可以将所有的自定义选项定义在一个文件中</p>
+</code></pre><h1 id="二、-方案一"><a href="#二、-方案一" class="headerlink" title="二、 方案一"></a>二、 方案一</h1><h2 id="1、-分别定义各环境文件"><a href="#1、-分别定义各环境文件" class="headerlink" title="1、 分别定义各环境文件"></a>1、 分别定义各环境文件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eg：/etc/sysconfig/docker-storage</div><div class="line">/etc/sysconfig/docker-network</div></pre></td></tr></table></figure>
+<p>该文件中可以自定义环境变量</p>
+<h2 id="2、-引入环境文件"><a href="#2、-引入环境文件" class="headerlink" title="2、 引入环境文件"></a>2、 引入环境文件</h2><p>在<code>/usr/lib/systemd/system/docker.service</code>文件中引入环境文件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eg：EnvironmentFile=-<span class="regexp">/etc/</span>sysconfig/docker-storage</div><div class="line">EnvironmentFile=-<span class="regexp">/etc/</span>sysconfig/docker-network</div></pre></td></tr></table></figure></p>
+<p>并使用其环境变量<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ExecStart=<span class="regexp">/usr/</span>bin/docker-current daemon \</div><div class="line">      $DOCKER_STORAGE_OPTIONS \</div><div class="line">      $DOCKER_NETWORK_OPTIONS \</div></pre></td></tr></table></figure></p>
+<p>备注：也可以将所有的自定义选项定义在一个文件中</p>
 <p>例：将官方镜像仓库替换为阿里云镜像仓库</p>
 <ul>
 <li>前提：注册阿里云用户，此时才会获取到一个私有的镜像仓库地址<pre><code>https://cr.console.aliyun.com/
 </code></pre></li>
-<li>在/etc/sysconfig/docker中的option变量中加上如下选项<pre><code>--registry-mirror=https://u6nqa61i.mirror.aliyuncs.com
-</code></pre></li>
-<li>重启docker：<pre><code>systemctl restart docker
-</code></pre></li>
+<li><p>在<code>/etc/sysconfig/docker</code>中的option变量中加上如下选项</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">--registry-mirror=https:<span class="comment">//u6nqa61i.mirror.aliyuncs.com</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>重启docker：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart docker</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>直接在/usr/lib/systemd/system/docker.service文件中加入选项</p>
-<pre><code>eg：ExecStart=/usr/bin/docker-current daemon \
-      --exec-opt native.cgroupdriver=systemd \
-      --insecure-registry docker.ts.com:5000
-</code></pre><h3 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h3><p>使用daemon.json文件<br>官方文档：<a href="https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file" target="_blank" rel="external">https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file</a><br>路径：/etc/docker/daemon.json<br>备注：使用此方案不要与其他方案相混合使用，否则docker启动的时候会报错</p>
+<h1 id="三、-方案二"><a href="#三、-方案二" class="headerlink" title="三、 方案二"></a>三、 方案二</h1><p>直接在<code>/usr/lib/systemd/system/docker.service</code>文件中加入选项<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">eg：ExecStart=<span class="regexp">/usr/</span>bin/docker-current daemon \</div><div class="line">      --exec-opt native.cgroupdriver=systemd \</div><div class="line">      --insecure-registry docker.ts.com:<span class="number">5000</span></div></pre></td></tr></table></figure></p>
+<h1 id="四、-方案三"><a href="#四、-方案三" class="headerlink" title="四、 方案三"></a>四、 方案三</h1><p>使用<code>daemon.json</code>文件<br>官方文档：<a href="https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file" target="_blank" rel="external">https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file</a><br>路径：<code>/etc/docker/daemon.json</code><br>备注：使用此方案不要与其他方案相混合使用，否则docker启动的时候会报错</p>
 
       
     </div>
@@ -641,7 +624,7 @@ EnvironmentFile=-/etc/sysconfig/docker-network
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -696,7 +679,7 @@ EnvironmentFile=-/etc/sysconfig/docker-network
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前提"><span class="nav-text">前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一"><span class="nav-text">方案一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案二"><span class="nav-text">方案二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案三"><span class="nav-text">方案三</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-前提"><span class="nav-text">一、 前提</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-方案一"><span class="nav-text">二、 方案一</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-分别定义各环境文件"><span class="nav-text">1、 分别定义各环境文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-引入环境文件"><span class="nav-text">2、 引入环境文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-方案二"><span class="nav-text">三、 方案二</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、-方案三"><span class="nav-text">四、 方案三</span></a></li></ol></div>
             
 
           </div>

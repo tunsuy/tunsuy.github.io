@@ -108,7 +108,7 @@
 
 
 
-<meta name="description" content="项目说明语言：python语言
+<meta name="description" content="一、 项目说明语言：python语言
 1、地址：https://github.com/tunsuy/redmine_statis
 2、统计维度：  
 
@@ -119,13 +119,13 @@
 个人遗留问题数
 
 如果要加上其他维度的统计，也是非常简单的
-redmine表说明1、表issues—用来存放issue的标准字段。
-2、表custom_fields—该表字段都和创建自">
+二、 redmine表说明1、表issues—用来存放issue的标准字段。
+2、表custom_fields—该表字">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redmine-数据统计">
 <meta property="og:url" content="https://tunsuy.github.io/2016/10/08/redmine-数据统计/index.html">
 <meta property="og:site_name" content="鱼儿塘">
-<meta property="og:description" content="项目说明语言：python语言
+<meta property="og:description" content="一、 项目说明语言：python语言
 1、地址：https://github.com/tunsuy/redmine_statis
 2、统计维度：  
 
@@ -136,12 +136,12 @@ redmine表说明1、表issues—用来存放issue的标准字段。
 个人遗留问题数
 
 如果要加上其他维度的统计，也是非常简单的
-redmine表说明1、表issues—用来存放issue的标准字段。
-2、表custom_fields—该表字段都和创建自">
-<meta property="og:updated_time" content="2017-02-28T06:20:02.663Z">
+二、 redmine表说明1、表issues—用来存放issue的标准字段。
+2、表custom_fields—该表字">
+<meta property="og:updated_time" content="2017-03-04T08:54:14.212Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redmine-数据统计">
-<meta name="twitter:description" content="项目说明语言：python语言
+<meta name="twitter:description" content="一、 项目说明语言：python语言
 1、地址：https://github.com/tunsuy/redmine_statis
 2、统计维度：  
 
@@ -152,8 +152,8 @@ redmine表说明1、表issues—用来存放issue的标准字段。
 个人遗留问题数
 
 如果要加上其他维度的统计，也是非常简单的
-redmine表说明1、表issues—用来存放issue的标准字段。
-2、表custom_fields—该表字段都和创建自">
+二、 redmine表说明1、表issues—用来存放issue的标准字段。
+2、表custom_fields—该表字">
 
 
 
@@ -463,7 +463,7 @@ redmine表说明1、表issues—用来存放issue的标准字段。
       
 
       
-        <h3 id="项目说明"><a href="#项目说明" class="headerlink" title="项目说明"></a>项目说明</h3><p>语言：python语言</p>
+        <h1 id="一、-项目说明"><a href="#一、-项目说明" class="headerlink" title="一、 项目说明"></a>一、 项目说明</h1><p>语言：python语言</p>
 <p>1、地址：<a href="https://github.com/tunsuy/redmine_statis" target="_blank" rel="external">https://github.com/tunsuy/redmine_statis</a></p>
 <p>2、统计维度：  </p>
 <ul>
@@ -474,35 +474,25 @@ redmine表说明1、表issues—用来存放issue的标准字段。
 <li>个人遗留问题数</li>
 </ul>
 <p>如果要加上其他维度的统计，也是非常简单的</p>
-<h3 id="redmine表说明"><a href="#redmine表说明" class="headerlink" title="redmine表说明"></a>redmine表说明</h3><p>1、表issues<br>—用来存放issue的标准字段。</p>
+<h1 id="二、-redmine表说明"><a href="#二、-redmine表说明" class="headerlink" title="二、 redmine表说明"></a>二、 redmine表说明</h1><p>1、表issues<br>—用来存放issue的标准字段。</p>
 <p>2、表custom_fields<br>—该表字段都和创建自定义字段的web页面看到的选择项很像。</p>
 <p>3、表custom_values<br>—该表可以用custom_field_id字段和custom_fields表的id关联。 而customized_id 可以和issues表的id相关联</p>
-<h3 id="表关联"><a href="#表关联" class="headerlink" title="表关联"></a>表关联</h3><p>1、三个表issues, custom_fields和custom_values在一起表达了这么个关系。</p>
+<h1 id="三、-表关联"><a href="#三、-表关联" class="headerlink" title="三、 表关联"></a>三、 表关联</h1><p>1、三个表issues, custom_fields和custom_values在一起表达了这么个关系。</p>
 <p>2、一个issue的标准字段来自issues表，扩展字段来自custom_fields表，而custom_values和前custom_fields表关联，一起表示一个issue的某个自定义字段的值。</p>
-<p>3、当表示issue的自定义字段时，custom_fields.type的值是 ‘IssueCustomField’ 而custom_values.customized_type的值是’Issue’.</p>
-<p>4、所有issue的自定义字段值<br>可以先将custom_fields表和custom_values表关联，获得如下结果：</p>
-<pre><code>select customized_id as issue_id,custom_field_id,type,name,default_value,value from custom_fields a inner join custom_values b on a.id =b.custom_field_id and a.type = &apos;IssueCustomField&apos; and b.customized_type=&apos;Issue&apos; limit 2;
-</code></pre><p>由此可以看出redmine的设计是用记录行数来表示扩展字段的值，所以可以不受mysql表字段的限制。</p>
-<h3 id="访问权限"><a href="#访问权限" class="headerlink" title="访问权限"></a>访问权限</h3><p>基本知识了解：<br>1、授予用户redmine_static 在指定ip下 以 密码 moatest 访问 bitnami_redmine 的 select和excute操作</p>
-<pre><code>grant select,excute on bitnami_redmine.* to &apos;redmine_static&apos;@&apos;200.200.169.162&apos; identified by &apos;moatest&apos;
-</code></pre><p>2、查询mysql所有用户</p>
-<pre><code>select user,host,password from mysql.user;
-</code></pre><p>3、刷新权限设置</p>
-<pre><code>flush privileges;
-</code></pre><p>4、查询 指定IP 下 用户redmine_static 的数据库权限</p>
-<pre><code>show grants for &apos;redmine_static&apos;@&apos;200.200.169.162&apos;\G
-</code></pre><p>5、取消用户的操作权限</p>
-<pre><code>revoke select on bitnami_redmine.* from &apos;redmine_static&apos;@&apos;200.200.169.162&apos; identified by &apos;moatest&apos;;
-</code></pre><p>6、授予所有操作权限</p>
-<pre><code>grant all privileges on bitnami_redmine.* to &apos;redmine_static&apos;@&apos;200.200.169.162&apos; identified by &apos;moatest&apos;;
-</code></pre><p>7、删除用户</p>
-<pre><code>drop user redmine_static@&apos;%&apos;;
-</code></pre><p>8、创建用户</p>
-<pre><code>create user redmine_static@&apos;%&apos; identified by &apos;moatest&apos;;
-</code></pre><h3 id="redmine统计说明"><a href="#redmine统计说明" class="headerlink" title="redmine统计说明"></a>redmine统计说明</h3><p>以我们公司项目为例<br>1、项目地址：200.200.169.162<br>2、在redmine服务器中新增一个mysql用户：redmine_static/moatest<br>——该用户只能在169.162中以用户名和密码的方式访问<br>——见如上2说明  </p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>1、切换python环境：pyenv activate venv2710<br>2、切换到项目路径<br>3、执行：python main.py [统计开始时间 统计结束时间]</p>
-<pre><code>eg：python main.py 2016-9-1 2016-12-31
-</code></pre>
+<p>3、当表示issue的自定义字段时，<code>custom_fields.type</code>的值是 ‘IssueCustomField’ 而<code>custom_values.customized_type</code>的值是’Issue’.</p>
+<p>4、所有issue的自定义字段值<br>可以先将custom_fields表和custom_values表关联，获得如下结果：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> customized_id <span class="keyword">as</span> issue_id,custom_field_id,<span class="keyword">type</span>,<span class="keyword">name</span>,default_value,<span class="keyword">value</span> <span class="keyword">from</span> custom_fields a <span class="keyword">inner</span> <span class="keyword">join</span> custom_values b <span class="keyword">on</span> a.id =b.custom_field_id <span class="keyword">and</span> a.type = <span class="string">'IssueCustomField'</span> <span class="keyword">and</span> b.customized_type=<span class="string">'Issue'</span> <span class="keyword">limit</span> <span class="number">2</span>;</div></pre></td></tr></table></figure></p>
+<p>由此可以看出redmine的设计是用记录行数来表示扩展字段的值，所以可以不受mysql表字段的限制。</p>
+<h1 id="四、-访问权限"><a href="#四、-访问权限" class="headerlink" title="四、 访问权限"></a>四、 访问权限</h1><p>基本知识了解：<br>1、授予用户redmine_static 在指定ip下 以 密码 moatest 访问 bitnami_redmine 的 select和excute操作<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">grant</span> <span class="keyword">select</span>,excute <span class="keyword">on</span> bitnami_redmine.* <span class="keyword">to</span> <span class="string">'redmine_static'</span>@<span class="string">'200.200.169.162'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'moatest'</span></div></pre></td></tr></table></figure></p>
+<p>2、查询mysql所有用户<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">user</span>,host,<span class="keyword">password</span> <span class="keyword">from</span> mysql.user;</div></pre></td></tr></table></figure></p>
+<p>3、刷新权限设置<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</div></pre></td></tr></table></figure></p>
+<p>4、查询 指定IP 下 用户redmine_static 的数据库权限<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> <span class="keyword">grants</span> <span class="keyword">for</span> <span class="string">'redmine_static'</span>@<span class="string">'200.200.169.162'</span>\G</div></pre></td></tr></table></figure></p>
+<p>5、取消用户的操作权限<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">revoke</span> <span class="keyword">select</span> <span class="keyword">on</span> bitnami_redmine.* <span class="keyword">from</span> <span class="string">'redmine_static'</span>@<span class="string">'200.200.169.162'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'moatest'</span>;</div></pre></td></tr></table></figure></p>
+<p>6、授予所有操作权限<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">grant</span> all <span class="keyword">privileges</span> <span class="keyword">on</span> bitnami_redmine.* <span class="keyword">to</span> <span class="string">'redmine_static'</span>@<span class="string">'200.200.169.162'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'moatest'</span>;</div></pre></td></tr></table></figure></p>
+<p>7、删除用户<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">drop</span> <span class="keyword">user</span> redmine_static@<span class="string">'%'</span>;</div></pre></td></tr></table></figure></p>
+<p>8、创建用户<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">user</span> redmine_static@<span class="string">'%'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'moatest'</span>;</div></pre></td></tr></table></figure></p>
+<h1 id="五、-redmine统计说明"><a href="#五、-redmine统计说明" class="headerlink" title="五、 redmine统计说明"></a>五、 redmine统计说明</h1><p>以我们公司项目为例<br>1、项目地址：200.200.169.162<br>2、在redmine服务器中新增一个mysql用户：redmine_static/moatest<br>——该用户只能在169.162中以用户名和密码的方式访问<br>——见如上2说明  </p>
+<h1 id="六、-使用"><a href="#六、-使用" class="headerlink" title="六、 使用"></a>六、 使用</h1><p>1、切换python环境：<code>pyenv activate venv2710</code><br>2、切换到项目路径<br>3、执行：python main.py [统计开始时间 统计结束时间]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">eg：python main.py <span class="number">2016</span><span class="number">-9</span><span class="number">-1</span> <span class="number">2016</span><span class="number">-12</span><span class="number">-31</span></div></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -667,7 +657,7 @@ redmine表说明1、表issues—用来存放issue的标准字段。
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -722,7 +712,7 @@ redmine表说明1、表issues—用来存放issue的标准字段。
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目说明"><span class="nav-text">项目说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redmine表说明"><span class="nav-text">redmine表说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表关联"><span class="nav-text">表关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问权限"><span class="nav-text">访问权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redmine统计说明"><span class="nav-text">redmine统计说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-text">使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-项目说明"><span class="nav-text">一、 项目说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-redmine表说明"><span class="nav-text">二、 redmine表说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-表关联"><span class="nav-text">三、 表关联</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、-访问权限"><span class="nav-text">四、 访问权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、-redmine统计说明"><span class="nav-text">五、 redmine统计说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、-使用"><span class="nav-text">六、 使用</span></a></li></ol></div>
             
 
           </div>

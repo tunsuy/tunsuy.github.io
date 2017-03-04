@@ -794,23 +794,21 @@
         
           
             <p>gitbook的安装就不多说了，网上很多，很容易</p>
-<p>下面说几个自定义相关的问题</p>
-<p>1、自定义页面样式  </p>
-<ul>
-<li>默认样式是在：./_book/gitbook/style.css<br>ps：增加样式只会覆盖自己定义的样式，其他的不变</li>
+<h1 id="一、-相关问题"><a href="#一、-相关问题" class="headerlink" title="一、 相关问题"></a>一、 相关问题</h1><p>下面说几个自定义相关的问题</p>
+<h2 id="1、-自定义页面样式"><a href="#1、-自定义页面样式" class="headerlink" title="1、 自定义页面样式"></a>1、 自定义页面样式</h2><ul>
+<li>默认样式是在：<code>./_book/gitbook/style.css</code><br>ps：增加样式只会覆盖自己定义的样式，其他的不变</li>
 <li>在gitbook项目根目录下，创建styles目录<br>注：一定要在该目录下创建，在其他目录下创建在gitbook build的时候会被清除掉</li>
-<li>在styles目录下创建website.css——该文件是对gitbook页面样式的自定义</li>
-<li>编辑book.json文件：加入<pre><code>&quot;styles&quot;: {
-      &quot;website&quot;: &quot;styles/website.css&quot;
- },
-</code></pre></li>
-<li>编译gitbook build</li>
-<li>运行gitbook serve——就可以看到效果了</li>
+<li>在styles目录下创建<code>website.css</code>——该文件是对gitbook页面样式的自定义</li>
+<li><p>编辑<code>book.json</code>文件：加入</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">"styles": &#123;</div><div class="line">      "website": "styles/website.css"</div><div class="line"> &#125;,</div></pre></td></tr></table></figure>
+</li>
+<li><p>编译<code>gitbook build</code></p>
+</li>
+<li>运行<code>gitbook serve</code>——就可以看到效果了</li>
 </ul>
-<p>2、自定义插件  </p>
-<ul>
-<li>增加插件”plugins”: [“toggle-chapters”,”splitter”],</li>
-<li>去掉插件”plugins”: [“-toggle-chapters”,”splitter”],<br>—在前面加上’—‘即可</li>
+<h2 id="2、-自定义插件"><a href="#2、-自定义插件" class="headerlink" title="2、 自定义插件"></a>2、 自定义插件</h2><ul>
+<li>增加插件”plugins”: <code>[&quot;toggle-chapters&quot;,&quot;splitter&quot;]</code>,</li>
+<li>去掉插件”plugins”: <code>[&quot;-toggle-chapters&quot;,&quot;splitter&quot;]</code>,<br>—在前面加上’—‘即可</li>
 </ul>
 
           
@@ -972,39 +970,18 @@
       
         
           
-            <h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>1、卸载已有mongodb数据库</p>
-<pre><code>/etc/init.d/mongod stop
-yum erase $(rpm -qa | grep mongodb-org)
-</code></pre><p>删除mongodb相关目录文件等，例如：</p>
-<pre><code>rm -r /var/log/mongodb/
-rm -r /var/lib/mongo
-</code></pre><p>2、下载最新mongodb</p>
-<pre><code>wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.9.tgz
-</code></pre><p>3、移动下载文件并解压</p>
-<pre><code>mv ./mongodb-linux-x86_64-rhel62-3.2.9.tgz /usr/local/src/
-tar -xvf mongodb-linux-x86_64-rhel62-3.2.9.tgz
-</code></pre><p>4、移动解压文件</p>
-<pre><code>mv ./mongodb-linux-x86_64-rhel62-3.2.9 /usr/local/mongodb
-</code></pre><p>5、创建mongodb相关目录</p>
-<pre><code>mkdir -p /home/ts/db/mongodb/data
-mkdir -p /home/ts/db/mongodb/log
-</code></pre><p>6、创建并编辑mongodb配置文件</p>
-<pre><code>vim /home/ts/db/mongodb/mongodb.conf
-</code></pre><h3 id="配置mongodb环境变量"><a href="#配置mongodb环境变量" class="headerlink" title="配置mongodb环境变量"></a>配置mongodb环境变量</h3><pre><code>vim /etc/profile
-</code></pre><p>加入如下语句：</p>
-<pre><code># mongodb set
-export MONGODB=/usr/local/mongodb
-PATH=$PATH:$MONGODB/bin
-</code></pre><p>立即生效：</p>
-<pre><code>source /etc/profile
-</code></pre><h3 id="配置开机启动"><a href="#配置开机启动" class="headerlink" title="配置开机启动"></a>配置开机启动</h3><pre><code>vim /etc/rc.d/init.d/mongod
-</code></pre><p>注：必须在该文件开头写上：       </p>
-<pre><code># chkconfig: 2345 10 90
-# description: mongod ....
-</code></pre><p>设置：</p>
-<pre><code>chmod +x /etc/rc.d/init.d/mongod
-chkconfig mongod on
-</code></pre><p>PS：/etc/init.d/ 是 /etc/rc.d/init.d/ 的软链接</p>
+            <h1 id="一、-安装步骤"><a href="#一、-安装步骤" class="headerlink" title="一、 安装步骤"></a>一、 安装步骤</h1><h2 id="1、-卸载已有mongodb数据库"><a href="#1、-卸载已有mongodb数据库" class="headerlink" title="1、 卸载已有mongodb数据库"></a>1、 卸载已有mongodb数据库</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/mongod stop</div><div class="line">yum erase $(rpm -qa | grep mongodb-org)</div></pre></td></tr></table></figure>
+<p>删除mongodb相关目录文件等，例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -r /<span class="keyword">var</span>/log/mongodb/</div><div class="line">rm -r /<span class="keyword">var</span>/lib/mongo</div></pre></td></tr></table></figure></p>
+<h2 id="2、-下载最新mongodb"><a href="#2、-下载最新mongodb" class="headerlink" title="2、 下载最新mongodb"></a>2、 下载最新mongodb</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https:<span class="comment">//fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.9.tgz</span></div></pre></td></tr></table></figure>
+<h2 id="3、-移动下载文件并解压"><a href="#3、-移动下载文件并解压" class="headerlink" title="3、 移动下载文件并解压"></a>3、 移动下载文件并解压</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mv ./mongodb-linux-x86_64-rhel62<span class="number">-3.2</span><span class="number">.9</span>.tgz /usr/local/src/</div><div class="line">tar -xvf mongodb-linux-x86_64-rhel62<span class="number">-3.2</span><span class="number">.9</span>.tgz</div></pre></td></tr></table></figure>
+<h2 id="4、-移动解压文件"><a href="#4、-移动解压文件" class="headerlink" title="4、 移动解压文件"></a>4、 移动解压文件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv ./mongodb-linux-x86_64-rhel62<span class="number">-3.2</span><span class="number">.9</span> /usr/local/mongodb</div></pre></td></tr></table></figure>
+<h2 id="5、-创建mongodb相关目录"><a href="#5、-创建mongodb相关目录" class="headerlink" title="5、 创建mongodb相关目录"></a>5、 创建mongodb相关目录</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p /home/ts/db/mongodb/data</div><div class="line">mkdir -p /home/ts/db/mongodb/log</div></pre></td></tr></table></figure>
+<h2 id="6、-创建并编辑mongodb配置文件"><a href="#6、-创建并编辑mongodb配置文件" class="headerlink" title="6、 创建并编辑mongodb配置文件"></a>6、 创建并编辑mongodb配置文件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /home/ts/db/mongodb/mongodb.conf</div></pre></td></tr></table></figure>
+<h1 id="二、-配置mongodb环境变量"><a href="#二、-配置mongodb环境变量" class="headerlink" title="二、 配置mongodb环境变量"></a>二、 配置mongodb环境变量</h1><p>编辑：<code>vim /etc/profile</code><br>加入如下语句：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># mongodb set</div><div class="line">export MONGODB=/usr/local/mongodb</div><div class="line">PATH=$PATH:$MONGODB/bin</div></pre></td></tr></table></figure></p>
+<p>立即生效：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source /etc/profile</div></pre></td></tr></table></figure></p>
+<h1 id="三、-配置开机启动"><a href="#三、-配置开机启动" class="headerlink" title="三、 配置开机启动"></a>三、 配置开机启动</h1><p>编辑：<code>vim /etc/rc.d/init.d/mongod</code><br>注：必须在该文件开头写上：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># chkconfig: 2345 10 90</div><div class="line"># description: mongod ....</div></pre></td></tr></table></figure></p>
+<p>设置：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod +x /etc/rc.d/init.d/mongod</div><div class="line">chkconfig mongod on</div></pre></td></tr></table></figure></p>
+<p>PS：<code>/etc/init.d/</code> 是 <code>/etc/rc.d/init.d/</code> 的软链接</p>
 
           
         
@@ -1165,35 +1142,12 @@ chkconfig mongod on
       
         
           
-            <h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>1、安装ruby环境——使用rvm比较方便</p>
+            <h1 id="一、-安装步骤"><a href="#一、-安装步骤" class="headerlink" title="一、 安装步骤"></a>一、 安装步骤</h1><p>1、安装ruby环境——使用rvm比较方便</p>
 <p>2、使用bitnami-redmine一键式安装包  </p>
 <p>3、远程访问不了<br>——关闭防火墙即可  </p>
-<p>4、phpmyadmin无法远程访问<br>——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf<br>修改如下：<br>    <directory "="" opt="" redmine-2.6.0-3="" apps="" phpmyadmin="" htdocs"=""></directory></p>
-<pre><code># AuthType Basic
-# AuthName phpMyAdmin
-# AuthUserFile &quot;/opt/redmine-2.6.0-3/apache2/users&quot;
-# Require valid-user
-AllowOverride None
-    &lt;IfModule php5_module&gt;
-            php_value upload_max_filesize 80M
-php_value post_max_size 80M
-    &lt;/IfModule&gt;
-
-&lt;IfVersion &lt; 2.3 &gt;
-Order allow,deny
-Allow from all
-Satisfy all
-&lt;/IfVersion&gt;
-&lt;IfVersion &gt;= 2.3&gt;
-Require all granted
-# Require local
-&lt;/IfVersion&gt;
-ErrorDocument 403 &quot;For security reasons, this URL is only accessible using localhost (127.0.0.1) as the hostname.&quot;
-
-
-&lt;/Directory&gt;
-</code></pre><p>其中红色部分为修改部分<br>重启服务即可：/opt/redmine-2.6.0-3/ctlscript.sh restart</p>
-<h3 id="操作redmine的数据库"><a href="#操作redmine的数据库" class="headerlink" title="操作redmine的数据库"></a>操作redmine的数据库</h3><p>1、 redmine使用的数据库为mysql，如果在终端直接输入mysql命令，则是直接调用的你以前装的mysql，而不是redmine的mysql</p>
+<p>4、phpmyadmin无法远程访问<br>——修改配置文件：<code>/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf</code><br>修改如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;Directory "/opt/redmine-2.6.0-3/apps/phpmyadmin/htdocs"&gt;</div><div class="line"></div><div class="line"></div><div class="line"># AuthType Basic</div><div class="line"># AuthName phpMyAdmin</div><div class="line"># AuthUserFile "/opt/redmine-2.6.0-3/apache2/users"</div><div class="line"># Require valid-user</div><div class="line">AllowOverride None</div><div class="line">    &lt;IfModule php5_module&gt;</div><div class="line">            php_value upload_max_filesize 80M</div><div class="line">php_value post_max_size 80M</div><div class="line">    &lt;/IfModule&gt;</div><div class="line"></div><div class="line">&lt;IfVersion &lt; 2.3 &gt;</div><div class="line">Order allow,deny</div><div class="line">Allow from all</div><div class="line">Satisfy all</div><div class="line">&lt;/IfVersion&gt;</div><div class="line">&lt;IfVersion &gt;= 2.3&gt;</div><div class="line">Require all granted</div><div class="line"># Require local</div><div class="line">&lt;/IfVersion&gt;</div><div class="line">ErrorDocument 403 "For security reasons, this URL is only accessible using localhost (127.0.0.1) as the hostname."</div><div class="line"></div><div class="line"></div><div class="line">&lt;/Directory&gt;</div></pre></td></tr></table></figure></p>
+<p>重启服务即可：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/opt/redmine<span class="number">-2.6</span><span class="number">.0</span><span class="number">-3</span>/ctlscript.sh restart</div></pre></td></tr></table></figure></p>
+<h1 id="二、-操作redmine的数据库"><a href="#二、-操作redmine的数据库" class="headerlink" title="二、 操作redmine的数据库"></a>二、 操作redmine的数据库</h1><p>1、 redmine使用的数据库为mysql，如果在终端直接输入mysql命令，则是直接调用的你以前装的mysql，而不是redmine的mysql</p>
 <p>2、redmine的mysql相关命令的路径为/opt/redmine-2.6.0-3/mysql/bin/</p>
 <p>3、redmine数据库默认有几个用户</p>
 <ul>
@@ -1360,7 +1314,7 @@ ErrorDocument 403 &quot;For security reasons, this URL is only accessible using 
       
         
           
-            <h3 id="博客简介"><a href="#博客简介" class="headerlink" title="博客简介"></a>博客简介</h3><p>现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客  </p>
+            <h1 id="一、-博客简介"><a href="#一、-博客简介" class="headerlink" title="一、 博客简介"></a>一、 博客简介</h1><p>现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客  </p>
 <p>搭建博客一般有几种方式：<br>1、全部自己实现：包括服务器、自己做网站、购买域名等——费时费力费钱<br>2、租用云服务器，采用静态博客生成工具：但是云服务器一般也是要付费的</p>
 <p>那有没有免费的呢？<br>答案是有的，那就是github</p>
 <p>这里再说下静态博客工具+github的原理：<br>以hexo+github为例（其他的静态博客生成工具类似）  </p>
@@ -1369,15 +1323,20 @@ ErrorDocument 403 &quot;For security reasons, this URL is only accessible using 
 <li>既然放在任何的web服务器上都可以运行，那么久有了github为我们提供的免费托管服务器，我们只需要将我们的静态网页和资源上传到github上即可</li>
 </ul>
 <p>hexo+github的具体安装部署这里就不多说了，网上教程很多</p>
-<h3 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h3><p>这里只记录一个网上很少有的问题<br>ps：囧，偏偏我遇到了</p>
-<p>1、推送hexo博客内容到github<br>出现错误：</p>
-<pre><code>error: The requested URL returned error: 403 Forbidden
-</code></pre><p>安装网上的方式都试了，都不行<br>最后解决方法如下：</p>
+<h1 id="二、-问题记录"><a href="#二、-问题记录" class="headerlink" title="二、 问题记录"></a>二、 问题记录</h1><p>这里只记录一个网上很少有的问题<br>ps：囧，偏偏我遇到了</p>
+<h2 id="1、-推送hexo博客内容到github"><a href="#1、-推送hexo博客内容到github" class="headerlink" title="1、 推送hexo博客内容到github"></a>1、 推送hexo博客内容到github</h2><p>出现错误：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">error: The requested URL returned error: <span class="number">403</span> Forbidden</div></pre></td></tr></table></figure></p>
+<p>安装网上的方式都试了，都不行<br>最后解决方法如下：</p>
 <ul>
-<li>修改站点配置文件 _config.yml<pre><code>repository: git@github.com:tunsuy/tunsuy.github.io.git
-</code></pre>ps：之前是使用的https，不知道为什么不行</li>
+<li>修改站点配置文件<code>_config.yml</code><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">repository:</span> git@github.com:tunsuy/tunsuy.github.io.git</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<h3 id="好文推荐"><a href="#好文推荐" class="headerlink" title="好文推荐"></a>好文推荐</h3><p><a href="http://ijiaober.github.io/2014/08/05/hexo/hexo-04/" target="_blank" rel="external">Hexo的分类和标签设置</a><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo官方文档</a><br><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">主题next官方文档</a></p>
+<p>ps：之前是使用的https，不知道为什么不行</p>
+<h2 id="2、搜索引擎收录"><a href="#2、搜索引擎收录" class="headerlink" title="2、搜索引擎收录"></a>2、搜索引擎收录</h2><p>因为github不允许baidu爬虫，所以提交文章链接到baidu搜索引擎比较麻烦<br>参考这篇文章：<br><a href="http://www.yuan-ji.me/Hexo-优化：提交sitemap及解决百度爬虫抓取-GitHub-Pages-问题/" target="_blank" rel="external">Hexo-优化：提交sitemap及解决百度爬虫抓取-GitHub-Pages-问题</a></p>
+<h2 id="3、字体配置"><a href="#3、字体配置" class="headerlink" title="3、字体配置"></a>3、字体配置</h2><p>编辑 <code>./themes/next/source/css/_variables/custom.styl</code><br>推荐这样的字体族配置：<br><code>Helvetica, Tahoma, Arial, STXihei, &quot;华文细黑&quot;, &quot;Microsoft YaHei&quot;, &quot;微软雅黑&quot;, sans-serif</code></p>
+<h2 id="4、文章目录配置"><a href="#4、文章目录配置" class="headerlink" title="4、文章目录配置"></a>4、文章目录配置</h2><p>编辑 <code>./themes/next/_config.yml</code><br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Table Of Contents in the Sidebar</span></div><div class="line"><span class="comment"># 控制是否显示目录</span></div><div class="line"><span class="attr">toc:</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">true</span></div><div class="line"></div><div class="line">  <span class="comment"># Automatically add list number to toc.</span></div><div class="line">  <span class="comment"># 控制目录序号的显示</span></div><div class="line"><span class="attr">  number:</span> <span class="literal">false</span></div></pre></td></tr></table></figure></p>
+<p>ps: 要显示多级目录时，在用md编辑文章时，目录只能依次，而不能跨级<br>eg：#-&gt;## ，而不能 #-&gt;###</p>
+<h2 id="5、分类"><a href="#5、分类" class="headerlink" title="5、分类"></a>5、分类</h2><p>hexo不支持一篇文章属于多个同级分类</p>
+<h1 id="三、-好文推荐"><a href="#三、-好文推荐" class="headerlink" title="三、 好文推荐"></a>三、 好文推荐</h1><p><a href="http://www.zaoanx.com/Hexo-SEO优化.html" target="_blank" rel="external">Hexo-SEO优化</a><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo官方文档</a><br><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">主题next官方文档</a></p>
 
           
         
@@ -1476,7 +1435,7 @@ ErrorDocument 403 &quot;For security reasons, this URL is only accessible using 
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

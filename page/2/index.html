@@ -589,16 +589,16 @@
       
         
           
-            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  </p>
+            <h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  </p>
 <p>这次先介绍calabash的使用过程，后续有时间会看下其源码实现机制。</p>
-<h3 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h3><p>这里以我自身的安装成功经历记录如下：<br>1、启动终端</p>
+<h1 id="二、-工具安装"><a href="#二、-工具安装" class="headerlink" title="二、 工具安装"></a>二、 工具安装</h1><p>这里以我自身的安装成功经历记录如下：<br>1、启动终端</p>
 <p>2、切换到被测项目路径下</p>
 <pre><code>cd /Users/XXX/Documents/lesFour/
 </code></pre><p>3、安装 calabash-cucumber gem包</p>
 <pre><code>gem install calabash-cucumber
 </code></pre><p>4、生成 features文件夹</p>
 <pre><code>calabash-ios gen
-</code></pre><h3 id="集成项目"><a href="#集成项目" class="headerlink" title="集成项目"></a>集成项目</h3><p>1、设置 xcode 项目<br>I.复制项目target文件<br>右键如下图红色部分  </p>
+</code></pre><h1 id="三、-集成项目"><a href="#三、-集成项目" class="headerlink" title="三、 集成项目"></a>三、 集成项目</h1><p>1、设置 xcode 项目<br>I.复制项目target文件<br>右键如下图红色部分  </p>
 <img src="/2016/06/28/calabash-ios安装详解/targetcp.jpg" alt="targetcp.jpg" title="">
 <p>弹出提示框，选择Duplicate，弹出如窗口，选择如下图所示  </p>
 <img src="/2016/06/28/calabash-ios安装详解/targetcf.jpg" alt="targetcf.jpg" title="">
@@ -618,7 +618,7 @@
 <img src="/2016/06/28/calabash-ios安装详解/linkfm.jpg" alt="linkfm.jpg" title="">
 <p>V.设置other linker flag<br>如下图所示设置</p>
 <img src="/2016/06/28/calabash-ios安装详解/linkflag.jpg" alt="linkflag.jpg" title="">
-<h3 id="测试安装"><a href="#测试安装" class="headerlink" title="测试安装"></a>测试安装</h3><p>再模拟器中运行该cal项目，窗口控制台输出如下信息则表示配置成功</p>
+<h1 id="四、-测试安装"><a href="#四、-测试安装" class="headerlink" title="四、 测试安装"></a>四、 测试安装</h1><p>再模拟器中运行该cal项目，窗口控制台输出如下信息则表示配置成功</p>
 <pre><code>2015-03-06 17:27:50.105 lesThree-cal[3279:55236] Started LPHTTP server on port 37265
 2015-03-06 17:27:52.441 lesThree-cal[3279:55421] Bonjour Service Published: domain(local.) type(_http._tcp.) name(Calabash Server)
 </code></pre>
@@ -760,13 +760,13 @@
         
           
             <p>在前面已经简单的介绍了calabash-ios的原理，这里将继续分析calabash-Android端的原理</p>
-<h3 id="原理解析"><a href="#原理解析" class="headerlink" title="原理解析"></a>原理解析</h3><p>calabash-android架构其实与IOS是相同的</p>
+<h1 id="一、-原理解析"><a href="#一、-原理解析" class="headerlink" title="一、 原理解析"></a>一、 原理解析</h1><p>calabash-android架构其实与IOS是相同的</p>
 <p>1、内部使用核心为cucumber的calabash的脚本在运行测试的时候会在虚拟机/真机上预装一个web服务器，这个web服务器就是解释calabash的脚本，</p>
 <p>2、因为calabash-Android是基于robotium框架的，所以在机器上预装的web-server会将下发下来的calabash脚本解释为robotium的脚本，然后向测试app发送robotium的脚本，</p>
 <p>3、因为robotium框架就是封装的google测试框架instumentation，所以app拿到robotium脚本后，将其解释为instumentation命令向被测试的app发送这些命令，被测试的app执行这些命令，然后将结果返回。</p>
-<h3 id="系统架构图"><a href="#系统架构图" class="headerlink" title="系统架构图"></a>系统架构图</h3><p>calabash-Android整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
+<h1 id="二、-系统架构图"><a href="#二、-系统架构图" class="headerlink" title="二、 系统架构图"></a>二、 系统架构图</h1><p>calabash-Android整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
 <img src="/2016/06/20/calabash-android原理分析/calabash-android.jpg" alt="calabash-android.jpg" title="">
-<h4 id="框架图解释如下："><a href="#框架图解释如下：" class="headerlink" title="框架图解释如下："></a>框架图解释如下：</h4><p>1、Runner 负责接受用户指令，并对其进行数据校验、指令转换等操作，之后将其交由客户端处理（这里的客户端是指运行在pc上的用户自己编写的代码），</p>
+<h1 id="三、-框架图解释"><a href="#三、-框架图解释" class="headerlink" title="三、 框架图解释"></a>三、 框架图解释</h1><p>1、Runner 负责接受用户指令，并对其进行数据校验、指令转换等操作，之后将其交由客户端处理（这里的客户端是指运行在pc上的用户自己编写的代码），</p>
 <p>2、instrumentation test server就是预装在设备上的web-server，客户端在接收到指令之后，将指令发送给它，请求其执行对应操作，</p>
 <p>3、web-server在接收到指令之后，解释该命令并与app进行交互，</p>
 <p>4、所有执行结果最终会被收集到 Results 中。</p>
@@ -930,34 +930,26 @@
       
         
           
-            <h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>可以定义的选项为如下列出来的</p>
+            <h1 id="一、-前提"><a href="#一、-前提" class="headerlink" title="一、 前提"></a>一、 前提</h1><p>可以定义的选项为如下列出来的</p>
 <pre><code>docker-current daemon --help
-</code></pre><h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>1、分别定义各环境文件</p>
-<pre><code>eg：/etc/sysconfig/docker-storage
-/etc/sysconfig/docker-network
-</code></pre><p>该文件中可以自定义环境变量</p>
-<p>2、在/usr/lib/systemd/system/docker.service文件中引入环境文件</p>
-<pre><code>eg：EnvironmentFile=-/etc/sysconfig/docker-storage
-EnvironmentFile=-/etc/sysconfig/docker-network
-</code></pre><p>并使用其环境变量</p>
-<pre><code>ExecStart=/usr/bin/docker-current daemon \
-      $DOCKER_STORAGE_OPTIONS \
-      $DOCKER_NETWORK_OPTIONS \
-</code></pre><p>备注：也可以将所有的自定义选项定义在一个文件中</p>
+</code></pre><h1 id="二、-方案一"><a href="#二、-方案一" class="headerlink" title="二、 方案一"></a>二、 方案一</h1><h2 id="1、-分别定义各环境文件"><a href="#1、-分别定义各环境文件" class="headerlink" title="1、 分别定义各环境文件"></a>1、 分别定义各环境文件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eg：/etc/sysconfig/docker-storage</div><div class="line">/etc/sysconfig/docker-network</div></pre></td></tr></table></figure>
+<p>该文件中可以自定义环境变量</p>
+<h2 id="2、-引入环境文件"><a href="#2、-引入环境文件" class="headerlink" title="2、 引入环境文件"></a>2、 引入环境文件</h2><p>在<code>/usr/lib/systemd/system/docker.service</code>文件中引入环境文件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eg：EnvironmentFile=-<span class="regexp">/etc/</span>sysconfig/docker-storage</div><div class="line">EnvironmentFile=-<span class="regexp">/etc/</span>sysconfig/docker-network</div></pre></td></tr></table></figure></p>
+<p>并使用其环境变量<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ExecStart=<span class="regexp">/usr/</span>bin/docker-current daemon \</div><div class="line">      $DOCKER_STORAGE_OPTIONS \</div><div class="line">      $DOCKER_NETWORK_OPTIONS \</div></pre></td></tr></table></figure></p>
+<p>备注：也可以将所有的自定义选项定义在一个文件中</p>
 <p>例：将官方镜像仓库替换为阿里云镜像仓库</p>
 <ul>
 <li>前提：注册阿里云用户，此时才会获取到一个私有的镜像仓库地址<pre><code>https://cr.console.aliyun.com/
 </code></pre></li>
-<li>在/etc/sysconfig/docker中的option变量中加上如下选项<pre><code>--registry-mirror=https://u6nqa61i.mirror.aliyuncs.com
-</code></pre></li>
-<li>重启docker：<pre><code>systemctl restart docker
-</code></pre></li>
+<li><p>在<code>/etc/sysconfig/docker</code>中的option变量中加上如下选项</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">--registry-mirror=https:<span class="comment">//u6nqa61i.mirror.aliyuncs.com</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>重启docker：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart docker</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>直接在/usr/lib/systemd/system/docker.service文件中加入选项</p>
-<pre><code>eg：ExecStart=/usr/bin/docker-current daemon \
-      --exec-opt native.cgroupdriver=systemd \
-      --insecure-registry docker.ts.com:5000
-</code></pre><h3 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h3><p>使用daemon.json文件<br>官方文档：<a href="https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file" target="_blank" rel="external">https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file</a><br>路径：/etc/docker/daemon.json<br>备注：使用此方案不要与其他方案相混合使用，否则docker启动的时候会报错</p>
+<h1 id="三、-方案二"><a href="#三、-方案二" class="headerlink" title="三、 方案二"></a>三、 方案二</h1><p>直接在<code>/usr/lib/systemd/system/docker.service</code>文件中加入选项<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">eg：ExecStart=<span class="regexp">/usr/</span>bin/docker-current daemon \</div><div class="line">      --exec-opt native.cgroupdriver=systemd \</div><div class="line">      --insecure-registry docker.ts.com:<span class="number">5000</span></div></pre></td></tr></table></figure></p>
+<h1 id="四、-方案三"><a href="#四、-方案三" class="headerlink" title="四、 方案三"></a>四、 方案三</h1><p>使用<code>daemon.json</code>文件<br>官方文档：<a href="https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file" target="_blank" rel="external">https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file</a><br>路径：<code>/etc/docker/daemon.json</code><br>备注：使用此方案不要与其他方案相混合使用，否则docker启动的时候会报错</p>
 
           
         
@@ -1125,7 +1117,7 @@ EnvironmentFile=-/etc/sysconfig/docker-network
 <li>方法一 就是要么自己将所有的命令工具都安装了</li>
 <li>方法二 找一个别人建好的docker镜像</li>
 </ul>
-<p>3、将主机上的安装包共享给容器，并交互式形式启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -t -i --name moa_centos7 -v /home/tunsuy/toContainer:/home/tunsuy/fromHost centos:centos7 /bin/bash</div></pre></td></tr></table></figure></p>
+<p>3、将主机上的安装包共享给容器，并交互式形式启动<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -t -i --name moa_centos7 -v /home/tunsuy/toContainer:/home/tunsuy/fromHost centos:centos7 /bin/bash</div></pre></td></tr></table></figure></p>
 <p>4、因为没有空白机的公有云安装包，所以这里以私有云空白安装包来安装<br>ps：<code>./install.sh -m test -d public_clound</code><br>——参考./install.sh脚本实现</p>
 <p>5、安装过程中可能会遇到一些问题  </p>
 <ul>
@@ -1141,22 +1133,22 @@ EnvironmentFile=-/etc/sysconfig/docker-network
 <ul>
 <li>搭建私有仓库（按照官方文档做就可以了，这里不详细写）</li>
 <li><p>将容器制作为镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker commit --author &quot;ts&quot; --message &quot;更正moaserver初始化包环境&quot; 容器名 docker.ts.com:5000/moaserver_env:init</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker commit --author <span class="string">"ts"</span> --message <span class="string">"更正moaserver初始化包环境"</span> 容器名 docker.ts.com:5000/moaserver_env:init</div></pre></td></tr></table></figure>
 </li>
 <li><p>上传镜像到私有仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker push docker.ts.com:5000/moaserver_env:init</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker push docker.ts.com:<span class="number">5000</span>/moaserver_env:init</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>ps：配置私有仓库http访问<br>编辑文件：<code>vim /etc/sysconfig/docker</code><br>添加以下内容<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">OPTIONS=<span class="string">'--selinux-enabled --insecure-registry=docker.ts.com:5000'</span></div></pre></td></tr></table></figure></p>
 <p>或者编辑文件：<code>vim /usr/lib/systemd/system/docker.service</code><br>添加以下内容<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">  ExecStart=/usr/bin/docker-current daemon \</div><div class="line">    --exec-opt native.cgroupdriver=systemd \</div><div class="line">    <span class="variable">$OPTIONS</span> \</div><div class="line">    <span class="variable">$DOCKER_STORAGE_OPTIONS</span> \</div><div class="line">    <span class="variable">$DOCKER_NETWORK_OPTIONS</span> \</div><div class="line">    <span class="variable">$ADD_REGISTRY</span> \</div><div class="line">    <span class="variable">$BLOCK_REGISTRY</span> \</div><div class="line">    <span class="variable">$INSECURE_REGISTRY</span> \</div><div class="line">--insecure-registry docker.ts.com:5000</div></pre></td></tr></table></figure></p>
-<p>注：centos7的防火墙使用的是firewalld，因为之前对iptables比较熟，<br>     所以可以关掉firewalld，安装iptables服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">systemctl stop firewalld</div><div class="line">systemctl mask firewalld</div><div class="line">yum install iptables-services</div></pre></td></tr></table></figure></p>
-<h1 id="三、-服务使用"><a href="#三、-服务使用" class="headerlink" title="三、 服务使用"></a>三、 服务使用</h1><h2 id="1、-从私有仓库拉取该镜像并使用"><a href="#1、-从私有仓库拉取该镜像并使用" class="headerlink" title="1、 从私有仓库拉取该镜像并使用"></a>1、 从私有仓库拉取该镜像并使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -t -i --name=moaserver_env --net=&quot;none&quot; -v /home/tunsuy/toContainer:/home/tunsuy/fromHost docker.ts.com:5000/moaserver_env:init /bin/bash</div></pre></td></tr></table></figure>
+<p>注：centos7的防火墙使用的是firewalld，因为之前对iptables比较熟，<br>     所以可以关掉firewalld，安装iptables服务<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">systemctl stop firewalld</div><div class="line">systemctl mask firewalld</div><div class="line">yum install iptables-services</div></pre></td></tr></table></figure></p>
+<h1 id="三、-服务使用"><a href="#三、-服务使用" class="headerlink" title="三、 服务使用"></a>三、 服务使用</h1><h2 id="1、-从私有仓库拉取该镜像并使用"><a href="#1、-从私有仓库拉取该镜像并使用" class="headerlink" title="1、 从私有仓库拉取该镜像并使用"></a>1、 从私有仓库拉取该镜像并使用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -t -i --name=moaserver_env --net=<span class="string">"none"</span> -v /home/tunsuy/toContainer:<span class="regexp">/home/</span>tunsuy/fromHost docker.ts.com:<span class="number">5000</span>/moaserver_env:init /bin/bash</div></pre></td></tr></table></figure>
 <p>ps：这里采用none的网络方式，是因为想自己配置所有网络</p>
-<h2 id="2、-配置容器IP"><a href="#2、-配置容器IP" class="headerlink" title="2、 配置容器IP"></a>2、 配置容器IP</h2><p>这里使用我写的一个工具脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh bind_addr.sh moaserver_env 172.17.0.2</div></pre></td></tr></table></figure></p>
+<h2 id="2、-配置容器IP"><a href="#2、-配置容器IP" class="headerlink" title="2、 配置容器IP"></a>2、 配置容器IP</h2><p>这里使用我写的一个工具脚本：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh bind_addr.sh moaserver_env <span class="number">172.17</span><span class="number">.0</span><span class="number">.2</span></div></pre></td></tr></table></figure></p>
 <p>ps：需要在主机上执行，而不是在容器中<br>脚本地址：<br><a href="https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关" target="_blank" rel="external">https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关</a></p>
-<h2 id="3、-配置环境变量"><a href="#3、-配置环境变量" class="headerlink" title="3、 配置环境变量"></a>3、 配置环境变量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source /etc/profile</div></pre></td></tr></table></figure>
+<h2 id="3、-配置环境变量"><a href="#3、-配置环境变量" class="headerlink" title="3、 配置环境变量"></a>3、 配置环境变量</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> /etc/profile</div></pre></td></tr></table></figure>
 <p>ps：由于之前在镜像中配置的环境变量，在容器中不能自动生效（原因不明）</p>
-<h2 id="4、-启动mongo和mysql"><a href="#4、-启动mongo和mysql" class="headerlink" title="4、 启动mongo和mysql"></a>4、 启动mongo和mysql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/mongod start</div><div class="line">/etc/init.d/mysqlaccd stop</div><div class="line">/etc/init.d/mysqld start</div></pre></td></tr></table></figure>
+<h2 id="4、-启动mongo和mysql"><a href="#4、-启动mongo和mysql" class="headerlink" title="4、 启动mongo和mysql"></a>4、 启动mongo和mysql</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/mongod start</div><div class="line">/etc/init.d/mysqlaccd stop</div><div class="line">/etc/init.d/mysqld start</div></pre></td></tr></table></figure>
 <h2 id="5、-更新hosts文件"><a href="#5、-更新hosts文件" class="headerlink" title="5、 更新hosts文件"></a>5、 更新hosts文件</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#将模板文件写入hosts：</span></div><div class="line">cat /home/tunsuy/fromHost/host_templet &gt;&gt; /etc/hosts</div><div class="line"></div><div class="line"><span class="comment">#将hosts中的IP改成容器ip</span></div><div class="line">mdbg -p 23808 -o changeip oldip=172.17.0.1,newip=172.17.0.2</div></pre></td></tr></table></figure>
 <p>ps：容器的/etc/hosts、/etc/resolv.conf文件是挂载在宿主机中的</p>
 <h2 id="6、-启动moa服务"><a href="#6、-启动moa服务" class="headerlink" title="6、 启动moa服务"></a>6、 启动moa服务</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/moa start</div></pre></td></tr></table></figure>
@@ -1309,7 +1301,7 @@ EnvironmentFile=-/etc/sysconfig/docker-network
       
         
           
-            <h3 id="UI-Testing简介"><a href="#UI-Testing简介" class="headerlink" title="UI Testing简介"></a>UI Testing简介</h3><p>1、UI Testing 是基于 XCTest 测试框架的。XCTest 作为 OCUnit 的替代者，目前是 iOS 单元测试框架不二之选，很多其他测试框架也基于 XCTest 封装。XCTest 有如下特点：</p>
+            <h1 id="一、-UI-Testing简介"><a href="#一、-UI-Testing简介" class="headerlink" title="一、 UI Testing简介"></a>一、 UI Testing简介</h1><p>1、UI Testing 是基于 XCTest 测试框架的。XCTest 作为 OCUnit 的替代者，目前是 iOS 单元测试框架不二之选，很多其他测试框架也基于 XCTest 封装。XCTest 有如下特点：</p>
 <ul>
 <li>测试用例需要继承 XCTestCase</li>
 <li>有类似 Junit 的 setup 或者 teardown方法</li>
@@ -1319,7 +1311,7 @@ EnvironmentFile=-/etc/sysconfig/docker-network
 </ul>
 <p>2、那 UI Testing 在 XCTest 的基础上实际上是扩展了几个类，协议<br>所以本质上 UI Testing 还是 XCTest，所以写用例的时候，还是需要遵从 XCTest 的规则</p>
 <p>3、UI Testing 需要依靠 Accessibility 来定位元素。UI Testing 可以通过你的应用提供的 Accessibility 功能来与你的应用连接，这样就解决了设备大小不一的问题。如果你重新调整了 UI 中的某些元素，你也不用重写整套测试。当然实现 Accessibility 的本质不是为了使用 UI Testing，而是为了能帮助行动不便的用户更好地使用你的应用。</p>
-<h3 id="具体实践"><a href="#具体实践" class="headerlink" title="具体实践"></a>具体实践</h3><p>Xcode 7中创建新工程时，可以选择是否要包含UI测试——这里就不演示了  </p>
+<h1 id="二、-具体实践"><a href="#二、-具体实践" class="headerlink" title="二、 具体实践"></a>二、 具体实践</h1><p>Xcode 7中创建新工程时，可以选择是否要包含UI测试——这里就不演示了  </p>
 <p>下面说说在已有工程的时候，怎么进行UI Testing<br>1、再项目工程中增加一个target<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target1.jpg" alt="target1.jpg" title=""></p>
 <p>如图中1所示点击添加UI Testing Bundle<br>添加之后如图中2、3所示。</p>
 <p>2、编写测试类或者测试方法<br>在图中3所示中的.m文件中添加测试方法，<br>当然实际项目中，肯定是根据各自的模块自己新建一系列的类及方法<br>（注：测试类及其测试方法必须按照XCTest的命令规则及要求来）</p>
@@ -1327,10 +1319,10 @@ EnvironmentFile=-/etc/sysconfig/docker-network
 <p>点击用例右边的勾运行单个用例</p>
 <p>UI testing 也具有录制功能 如图<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target3.jpg" alt="target3.jpg" title=""></p>
 <p>点击图中所示 它将重新启动app ，然后你的每一步操作都将在你鼠标所在处自动生成OC代码<br>（注：由于UI testing 刚出来 所以录制出来的代码可能不是很规范 需要手动改一下。不过作为官方推出来的东西，以后肯定会变得更简单强大）</p>
-<h3 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h3><p>UI testing到底适用于什么地方呢  </p>
+<h1 id="三、-使用建议"><a href="#三、-使用建议" class="headerlink" title="三、 使用建议"></a>三、 使用建议</h1><p>UI testing到底适用于什么地方呢  </p>
 <p>个人认为用来做一些简单的发包前check list比较合适</p>
 <p>比如 我们项目在迭代发包钱都需要测试或者开发自己跑一遍check list ，作为程序员，这些简单重复的操作交给程序来运行就好了。<br>因为UI testing 可以使用OC语言来写 所以对于开发来说 这将是非常简单的。</p>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>具体的UI testing API 可以参看官方文档 不多比较简单</p>
+<h1 id="四、-最后"><a href="#四、-最后" class="headerlink" title="四、 最后"></a>四、 最后</h1><p>具体的UI testing API 可以参看官方文档 不多比较简单</p>
 
           
         
@@ -1491,40 +1483,26 @@ EnvironmentFile=-/etc/sysconfig/docker-network
       
         
           
-            <h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>通过selenium-server<br>1、相关下载</p>
-<ul>
+            <h1 id="一、-方案一"><a href="#一、-方案一" class="headerlink" title="一、 方案一"></a>一、 方案一</h1><p>通过selenium-server  </p>
+<h2 id="1、-相关下载"><a href="#1、-相关下载" class="headerlink" title="1、 相关下载"></a>1、 相关下载</h2><ul>
 <li>下载server：<a href="http://seleniumhq.org/download/" target="_blank" rel="external">http://seleniumhq.org/download/</a></li>
 <li>下载chrome-driver：<a href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank" rel="external">https://sites.google.com/a/chromium.org/chromedriver/downloads</a></li>
 </ul>
-<p>2、在浏览器主机的终端上执行命令：</p>
-<pre><code>java -Dwebdriver.chrome.driver=&quot;D:\chromedriver.exe&quot; -jar selenium-server.jar
-</code></pre><p>3、接下来就可以在其他主机上编写测试脚本并执行了：以python为例</p>
+<h2 id="2、-开启selenium-server"><a href="#2、-开启selenium-server" class="headerlink" title="2、 开启selenium-server"></a>2、 开启selenium-server</h2><p>在浏览器主机的终端上执行命令：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -Dwebdriver.chrome.driver=<span class="string">"D:\chromedriver.exe"</span> -jar selenium-server.jar</div></pre></td></tr></table></figure></p>
+<h2 id="3、-编写client脚本测试"><a href="#3、-编写client脚本测试" class="headerlink" title="3、 编写client脚本测试"></a>3、 编写client脚本测试</h2><p>接下来就可以在其他主机上编写测试脚本并执行了：以python为例</p>
 <ul>
-<li>下载基本python的selenium库：<pre><code>pip install selenium
-</code></pre></li>
+<li><p>下载基本python的selenium库：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install selenium</div></pre></td></tr></table></figure>
+</li>
 <li><p>编写示例脚本如下：</p>
-<pre><code>from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
-driver = webdriver.Remote(
-   command_executor=&apos;http://200.200.105.63:4444/wd/hub&apos;,
-   desired_capabilities=webdriver.DesiredCapabilities.CHROME)
-
-driver.get(&apos;https://200.200.169.165&apos;);
-</code></pre></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> selenium.webdriver.common.desired_capabilities <span class="keyword">import</span> DesiredCapabilities</div><div class="line"></div><div class="line">driver = webdriver.Remote(</div><div class="line">   command_executor=<span class="string">'http://200.200.105.63:4444/wd/hub'</span>,</div><div class="line">   desired_capabilities=webdriver.DesiredCapabilities.CHROME)</div><div class="line"></div><div class="line">driver.get(<span class="string">'https://200.200.169.165'</span>);</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>直接使用driver<br>1、按照1中的下载好相应的浏览器驱动</p>
-<p>2、在浏览器主机的终端上执行命令：</p>
-<pre><code>chromedriver.exe --whitelisted-ips=&quot;200.200.169.162&quot;
-</code></pre><p>3、编写示例脚本如下：</p>
-<pre><code>from selenium import webdriver
+<h1 id="二、-方案二"><a href="#二、-方案二" class="headerlink" title="二、 方案二"></a>二、 方案二</h1><p>直接使用driver  </p>
+<h2 id="1、-相关下载-1"><a href="#1、-相关下载-1" class="headerlink" title="1、 相关下载"></a>1、 相关下载</h2><p>按照1中的下载好相应的浏览器驱动</p>
+<h2 id="2、-开启chromedriver"><a href="#2、-开启chromedriver" class="headerlink" title="2、 开启chromedriver"></a>2、 开启chromedriver</h2><p>在浏览器主机的终端上执行命令：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chromedriver.exe --whitelisted-ips=<span class="string">"200.200.169.162"</span></div></pre></td></tr></table></figure></p>
+<h2 id="3、-编写client脚本测试-1"><a href="#3、-编写client脚本测试-1" class="headerlink" title="3、 编写client脚本测试"></a>3、 编写client脚本测试</h2><p>编写示例脚本如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"></div><div class="line">driver = webdriver.Remote(</div><div class="line">   command_executor=<span class="string">'http://200.200.105.63:9515'</span>,</div><div class="line">   desired_capabilities=DesiredCapabilities.CHROME)</div><div class="line"></div><div class="line">driver.get(<span class="string">'https://200.200.169.165'</span>);</div></pre></td></tr></table></figure></p>
 
-driver = webdriver.Remote(
-   command_executor=&apos;http://200.200.105.63:9515&apos;,
-   desired_capabilities=DesiredCapabilities.CHROME)
-
-driver.get(&apos;https://200.200.169.165&apos;);
-</code></pre>
           
         
       
@@ -1684,22 +1662,22 @@ driver.get(&apos;https://200.200.169.165&apos;);
       
         
           
-            <h3 id="迁移步骤"><a href="#迁移步骤" class="headerlink" title="迁移步骤"></a>迁移步骤</h3><p>1、在linux下将redmine安装好  </p>
+            <h1 id="一、-迁移步骤"><a href="#一、-迁移步骤" class="headerlink" title="一、 迁移步骤"></a>一、 迁移步骤</h1><p>1、在linux下将redmine安装好  </p>
 <p>2、从原来的服务器上（windows）导出数据库文件（sql文件）  </p>
 <p>3、将现在的服务器（linux）上的redmine数据库清空<br>注：是清空，不能删除，因为删除会导致之后访问不了，具体原因可能是兼容问题  </p>
 <p>4、将2步中导出来的sql文件导入3步中清空的redmine数据库中<br>注：可能返回结果会提示说有错误，记下出错的表  </p>
 <p>5、将出错的表重新删除再导入<br>注：记住是删除，不是清空<br>到目前为止数据库文件已经全部导入成功了  </p>
 <p>6、附件的导入<br>——将原来的服务器上的redmine中files文件拷贝到现在的服务器上的相同目录下  </p>
 <p>至此全部迁移数据已完成</p>
-<h3 id="问题及解决方法："><a href="#问题及解决方法：" class="headerlink" title="问题及解决方法："></a>问题及解决方法：</h3><p>1、redmine的rtx提醒收到的连接还是原来服务器的链接<br>排查：</p>
+<h1 id="二、-问题及解决方法："><a href="#二、-问题及解决方法：" class="headerlink" title="二、 问题及解决方法："></a>二、 问题及解决方法：</h1><h2 id="1、-redmine的rtx提醒链接错误"><a href="#1、-redmine的rtx提醒链接错误" class="headerlink" title="1、 redmine的rtx提醒链接错误"></a>1、 redmine的rtx提醒链接错误</h2><p>收到的连接还是原来服务器的链接<br>排查：</p>
 <ul>
 <li>查看邮件配置文件是否正确——正确</li>
 <li>通过rtx提醒的脚本调试<br>发现redmine传递给rtx的提醒内容就是提问题时填写的内容（也就是数据库中的内容）</li>
 <li>于是进入数据库中相应表（setting）查看，问题真是出在这里：<br>这个表有个字段是设置hostname的，填写的还是以前的url（因为是导入以前的数据嘛）  </li>
 </ul>
 <p>解决：将该字段改为正确的访问ip即可</p>
-<p>2、导入之后redmine上的时间显示不对<br>排查：查看服务器时间——问题确实出在这里<br>解决：将服务器时间设为当前时间</p>
-<p>3、无法上传附件<br>排查：</p>
+<h2 id="2、-redmine上的时间显示不对"><a href="#2、-redmine上的时间显示不对" class="headerlink" title="2、 redmine上的时间显示不对"></a>2、 redmine上的时间显示不对</h2><p>排查：查看服务器时间——问题确实出在这里<br>解决：将服务器时间设为当前时间</p>
+<h2 id="3、-无法上传附件"><a href="#3、-无法上传附件" class="headerlink" title="3、 无法上传附件"></a>3、 无法上传附件</h2><p>排查：</p>
 <ul>
 <li>上传一个附件，没有返回错误，但是就是显示不出来</li>
 <li>查看数据库，确实没有插入进去</li>
@@ -1850,9 +1828,9 @@ driver.get(&apos;https://200.200.169.165&apos;);
         
           
             <p>calabash同时支持ios和Android平台，这里只介绍ios平台。</p>
-<h3 id="系统架构图"><a href="#系统架构图" class="headerlink" title="系统架构图"></a>系统架构图</h3><p>calabash-ios整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
+<h1 id="一、-系统架构图"><a href="#一、-系统架构图" class="headerlink" title="一、 系统架构图"></a>一、 系统架构图</h1><p>calabash-ios整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
 <img src="/2015/06/12/calabash-ios原理分析/calabash-ios.jpg" alt="calabash-ios.jpg" title="">
-<h3 id="框架分析"><a href="#框架分析" class="headerlink" title="框架分析"></a>框架分析</h3><p>接上图</p>
+<h1 id="二、-框架分析"><a href="#二、-框架分析" class="headerlink" title="二、 框架分析"></a>二、 框架分析</h1><p>接上图</p>
 <p>1、其中，Runner 负责接受用户指令，并对其进行数据校验、指令转换等操作</p>
 <p>2、之后将其交给客户端处理（这里的客户端是指运行pc上的代码）</p>
 <p>3、客户端将指令发送给对应服务器http server（这里的服务器就是编译进app中的calabash.framework），请求其执行对应操作</p>
@@ -1998,24 +1976,13 @@ driver.get(&apos;https://200.200.169.165&apos;);
         
           
             <p>leakcanary的知识就不在这里普及了，随便Google下就知道</p>
-<h3 id="项目集成"><a href="#项目集成" class="headerlink" title="项目集成"></a>项目集成</h3><p>直接说在项目中怎么操作，如下：<br>1、在 build.gradle 中加入引用，不同的编译使用不同的引用：</p>
-<pre><code>dependencies {
-  debugCompile &apos;com.squareup.leakcanary:leakcanary-android:1.3&apos;
-  releaseCompile &apos;com.squareup.leakcanary:leakcanary-android-no-op:1.3&apos;
-}
-</code></pre><p>2、在你的项目的 Application 中：</p>
-<pre><code>public class ExampleApplication extends Application {
-
-  @Override public void onCreate() {
-    super.onCreate();
-    LeakCanary.install(this);    //加上这一句
-  }}
-</code></pre><p>这样， 重新打包安装之后 ，在操作测试该APP的过程中，如果检测到某个 activity 有内存泄露，LeakCanary 就是自动地显示一个通知。</p>
-<h3 id="具体实践"><a href="#具体实践" class="headerlink" title="具体实践"></a>具体实践</h3><p>具体以我们口袋助理来介绍下：</p>
+<h1 id="一、-项目集成"><a href="#一、-项目集成" class="headerlink" title="一、 项目集成"></a>一、 项目集成</h1><p>直接说在项目中怎么操作，如下：<br>1、在 build.gradle 中加入引用，不同的编译使用不同的引用：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">  debugCompile <span class="string">'com.squareup.leakcanary:leakcanary-android:1.3'</span></div><div class="line">  releaseCompile <span class="string">'com.squareup.leakcanary:leakcanary-android-no-op:1.3'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2、在你的项目的 Application 中：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleApplication</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate();</div><div class="line">    LeakCanary.install(<span class="keyword">this</span>);    <span class="comment">//加上这一句</span></div><div class="line">  &#125;&#125;</div></pre></td></tr></table></figure></p>
+<p>这样， 重新打包安装之后 ，在操作测试该APP的过程中，如果检测到某个 activity 有内存泄露，LeakCanary 就是自动地显示一个通知。</p>
+<h1 id="二、-具体实践"><a href="#二、-具体实践" class="headerlink" title="二、 具体实践"></a>二、 具体实践</h1><p>具体以我们口袋助理来介绍下：</p>
 <p>1、在build.gradle 中加入引用</p>
-<p>2、在MoaApplication.java中的onCreate方法中加入</p>
-<pre><code>LeakCanary.install(this);
-</code></pre><p>3、故意造一个内存泄露的地方<br>以创建工作汇报为例：将CreateWorkReportActivity.java中的EditText变量改为静态的(static)</p>
+<p>2、在MoaApplication.java中的onCreate方法中加入<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LeakCanary.install(<span class="keyword">this</span>);</div></pre></td></tr></table></figure></p>
+<p>3、故意造一个内存泄露的地方<br>以创建工作汇报为例：将CreateWorkReportActivity.java中的EditText变量改为静态的(static)</p>
 <p>4、编译打包查看效果</p>
 <ul>
 <li>这个时候安装应用到手机，会自动安装一个Leaks应用<br>注：有的手机需要重启下才能看到Leaks应用，比如我用的华为手机就是这样</li>
@@ -2122,7 +2089,7 @@ driver.get(&apos;https://200.200.169.165&apos;);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

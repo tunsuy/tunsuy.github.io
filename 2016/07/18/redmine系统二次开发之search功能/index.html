@@ -109,21 +109,21 @@
 
 
 <meta name="description" content="项目地址：https://github.com/tunsuy/redmine_select_search
-项目简介该项目主要是对redmine进行简单的二次开发，满足以下需求：在redmine的select选择框中，如果选项特别多，那么选择是非常考验眼力的，可能眼睛看花了都找不到那么就考虑对所有的select框增加搜索功能
-方案一使用了chosen插件：https://harvesthq.gith">
+一、 项目简介该项目主要是对redmine进行简单的二次开发，满足以下需求：在redmine的select选择框中，如果选项特别多，那么选择是非常考验眼力的，可能眼睛看花了都找不到那么就考虑对所有的select框增加搜索功能
+二、 方案一1、 下载插件使用了chosen插件：https://h">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redmine系统二次开发之search功能">
 <meta property="og:url" content="https://tunsuy.github.io/2016/07/18/redmine系统二次开发之search功能/index.html">
 <meta property="og:site_name" content="鱼儿塘">
 <meta property="og:description" content="项目地址：https://github.com/tunsuy/redmine_select_search
-项目简介该项目主要是对redmine进行简单的二次开发，满足以下需求：在redmine的select选择框中，如果选项特别多，那么选择是非常考验眼力的，可能眼睛看花了都找不到那么就考虑对所有的select框增加搜索功能
-方案一使用了chosen插件：https://harvesthq.gith">
-<meta property="og:updated_time" content="2017-02-28T12:37:13.970Z">
+一、 项目简介该项目主要是对redmine进行简单的二次开发，满足以下需求：在redmine的select选择框中，如果选项特别多，那么选择是非常考验眼力的，可能眼睛看花了都找不到那么就考虑对所有的select框增加搜索功能
+二、 方案一1、 下载插件使用了chosen插件：https://h">
+<meta property="og:updated_time" content="2017-03-04T08:54:14.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redmine系统二次开发之search功能">
 <meta name="twitter:description" content="项目地址：https://github.com/tunsuy/redmine_select_search
-项目简介该项目主要是对redmine进行简单的二次开发，满足以下需求：在redmine的select选择框中，如果选项特别多，那么选择是非常考验眼力的，可能眼睛看花了都找不到那么就考虑对所有的select框增加搜索功能
-方案一使用了chosen插件：https://harvesthq.gith">
+一、 项目简介该项目主要是对redmine进行简单的二次开发，满足以下需求：在redmine的select选择框中，如果选项特别多，那么选择是非常考验眼力的，可能眼睛看花了都找不到那么就考虑对所有的select框增加搜索功能
+二、 方案一1、 下载插件使用了chosen插件：https://h">
 
 
 
@@ -412,42 +412,29 @@
 
       
         <p>项目地址：<a href="https://github.com/tunsuy/redmine_select_search" target="_blank" rel="external">https://github.com/tunsuy/redmine_select_search</a></p>
-<h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>该项目主要是对redmine进行简单的二次开发，满足以下需求：<br>在redmine的select选择框中，如果选项特别多，那么选择是非常考验眼力的，可能眼睛看花了都找不到<br>那么就考虑对所有的select框增加搜索功能</p>
-<h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>使用了chosen插件：<a href="https://harvesthq.github.io/chosen/" target="_blank" rel="external">https://harvesthq.github.io/chosen/</a></p>
-<p>1、下载该插件</p>
-<p>2、添加文件到项目目录中</p>
-<ul>
-<li><p>将chosen.jquery.js文件添加到./apps/redmine/htdocs/public/javascripts/</p>
+<h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>该项目主要是对redmine进行简单的二次开发，满足以下需求：<br>在redmine的select选择框中，如果选项特别多，那么选择是非常考验眼力的，可能眼睛看花了都找不到<br>那么就考虑对所有的select框增加搜索功能</p>
+<h1 id="二、-方案一"><a href="#二、-方案一" class="headerlink" title="二、 方案一"></a>二、 方案一</h1><h2 id="1、-下载插件"><a href="#1、-下载插件" class="headerlink" title="1、 下载插件"></a>1、 下载插件</h2><p>使用了chosen插件：<a href="https://harvesthq.github.io/chosen/" target="_blank" rel="external">https://harvesthq.github.io/chosen/</a></p>
+<h2 id="2、-添加文件到项目目录中"><a href="#2、-添加文件到项目目录中" class="headerlink" title="2、 添加文件到项目目录中"></a>2、 添加文件到项目目录中</h2><ul>
+<li><p>将<code>chosen.jquery.js</code>文件添加到<code>./apps/redmine/htdocs/public/javascripts/</code></p>
 </li>
-<li><p>将chosen.css、chosen-sprite.png添加到 ./apps/redmine/htdocs/public/stylesheets/  </p>
+<li><p>将<code>chosen.css、chosen-sprite.png</code>添加到 <code>./apps/redmine/htdocs/public/stylesheets/</code>  </p>
 </li>
 </ul>
-<p>3、引入js文件</p>
-<ul>
-<li>编辑 ./apps/redmine/htdocs/app/helpers/application_helper.rb<br>在下面方法处加入：<pre><code>def javascript_heads
-    tags = javascript_include_tag(&apos;jquery-1.11.1-ui-1.11.0-ujs-3.1.1&apos;, &apos;application&apos;, &apos;chosen.jquery&apos;)
-    unless User.current.pref.warn_on_leaving_unsaved == &apos;0&apos;
-      tags &lt;&lt; &quot;\n&quot;.html_safe + javascript_tag(&quot;$(window).load(function(){ warnLeavingUnsaved(&apos;#{escape_javascript l(:text_warn_on_leaving_unsaved)}&apos;); });&quot;)
-    end
-    tags
-end
-</code></pre></li>
+<h2 id="3、-引入js文件"><a href="#3、-引入js文件" class="headerlink" title="3、 引入js文件"></a>3、 引入js文件</h2><ul>
+<li>编辑 <code>./apps/redmine/htdocs/app/helpers/application_helper.rb</code><br>在下面方法处加入：<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">javascript_heads</span></span></div><div class="line">    tags = javascript_include_tag(<span class="string">'jquery-1.11.1-ui-1.11.0-ujs-3.1.1'</span>, <span class="string">'application'</span>, <span class="string">'chosen.jquery'</span>)</div><div class="line">    unless User.current.pref.warn_on_leaving_unsaved == <span class="string">'0'</span></div><div class="line">      tags &lt;&lt; <span class="string">"\n"</span>.html_safe + javascript_tag(<span class="string">"$(window).load(function()&#123; warnLeavingUnsaved('<span class="subst">#&#123;escape_javascript l(<span class="symbol">:text_warn_on_leaving_unsaved</span>)&#125;</span>'); &#125;);"</span>)</div><div class="line">    <span class="keyword">end</span></div><div class="line">    tags</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>4、引入css文件</p>
-<ul>
-<li>编辑 ./apps/redmine/htdocs/app/views/layouts/base.html.erb<br>在<head>标签处加入：<pre><code>&lt;%= stylesheet_link_tag &apos;chosen&apos;, :media =&gt; &apos;all&apos; %&gt;
-</code></pre></head></li>
+<h2 id="4、-引入css文件"><a href="#4、-引入css文件" class="headerlink" title="4、 引入css文件"></a>4、 引入css文件</h2><ul>
+<li>编辑 <code>./apps/redmine/htdocs/app/views/layouts/base.html.erb</code><br>在<head>标签处加入：<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%= stylesheet_link_tag 'chosen', :media =&gt; 'all' %&gt;</div></pre></td></tr></table></figure>
+</head></li>
 </ul>
-<p>5、实现</p>
-<ul>
-<li>在./apps/redmine/htdocs/public/javascripts/application.js文件中添加实现代码</li>
+<h2 id="5、-实现"><a href="#5、-实现" class="headerlink" title="5、 实现"></a>5、 实现</h2><ul>
+<li>在<code>./apps/redmine/htdocs/public/javascripts/application.js</code>文件中添加实现代码</li>
 </ul>
 <p>具体代码见项目地址</p>
-<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>直接Hook前端代码实现</p>
-<p>1、加入拼音支持</p>
-<p>2、实现</p>
-<ul>
-<li>在./apps/redmine/htdocs/public/javascripts/application.js文件中添加实现代码</li>
+<h1 id="三、-方案二"><a href="#三、-方案二" class="headerlink" title="三、 方案二"></a>三、 方案二</h1><p>直接Hook前端代码实现</p>
+<h2 id="1、-加入拼音支持"><a href="#1、-加入拼音支持" class="headerlink" title="1、 加入拼音支持"></a>1、 加入拼音支持</h2><h2 id="2、-实现"><a href="#2、-实现" class="headerlink" title="2、 实现"></a>2、 实现</h2><ul>
+<li><code>在./apps/redmine/htdocs/public/javascripts/application.js</code>文件中添加实现代码</li>
 </ul>
 <p>具体代码见项目地址</p>
 
@@ -615,7 +602,7 @@ end
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -670,7 +657,7 @@ end
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目简介"><span class="nav-text">项目简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一"><span class="nav-text">方案一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案二"><span class="nav-text">方案二</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-项目简介"><span class="nav-text">一、 项目简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-方案一"><span class="nav-text">二、 方案一</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-下载插件"><span class="nav-text">1、 下载插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-添加文件到项目目录中"><span class="nav-text">2、 添加文件到项目目录中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-引入js文件"><span class="nav-text">3、 引入js文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、-引入css文件"><span class="nav-text">4、 引入css文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、-实现"><span class="nav-text">5、 实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-方案二"><span class="nav-text">三、 方案二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-加入拼音支持"><span class="nav-text">1、 加入拼音支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-实现"><span class="nav-text">2、 实现</span></a></li></ol></li></ol></div>
             
 
           </div>

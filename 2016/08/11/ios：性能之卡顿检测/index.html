@@ -108,24 +108,24 @@
 
 
 
-<meta name="description" content="项目简介地址：https://github.com/tunsuy/iOSMonitorLag
+<meta name="description" content="一、 项目简介地址：https://github.com/tunsuy/iOSMonitorLag
 该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果
-方案一 基于RunLoop背景1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作">
+二、 方案一 基于RunLoop1、 背景1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ios：性能之卡顿检测">
 <meta property="og:url" content="https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/index.html">
 <meta property="og:site_name" content="鱼儿塘">
-<meta property="og:description" content="项目简介地址：https://github.com/tunsuy/iOSMonitorLag
+<meta property="og:description" content="一、 项目简介地址：https://github.com/tunsuy/iOSMonitorLag
 该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果
-方案一 基于RunLoop背景1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作">
+二、 方案一 基于RunLoop1、 背景1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线">
 <meta property="og:image" content="https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/卡顿图1.jpg">
 <meta property="og:image" content="https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/卡顿图2.jpg">
-<meta property="og:updated_time" content="2017-02-28T06:20:02.579Z">
+<meta property="og:updated_time" content="2017-03-04T08:54:14.033Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios：性能之卡顿检测">
-<meta name="twitter:description" content="项目简介地址：https://github.com/tunsuy/iOSMonitorLag
+<meta name="twitter:description" content="一、 项目简介地址：https://github.com/tunsuy/iOSMonitorLag
 该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果
-方案一 基于RunLoop背景1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作">
+二、 方案一 基于RunLoop1、 背景1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线">
 <meta name="twitter:image" content="https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/卡顿图1.jpg">
 
 
@@ -436,25 +436,25 @@
       
 
       
-        <h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>地址：<a href="https://github.com/tunsuy/iOSMonitorLag" target="_blank" rel="external">https://github.com/tunsuy/iOSMonitorLag</a></p>
+        <h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>地址：<a href="https://github.com/tunsuy/iOSMonitorLag" target="_blank" rel="external">https://github.com/tunsuy/iOSMonitorLag</a></p>
 <p>该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果</p>
-<h3 id="方案一-基于RunLoop"><a href="#方案一-基于RunLoop" class="headerlink" title="方案一 基于RunLoop"></a>方案一 基于RunLoop</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作等等放到了主线,所以主线程中包含的这些大量计算、IO、绘制都有可能造成卡顿.</p>
+<h1 id="二、-方案一-基于RunLoop"><a href="#二、-方案一-基于RunLoop" class="headerlink" title="二、 方案一 基于RunLoop"></a>二、 方案一 基于RunLoop</h1><h2 id="1、-背景"><a href="#1、-背景" class="headerlink" title="1、 背景"></a>1、 背景</h2><p>1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作等等放到了主线,所以主线程中包含的这些大量计算、IO、绘制都有可能造成卡顿.</p>
 <p>2、在Xcode中已经集成了非常方便的调试工具Instruments,它可以帮助我们在开发测试阶段分析软件运行的性能消耗</p>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>1、监控卡顿,最直接就是找到主线程都在干些啥玩意儿.我们知道一个线程的消息事件处理都是依赖于NSRunLoop来驱动,所以要知道线程正在调用什么方法,就需要从NSRunLoop来入手</p>
+<h2 id="2、-原理"><a href="#2、-原理" class="headerlink" title="2、 原理"></a>2、 原理</h2><p>1、监控卡顿,最直接就是找到主线程都在干些啥玩意儿.我们知道一个线程的消息事件处理都是依赖于NSRunLoop来驱动,所以要知道线程正在调用什么方法,就需要从NSRunLoop来入手</p>
 <p>2、发现NSRunLoop调用方法主要就是在kCFRunLoopBeforeSources和kCFRunLoopBeforeWaiting之间,还有kCFRunLoopAfterWaiting之后,也就是如果我们发现这两个时间内耗时太长,那么就可以判定出此时主线程卡顿.</p>
-<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>这种方式，当主线程中注册了timer等很多附加的东西时，会不断唤醒主线程，就会大量的调用observer回调，造成一定程度上的性能损耗</p>
-<h3 id="方案二-基于线程"><a href="#方案二-基于线程" class="headerlink" title="方案二 基于线程"></a>方案二 基于线程</h3><h4 id="背景-1"><a href="#背景-1" class="headerlink" title="背景"></a>背景</h4><p>简单来说，主线程为了达到接近60fps的绘制效率，不能在UI线程有单个超过（1/60s≈16ms）的计算任务。通过Instrument设置16ms的采样率可以检测出大部分这种费时的任务，但有以下缺点：  </p>
+<h2 id="3、-缺点"><a href="#3、-缺点" class="headerlink" title="3、 缺点"></a>3、 缺点</h2><p>这种方式，当主线程中注册了timer等很多附加的东西时，会不断唤醒主线程，就会大量的调用observer回调，造成一定程度上的性能损耗</p>
+<h1 id="三、-方案二-基于线程"><a href="#三、-方案二-基于线程" class="headerlink" title="三、 方案二 基于线程"></a>三、 方案二 基于线程</h1><h2 id="1、-背景-1"><a href="#1、-背景-1" class="headerlink" title="1、 背景"></a>1、 背景</h2><p>简单来说，主线程为了达到接近60fps的绘制效率，不能在UI线程有单个超过（1/60s≈16ms）的计算任务。通过Instrument设置16ms的采样率可以检测出大部分这种费时的任务，但有以下缺点：  </p>
 <ul>
 <li>Instrument profile一次重新编译，时间较长。</li>
 <li>只能针对特定的操作场景进行检测，要预先知道卡顿产生的场景。</li>
 <li>每次猜测，更改，再猜测再以此循环，需要重新profile。<br>我们的目标方案是，检测能够自动发生，并不需要开发人员做任何预先配置或profile。运行时发现卡顿能即时通知开发人员导致卡顿的函数调用栈。</li>
 </ul>
-<h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p>1、最理想的方案是让UI线程“主动汇报”当前耗时的任务，听起来简单做起来不轻松。</p>
+<h2 id="2、-原理-1"><a href="#2、-原理-1" class="headerlink" title="2、 原理"></a>2、 原理</h2><p>1、最理想的方案是让UI线程“主动汇报”当前耗时的任务，听起来简单做起来不轻松。</p>
 <p>2、我们可以假设这样一套机制：每隔16ms让UI线程来报道一次，如果16ms之后UI线程没来报道，那就一定是在执行某个耗时的任务。</p>
 <p>下面是以接入口袋助理测试的效果图</p>
 <img src="/2016/08/11/ios：性能之卡顿检测/卡顿图1.jpg" alt="卡顿图1.jpg" title="">
 <img src="/2016/08/11/ios：性能之卡顿检测/卡顿图2.jpg" alt="卡顿图2.jpg" title="">
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>但是像在口袋助理这样大型负责的项目中，这些方法都存在一些弊端，监测出来的也不一定是真的由于代码问题引起的，<br>这只是可以作为一种自动提醒机制，让开发者自行去检查下提示的代码是否真的存在性能缺陷</p>
+<h1 id="四、-最后"><a href="#四、-最后" class="headerlink" title="四、 最后"></a>四、 最后</h1><p>但是像在口袋助理这样大型负责的项目中，这些方法都存在一些弊端，监测出来的也不一定是真的由于代码问题引起的，<br>这只是可以作为一种自动提醒机制，让开发者自行去检查下提示的代码是否真的存在性能缺陷</p>
 
       
     </div>
@@ -620,7 +620,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -675,7 +675,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目简介"><span class="nav-text">项目简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一-基于RunLoop"><span class="nav-text">方案一 基于RunLoop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理"><span class="nav-text">原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案二-基于线程"><span class="nav-text">方案二 基于线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景-1"><span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理-1"><span class="nav-text">原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-项目简介"><span class="nav-text">一、 项目简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-方案一-基于RunLoop"><span class="nav-text">二、 方案一 基于RunLoop</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-背景"><span class="nav-text">1、 背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-原理"><span class="nav-text">2、 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-缺点"><span class="nav-text">3、 缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-方案二-基于线程"><span class="nav-text">三、 方案二 基于线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-背景-1"><span class="nav-text">1、 背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-原理-1"><span class="nav-text">2、 原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、-最后"><span class="nav-text">四、 最后</span></a></li></ol></div>
             
 
           </div>

@@ -118,7 +118,7 @@
 <meta property="og:description" content="一、 简介该文章主要讲解将公司的server服务docker化的具体过程，从中可以看到很多docker相关知识的使用以及网络配置等操作文中还设计到自己实现的关于docker自动化配置的两个脚本，供大家学习参考
 二、 docker化步骤1、 将初始安装包拷贝到容器主机上
 2、在主机上拉取一个centos6.7的docker镜像ps：因为官方的docker镜像都是轻量级的，所有很多linux下的命令都">
-<meta property="og:updated_time" content="2017-03-04T06:55:11.408Z">
+<meta property="og:updated_time" content="2017-03-04T08:54:14.393Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于docker的moa服务">
 <meta name="twitter:description" content="一、 简介该文章主要讲解将公司的server服务docker化的具体过程，从中可以看到很多docker相关知识的使用以及网络配置等操作文中还设计到自己实现的关于docker自动化配置的两个脚本，供大家学习参考
@@ -440,7 +440,7 @@
 <li>方法一 就是要么自己将所有的命令工具都安装了</li>
 <li>方法二 找一个别人建好的docker镜像</li>
 </ul>
-<p>3、将主机上的安装包共享给容器，并交互式形式启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -t -i --name moa_centos7 -v /home/tunsuy/toContainer:/home/tunsuy/fromHost centos:centos7 /bin/bash</div></pre></td></tr></table></figure></p>
+<p>3、将主机上的安装包共享给容器，并交互式形式启动<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -t -i --name moa_centos7 -v /home/tunsuy/toContainer:/home/tunsuy/fromHost centos:centos7 /bin/bash</div></pre></td></tr></table></figure></p>
 <p>4、因为没有空白机的公有云安装包，所以这里以私有云空白安装包来安装<br>ps：<code>./install.sh -m test -d public_clound</code><br>——参考./install.sh脚本实现</p>
 <p>5、安装过程中可能会遇到一些问题  </p>
 <ul>
@@ -456,22 +456,22 @@
 <ul>
 <li>搭建私有仓库（按照官方文档做就可以了，这里不详细写）</li>
 <li><p>将容器制作为镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker commit --author &quot;ts&quot; --message &quot;更正moaserver初始化包环境&quot; 容器名 docker.ts.com:5000/moaserver_env:init</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker commit --author <span class="string">"ts"</span> --message <span class="string">"更正moaserver初始化包环境"</span> 容器名 docker.ts.com:5000/moaserver_env:init</div></pre></td></tr></table></figure>
 </li>
 <li><p>上传镜像到私有仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker push docker.ts.com:5000/moaserver_env:init</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker push docker.ts.com:<span class="number">5000</span>/moaserver_env:init</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>ps：配置私有仓库http访问<br>编辑文件：<code>vim /etc/sysconfig/docker</code><br>添加以下内容<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">OPTIONS=<span class="string">'--selinux-enabled --insecure-registry=docker.ts.com:5000'</span></div></pre></td></tr></table></figure></p>
 <p>或者编辑文件：<code>vim /usr/lib/systemd/system/docker.service</code><br>添加以下内容<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">  ExecStart=/usr/bin/docker-current daemon \</div><div class="line">    --exec-opt native.cgroupdriver=systemd \</div><div class="line">    <span class="variable">$OPTIONS</span> \</div><div class="line">    <span class="variable">$DOCKER_STORAGE_OPTIONS</span> \</div><div class="line">    <span class="variable">$DOCKER_NETWORK_OPTIONS</span> \</div><div class="line">    <span class="variable">$ADD_REGISTRY</span> \</div><div class="line">    <span class="variable">$BLOCK_REGISTRY</span> \</div><div class="line">    <span class="variable">$INSECURE_REGISTRY</span> \</div><div class="line">--insecure-registry docker.ts.com:5000</div></pre></td></tr></table></figure></p>
-<p>注：centos7的防火墙使用的是firewalld，因为之前对iptables比较熟，<br>     所以可以关掉firewalld，安装iptables服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">systemctl stop firewalld</div><div class="line">systemctl mask firewalld</div><div class="line">yum install iptables-services</div></pre></td></tr></table></figure></p>
-<h1 id="三、-服务使用"><a href="#三、-服务使用" class="headerlink" title="三、 服务使用"></a>三、 服务使用</h1><h2 id="1、-从私有仓库拉取该镜像并使用"><a href="#1、-从私有仓库拉取该镜像并使用" class="headerlink" title="1、 从私有仓库拉取该镜像并使用"></a>1、 从私有仓库拉取该镜像并使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -t -i --name=moaserver_env --net=&quot;none&quot; -v /home/tunsuy/toContainer:/home/tunsuy/fromHost docker.ts.com:5000/moaserver_env:init /bin/bash</div></pre></td></tr></table></figure>
+<p>注：centos7的防火墙使用的是firewalld，因为之前对iptables比较熟，<br>     所以可以关掉firewalld，安装iptables服务<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">systemctl stop firewalld</div><div class="line">systemctl mask firewalld</div><div class="line">yum install iptables-services</div></pre></td></tr></table></figure></p>
+<h1 id="三、-服务使用"><a href="#三、-服务使用" class="headerlink" title="三、 服务使用"></a>三、 服务使用</h1><h2 id="1、-从私有仓库拉取该镜像并使用"><a href="#1、-从私有仓库拉取该镜像并使用" class="headerlink" title="1、 从私有仓库拉取该镜像并使用"></a>1、 从私有仓库拉取该镜像并使用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -t -i --name=moaserver_env --net=<span class="string">"none"</span> -v /home/tunsuy/toContainer:<span class="regexp">/home/</span>tunsuy/fromHost docker.ts.com:<span class="number">5000</span>/moaserver_env:init /bin/bash</div></pre></td></tr></table></figure>
 <p>ps：这里采用none的网络方式，是因为想自己配置所有网络</p>
-<h2 id="2、-配置容器IP"><a href="#2、-配置容器IP" class="headerlink" title="2、 配置容器IP"></a>2、 配置容器IP</h2><p>这里使用我写的一个工具脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh bind_addr.sh moaserver_env 172.17.0.2</div></pre></td></tr></table></figure></p>
+<h2 id="2、-配置容器IP"><a href="#2、-配置容器IP" class="headerlink" title="2、 配置容器IP"></a>2、 配置容器IP</h2><p>这里使用我写的一个工具脚本：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh bind_addr.sh moaserver_env <span class="number">172.17</span><span class="number">.0</span><span class="number">.2</span></div></pre></td></tr></table></figure></p>
 <p>ps：需要在主机上执行，而不是在容器中<br>脚本地址：<br><a href="https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关" target="_blank" rel="external">https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关</a></p>
-<h2 id="3、-配置环境变量"><a href="#3、-配置环境变量" class="headerlink" title="3、 配置环境变量"></a>3、 配置环境变量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source /etc/profile</div></pre></td></tr></table></figure>
+<h2 id="3、-配置环境变量"><a href="#3、-配置环境变量" class="headerlink" title="3、 配置环境变量"></a>3、 配置环境变量</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> /etc/profile</div></pre></td></tr></table></figure>
 <p>ps：由于之前在镜像中配置的环境变量，在容器中不能自动生效（原因不明）</p>
-<h2 id="4、-启动mongo和mysql"><a href="#4、-启动mongo和mysql" class="headerlink" title="4、 启动mongo和mysql"></a>4、 启动mongo和mysql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/mongod start</div><div class="line">/etc/init.d/mysqlaccd stop</div><div class="line">/etc/init.d/mysqld start</div></pre></td></tr></table></figure>
+<h2 id="4、-启动mongo和mysql"><a href="#4、-启动mongo和mysql" class="headerlink" title="4、 启动mongo和mysql"></a>4、 启动mongo和mysql</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/mongod start</div><div class="line">/etc/init.d/mysqlaccd stop</div><div class="line">/etc/init.d/mysqld start</div></pre></td></tr></table></figure>
 <h2 id="5、-更新hosts文件"><a href="#5、-更新hosts文件" class="headerlink" title="5、 更新hosts文件"></a>5、 更新hosts文件</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#将模板文件写入hosts：</span></div><div class="line">cat /home/tunsuy/fromHost/host_templet &gt;&gt; /etc/hosts</div><div class="line"></div><div class="line"><span class="comment">#将hosts中的IP改成容器ip</span></div><div class="line">mdbg -p 23808 -o changeip oldip=172.17.0.1,newip=172.17.0.2</div></pre></td></tr></table></figure>
 <p>ps：容器的/etc/hosts、/etc/resolv.conf文件是挂载在宿主机中的</p>
 <h2 id="6、-启动moa服务"><a href="#6、-启动moa服务" class="headerlink" title="6、 启动moa服务"></a>6、 启动moa服务</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/moa start</div></pre></td></tr></table></figure>
@@ -651,7 +651,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

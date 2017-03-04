@@ -108,25 +108,22 @@
 
 
 
-<meta name="description" content="简介该文章主要根据官方英文文档来操作的
+<meta name="description" content="一、 简介该文章主要根据官方英文文档来操作的
 官方文档：https://docs.mongodb.com/manual/release-notes/3.2-upgrade/
-升级步骤准备工作1、下载二进制文件  
-wget https://www.mongodb.com/dr/fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.10.tgz">
+二、 升级准备工作1、下载二进制文件1wget https://www.mongodb.com/dr/fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.10.tg">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mongodb集群3.0.X升级3.2.X">
 <meta property="og:url" content="https://tunsuy.github.io/2016/10/15/mongodb集群3-0-X升级3-2-X/index.html">
 <meta property="og:site_name" content="鱼儿塘">
-<meta property="og:description" content="简介该文章主要根据官方英文文档来操作的
+<meta property="og:description" content="一、 简介该文章主要根据官方英文文档来操作的
 官方文档：https://docs.mongodb.com/manual/release-notes/3.2-upgrade/
-升级步骤准备工作1、下载二进制文件  
-wget https://www.mongodb.com/dr/fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.10.tgz">
-<meta property="og:updated_time" content="2017-02-28T06:20:02.652Z">
+二、 升级准备工作1、下载二进制文件1wget https://www.mongodb.com/dr/fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.10.tg">
+<meta property="og:updated_time" content="2017-03-04T08:54:14.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongodb集群3.0.X升级3.2.X">
-<meta name="twitter:description" content="简介该文章主要根据官方英文文档来操作的
+<meta name="twitter:description" content="一、 简介该文章主要根据官方英文文档来操作的
 官方文档：https://docs.mongodb.com/manual/release-notes/3.2-upgrade/
-升级步骤准备工作1、下载二进制文件  
-wget https://www.mongodb.com/dr/fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.10.tgz">
+二、 升级准备工作1、下载二进制文件1wget https://www.mongodb.com/dr/fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.10.tg">
 
 
 
@@ -436,62 +433,36 @@ wget https://www.mongodb.com/dr/fastdl.mongodb.org/linux/mongodb-linux-x86_64-rh
       
 
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>该文章主要根据官方英文文档来操作的</p>
+        <h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>该文章主要根据官方英文文档来操作的</p>
 <p>官方文档：<a href="https://docs.mongodb.com/manual/release-notes/3.2-upgrade/" target="_blank" rel="external">https://docs.mongodb.com/manual/release-notes/3.2-upgrade/</a></p>
-<h3 id="升级步骤"><a href="#升级步骤" class="headerlink" title="升级步骤"></a>升级步骤</h3><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>1、下载二进制文件  </p>
-<pre><code>wget https://www.mongodb.com/dr/fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.10.tgz
-</code></pre><p>2、将该文件放入所有的节点服务器下并解压</p>
-<pre><code>tar -zxvf XXXX
-</code></pre><p>3、备份configdb（可选）<br>在每个configdb服务器执行：</p>
-<pre><code>cp -r /home/moa/db/configdb/data/ /home/moa/db/configdb/data_bak/
-</code></pre><p>4、关闭均衡器</p>
+<h1 id="二、-升级准备工作"><a href="#二、-升级准备工作" class="headerlink" title="二、 升级准备工作"></a>二、 升级准备工作</h1><p>1、下载二进制文件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https:<span class="comment">//www.mongodb.com/dr/fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.10.tgz</span></div></pre></td></tr></table></figure></p>
+<p>2、将该文件放入所有的节点服务器下并解压<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf XXXX</div></pre></td></tr></table></figure></p>
+<p>3、备份configdb（可选）<br>在每个configdb服务器执行：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp -r /home/moa/db/configdb/data/ <span class="regexp">/home/m</span>oa/db/configdb/data_bak/</div></pre></td></tr></table></figure></p>
+<p>4、关闭均衡器</p>
 <ul>
-<li>查看均衡器状态<pre><code>sh.getBalancerState()
-</code></pre></li>
-<li>关闭<pre><code>sh.stopBalancer()
-</code></pre></li>
-<li>检查数据没有在迁移<pre><code>use config
-while( sh.isBalancerRunning() ) {
-    print(&quot;waiting...&quot;);
-    sleep(1000);
-}
-</code></pre></li>
+<li>查看均衡器状态: <code>sh.getBalancerState()</code></li>
+<li>关闭: <code>sh.stopBalancer()</code></li>
+<li>检查数据没有在迁移<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">use config</div><div class="line"><span class="keyword">while</span>( sh.isBalancerRunning() ) &#123;</div><div class="line">    print(<span class="string">"waiting..."</span>);</div><div class="line">    sleep(<span class="number">1000</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<h4 id="开始升级"><a href="#开始升级" class="headerlink" title="开始升级"></a>开始升级</h4><p>1、首先升级分片0<br>1.1 升级分片0集群中的secondary节点</p>
+<h1 id="三、-开始升级"><a href="#三、-开始升级" class="headerlink" title="三、 开始升级"></a>三、 开始升级</h1><h2 id="1、-首先升级分片0"><a href="#1、-首先升级分片0" class="headerlink" title="1、 首先升级分片0"></a>1、 首先升级分片0</h2><p>1.1 升级分片0集群中的secondary节点</p>
 <ul>
 <li>停掉该mongod0进程—kill pid</li>
-<li>使用最新mongodb进程替换掉mongod0  <pre><code>备份：mv /usr/local/mongodb/bin/mongod0 /usr/local/mongodb/bin/mongod0.bak  
-替换：cp /home/mongodb-linux-x86_64-rhel62-3.2.10/bin/mongod /usr/local/mongodb/bin/mongod0
-</code></pre></li>
-<li>启动该mongod0进程—/etc/init.d/mongod0 restart</li>
-</ul>
-<p>按照1.1方法依次升级其他的secondary节点<br>ps：在确认上一个secondary状态正常的情况再进行</p>
-<pre><code>rs.status()
-</code></pre><p>1.2 升级分片0集群中的primary节点</p>
-<ul>
-<li>停掉primary—rs.stepDown()</li>
-<li>检查是否产生了新的primary—rs.status()<br>ps：在其他两个节点查看</li>
-<li>按照1的方法升级其他分片</li>
-</ul>
-<p>1.3 更新选举协议<br>在primary节点执行以下操作：</p>
-<pre><code>cfg=rs.conf();
-cfg.protocolVersion=1;
-rs.reconfig(cfg);
-</code></pre><p>2、升级分片1<br>按照1中的方法进行</p>
-<p>3、升级config 服务器</p>
-<ul>
-<li><p>顺序：需要按照mongos中配置的逆序升级</p>
-<pre><code>cat /home/moa/db/mongos/mongos.conf
-——configdb=config0.moadb.com,config1.moadb.com,config2.moadb.com
-</code></pre><p>所以升级顺序应该是：config2、config1、config0</p>
-</li>
-<li><p>升级：按照1中方法进行（只是这里变成了mongocfgd）</p>
+<li>使用最新mongodb进程替换掉mongod0  <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">        #备份：</div><div class="line">        mv /usr/local/mongodb/bin/mongod0 /usr/local/mongodb/bin/mongod0.bak  </div><div class="line"></div><div class="line">        #替换：</div><div class="line">        cp /home/mongodb-linux-x86_64-rhel62-3.2.10/bin/mongod /usr/local/mongodb/bin/mongod0</div><div class="line"></div><div class="line">* 启动该mongod0进程—`/etc/init.d/mongod0 restart`</div><div class="line"></div><div class="line">按照1.1方法依次升级其他的secondary节点  </div><div class="line">ps：在确认上一个secondary状态正常的情况再进行: `rs.status()`</div><div class="line"></div><div class="line">1.2 升级分片0集群中的primary节点</div><div class="line">* 停掉primary—`rs.stepDown()`</div><div class="line">* 检查是否产生了新的primary—`rs.status()`  </div><div class="line">ps：在其他两个节点查看</div><div class="line">* 按照1的方法升级其他分片</div><div class="line"></div><div class="line">1.3 更新选举协议</div><div class="line">在primary节点执行以下操作：</div><div class="line">```js</div><div class="line">    cfg=rs.conf();</div><div class="line">    cfg.protocolVersion=1;</div><div class="line">    rs.reconfig(cfg);</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>4、升级mognos服务器<br>按照1中方法进行（只是这样换成了mongos）</p>
-<p>5、替换掉所以的mongo工具（可选）</p>
-<pre><code>cp ./mongodb-linux-x86_64-rhel62-3.2.10/bin/* /usr/local/mongodb/bin/
-</code></pre>
+<h2 id="2、-升级分片1"><a href="#2、-升级分片1" class="headerlink" title="2、 升级分片1"></a>2、 升级分片1</h2><p>按照1中的方法进行</p>
+<h2 id="3、-升级config-服务器"><a href="#3、-升级config-服务器" class="headerlink" title="3、 升级config 服务器"></a>3、 升级config 服务器</h2><ul>
+<li>顺序：需要按照mongos中配置的逆序升级<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat /home/moa/db/mongos/mongos.conf</div><div class="line">——configdb=config0.moadb.com,config1.moadb.com,config2.moadb.com</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>所以升级顺序应该是：config2、config1、config0</p>
+<ul>
+<li>升级：按照1中方法进行（只是这里变成了mongocfgd）</li>
+</ul>
+<h2 id="4、-升级mognos服务器"><a href="#4、-升级mognos服务器" class="headerlink" title="4、 升级mognos服务器"></a>4、 升级mognos服务器</h2><p>按照1中方法进行（只是这样换成了mongos）</p>
+<h2 id="5、-替换掉所以的mongo工具（可选）"><a href="#5、-替换掉所以的mongo工具（可选）" class="headerlink" title="5、 替换掉所以的mongo工具（可选）"></a>5、 替换掉所以的mongo工具（可选）</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp ./mongodb-linux-x86_64-rhel62<span class="number">-3.2</span><span class="number">.10</span>/bin<span class="comment">/* /usr/local/mongodb/bin/</span></div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -560,8 +531,8 @@ rs.reconfig(cfg);
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/09/自编译mongo3-2测试/" rel="prev" title="自编译mongo3.2测试">
-                自编译mongo3.2测试 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/16/App三方交互逻辑实践/" rel="prev" title="App三方交互逻辑实践">
+                App三方交互逻辑实践 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -656,7 +627,7 @@ rs.reconfig(cfg);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -711,7 +682,7 @@ rs.reconfig(cfg);
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#升级步骤"><span class="nav-text">升级步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#准备工作"><span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开始升级"><span class="nav-text">开始升级</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-简介"><span class="nav-text">一、 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-升级准备工作"><span class="nav-text">二、 升级准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-开始升级"><span class="nav-text">三、 开始升级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-首先升级分片0"><span class="nav-text">1、 首先升级分片0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-升级分片1"><span class="nav-text">2、 升级分片1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-升级config-服务器"><span class="nav-text">3、 升级config 服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、-升级mognos服务器"><span class="nav-text">4、 升级mognos服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、-替换掉所以的mongo工具（可选）"><span class="nav-text">5、 替换掉所以的mongo工具（可选）</span></a></li></ol></li></ol></div>
             
 
           </div>
