@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>https://tunsuy.github.io/2016/07/10/appium-ios%E8%87%AA%E5%8A%A8%E5%8C%96%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2017-03-04T07:39:46.263Z</lastmod>
+    <data>
+        <display>
+        <title>appium-ios自动化入门</title>
+        <pubTime>2016-07-10T07:13:01.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>自动化测试</tag>
+         
+        <tag>appium</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://tunsuy.github.io/2015/05/10/%E5%88%A9%E7%94%A8drozer%E8%BF%9B%E8%A1%8CAndroid%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2017-03-04T07:12:05.617Z</lastmod>
     <data>
@@ -207,25 +228,6 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2016/06/28/calabash-ios%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3/</loc>
-    <lastmod>2017-02-28T12:24:31.768Z</lastmod>
-    <data>
-        <display>
-        <title>calabash-ios安装详解</title>
-        <pubTime>2016-06-28T06:48:31.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-        <tag>自动化测试</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://tunsuy.github.io/2016/06/20/calabash-android%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/</loc>
     <lastmod>2017-02-28T12:24:31.768Z</lastmod>
     <data>
@@ -245,13 +247,17 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2016/07/10/appium-ios%E8%87%AA%E5%8A%A8%E5%8C%96%E5%85%A5%E9%97%A8/</loc>
-    <lastmod>2017-02-28T12:24:31.702Z</lastmod>
+    <loc>https://tunsuy.github.io/2016/06/28/calabash-ios%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2017-02-28T12:24:31.768Z</lastmod>
     <data>
         <display>
-        <title>appium-ios自动化入门</title>
-        <pubTime>2016-07-10T07:13:01.000Z</pubTime>
+        <title>calabash-ios安装详解</title>
+        <pubTime>2016-06-28T06:48:31.000Z</pubTime>
         
+        <tag>ios</tag>
+         
+        <tag>自动化测试</tag>
+         
          
            
         </display>
