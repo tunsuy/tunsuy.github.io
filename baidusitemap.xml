@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/12/09/%E8%87%AA%E7%BC%96%E8%AF%91mongo3-2%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2017-03-04T09:45:50.962Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.394Z</lastmod>
     <data>
         <display>
         <title>自编译mongo3.2测试</title>
@@ -27,7 +27,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2015/04/27/%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B9%8C%E4%BA%91%E7%BD%91%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2017-03-04T09:45:50.947Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.378Z</lastmod>
     <data>
         <display>
         <title>本地化乌云网操作记录</title>
@@ -49,7 +49,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/09/23/%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8BiOS%E6%97%A5%E5%BF%97/</loc>
-    <lastmod>2017-03-04T09:45:50.910Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.338Z</lastmod>
     <data>
         <display>
         <title>实现浏览器中实时查看iOS日志</title>
@@ -63,6 +63,9 @@
          
          
            
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
         </display>
     </data>
     </url>
@@ -70,7 +73,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/06/02/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84moa%E6%9C%8D%E5%8A%A1/</loc>
-    <lastmod>2017-03-04T09:45:50.875Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.315Z</lastmod>
     <data>
         <display>
         <title>基于docker的moa服务</title>
@@ -92,7 +95,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2015/06/10/%E5%88%A9%E7%94%A8leakcanay%E6%A3%80%E6%B5%8Bandroid%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/</loc>
-    <lastmod>2017-03-04T09:45:50.857Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.270Z</lastmod>
     <data>
         <display>
         <title>利用leakcanary检测android内存泄露</title>
@@ -104,6 +107,9 @@
          
          
            
+             
+              <breadCrumb title="android" url="https://tunsuy.github.io/categories/android/"/>
+          
         </display>
     </data>
     </url>
@@ -111,7 +117,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2015/05/10/%E5%88%A9%E7%94%A8drozer%E8%BF%9B%E8%A1%8CAndroid%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2017-03-04T09:45:50.814Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.246Z</lastmod>
     <data>
         <display>
         <title>利用drozer进行Android渗透测试</title>
@@ -123,6 +129,9 @@
          
          
            
+             
+              <breadCrumb title="android" url="https://tunsuy.github.io/categories/android/"/>
+          
         </display>
     </data>
     </url>
@@ -130,7 +139,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/09/18/%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F%E4%B9%8BAPI%E8%B0%83%E7%94%A8%E7%89%88%E6%9C%AC%E6%A3%80%E6%9F%A5/</loc>
-    <lastmod>2017-03-04T09:45:50.797Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.228Z</lastmod>
     <data>
         <display>
         <title>代码扫描之API调用版本检查</title>
@@ -154,7 +163,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/04/14/selenium%E8%BF%9C%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8/</loc>
-    <lastmod>2017-03-04T09:45:50.779Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.205Z</lastmod>
     <data>
         <display>
         <title>selenium远程启动浏览器</title>
@@ -176,7 +185,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2015/10/27/redmine%E8%BF%81%E7%A7%BB%EF%BC%9A%E4%BB%8Ewindows%E4%B8%8B%E8%BF%81%E7%A7%BB%E5%88%B0linux/</loc>
-    <lastmod>2017-03-04T09:45:50.761Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.185Z</lastmod>
     <data>
         <display>
         <title>redmine迁移：从windows下迁移到linux</title>
@@ -198,7 +207,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/07/18/redmine%E7%B3%BB%E7%BB%9F%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E4%B9%8Bsearch%E5%8A%9F%E8%83%BD/</loc>
-    <lastmod>2017-03-04T09:45:50.744Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.167Z</lastmod>
     <data>
         <display>
         <title>redmine系统二次开发之search功能</title>
@@ -210,6 +219,9 @@
          
          
            
+             
+              <breadCrumb title="redmine" url="https://tunsuy.github.io/categories/redmine/"/>
+          
         </display>
     </data>
     </url>
@@ -217,7 +229,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/10/08/redmine-%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/</loc>
-    <lastmod>2017-03-04T09:45:50.727Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.148Z</lastmod>
     <data>
         <display>
         <title>redmine-数据统计</title>
@@ -239,7 +251,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/10/15/mongodb%E9%9B%86%E7%BE%A43-0-X%E5%8D%87%E7%BA%A73-2-X/</loc>
-    <lastmod>2017-03-04T09:45:50.708Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.128Z</lastmod>
     <data>
         <display>
         <title>mongodb集群3.0.X升级3.2.X</title>
@@ -261,7 +273,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2015/03/04/linux%E4%B8%8B%E9%83%A8%E7%BD%B2redmine/</loc>
-    <lastmod>2017-03-04T09:45:50.689Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.105Z</lastmod>
     <data>
         <display>
         <title>linux下部署redmine</title>
@@ -285,7 +297,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/08/11/ios%EF%BC%9A%E6%80%A7%E8%83%BD%E4%B9%8B%E5%8D%A1%E9%A1%BF%E6%A3%80%E6%B5%8B/</loc>
-    <lastmod>2017-03-04T09:45:50.615Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.034Z</lastmod>
     <data>
         <display>
         <title>ios：性能之卡顿检测</title>
@@ -307,7 +319,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/09/28/ios%EF%BC%9AUIWebView%E4%B8%8EWKWebView%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</loc>
-    <lastmod>2017-03-04T09:45:50.599Z</lastmod>
+    <lastmod>2017-03-04T09:54:24.015Z</lastmod>
     <data>
         <display>
         <title>ios：UIWebView与WKWebView注意事项</title>
@@ -327,7 +339,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/09/21/ios%EF%BC%9Ahttps-ATS%E6%94%B9%E9%80%A0%E8%BF%87%E7%A8%8B/</loc>
-    <lastmod>2017-03-04T09:45:50.582Z</lastmod>
+    <lastmod>2017-03-04T09:54:23.995Z</lastmod>
     <data>
         <display>
         <title>ios：https/ATS改造过程</title>
@@ -349,7 +361,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/05/19/iOS%E4%B8%8B%E4%BD%BF%E7%94%A8XCTest%E8%BF%9B%E8%A1%8C%E5%8F%91%E5%8C%85%E5%89%8DChecklist%E6%A3%80%E6%9F%A5/</loc>
-    <lastmod>2017-03-04T09:45:50.532Z</lastmod>
+    <lastmod>2017-03-04T09:54:23.936Z</lastmod>
     <data>
         <display>
         <title>iOS下使用UI-Testing进行发包前Checklist检查</title>
@@ -361,6 +373,9 @@
          
          
            
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
         </display>
     </data>
     </url>
@@ -368,7 +383,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2015/02/20/hexo-github%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2017-03-04T09:45:50.513Z</lastmod>
+    <lastmod>2017-03-04T09:54:23.915Z</lastmod>
     <data>
         <display>
         <title>hexo+github博客部署问题记录</title>
@@ -392,7 +407,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2015/03/15/gitbook%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3/</loc>
-    <lastmod>2017-03-04T09:45:50.505Z</lastmod>
+    <lastmod>2017-03-04T09:54:23.910Z</lastmod>
     <data>
         <display>
         <title>gitbook使用相关</title>
@@ -412,7 +427,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/06/15/docker%E8%87%AA%E5%AE%9A%E4%B9%89daemon%E9%80%89%E9%A1%B9/</loc>
-    <lastmod>2017-03-04T09:45:50.482Z</lastmod>
+    <lastmod>2017-03-04T09:54:23.884Z</lastmod>
     <data>
         <display>
         <title>docker自定义daemon选项</title>
@@ -434,7 +449,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2015/03/10/centos%E4%B8%8B%E5%AE%89%E8%A3%85mongodb%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2017-03-04T09:45:50.462Z</lastmod>
+    <lastmod>2017-03-04T09:54:23.866Z</lastmod>
     <data>
         <display>
         <title>centos下安装mongodb记录</title>
@@ -456,7 +471,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/06/28/calabash-ios%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3/</loc>
-    <lastmod>2017-03-04T09:45:50.327Z</lastmod>
+    <lastmod>2017-03-04T09:54:23.727Z</lastmod>
     <data>
         <display>
         <title>calabash-ios安装详解</title>
@@ -468,6 +483,9 @@
          
          
            
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
         </display>
     </data>
     </url>
@@ -475,7 +493,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2015/06/12/calabash-ios%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/</loc>
-    <lastmod>2017-03-04T09:45:50.292Z</lastmod>
+    <lastmod>2017-03-04T09:54:23.693Z</lastmod>
     <data>
         <display>
         <title>calabash-ios原理分析</title>
@@ -487,6 +505,9 @@
          
          
            
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
         </display>
     </data>
     </url>
@@ -494,7 +515,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/06/20/calabash-android%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/</loc>
-    <lastmod>2017-03-04T09:45:50.252Z</lastmod>
+    <lastmod>2017-03-04T09:54:23.660Z</lastmod>
     <data>
         <display>
         <title>calabash-android原理分析</title>
@@ -506,6 +527,9 @@
          
          
            
+             
+              <breadCrumb title="android" url="https://tunsuy.github.io/categories/android/"/>
+          
         </display>
     </data>
     </url>
@@ -513,7 +537,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/11/16/App%E4%B8%89%E6%96%B9%E4%BA%A4%E4%BA%92%E9%80%BB%E8%BE%91%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2017-03-04T09:45:50.232Z</lastmod>
+    <lastmod>2017-03-04T09:54:23.637Z</lastmod>
     <data>
         <display>
         <title>App三方交互逻辑实践</title>
@@ -527,6 +551,9 @@
          
          
            
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
         </display>
     </data>
     </url>
@@ -534,7 +561,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/07/10/appium-ios%E8%87%AA%E5%8A%A8%E5%8C%96%E5%85%A5%E9%97%A8/</loc>
-    <lastmod>2017-03-04T09:45:50.130Z</lastmod>
+    <lastmod>2017-03-04T09:54:23.545Z</lastmod>
     <data>
         <display>
         <title>appium-ios自动化入门</title>
@@ -548,6 +575,9 @@
          
          
            
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
         </display>
     </data>
     </url>

@@ -5,12 +5,12 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tunsuy.github.io/"/>
-  <updated>2017-03-04T09:45:50.962Z</updated>
+  <updated>2017-03-04T09:54:24.394Z</updated>
   <id>https://tunsuy.github.io/</id>
   
   <author>
     <name>tunsuy</name>
-    <email>957126743@qq.com</email>
+    
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
@@ -20,7 +20,7 @@
     <link href="https://tunsuy.github.io/2016/12/09/%E8%87%AA%E7%BC%96%E8%AF%91mongo3-2%E6%B5%8B%E8%AF%95/"/>
     <id>https://tunsuy.github.io/2016/12/09/自编译mongo3-2测试/</id>
     <published>2016-12-09T02:13:44.000Z</published>
-    <updated>2017-03-04T09:45:50.962Z</updated>
+    <updated>2017-03-04T09:54:24.394Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>公司将mongodb删除机制进行了自定义，改动了相关源码，故需要配合测试mongodb的功能是否正常</p>
 <h1 id="二、-检查服务器"><a href="#二、-检查服务器" class="headerlink" title="二、 检查服务器"></a>二、 检查服务器</h1><h2 id="1、-检查mongo启动情况"><a href="#1、-检查mongo启动情况" class="headerlink" title="1、 检查mongo启动情况"></a>1、 检查mongo启动情况</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">netstat -anpt | grep mong* | grep <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></div><div class="line">mongoa --port <span class="number">27020</span>（相应的端口）——进入mongo</div></pre></td></tr></table></figure>
@@ -81,7 +81,7 @@
     <link href="https://tunsuy.github.io/2016/11/16/App%E4%B8%89%E6%96%B9%E4%BA%A4%E4%BA%92%E9%80%BB%E8%BE%91%E5%AE%9E%E8%B7%B5/"/>
     <id>https://tunsuy.github.io/2016/11/16/App三方交互逻辑实践/</id>
     <published>2016-11-16T07:28:06.000Z</published>
-    <updated>2017-03-04T09:45:50.232Z</updated>
+    <updated>2017-03-04T09:54:23.637Z</updated>
     
     <content type="html"><![CDATA[<p>项目地址：<br><a href="https://github.com/tunsuy/AppInteractive" target="_blank" rel="external">https://github.com/tunsuy/AppInteractive</a></p>
 <h1 id="一、-背景介绍"><a href="#一、-背景介绍" class="headerlink" title="一、 背景介绍"></a>一、 背景介绍</h1><p>之前有一个公司项目与第三方应用交互的逻辑需要全面测试，那么怎样才能测试到整个交互的所有环节呢</p>
@@ -111,6 +111,8 @@
     
     </summary>
     
+      <category term="ios" scheme="https://tunsuy.github.io/categories/ios/"/>
+    
     
       <category term="ios" scheme="https://tunsuy.github.io/tags/ios/"/>
     
@@ -125,7 +127,7 @@
     <link href="https://tunsuy.github.io/2016/10/15/mongodb%E9%9B%86%E7%BE%A43-0-X%E5%8D%87%E7%BA%A73-2-X/"/>
     <id>https://tunsuy.github.io/2016/10/15/mongodb集群3-0-X升级3-2-X/</id>
     <published>2016-10-15T02:07:58.000Z</published>
-    <updated>2017-03-04T09:45:50.708Z</updated>
+    <updated>2017-03-04T09:54:24.128Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>该文章主要根据官方英文文档来操作的</p>
 <p>官方文档：<a href="https://docs.mongodb.com/manual/release-notes/3.2-upgrade/" target="_blank" rel="external">https://docs.mongodb.com/manual/release-notes/3.2-upgrade/</a></p>
@@ -193,7 +195,7 @@
     <link href="https://tunsuy.github.io/2016/10/08/redmine-%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/"/>
     <id>https://tunsuy.github.io/2016/10/08/redmine-数据统计/</id>
     <published>2016-10-08T12:11:06.000Z</published>
-    <updated>2017-03-04T09:45:50.727Z</updated>
+    <updated>2017-03-04T09:54:24.148Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-项目说明"><a href="#一、-项目说明" class="headerlink" title="一、 项目说明"></a>一、 项目说明</h1><p>语言：python语言</p>
 <p>1、项目地址：<br><a href="https://github.com/tunsuy/redmine_statis" target="_blank" rel="external">https://github.com/tunsuy/redmine_statis</a></p>
@@ -257,7 +259,7 @@
     <link href="https://tunsuy.github.io/2016/09/28/ios%EF%BC%9AUIWebView%E4%B8%8EWKWebView%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
     <id>https://tunsuy.github.io/2016/09/28/ios：UIWebView与WKWebView注意事项/</id>
     <published>2016-09-28T09:14:51.000Z</published>
-    <updated>2017-03-04T09:45:50.599Z</updated>
+    <updated>2017-03-04T09:54:24.015Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-基本介绍"><a href="#一、-基本介绍" class="headerlink" title="一、 基本介绍"></a>一、 基本介绍</h1><p>1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 运行的上下文环境 JSContext 注入对象 Bridge；</p>
 <p>2、WKWebView 使用的 WebKit 框架，交互时为 webkit.messageHandlers 注入对象</p>
@@ -294,7 +296,7 @@
     <link href="https://tunsuy.github.io/2016/09/23/%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8BiOS%E6%97%A5%E5%BF%97/"/>
     <id>https://tunsuy.github.io/2016/09/23/实现浏览器中实时查看iOS日志/</id>
     <published>2016-09-23T07:32:34.000Z</published>
-    <updated>2017-03-04T09:45:50.910Z</updated>
+    <updated>2017-03-04T09:54:24.338Z</updated>
     
     <content type="html"><![CDATA[<p>项目地址：<br><a href="https://github.com/tunsuy/TSiOSLogWebBrowser" target="_blank" rel="external">https://github.com/tunsuy/TSiOSLogWebBrowser</a></p>
 <h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>在测试ios App过程中，有很多时候我们需要一边操作一遍查看输出日志</p>
@@ -321,6 +323,8 @@
     
     </summary>
     
+      <category term="ios" scheme="https://tunsuy.github.io/categories/ios/"/>
+    
     
       <category term="ios" scheme="https://tunsuy.github.io/tags/ios/"/>
     
@@ -335,7 +339,7 @@
     <link href="https://tunsuy.github.io/2016/09/21/ios%EF%BC%9Ahttps-ATS%E6%94%B9%E9%80%A0%E8%BF%87%E7%A8%8B/"/>
     <id>https://tunsuy.github.io/2016/09/21/ios：https-ATS改造过程/</id>
     <published>2016-09-21T05:14:11.000Z</published>
-    <updated>2017-03-04T09:45:50.582Z</updated>
+    <updated>2017-03-04T09:54:23.995Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>苹果官方宣称今年底将全面强制启动https的支持<br>1、不安全的HTTP链接将会遭到拦截  </p>
 <p>2、而且系统 Foundation 框架下的相关网络请求，将不再默认使用 HTTP等不安全的网络协议，而默认采用 TLS 1.</p>
@@ -388,7 +392,7 @@
     <link href="https://tunsuy.github.io/2016/09/18/%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F%E4%B9%8BAPI%E8%B0%83%E7%94%A8%E7%89%88%E6%9C%AC%E6%A3%80%E6%9F%A5/"/>
     <id>https://tunsuy.github.io/2016/09/18/代码扫描之API调用版本检查/</id>
     <published>2016-09-18T02:09:21.000Z</published>
-    <updated>2017-03-04T09:45:50.797Z</updated>
+    <updated>2017-03-04T09:54:24.228Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>语言：python语言</p>
 <p>该项目是对工程项目代码进行全面扫描，发现其是否有代码层面的bug<br>目前第一版支持了ios下的api版本控制的扫描检查<br>后续将逐渐支持其他方面的代码检查，比如是否有内存溢出，数组越界等，支持检查项可配置</p>
@@ -434,7 +438,7 @@
     <link href="https://tunsuy.github.io/2016/08/11/ios%EF%BC%9A%E6%80%A7%E8%83%BD%E4%B9%8B%E5%8D%A1%E9%A1%BF%E6%A3%80%E6%B5%8B/"/>
     <id>https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/</id>
     <published>2016-08-11T11:11:51.000Z</published>
-    <updated>2017-03-04T09:45:50.615Z</updated>
+    <updated>2017-03-04T09:54:24.034Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>项目地址：<br><a href="https://github.com/tunsuy/iOSMonitorLag" target="_blank" rel="external">https://github.com/tunsuy/iOSMonitorLag</a></p>
 <p>该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果</p>
@@ -497,7 +501,7 @@
     <link href="https://tunsuy.github.io/2016/07/18/redmine%E7%B3%BB%E7%BB%9F%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E4%B9%8Bsearch%E5%8A%9F%E8%83%BD/"/>
     <id>https://tunsuy.github.io/2016/07/18/redmine系统二次开发之search功能/</id>
     <published>2016-07-18T04:30:24.000Z</published>
-    <updated>2017-03-04T09:45:50.744Z</updated>
+    <updated>2017-03-04T09:54:24.167Z</updated>
     
     <content type="html"><![CDATA[<p>项目地址：<br><a href="https://github.com/tunsuy/redmine_select_search" target="_blank" rel="external">https://github.com/tunsuy/redmine_select_search</a></p>
 <h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>该项目主要是对redmine进行简单的二次开发，满足以下需求：<br>在redmine的select选择框中，如果选项特别多，那么选择是非常考验眼力的，可能眼睛看花了都找不到<br>那么就考虑对所有的select框增加搜索功能</p>
@@ -536,6 +540,8 @@
     
     </summary>
     
+      <category term="redmine" scheme="https://tunsuy.github.io/categories/redmine/"/>
+    
     
       <category term="redmine" scheme="https://tunsuy.github.io/tags/redmine/"/>
     
@@ -548,7 +554,7 @@
     <link href="https://tunsuy.github.io/2016/07/10/appium-ios%E8%87%AA%E5%8A%A8%E5%8C%96%E5%85%A5%E9%97%A8/"/>
     <id>https://tunsuy.github.io/2016/07/10/appium-ios自动化入门/</id>
     <published>2016-07-10T07:13:01.000Z</published>
-    <updated>2017-03-04T09:45:50.130Z</updated>
+    <updated>2017-03-04T09:54:23.545Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  </p>
 <p>这次先介绍appium的使用过程，后续有时间会看下其源码实现机制。</p>
@@ -603,6 +609,8 @@
     
     </summary>
     
+      <category term="ios" scheme="https://tunsuy.github.io/categories/ios/"/>
+    
     
       <category term="ios" scheme="https://tunsuy.github.io/tags/ios/"/>
     
@@ -617,7 +625,7 @@
     <link href="https://tunsuy.github.io/2016/06/28/calabash-ios%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3/"/>
     <id>https://tunsuy.github.io/2016/06/28/calabash-ios安装详解/</id>
     <published>2016-06-28T06:48:31.000Z</published>
-    <updated>2017-03-04T09:45:50.327Z</updated>
+    <updated>2017-03-04T09:54:23.727Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  </p>
 <p>这次先介绍calabash的使用过程，后续有时间会看下其源码实现机制。</p>
@@ -656,6 +664,8 @@
     
     </summary>
     
+      <category term="ios" scheme="https://tunsuy.github.io/categories/ios/"/>
+    
     
       <category term="ios" scheme="https://tunsuy.github.io/tags/ios/"/>
     
@@ -668,7 +678,7 @@
     <link href="https://tunsuy.github.io/2016/06/20/calabash-android%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
     <id>https://tunsuy.github.io/2016/06/20/calabash-android原理分析/</id>
     <published>2016-06-20T07:16:39.000Z</published>
-    <updated>2017-03-04T09:45:50.252Z</updated>
+    <updated>2017-03-04T09:54:23.660Z</updated>
     
     <content type="html"><![CDATA[<p>在前面已经简单的介绍了calabash-ios的原理，这里将继续分析calabash-Android端的原理</p>
 <h1 id="一、-原理解析"><a href="#一、-原理解析" class="headerlink" title="一、 原理解析"></a>一、 原理解析</h1><p>calabash-android架构其实与IOS是相同的</p>
@@ -693,6 +703,8 @@
     
     </summary>
     
+      <category term="android" scheme="https://tunsuy.github.io/categories/android/"/>
+    
     
       <category term="自动化测试" scheme="https://tunsuy.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
     
@@ -705,7 +717,7 @@
     <link href="https://tunsuy.github.io/2016/06/15/docker%E8%87%AA%E5%AE%9A%E4%B9%89daemon%E9%80%89%E9%A1%B9/"/>
     <id>https://tunsuy.github.io/2016/06/15/docker自定义daemon选项/</id>
     <published>2016-06-15T04:10:23.000Z</published>
-    <updated>2017-03-04T09:45:50.482Z</updated>
+    <updated>2017-03-04T09:54:23.884Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-前提"><a href="#一、-前提" class="headerlink" title="一、 前提"></a>一、 前提</h1><p>可以定义的选项为如下列出来的<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-current daemon --help</div></pre></td></tr></table></figure></p>
 <h1 id="二、-方案一"><a href="#二、-方案一" class="headerlink" title="二、 方案一"></a>二、 方案一</h1><h2 id="1、-分别定义各环境文件"><a href="#1、-分别定义各环境文件" class="headerlink" title="1、 分别定义各环境文件"></a>1、 分别定义各环境文件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eg：/etc/sysconfig/docker-storage</div><div class="line">/etc/sysconfig/docker-network</div></pre></td></tr></table></figure>
@@ -751,7 +763,7 @@
     <link href="https://tunsuy.github.io/2016/06/02/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84moa%E6%9C%8D%E5%8A%A1/"/>
     <id>https://tunsuy.github.io/2016/06/02/基于docker的moa服务/</id>
     <published>2016-06-02T04:15:17.000Z</published>
-    <updated>2017-03-04T09:45:50.875Z</updated>
+    <updated>2017-03-04T09:54:24.315Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>该文章主要讲解将公司的server服务docker化的具体过程，从中可以看到很多docker相关知识的使用以及网络配置等操作<br>文中还设计到自己实现的关于docker自动化配置的两个脚本，供大家学习参考</p>
 <h1 id="二、-docker化步骤"><a href="#二、-docker化步骤" class="headerlink" title="二、 docker化步骤"></a>二、 docker化步骤</h1><p>1、 将初始安装包拷贝到容器主机上</p>
@@ -830,7 +842,7 @@
     <link href="https://tunsuy.github.io/2016/05/19/iOS%E4%B8%8B%E4%BD%BF%E7%94%A8XCTest%E8%BF%9B%E8%A1%8C%E5%8F%91%E5%8C%85%E5%89%8DChecklist%E6%A3%80%E6%9F%A5/"/>
     <id>https://tunsuy.github.io/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/</id>
     <published>2016-05-19T07:16:22.000Z</published>
-    <updated>2017-03-04T09:45:50.532Z</updated>
+    <updated>2017-03-04T09:54:23.936Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-UI-Testing简介"><a href="#一、-UI-Testing简介" class="headerlink" title="一、 UI Testing简介"></a>一、 UI Testing简介</h1><p>1、UI Testing 是基于 XCTest 测试框架的。XCTest 作为 OCUnit 的替代者，目前是 iOS 单元测试框架不二之选，很多其他测试框架也基于 XCTest 封装。XCTest 有如下特点：</p>
 <ul>
@@ -871,6 +883,8 @@
     
     </summary>
     
+      <category term="ios" scheme="https://tunsuy.github.io/categories/ios/"/>
+    
     
       <category term="ios" scheme="https://tunsuy.github.io/tags/ios/"/>
     
@@ -883,7 +897,7 @@
     <link href="https://tunsuy.github.io/2016/04/14/selenium%E8%BF%9C%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
     <id>https://tunsuy.github.io/2016/04/14/selenium远程启动浏览器/</id>
     <published>2016-04-14T11:08:23.000Z</published>
-    <updated>2017-03-04T09:45:50.779Z</updated>
+    <updated>2017-03-04T09:54:24.205Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-方案一"><a href="#一、-方案一" class="headerlink" title="一、 方案一"></a>一、 方案一</h1><p>通过selenium-server  </p>
 <h2 id="1、-相关下载"><a href="#1、-相关下载" class="headerlink" title="1、 相关下载"></a>1、 相关下载</h2><ul>
@@ -932,7 +946,7 @@
     <link href="https://tunsuy.github.io/2015/10/27/redmine%E8%BF%81%E7%A7%BB%EF%BC%9A%E4%BB%8Ewindows%E4%B8%8B%E8%BF%81%E7%A7%BB%E5%88%B0linux/"/>
     <id>https://tunsuy.github.io/2015/10/27/redmine迁移：从windows下迁移到linux/</id>
     <published>2015-10-27T11:24:22.000Z</published>
-    <updated>2017-03-04T09:45:50.761Z</updated>
+    <updated>2017-03-04T09:54:24.185Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-迁移步骤"><a href="#一、-迁移步骤" class="headerlink" title="一、 迁移步骤"></a>一、 迁移步骤</h1><p>1、在linux下将redmine安装好  </p>
 <p>2、从原来的服务器上（windows）导出数据库文件（sql文件）  </p>
@@ -987,7 +1001,7 @@
     <link href="https://tunsuy.github.io/2015/06/12/calabash-ios%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
     <id>https://tunsuy.github.io/2015/06/12/calabash-ios原理分析/</id>
     <published>2015-06-12T07:10:51.000Z</published>
-    <updated>2017-03-04T09:45:50.292Z</updated>
+    <updated>2017-03-04T09:54:23.693Z</updated>
     
     <content type="html"><![CDATA[<p>calabash同时支持ios和Android平台，这里只介绍ios平台。</p>
 <h1 id="一、-系统架构图"><a href="#一、-系统架构图" class="headerlink" title="一、 系统架构图"></a>一、 系统架构图</h1><p>calabash-ios整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
@@ -1009,6 +1023,8 @@
     
     </summary>
     
+      <category term="ios" scheme="https://tunsuy.github.io/categories/ios/"/>
+    
     
       <category term="ios" scheme="https://tunsuy.github.io/tags/ios/"/>
     
@@ -1021,7 +1037,7 @@
     <link href="https://tunsuy.github.io/2015/06/10/%E5%88%A9%E7%94%A8leakcanay%E6%A3%80%E6%B5%8Bandroid%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/"/>
     <id>https://tunsuy.github.io/2015/06/10/利用leakcanay检测android内存泄露/</id>
     <published>2015-06-10T07:21:24.000Z</published>
-    <updated>2017-03-04T09:45:50.857Z</updated>
+    <updated>2017-03-04T09:54:24.270Z</updated>
     
     <content type="html"><![CDATA[<p>leakcanary的知识就不在这里普及了，随便Google下就知道</p>
 <h1 id="一、-项目集成"><a href="#一、-项目集成" class="headerlink" title="一、 项目集成"></a>一、 项目集成</h1><p>直接说在项目中怎么操作，如下：<br>1、在 build.gradle 中加入引用，不同的编译使用不同的引用：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">  debugCompile <span class="string">'com.squareup.leakcanary:leakcanary-android:1.3'</span></div><div class="line">  releaseCompile <span class="string">'com.squareup.leakcanary:leakcanary-android-no-op:1.3'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -1048,6 +1064,8 @@
 &lt;h1 id=&quot;一、-项目集成&quot;&gt;&lt;a href=&quot;#一、-项目集成&quot; class=&quot;headerlink&quot; title=&quot;一、 项目集成&quot;&gt;&lt;/a&gt;一、 项目集成&lt;/h1&gt;&lt;p&gt;直接说在项目中怎么操作，如下：&lt;br&gt;1、在 build.gradle 中加入引用，不同的编译使用不同的引用：&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  debugCompile &lt;span class=&quot;string&quot;&gt;&#39;com.squareup.leakcanary:leakcanary-android:1.3&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  releaseCompile &lt;span class=&quot;string&quot;&gt;&#39;com.squareup.leakcanary:leakcanary-android-no-op:1.3&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
     
     </summary>
+    
+      <category term="android" scheme="https://tunsuy.github.io/categories/android/"/>
     
     
       <category term="android" scheme="https://tunsuy.github.io/tags/android/"/>
