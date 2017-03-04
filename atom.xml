@@ -633,9 +633,9 @@ end
     
       <category term="ios" scheme="https://tunsuy.github.io/tags/ios/"/>
     
-      <category term="自动化测试" scheme="https://tunsuy.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
-    
       <category term="appium" scheme="https://tunsuy.github.io/tags/appium/"/>
+    
+      <category term="自动化测试" scheme="https://tunsuy.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
@@ -722,9 +722,9 @@ end
     </summary>
     
     
-      <category term="Android" scheme="https://tunsuy.github.io/tags/Android/"/>
-    
       <category term="自动化测试" scheme="https://tunsuy.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="Android" scheme="https://tunsuy.github.io/tags/Android/"/>
     
   </entry>
   

@@ -13,9 +13,9 @@
         
         <tag>ios</tag>
          
-        <tag>自动化测试</tag>
-         
         <tag>appium</tag>
+         
+        <tag>自动化测试</tag>
          
          
            
@@ -32,9 +32,9 @@
         <title>利用drozer进行Android渗透测试</title>
         <pubTime>2015-05-10T07:18:59.000Z</pubTime>
         
-        <tag>测试</tag>
-         
         <tag>android</tag>
+         
+        <tag>测试</tag>
          
          
            
@@ -235,9 +235,9 @@
         <title>calabash-android原理分析</title>
         <pubTime>2016-06-20T07:16:39.000Z</pubTime>
         
-        <tag>Android</tag>
-         
         <tag>自动化测试</tag>
+         
+        <tag>Android</tag>
          
          
            
