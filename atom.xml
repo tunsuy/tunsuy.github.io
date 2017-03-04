@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tunsuy.github.io/"/>
-  <updated>2017-03-04T08:54:14.520Z</updated>
+  <updated>2017-03-04T09:18:06.348Z</updated>
   <id>https://tunsuy.github.io/</id>
   
   <author>
@@ -20,9 +20,10 @@
     <link href="https://tunsuy.github.io/2016/12/09/%E8%87%AA%E7%BC%96%E8%AF%91mongo3-2%E6%B5%8B%E8%AF%95/"/>
     <id>https://tunsuy.github.io/2016/12/09/自编译mongo3-2测试/</id>
     <published>2016-12-09T02:13:44.000Z</published>
-    <updated>2017-03-04T08:54:14.520Z</updated>
+    <updated>2017-03-04T09:18:06.348Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>公司将mongodb删除机制进行了自定义，改动了相关源码，故需要配合测试mongodb的功能是否正常</p>
+<a id="more"></a>
 <h1 id="二、-检查服务器"><a href="#二、-检查服务器" class="headerlink" title="二、 检查服务器"></a>二、 检查服务器</h1><h2 id="1、-检查mongo启动情况"><a href="#1、-检查mongo启动情况" class="headerlink" title="1、 检查mongo启动情况"></a>1、 检查mongo启动情况</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">netstat -anpt | grep mong* | grep <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></div><div class="line">mongoa --port <span class="number">27020</span>（相应的端口）——进入mongo</div></pre></td></tr></table></figure>
 <h2 id="2、-100集群数据库情况"><a href="#2、-100集群数据库情况" class="headerlink" title="2、 100集群数据库情况"></a>2、 100集群数据库情况</h2><p><code>cat /etc/hosts | grep db</code>——在169.100下查看<br>——3个数据库分片（sh0，sh1，sh2）<br>——2个统计分片（statis-sh0，statis-sh1）</p>
 <p>也可以这样查看：</p>
@@ -62,7 +63,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;一、-简介&quot;&gt;&lt;a href=&quot;#一、-简介&quot; class=&quot;headerlink&quot; title=&quot;一、 简介&quot;&gt;&lt;/a&gt;一、 简介&lt;/h1&gt;&lt;p&gt;公司将mongodb删除机制进行了自定义，改动了相关源码，故需要配合测试mongodb的功能是否正常&lt;/p&gt;
-&lt;h1
     
     </summary>
     

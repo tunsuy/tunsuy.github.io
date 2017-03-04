@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://tunsuy.github.io/2016/12/09/%E8%87%AA%E7%BC%96%E8%AF%91mongo3-2%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2017-03-04T09:18:06.348Z</lastmod>
+    <data>
+        <display>
+        <title>自编译mongo3.2测试</title>
+        <pubTime>2016-12-09T02:13:44.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>mongodb</tag>
+         
+         
+           
+             
+              <breadCrumb title="mongodb" url="https://tunsuy.github.io/categories/mongodb/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://tunsuy.github.io/2015/04/27/%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B9%8C%E4%BA%91%E7%BD%91%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2017-03-04T09:16:47.240Z</lastmod>
     <data>
@@ -19,28 +41,6 @@
            
              
               <breadCrumb title="linux" url="https://tunsuy.github.io/categories/linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tunsuy.github.io/2016/12/09/%E8%87%AA%E7%BC%96%E8%AF%91mongo3-2%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2017-03-04T08:54:14.520Z</lastmod>
-    <data>
-        <display>
-        <title>自编译mongo3.2测试</title>
-        <pubTime>2016-12-09T02:13:44.000Z</pubTime>
-        
-        <tag>linux</tag>
-         
-        <tag>mongodb</tag>
-         
-         
-           
-             
-              <breadCrumb title="mongodb" url="https://tunsuy.github.io/categories/mongodb/"/>
           
         </display>
     </data>
