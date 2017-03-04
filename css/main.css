@@ -1806,6 +1806,9 @@ pre .javascript .function {
 .feed-link a:hover i {
   color: #fff;
 }
+.links-of-author-item {
+  text-align: center;
+}
 .links-of-author {
   margin-top: 20px;
 }
@@ -1825,7 +1828,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a74783;
+  background: #ffdef2;
 }
 .links-of-blogroll {
   font-size: 13px;
