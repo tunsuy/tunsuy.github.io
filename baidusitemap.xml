@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>https://tunsuy.github.io/2015/05/10/%E5%88%A9%E7%94%A8drozer%E8%BF%9B%E8%A1%8CAndroid%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2017-03-04T07:12:05.617Z</lastmod>
+    <data>
+        <display>
+        <title>利用drozer进行Android渗透测试</title>
+        <pubTime>2015-05-10T07:18:59.000Z</pubTime>
+        
+        <tag>测试</tag>
+         
+        <tag>android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://tunsuy.github.io/2016/06/02/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84moa%E6%9C%8D%E5%8A%A1/</loc>
     <lastmod>2017-03-04T06:55:11.408Z</lastmod>
     <data>
@@ -169,16 +188,16 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2015/05/10/%E5%88%A9%E7%94%A8drozer%E8%BF%9B%E8%A1%8CAndroid%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2017-02-28T12:24:31.941Z</lastmod>
+    <loc>https://tunsuy.github.io/2016/05/19/iOS%E4%B8%8B%E4%BD%BF%E7%94%A8XCTest%E8%BF%9B%E8%A1%8C%E5%8F%91%E5%8C%85%E5%89%8DChecklist%E6%A3%80%E6%9F%A5/</loc>
+    <lastmod>2017-02-28T12:24:31.858Z</lastmod>
     <data>
         <display>
-        <title>利用drozer进行Android渗透测试</title>
-        <pubTime>2015-05-10T07:18:59.000Z</pubTime>
+        <title>iOS下使用UI-Testing进行发包前Checklist检查</title>
+        <pubTime>2016-05-19T07:16:22.000Z</pubTime>
         
-        <tag>Android</tag>
+        <tag>ios</tag>
          
-        <tag>测试</tag>
+        <tag>自动化测试</tag>
          
          
            
@@ -188,12 +207,12 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2016/05/19/iOS%E4%B8%8B%E4%BD%BF%E7%94%A8XCTest%E8%BF%9B%E8%A1%8C%E5%8F%91%E5%8C%85%E5%89%8DChecklist%E6%A3%80%E6%9F%A5/</loc>
-    <lastmod>2017-02-28T12:24:31.858Z</lastmod>
+    <loc>https://tunsuy.github.io/2016/06/28/calabash-ios%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2017-02-28T12:24:31.768Z</lastmod>
     <data>
         <display>
-        <title>iOS下使用UI-Testing进行发包前Checklist检查</title>
-        <pubTime>2016-05-19T07:16:22.000Z</pubTime>
+        <title>calabash-ios安装详解</title>
+        <pubTime>2016-06-28T06:48:31.000Z</pubTime>
         
         <tag>ios</tag>
          
@@ -215,25 +234,6 @@
         <pubTime>2016-06-20T07:16:39.000Z</pubTime>
         
         <tag>Android</tag>
-         
-        <tag>自动化测试</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tunsuy.github.io/2016/06/28/calabash-ios%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3/</loc>
-    <lastmod>2017-02-28T12:24:31.768Z</lastmod>
-    <data>
-        <display>
-        <title>calabash-ios安装详解</title>
-        <pubTime>2016-06-28T06:48:31.000Z</pubTime>
-        
-        <tag>ios</tag>
          
         <tag>自动化测试</tag>
          
