@@ -799,73 +799,61 @@ EnvironmentFile=-/etc/sysconfig/docker-network
     <link href="https://tunsuy.github.io/2016/06/02/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84moa%E6%9C%8D%E5%8A%A1/"/>
     <id>https://tunsuy.github.io/2016/06/02/基于docker的moa服务/</id>
     <published>2016-06-02T04:15:17.000Z</published>
-    <updated>2017-03-04T01:22:09.190Z</updated>
+    <updated>2017-03-04T06:55:11.408Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>该文章主要讲解将公司的server服务docker化的具体过程，从中可以看到很多docker相关知识的使用以及网络配置等操作<br>文中还设计到自己实现的关于docker自动化配置的两个脚本，供大家学习参考</p>
-<h1 id="二、-docker化步骤"><a href="#二、-docker化步骤" class="headerlink" title="二、 docker化步骤"></a>二、 docker化步骤</h1><h2 id="1、-将初始安装包拷贝到容器主机上"><a href="#1、-将初始安装包拷贝到容器主机上" class="headerlink" title="1、 将初始安装包拷贝到容器主机上"></a>1、 将初始安装包拷贝到容器主机上</h2><p>2、在主机上拉取一个centos6.7的docker镜像<br>ps：因为官方的docker镜像都是轻量级的，所有很多linux下的命令都没有</p>
+<h1 id="二、-docker化步骤"><a href="#二、-docker化步骤" class="headerlink" title="二、 docker化步骤"></a>二、 docker化步骤</h1><p>1、 将初始安装包拷贝到容器主机上</p>
+<p>2、在主机上拉取一个centos6.7的docker镜像<br>ps：因为官方的docker镜像都是轻量级的，所有很多linux下的命令都没有</p>
 <ul>
 <li>方法一 就是要么自己将所有的命令工具都安装了</li>
 <li>方法二 找一个别人建好的docker镜像</li>
 </ul>
-<p>3、将主机上的安装包共享给容器，并交互式形式启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -t -i --name moa_centos7 -v /home/tunsuy/toContainer:/home/tunsuy/fromHost centos:centos7 /bin/bash</div></pre></td></tr></table></figure></p>
+<p>3、将主机上的安装包共享给容器，并交互式形式启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -t -i --name moa_centos7 -v /home/tunsuy/toContainer:/home/tunsuy/fromHost centos:centos7 /bin/bash</div></pre></td></tr></table></figure></p>
 <p>4、因为没有空白机的公有云安装包，所以这里以私有云空白安装包来安装<br>ps：<code>./install.sh -m test -d public_clound</code><br>——参考./install.sh脚本实现</p>
 <p>5、安装过程中可能会遇到一些问题  </p>
 <ul>
-<li><p>提示没有xx命令——一律<figure class="highlight sh"><figcaption><span>yum install xx ```即可</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">* 提示连接不上mongodb  </div><div class="line">——中断安装（其实moa依赖的一些软件环境已经安装成功了）  </div><div class="line">——参考其他虚拟机公有云的mongodb安装情况，调整该docker容器中的mongodb并成功启动</div><div class="line"></div><div class="line">6、单独安装公有云升级包（该包中需要包含dbserver服务包）</div><div class="line"></div><div class="line">7、安装包成功之后，检查各项服务是否成功（包括web、流程、商店等）  </div><div class="line">* 可能会发现mysql安装异常  </div><div class="line">——手动安装：进入私有云空白安装包中的init目录下，运行./install.sh  </div><div class="line">————安装过程中可能会报错，缺少某些依赖  </div><div class="line">————依次yum install安装（有的可能需要自己下载安装）</div><div class="line"></div><div class="line">8、所有的服务都检查无误时，制作镜像并上传</div><div class="line">* 搭建私有仓库（按照官方文档做就可以了，这里不详细写）</div><div class="line">* 将容器制作为镜像</div><div class="line">        ```sh  </div><div class="line"></div><div class="line">        docker commit --author <span class="string">"ts"</span> --message <span class="string">"更正moaserver初始化包环境"</span> 容器名 docker.ts.com:5000/moaserver_env:init</div></pre></td></tr></table></figure></p>
+<li>提示没有xx命令——一律<code>yum install xx</code>即可</li>
+<li>提示连接不上mongodb<br>——中断安装（其实moa依赖的一些软件环境已经安装成功了）<br>——参考其他虚拟机公有云的mongodb安装情况，调整该docker容器中的mongodb并成功启动</li>
+</ul>
+<p>6、单独安装公有云升级包（该包中需要包含dbserver服务包）</p>
+<p>7、安装包成功之后，检查各项服务是否成功（包括web、流程、商店等）  </p>
+<ul>
+<li>可能会发现mysql安装异常<br>——手动安装：进入私有云空白安装包中的init目录下，运行./install.sh<br>————安装过程中可能会报错，缺少某些依赖<br>————依次yum install安装（有的可能需要自己下载安装）</li>
+</ul>
+<p>8、所有的服务都检查无误时，制作镜像并上传</p>
+<ul>
+<li>搭建私有仓库（按照官方文档做就可以了，这里不详细写）</li>
+<li><p>将容器制作为镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker commit --author &quot;ts&quot; --message &quot;更正moaserver初始化包环境&quot; 容器名 docker.ts.com:5000/moaserver_env:init</div></pre></td></tr></table></figure>
 </li>
 <li><p>上传镜像到私有仓库</p>
-<pre><code><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">docker push docker.ts.com:5000/moaserver_env:init</div></pre></td></tr></table></figure>
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker push docker.ts.com:5000/moaserver_env:init</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>ps：配置私有仓库http访问<br>编辑文件：vim /etc/sysconfig/docker<br>添加以下内容</p>
-<pre><code>OPTIONS=&apos;--selinux-enabled --insecure-registry=docker.ts.com:5000&apos;
-</code></pre><p>或者编辑文件：vim /usr/lib/systemd/system/docker.service<br>添加以下内容</p>
-<pre><code>  ExecStart=/usr/bin/docker-current daemon \
-    --exec-opt native.cgroupdriver=systemd \
-    $OPTIONS \
-    $DOCKER_STORAGE_OPTIONS \
-    $DOCKER_NETWORK_OPTIONS \
-    $ADD_REGISTRY \
-    $BLOCK_REGISTRY \
-    $INSECURE_REGISTRY \
---insecure-registry docker.ts.com:5000
-</code></pre><p>注：centos7的防火墙使用的是firewalld，因为之前对iptables比较熟，<br>     所以可以关掉firewalld，安装iptables服务  </p>
-<pre><code>systemctl stop firewalld
-systemctl mask firewalld
-yum install iptables-services
-</code></pre><h3 id="服务使用"><a href="#服务使用" class="headerlink" title="服务使用"></a>服务使用</h3><p>1、从私有仓库拉取该镜像并使用</p>
-<pre><code>docker run -t -i --name=moaserver_env --net=&quot;none&quot; -v /home/tunsuy/toContainer:/home/tunsuy/fromHost docker.ts.com:5000/moaserver_env:init /bin/bash
-</code></pre><p>  ps：这里采用none的网络方式，是因为想自己配置所有网络</p>
-<p>2、配置容器IP<br>这里使用我写的一个工具脚本：sh bind_addr.sh moaserver_env 172.17.0.2<br>ps：需要在主机上执行，而不是在容器中<br>脚本地址：<br><a href="https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关" target="_blank" rel="external">https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关</a></p>
-<p>3、source /etc/profile<br>ps：由于之前在镜像中配置的环境变量，在容器中不能自动生效（原因不明）</p>
-<p>4、启动mongo和mysql</p>
-<pre><code>/etc/init.d/mongod start
-/etc/init.d/mysqlaccd stop
-/etc/init.d/mysqld start
-</code></pre><p>5、更新hosts文件</p>
-<ul>
-<li>将模板文件写入hosts：<pre><code>cat /home/tunsuy/fromHost/host_templet &gt;&gt; /etc/hosts
-</code></pre></li>
-<li>将hosts中的IP改成容器ip</li>
-<li>mdbg -p 23808 -o changeip oldip=172.17.0.1,newip=172.17.0.2<br>ps：容器的/etc/hosts、/etc/resolv.conf文件是挂载在宿主机中的</li>
-</ul>
-<p>6、启动moa服务</p>
-<pre><code>/etc/init.d/moa start
-</code></pre><p>7、想要外部访问该docker，还需要进行主机和容器的端口映射<br>有两种方式：</p>
+<p>ps：配置私有仓库http访问<br>编辑文件：<code>vim /etc/sysconfig/docker</code><br>添加以下内容<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">OPTIONS=<span class="string">'--selinux-enabled --insecure-registry=docker.ts.com:5000'</span></div></pre></td></tr></table></figure></p>
+<p>或者编辑文件：<code>vim /usr/lib/systemd/system/docker.service</code><br>添加以下内容<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">  ExecStart=/usr/bin/docker-current daemon \</div><div class="line">    --exec-opt native.cgroupdriver=systemd \</div><div class="line">    <span class="variable">$OPTIONS</span> \</div><div class="line">    <span class="variable">$DOCKER_STORAGE_OPTIONS</span> \</div><div class="line">    <span class="variable">$DOCKER_NETWORK_OPTIONS</span> \</div><div class="line">    <span class="variable">$ADD_REGISTRY</span> \</div><div class="line">    <span class="variable">$BLOCK_REGISTRY</span> \</div><div class="line">    <span class="variable">$INSECURE_REGISTRY</span> \</div><div class="line">--insecure-registry docker.ts.com:5000</div></pre></td></tr></table></figure></p>
+<p>注：centos7的防火墙使用的是firewalld，因为之前对iptables比较熟，<br>     所以可以关掉firewalld，安装iptables服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">systemctl stop firewalld</div><div class="line">systemctl mask firewalld</div><div class="line">yum install iptables-services</div></pre></td></tr></table></figure></p>
+<h1 id="三、-服务使用"><a href="#三、-服务使用" class="headerlink" title="三、 服务使用"></a>三、 服务使用</h1><h2 id="1、-从私有仓库拉取该镜像并使用"><a href="#1、-从私有仓库拉取该镜像并使用" class="headerlink" title="1、 从私有仓库拉取该镜像并使用"></a>1、 从私有仓库拉取该镜像并使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -t -i --name=moaserver_env --net=&quot;none&quot; -v /home/tunsuy/toContainer:/home/tunsuy/fromHost docker.ts.com:5000/moaserver_env:init /bin/bash</div></pre></td></tr></table></figure>
+<p>ps：这里采用none的网络方式，是因为想自己配置所有网络</p>
+<h2 id="2、-配置容器IP"><a href="#2、-配置容器IP" class="headerlink" title="2、 配置容器IP"></a>2、 配置容器IP</h2><p>这里使用我写的一个工具脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh bind_addr.sh moaserver_env 172.17.0.2</div></pre></td></tr></table></figure></p>
+<p>ps：需要在主机上执行，而不是在容器中<br>脚本地址：<br><a href="https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关" target="_blank" rel="external">https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关</a></p>
+<h2 id="3、-配置环境变量"><a href="#3、-配置环境变量" class="headerlink" title="3、 配置环境变量"></a>3、 配置环境变量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source /etc/profile</div></pre></td></tr></table></figure>
+<p>ps：由于之前在镜像中配置的环境变量，在容器中不能自动生效（原因不明）</p>
+<h2 id="4、-启动mongo和mysql"><a href="#4、-启动mongo和mysql" class="headerlink" title="4、 启动mongo和mysql"></a>4、 启动mongo和mysql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/mongod start</div><div class="line">/etc/init.d/mysqlaccd stop</div><div class="line">/etc/init.d/mysqld start</div></pre></td></tr></table></figure>
+<h2 id="5、-更新hosts文件"><a href="#5、-更新hosts文件" class="headerlink" title="5、 更新hosts文件"></a>5、 更新hosts文件</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#将模板文件写入hosts：</span></div><div class="line">cat /home/tunsuy/fromHost/host_templet &gt;&gt; /etc/hosts</div><div class="line"></div><div class="line"><span class="comment">#将hosts中的IP改成容器ip</span></div><div class="line">mdbg -p 23808 -o changeip oldip=172.17.0.1,newip=172.17.0.2</div></pre></td></tr></table></figure>
+<p>ps：容器的/etc/hosts、/etc/resolv.conf文件是挂载在宿主机中的</p>
+<h2 id="6、-启动moa服务"><a href="#6、-启动moa服务" class="headerlink" title="6、 启动moa服务"></a>6、 启动moa服务</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/moa start</div></pre></td></tr></table></figure>
+<h2 id="7、端口映射"><a href="#7、端口映射" class="headerlink" title="7、端口映射"></a>7、端口映射</h2><p>想要外部访问该docker，还需要进行主机和容器的端口映射<br>有两种方式：</p>
 <ul>
 <li>在新建一个容器的时候就指定（一般都是这样）</li>
-<li>在已生成的容器中动态配置：主要还是基于iptables来设置（因为docker的原理实际上也是这样的）<br>因为之前我们在创建容器的时候没有指定，所以这里以第二种来配置<pre><code>iptables -A DOCKER ! -i docker0 -o docker0 -p tcp --dport 443 -d 172.17.0.1 -j ACCEPT
-iptables -t nat -A POSTROUTING -p tcp --dport 443 -s 172.17.0.1 -d 172.17.0.1 -j MASQUERADE
-iptables -t nat -A DOCKER ! -i dokcer0 -p tcp --dport 443 -j DNAT --to-destination 172.17.0.1:443
-</code></pre>   ps：为了方便，写了一个工具脚本<pre><code>sh docker_expose.sh moaserver_env 172.17.0.2 add 4432:443
-</code></pre>  脚本地址：<pre><code>[https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关](https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关)
-</code></pre></li>
+<li>在已生成的容器中动态配置：主要还是基于iptables来设置（因为docker的原理实际上也是这样的）<br>因为之前我们在创建容器的时候没有指定，所以这里以第二种来配置<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">iptables -A DOCKER ! -i docker0 -o docker0 -p tcp --dport <span class="number">443</span> -d <span class="number">172.17</span><span class="number">.0</span><span class="number">.1</span> -j ACCEPT</div><div class="line">iptables -t nat -A POSTROUTING -p tcp --dport <span class="number">443</span> -s <span class="number">172.17</span><span class="number">.0</span><span class="number">.1</span> -d <span class="number">172.17</span><span class="number">.0</span><span class="number">.1</span> -j MASQUERADE</div><div class="line">iptables -t nat -A DOCKER ! -i dokcer0 -p tcp --dport <span class="number">443</span> -j DNAT --to-destination <span class="number">172.17</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">443</span></div></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>注：查看iptables情况</p>
-<pre><code>iptables -nvxL --line-numbers
-iptables -t nat -nvxL --line-numbers
-</code></pre><h3 id="不足之处"><a href="#不足之处" class="headerlink" title="不足之处"></a>不足之处</h3><p>因为所有的容器都是基于宿主机的，最多通过修改时区来设置，也就只能偏移24小时<br>网上有一种方案，不知可行不：<a href="https://github.com/wolfcw/libfaketime/" target="_blank" rel="external">https://github.com/wolfcw/libfaketime/</a></p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://yeasy.gitbooks.io/docker_practice/content/cases/supervisor.html" target="_blank" rel="external">https://yeasy.gitbooks.io/docker_practice/content/cases/supervisor.html</a></p>
+<p>ps：为了方便，写了一个工具脚本<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh docker_expose.sh moaserver_env <span class="number">172.17</span><span class="number">.0</span><span class="number">.2</span> add <span class="number">4432</span>:<span class="number">443</span></div></pre></td></tr></table></figure></p>
+<p>脚本地址：<br>        <a href="https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关" target="_blank" rel="external">https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关</a></p>
+<p>注：查看iptables情况<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">iptables -nvxL --line-numbers</div><div class="line">iptables -t nat -nvxL --line-numbers</div></pre></td></tr></table></figure></p>
+<h1 id="四、-不足之处"><a href="#四、-不足之处" class="headerlink" title="四、 不足之处"></a>四、 不足之处</h1><p>因为所有的容器都是基于宿主机的，最多通过修改时区来设置，也就只能偏移24小时<br>网上有一种方案，不知可行不：<a href="https://github.com/wolfcw/libfaketime/" target="_blank" rel="external">https://github.com/wolfcw/libfaketime/</a></p>
+<h1 id="五、-参考链接"><a href="#五、-参考链接" class="headerlink" title="五、 参考链接"></a>五、 参考链接</h1><p><a href="https://yeasy.gitbooks.io/docker_practice/content/cases/supervisor.html" target="_blank" rel="external">https://yeasy.gitbooks.io/docker_practice/content/cases/supervisor.html</a></p>
 ]]></content>
     
     <summary type="html">
