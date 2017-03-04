@@ -110,23 +110,20 @@
 
 <meta name="description" content="一、 安装步骤1、安装ruby环境——使用rvm比较方便
 2、使用bitnami-redmine一键式安装包  
-3、远程访问不了——关闭防火墙即可  
-4、phpmyadmin无法远程访问——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf修改如下：12345678910111213141516171819202122">
+3、远程访问不了——关闭防火墙即可">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux下部署redmine">
 <meta property="og:url" content="https://tunsuy.github.io/2015/03/04/linux下部署redmine/index.html">
 <meta property="og:site_name" content="鱼儿塘">
 <meta property="og:description" content="一、 安装步骤1、安装ruby环境——使用rvm比较方便
 2、使用bitnami-redmine一键式安装包  
-3、远程访问不了——关闭防火墙即可  
-4、phpmyadmin无法远程访问——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf修改如下：12345678910111213141516171819202122">
-<meta property="og:updated_time" content="2017-03-04T08:54:14.177Z">
+3、远程访问不了——关闭防火墙即可">
+<meta property="og:updated_time" content="2017-03-04T09:45:50.689Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux下部署redmine">
 <meta name="twitter:description" content="一、 安装步骤1、安装ruby环境——使用rvm比较方便
 2、使用bitnami-redmine一键式安装包  
-3、远程访问不了——关闭防火墙即可  
-4、phpmyadmin无法远程访问——修改配置文件：/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf修改如下：12345678910111213141516171819202122">
+3、远程访问不了——关闭防火墙即可">
 
 
 
@@ -439,6 +436,7 @@
         <h1 id="一、-安装步骤"><a href="#一、-安装步骤" class="headerlink" title="一、 安装步骤"></a>一、 安装步骤</h1><p>1、安装ruby环境——使用rvm比较方便</p>
 <p>2、使用bitnami-redmine一键式安装包  </p>
 <p>3、远程访问不了<br>——关闭防火墙即可  </p>
+<a id="more"></a>
 <p>4、phpmyadmin无法远程访问<br>——修改配置文件：<code>/opt/redmine-2.6.0-3/apps/phpmyadmin/conf/httpd-app.conf</code><br>修改如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;Directory "/opt/redmine-2.6.0-3/apps/phpmyadmin/htdocs"&gt;</div><div class="line"></div><div class="line"></div><div class="line"># AuthType Basic</div><div class="line"># AuthName phpMyAdmin</div><div class="line"># AuthUserFile "/opt/redmine-2.6.0-3/apache2/users"</div><div class="line"># Require valid-user</div><div class="line">AllowOverride None</div><div class="line">    &lt;IfModule php5_module&gt;</div><div class="line">            php_value upload_max_filesize 80M</div><div class="line">php_value post_max_size 80M</div><div class="line">    &lt;/IfModule&gt;</div><div class="line"></div><div class="line">&lt;IfVersion &lt; 2.3 &gt;</div><div class="line">Order allow,deny</div><div class="line">Allow from all</div><div class="line">Satisfy all</div><div class="line">&lt;/IfVersion&gt;</div><div class="line">&lt;IfVersion &gt;= 2.3&gt;</div><div class="line">Require all granted</div><div class="line"># Require local</div><div class="line">&lt;/IfVersion&gt;</div><div class="line">ErrorDocument 403 "For security reasons, this URL is only accessible using localhost (127.0.0.1) as the hostname."</div><div class="line"></div><div class="line"></div><div class="line">&lt;/Directory&gt;</div></pre></td></tr></table></figure></p>
 <p>重启服务即可：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/opt/redmine<span class="number">-2.6</span><span class="number">.0</span><span class="number">-3</span>/ctlscript.sh restart</div></pre></td></tr></table></figure></p>
 <h1 id="二、-操作redmine的数据库"><a href="#二、-操作redmine的数据库" class="headerlink" title="二、 操作redmine的数据库"></a>二、 操作redmine的数据库</h1><p>1、 redmine使用的数据库为mysql，如果在终端直接输入mysql命令，则是直接调用的你以前装的mysql，而不是redmine的mysql</p>

@@ -123,7 +123,7 @@
 虽然开发也有将日志写入文件，但是每次操作完了再去打开文件查看，非常不方便
 那有没有一种类似xcode输出日">
 <meta property="og:image" content="https://tunsuy.github.io/2016/09/23/实现浏览器中实时查看iOS日志/ioslog.jpg">
-<meta property="og:updated_time" content="2017-03-04T08:54:14.434Z">
+<meta property="og:updated_time" content="2017-03-04T09:45:50.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实现浏览器中实时查看iOS日志">
 <meta name="twitter:description" content="项目地址：https://github.com/tunsuy/TSiOSLogWebBrowser
@@ -419,12 +419,13 @@
       
 
       
-        <p>项目地址：<a href="https://github.com/tunsuy/TSiOSLogWebBrowser" target="_blank" rel="external">https://github.com/tunsuy/TSiOSLogWebBrowser</a></p>
+        <p>项目地址：<br><a href="https://github.com/tunsuy/TSiOSLogWebBrowser" target="_blank" rel="external">https://github.com/tunsuy/TSiOSLogWebBrowser</a></p>
 <h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>在测试ios App过程中，有很多时候我们需要一边操作一遍查看输出日志</p>
 <p>对于有mac机的来说，当然在xcode下自己打包测试查看日志那是非常方便的，但是大部分的测试是没有mac机的。</p>
 <p>虽然开发也有将日志写入文件，但是每次操作完了再去打开文件查看，非常不方便</p>
 <p>那有没有一种类似xcode输出日志的方式呢<br>答案就是今天要说的这个： 直接用浏览器实时查看输出的log信息</p>
 <h1 id="二、-原理"><a href="#二、-原理" class="headerlink" title="二、 原理"></a>二、 原理</h1><p>就是在app里面内置一个http server服务器，浏览器作为请求客户端，将app的操作日志实时的输出到浏览器中。</p>
+<a id="more"></a>
 <h1 id="三、-实现"><a href="#三、-实现" class="headerlink" title="三、 实现"></a>三、 实现</h1><p>使用了一个开源框架 GCDWebServer 作为http server<br>具体实现见github项目地址</p>
 <h1 id="四、-使用"><a href="#四、-使用" class="headerlink" title="四、 使用"></a>四、 使用</h1><p>1、将手机置于电脑的同一网络，  </p>
 <p>2、然后在浏览器上输入 手机IP：port（端口是在代码中任意指定的），<br>然后就可以开始测试app了，你将会看到浏览器中会实时显示你的操作日志出来，跟xcode下查看日志的方式一样，</p>

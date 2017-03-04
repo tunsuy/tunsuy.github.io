@@ -109,21 +109,18 @@
 
 
 <meta name="description" content="一、 安装步骤1、 卸载已有mongodb数据库12/etc/init.d/mongod stopyum erase $(rpm -qa | grep mongodb-org)
-删除mongodb相关目录文件等，例如：12rm -r /var/log/mongodb/rm -r /var/lib/mongo
-2、 下载最新mongodb1wget https://fastdl.mongodb.or">
+删除mongodb相关目录文件等，例如：12rm -r /var/log/mongodb/rm -r /var/lib/mongo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centos下安装mongodb记录">
 <meta property="og:url" content="https://tunsuy.github.io/2015/03/10/centos下安装mongodb记录/index.html">
 <meta property="og:site_name" content="鱼儿塘">
 <meta property="og:description" content="一、 安装步骤1、 卸载已有mongodb数据库12/etc/init.d/mongod stopyum erase $(rpm -qa | grep mongodb-org)
-删除mongodb相关目录文件等，例如：12rm -r /var/log/mongodb/rm -r /var/lib/mongo
-2、 下载最新mongodb1wget https://fastdl.mongodb.or">
-<meta property="og:updated_time" content="2017-03-04T08:54:13.790Z">
+删除mongodb相关目录文件等，例如：12rm -r /var/log/mongodb/rm -r /var/lib/mongo">
+<meta property="og:updated_time" content="2017-03-04T09:45:50.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos下安装mongodb记录">
 <meta name="twitter:description" content="一、 安装步骤1、 卸载已有mongodb数据库12/etc/init.d/mongod stopyum erase $(rpm -qa | grep mongodb-org)
-删除mongodb相关目录文件等，例如：12rm -r /var/log/mongodb/rm -r /var/lib/mongo
-2、 下载最新mongodb1wget https://fastdl.mongodb.or">
+删除mongodb相关目录文件等，例如：12rm -r /var/log/mongodb/rm -r /var/lib/mongo">
 
 
 
@@ -435,6 +432,7 @@
       
         <h1 id="一、-安装步骤"><a href="#一、-安装步骤" class="headerlink" title="一、 安装步骤"></a>一、 安装步骤</h1><h2 id="1、-卸载已有mongodb数据库"><a href="#1、-卸载已有mongodb数据库" class="headerlink" title="1、 卸载已有mongodb数据库"></a>1、 卸载已有mongodb数据库</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/mongod stop</div><div class="line">yum erase $(rpm -qa | grep mongodb-org)</div></pre></td></tr></table></figure>
 <p>删除mongodb相关目录文件等，例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -r /<span class="keyword">var</span>/log/mongodb/</div><div class="line">rm -r /<span class="keyword">var</span>/lib/mongo</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h2 id="2、-下载最新mongodb"><a href="#2、-下载最新mongodb" class="headerlink" title="2、 下载最新mongodb"></a>2、 下载最新mongodb</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https:<span class="comment">//fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.9.tgz</span></div></pre></td></tr></table></figure>
 <h2 id="3、-移动下载文件并解压"><a href="#3、-移动下载文件并解压" class="headerlink" title="3、 移动下载文件并解压"></a>3、 移动下载文件并解压</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mv ./mongodb-linux-x86_64-rhel62<span class="number">-3.2</span><span class="number">.9</span>.tgz /usr/local/src/</div><div class="line">tar -xvf mongodb-linux-x86_64-rhel62<span class="number">-3.2</span><span class="number">.9</span>.tgz</div></pre></td></tr></table></figure>
 <h2 id="4、-移动解压文件"><a href="#4、-移动解压文件" class="headerlink" title="4、 移动解压文件"></a>4、 移动解压文件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv ./mongodb-linux-x86_64-rhel62<span class="number">-3.2</span><span class="number">.9</span> /usr/local/mongodb</div></pre></td></tr></table></figure>

@@ -108,24 +108,27 @@
 
 
 
-<meta name="description" content="一、 项目简介地址：https://github.com/tunsuy/iOSMonitorLag
+<meta name="description" content="一、 项目简介项目地址：https://github.com/tunsuy/iOSMonitorLag
 该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果
-二、 方案一 基于RunLoop1、 背景1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线">
+二、 方案一 基于RunLoop1、 背景
+因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ios：性能之卡顿检测">
 <meta property="og:url" content="https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/index.html">
 <meta property="og:site_name" content="鱼儿塘">
-<meta property="og:description" content="一、 项目简介地址：https://github.com/tunsuy/iOSMonitorLag
+<meta property="og:description" content="一、 项目简介项目地址：https://github.com/tunsuy/iOSMonitorLag
 该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果
-二、 方案一 基于RunLoop1、 背景1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线">
+二、 方案一 基于RunLoop1、 背景
+因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它">
 <meta property="og:image" content="https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/卡顿图1.jpg">
 <meta property="og:image" content="https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/卡顿图2.jpg">
-<meta property="og:updated_time" content="2017-03-04T08:54:14.033Z">
+<meta property="og:updated_time" content="2017-03-04T09:45:50.615Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios：性能之卡顿检测">
-<meta name="twitter:description" content="一、 项目简介地址：https://github.com/tunsuy/iOSMonitorLag
+<meta name="twitter:description" content="一、 项目简介项目地址：https://github.com/tunsuy/iOSMonitorLag
 该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果
-二、 方案一 基于RunLoop1、 背景1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线">
+二、 方案一 基于RunLoop1、 背景
+因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它">
 <meta name="twitter:image" content="https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/卡顿图1.jpg">
 
 
@@ -436,12 +439,21 @@
       
 
       
-        <h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>地址：<a href="https://github.com/tunsuy/iOSMonitorLag" target="_blank" rel="external">https://github.com/tunsuy/iOSMonitorLag</a></p>
+        <h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>项目地址：<br><a href="https://github.com/tunsuy/iOSMonitorLag" target="_blank" rel="external">https://github.com/tunsuy/iOSMonitorLag</a></p>
 <p>该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果</p>
-<h1 id="二、-方案一-基于RunLoop"><a href="#二、-方案一-基于RunLoop" class="headerlink" title="二、 方案一 基于RunLoop"></a>二、 方案一 基于RunLoop</h1><h2 id="1、-背景"><a href="#1、-背景" class="headerlink" title="1、 背景"></a>1、 背景</h2><p>1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作等等放到了主线,所以主线程中包含的这些大量计算、IO、绘制都有可能造成卡顿.</p>
-<p>2、在Xcode中已经集成了非常方便的调试工具Instruments,它可以帮助我们在开发测试阶段分析软件运行的性能消耗</p>
-<h2 id="2、-原理"><a href="#2、-原理" class="headerlink" title="2、 原理"></a>2、 原理</h2><p>1、监控卡顿,最直接就是找到主线程都在干些啥玩意儿.我们知道一个线程的消息事件处理都是依赖于NSRunLoop来驱动,所以要知道线程正在调用什么方法,就需要从NSRunLoop来入手</p>
-<p>2、发现NSRunLoop调用方法主要就是在kCFRunLoopBeforeSources和kCFRunLoopBeforeWaiting之间,还有kCFRunLoopAfterWaiting之后,也就是如果我们发现这两个时间内耗时太长,那么就可以判定出此时主线程卡顿.</p>
+<h1 id="二、-方案一-基于RunLoop"><a href="#二、-方案一-基于RunLoop" class="headerlink" title="二、 方案一 基于RunLoop"></a>二、 方案一 基于RunLoop</h1><h2 id="1、-背景"><a href="#1、-背景" class="headerlink" title="1、 背景"></a>1、 背景</h2><ul>
+<li><p>因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作等等放到了主线,所以主线程中包含的这些大量计算、IO、绘制都有可能造成卡顿.</p>
+</li>
+<li><p>在Xcode中已经集成了非常方便的调试工具Instruments,它可以帮助我们在开发测试阶段分析软件运行的性能消耗</p>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="2、-原理"><a href="#2、-原理" class="headerlink" title="2、 原理"></a>2、 原理</h2><ul>
+<li><p>监控卡顿,最直接就是找到主线程都在干些啥玩意儿.我们知道一个线程的消息事件处理都是依赖于NSRunLoop来驱动,所以要知道线程正在调用什么方法,就需要从NSRunLoop来入手</p>
+</li>
+<li><p>发现NSRunLoop调用方法主要就是在kCFRunLoopBeforeSources和kCFRunLoopBeforeWaiting之间,还有kCFRunLoopAfterWaiting之后,也就是如果我们发现这两个时间内耗时太长,那么就可以判定出此时主线程卡顿.</p>
+</li>
+</ul>
 <h2 id="3、-缺点"><a href="#3、-缺点" class="headerlink" title="3、 缺点"></a>3、 缺点</h2><p>这种方式，当主线程中注册了timer等很多附加的东西时，会不断唤醒主线程，就会大量的调用observer回调，造成一定程度上的性能损耗</p>
 <h1 id="三、-方案二-基于线程"><a href="#三、-方案二-基于线程" class="headerlink" title="三、 方案二 基于线程"></a>三、 方案二 基于线程</h1><h2 id="1、-背景-1"><a href="#1、-背景-1" class="headerlink" title="1、 背景"></a>1、 背景</h2><p>简单来说，主线程为了达到接近60fps的绘制效率，不能在UI线程有单个超过（1/60s≈16ms）的计算任务。通过Instrument设置16ms的采样率可以检测出大部分这种费时的任务，但有以下缺点：  </p>
 <ul>
@@ -449,8 +461,12 @@
 <li>只能针对特定的操作场景进行检测，要预先知道卡顿产生的场景。</li>
 <li>每次猜测，更改，再猜测再以此循环，需要重新profile。<br>我们的目标方案是，检测能够自动发生，并不需要开发人员做任何预先配置或profile。运行时发现卡顿能即时通知开发人员导致卡顿的函数调用栈。</li>
 </ul>
-<h2 id="2、-原理-1"><a href="#2、-原理-1" class="headerlink" title="2、 原理"></a>2、 原理</h2><p>1、最理想的方案是让UI线程“主动汇报”当前耗时的任务，听起来简单做起来不轻松。</p>
-<p>2、我们可以假设这样一套机制：每隔16ms让UI线程来报道一次，如果16ms之后UI线程没来报道，那就一定是在执行某个耗时的任务。</p>
+<h2 id="2、-原理-1"><a href="#2、-原理-1" class="headerlink" title="2、 原理"></a>2、 原理</h2><ul>
+<li><p>最理想的方案是让UI线程“主动汇报”当前耗时的任务，听起来简单做起来不轻松。</p>
+</li>
+<li><p>我们可以假设这样一套机制：每隔16ms让UI线程来报道一次，如果16ms之后UI线程没来报道，那就一定是在执行某个耗时的任务。</p>
+</li>
+</ul>
 <p>下面是以接入口袋助理测试的效果图</p>
 <img src="/2016/08/11/ios：性能之卡顿检测/卡顿图1.jpg" alt="卡顿图1.jpg" title="">
 <img src="/2016/08/11/ios：性能之卡顿检测/卡顿图2.jpg" alt="卡顿图2.jpg" title="">

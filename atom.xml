@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tunsuy.github.io/"/>
-  <updated>2017-03-04T09:18:06.348Z</updated>
+  <updated>2017-03-04T09:45:50.962Z</updated>
   <id>https://tunsuy.github.io/</id>
   
   <author>
@@ -20,12 +20,12 @@
     <link href="https://tunsuy.github.io/2016/12/09/%E8%87%AA%E7%BC%96%E8%AF%91mongo3-2%E6%B5%8B%E8%AF%95/"/>
     <id>https://tunsuy.github.io/2016/12/09/自编译mongo3-2测试/</id>
     <published>2016-12-09T02:13:44.000Z</published>
-    <updated>2017-03-04T09:18:06.348Z</updated>
+    <updated>2017-03-04T09:45:50.962Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>公司将mongodb删除机制进行了自定义，改动了相关源码，故需要配合测试mongodb的功能是否正常</p>
-<a id="more"></a>
 <h1 id="二、-检查服务器"><a href="#二、-检查服务器" class="headerlink" title="二、 检查服务器"></a>二、 检查服务器</h1><h2 id="1、-检查mongo启动情况"><a href="#1、-检查mongo启动情况" class="headerlink" title="1、 检查mongo启动情况"></a>1、 检查mongo启动情况</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">netstat -anpt | grep mong* | grep <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></div><div class="line">mongoa --port <span class="number">27020</span>（相应的端口）——进入mongo</div></pre></td></tr></table></figure>
-<h2 id="2、-100集群数据库情况"><a href="#2、-100集群数据库情况" class="headerlink" title="2、 100集群数据库情况"></a>2、 100集群数据库情况</h2><p><code>cat /etc/hosts | grep db</code>——在169.100下查看<br>——3个数据库分片（sh0，sh1，sh2）<br>——2个统计分片（statis-sh0，statis-sh1）</p>
+<a id="more"></a>
+<h2 id="2、-集群数据库情况"><a href="#2、-集群数据库情况" class="headerlink" title="2、 集群数据库情况"></a>2、 集群数据库情况</h2><p><code>cat /etc/hosts | grep db</code><br>——3个数据库分片（sh0，sh1，sh2）<br>——2个统计分片（statis-sh0，statis-sh1）</p>
 <p>也可以这样查看：</p>
 <ul>
 <li>进入mongos（169.100下）</li>
@@ -63,6 +63,7 @@
     <summary type="html">
     
       &lt;h1 id=&quot;一、-简介&quot;&gt;&lt;a href=&quot;#一、-简介&quot; class=&quot;headerlink&quot; title=&quot;一、 简介&quot;&gt;&lt;/a&gt;一、 简介&lt;/h1&gt;&lt;p&gt;公司将mongodb删除机制进行了自定义，改动了相关源码，故需要配合测试mongodb的功能是否正常&lt;/p&gt;
+&lt;h1 id=&quot;二、-检查服务器&quot;&gt;&lt;a href=&quot;#二、-检查服务器&quot; class=&quot;headerlink&quot; title=&quot;二、 检查服务器&quot;&gt;&lt;/a&gt;二、 检查服务器&lt;/h1&gt;&lt;h2 id=&quot;1、-检查mongo启动情况&quot;&gt;&lt;a href=&quot;#1、-检查mongo启动情况&quot; class=&quot;headerlink&quot; title=&quot;1、 检查mongo启动情况&quot;&gt;&lt;/a&gt;1、 检查mongo启动情况&lt;/h2&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;netstat -anpt | grep mong* | grep &lt;span class=&quot;number&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;number&quot;&gt;.0&lt;/span&gt;&lt;span class=&quot;number&quot;&gt;.0&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;mongoa --port &lt;span class=&quot;number&quot;&gt;27020&lt;/span&gt;（相应的端口）——进入mongo&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -80,11 +81,12 @@
     <link href="https://tunsuy.github.io/2016/11/16/App%E4%B8%89%E6%96%B9%E4%BA%A4%E4%BA%92%E9%80%BB%E8%BE%91%E5%AE%9E%E8%B7%B5/"/>
     <id>https://tunsuy.github.io/2016/11/16/App三方交互逻辑实践/</id>
     <published>2016-11-16T07:28:06.000Z</published>
-    <updated>2017-03-04T08:54:13.199Z</updated>
+    <updated>2017-03-04T09:45:50.232Z</updated>
     
-    <content type="html"><![CDATA[<p>项目地址：<a href="https://github.com/tunsuy/AppInteractive" target="_blank" rel="external">https://github.com/tunsuy/AppInteractive</a></p>
+    <content type="html"><![CDATA[<p>项目地址：<br><a href="https://github.com/tunsuy/AppInteractive" target="_blank" rel="external">https://github.com/tunsuy/AppInteractive</a></p>
 <h1 id="一、-背景介绍"><a href="#一、-背景介绍" class="headerlink" title="一、 背景介绍"></a>一、 背景介绍</h1><p>之前有一个公司项目与第三方应用交互的逻辑需要全面测试，那么怎样才能测试到整个交互的所有环节呢</p>
 <p>那就是需要一个实际的第三方，并且这个第三方需要包括server端和app端</p>
+<a id="more"></a>
 <p>既然是测试，那么我们只需要将公司项目跟三方有交互的接口做个全面的测试即可，不在乎这个三方是怎样的形式</p>
 <p>那么这就好办了，自己实现一个这个的三方项目</p>
 <h1 id="二、-交互逻辑图"><a href="#二、-交互逻辑图" class="headerlink" title="二、 交互逻辑图"></a>二、 交互逻辑图</h1><p>1、口袋助理跳转第三方app逻辑示意图：</p>
@@ -103,8 +105,9 @@
     
     <summary type="html">
     
-      &lt;p&gt;项目地址：&lt;a href=&quot;https://github.com/tunsuy/AppInteractive&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/tunsuy/AppInteractive&lt;/a&gt;&lt;/p&gt;
-&lt;
+      &lt;p&gt;项目地址：&lt;br&gt;&lt;a href=&quot;https://github.com/tunsuy/AppInteractive&quot;&gt;https://github.com/tunsuy/AppInteractive&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;一、-背景介绍&quot;&gt;&lt;a href=&quot;#一、-背景介绍&quot; class=&quot;headerlink&quot; title=&quot;一、 背景介绍&quot;&gt;&lt;/a&gt;一、 背景介绍&lt;/h1&gt;&lt;p&gt;之前有一个公司项目与第三方应用交互的逻辑需要全面测试，那么怎样才能测试到整个交互的所有环节呢&lt;/p&gt;
+&lt;p&gt;那就是需要一个实际的第三方，并且这个第三方需要包括server端和app端&lt;/p&gt;
     
     </summary>
     
@@ -122,12 +125,13 @@
     <link href="https://tunsuy.github.io/2016/10/15/mongodb%E9%9B%86%E7%BE%A43-0-X%E5%8D%87%E7%BA%A73-2-X/"/>
     <id>https://tunsuy.github.io/2016/10/15/mongodb集群3-0-X升级3-2-X/</id>
     <published>2016-10-15T02:07:58.000Z</published>
-    <updated>2017-03-04T08:54:14.194Z</updated>
+    <updated>2017-03-04T09:45:50.708Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>该文章主要根据官方英文文档来操作的</p>
 <p>官方文档：<a href="https://docs.mongodb.com/manual/release-notes/3.2-upgrade/" target="_blank" rel="external">https://docs.mongodb.com/manual/release-notes/3.2-upgrade/</a></p>
 <h1 id="二、-升级准备工作"><a href="#二、-升级准备工作" class="headerlink" title="二、 升级准备工作"></a>二、 升级准备工作</h1><p>1、下载二进制文件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https:<span class="comment">//www.mongodb.com/dr/fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.10.tgz</span></div></pre></td></tr></table></figure></p>
 <p>2、将该文件放入所有的节点服务器下并解压<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf XXXX</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>3、备份configdb（可选）<br>在每个configdb服务器执行：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp -r /home/moa/db/configdb/data/ <span class="regexp">/home/m</span>oa/db/configdb/data_bak/</div></pre></td></tr></table></figure></p>
 <p>4、关闭均衡器</p>
 <ul>
@@ -139,9 +143,20 @@
 <h1 id="三、-开始升级"><a href="#三、-开始升级" class="headerlink" title="三、 开始升级"></a>三、 开始升级</h1><h2 id="1、-首先升级分片0"><a href="#1、-首先升级分片0" class="headerlink" title="1、 首先升级分片0"></a>1、 首先升级分片0</h2><p>1.1 升级分片0集群中的secondary节点</p>
 <ul>
 <li>停掉该mongod0进程—kill pid</li>
-<li>使用最新mongodb进程替换掉mongod0  <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">        #备份：</div><div class="line">        mv /usr/local/mongodb/bin/mongod0 /usr/local/mongodb/bin/mongod0.bak  </div><div class="line"></div><div class="line">        #替换：</div><div class="line">        cp /home/mongodb-linux-x86_64-rhel62-3.2.10/bin/mongod /usr/local/mongodb/bin/mongod0</div><div class="line"></div><div class="line">* 启动该mongod0进程—`/etc/init.d/mongod0 restart`</div><div class="line"></div><div class="line">按照1.1方法依次升级其他的secondary节点  </div><div class="line">ps：在确认上一个secondary状态正常的情况再进行: `rs.status()`</div><div class="line"></div><div class="line">1.2 升级分片0集群中的primary节点</div><div class="line">* 停掉primary—`rs.stepDown()`</div><div class="line">* 检查是否产生了新的primary—`rs.status()`  </div><div class="line">ps：在其他两个节点查看</div><div class="line">* 按照1的方法升级其他分片</div><div class="line"></div><div class="line">1.3 更新选举协议</div><div class="line">在primary节点执行以下操作：</div><div class="line">```js</div><div class="line">    cfg=rs.conf();</div><div class="line">    cfg.protocolVersion=1;</div><div class="line">    rs.reconfig(cfg);</div></pre></td></tr></table></figure>
+<li><p>使用最新mongodb进程替换掉mongod0  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#备份：</div><div class="line">mv /usr/local/mongodb/bin/mongod0 /usr/local/mongodb/bin/mongod0.bak  </div><div class="line"></div><div class="line">#替换：</div><div class="line">cp /home/mongodb-linux-x86_64-rhel62-3.2.10/bin/mongod /usr/local/mongodb/bin/mongod0</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动该mongod0进程—<code>/etc/init.d/mongod0 restart</code></p>
 </li>
 </ul>
+<p>按照1.1方法依次升级其他的secondary节点<br>ps：在确认上一个secondary状态正常的情况再进行: <code>rs.status()</code></p>
+<p>1.2 升级分片0集群中的primary节点</p>
+<ul>
+<li>停掉primary—<code>rs.stepDown()</code></li>
+<li>检查是否产生了新的primary—<code>rs.status()</code><br>ps：在其他两个节点查看</li>
+<li>按照1的方法升级其他分片</li>
+</ul>
+<p>1.3 更新选举协议<br>在primary节点执行以下操作：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cfg=rs.conf();</div><div class="line">cfg.protocolVersion=<span class="number">1</span>;</div><div class="line">rs.reconfig(cfg);</div></pre></td></tr></table></figure></p>
 <h2 id="2、-升级分片1"><a href="#2、-升级分片1" class="headerlink" title="2、 升级分片1"></a>2、 升级分片1</h2><p>按照1中的方法进行</p>
 <h2 id="3、-升级config-服务器"><a href="#3、-升级config-服务器" class="headerlink" title="3、 升级config 服务器"></a>3、 升级config 服务器</h2><ul>
 <li>顺序：需要按照mongos中配置的逆序升级<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat /home/moa/db/mongos/mongos.conf</div><div class="line">——configdb=config0.moadb.com,config1.moadb.com,config2.moadb.com</div></pre></td></tr></table></figure>
@@ -158,7 +173,9 @@
     <summary type="html">
     
       &lt;h1 id=&quot;一、-简介&quot;&gt;&lt;a href=&quot;#一、-简介&quot; class=&quot;headerlink&quot; title=&quot;一、 简介&quot;&gt;&lt;/a&gt;一、 简介&lt;/h1&gt;&lt;p&gt;该文章主要根据官方英文文档来操作的&lt;/p&gt;
-&lt;p&gt;官方文档：&lt;a href=&quot;https://docs.mongod
+&lt;p&gt;官方文档：&lt;a href=&quot;https://docs.mongodb.com/manual/release-notes/3.2-upgrade/&quot;&gt;https://docs.mongodb.com/manual/release-notes/3.2-upgrade/&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;二、-升级准备工作&quot;&gt;&lt;a href=&quot;#二、-升级准备工作&quot; class=&quot;headerlink&quot; title=&quot;二、 升级准备工作&quot;&gt;&lt;/a&gt;二、 升级准备工作&lt;/h1&gt;&lt;p&gt;1、下载二进制文件&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;wget https:&lt;span class=&quot;comment&quot;&gt;//www.mongodb.com/dr/fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.10.tgz&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;2、将该文件放入所有的节点服务器下并解压&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;tar -zxvf XXXX&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
     
     </summary>
     
@@ -176,10 +193,10 @@
     <link href="https://tunsuy.github.io/2016/10/08/redmine-%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/"/>
     <id>https://tunsuy.github.io/2016/10/08/redmine-数据统计/</id>
     <published>2016-10-08T12:11:06.000Z</published>
-    <updated>2017-03-04T08:54:14.212Z</updated>
+    <updated>2017-03-04T09:45:50.727Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-项目说明"><a href="#一、-项目说明" class="headerlink" title="一、 项目说明"></a>一、 项目说明</h1><p>语言：python语言</p>
-<p>1、地址：<a href="https://github.com/tunsuy/redmine_statis" target="_blank" rel="external">https://github.com/tunsuy/redmine_statis</a></p>
+<p>1、项目地址：<br><a href="https://github.com/tunsuy/redmine_statis" target="_blank" rel="external">https://github.com/tunsuy/redmine_statis</a></p>
 <p>2、统计维度：  </p>
 <ul>
 <li>个人迭代bug数</li>
@@ -189,6 +206,7 @@
 <li>个人遗留问题数</li>
 </ul>
 <p>如果要加上其他维度的统计，也是非常简单的</p>
+<a id="more"></a>
 <h1 id="二、-redmine表说明"><a href="#二、-redmine表说明" class="headerlink" title="二、 redmine表说明"></a>二、 redmine表说明</h1><p>1、表issues<br>—用来存放issue的标准字段。</p>
 <p>2、表custom_fields<br>—该表字段都和创建自定义字段的web页面看到的选择项很像。</p>
 <p>3、表custom_values<br>—该表可以用custom_field_id字段和custom_fields表的id关联。 而customized_id 可以和issues表的id相关联</p>
@@ -212,7 +230,16 @@
     <summary type="html">
     
       &lt;h1 id=&quot;一、-项目说明&quot;&gt;&lt;a href=&quot;#一、-项目说明&quot; class=&quot;headerlink&quot; title=&quot;一、 项目说明&quot;&gt;&lt;/a&gt;一、 项目说明&lt;/h1&gt;&lt;p&gt;语言：python语言&lt;/p&gt;
-&lt;p&gt;1、地址：&lt;a href=&quot;https://github.co
+&lt;p&gt;1、项目地址：&lt;br&gt;&lt;a href=&quot;https://github.com/tunsuy/redmine_statis&quot;&gt;https://github.com/tunsuy/redmine_statis&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2、统计维度：  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;个人迭代bug数&lt;/li&gt;
+&lt;li&gt;模块迭代bug数&lt;/li&gt;
+&lt;li&gt;个人网上问题数&lt;/li&gt;
+&lt;li&gt;个人迭代工作粒度&lt;/li&gt;
+&lt;li&gt;个人遗留问题数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果要加上其他维度的统计，也是非常简单的&lt;/p&gt;
     
     </summary>
     
@@ -230,12 +257,13 @@
     <link href="https://tunsuy.github.io/2016/09/28/ios%EF%BC%9AUIWebView%E4%B8%8EWKWebView%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
     <id>https://tunsuy.github.io/2016/09/28/ios：UIWebView与WKWebView注意事项/</id>
     <published>2016-09-28T09:14:51.000Z</published>
-    <updated>2017-03-04T08:54:14.010Z</updated>
+    <updated>2017-03-04T09:45:50.599Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-基本介绍"><a href="#一、-基本介绍" class="headerlink" title="一、 基本介绍"></a>一、 基本介绍</h1><p>1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 运行的上下文环境 JSContext 注入对象 Bridge；</p>
 <p>2、WKWebView 使用的 WebKit 框架，交互时为 webkit.messageHandlers 注入对象</p>
 <h1 id="二、-测试注意事项"><a href="#二、-测试注意事项" class="headerlink" title="二、 测试注意事项"></a>二、 测试注意事项</h1><p>1、加载速度</p>
 <p>2、占用内存</p>
+<a id="more"></a>
 <p>3、缓存问题：<br>H5页面更新了，app端显示还是老的，不同的ios系统处理方式不一样</p>
 <p>4、cookie问题<br>页面很多，不断切换浏览，cookie失效等</p>
 <p>5、跨域问题<br>webkit框架不允许跨域，比如从一个http页面对https发起请求</p>
@@ -247,7 +275,10 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;一、-基本介绍&quot;&gt;&lt;a href=&quot;#一、-基本介绍&quot; class=&quot;headerlink&quot; title=&quot;一、 基本介绍&quot;&gt;&lt;/a&gt;一、 基本介绍&lt;/h1&gt;&lt;p&gt;1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 
+      &lt;h1 id=&quot;一、-基本介绍&quot;&gt;&lt;a href=&quot;#一、-基本介绍&quot; class=&quot;headerlink&quot; title=&quot;一、 基本介绍&quot;&gt;&lt;/a&gt;一、 基本介绍&lt;/h1&gt;&lt;p&gt;1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 运行的上下文环境 JSContext 注入对象 Bridge；&lt;/p&gt;
+&lt;p&gt;2、WKWebView 使用的 WebKit 框架，交互时为 webkit.messageHandlers 注入对象&lt;/p&gt;
+&lt;h1 id=&quot;二、-测试注意事项&quot;&gt;&lt;a href=&quot;#二、-测试注意事项&quot; class=&quot;headerlink&quot; title=&quot;二、 测试注意事项&quot;&gt;&lt;/a&gt;二、 测试注意事项&lt;/h1&gt;&lt;p&gt;1、加载速度&lt;/p&gt;
+&lt;p&gt;2、占用内存&lt;/p&gt;
     
     </summary>
     
@@ -263,14 +294,15 @@
     <link href="https://tunsuy.github.io/2016/09/23/%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8BiOS%E6%97%A5%E5%BF%97/"/>
     <id>https://tunsuy.github.io/2016/09/23/实现浏览器中实时查看iOS日志/</id>
     <published>2016-09-23T07:32:34.000Z</published>
-    <updated>2017-03-04T08:54:14.434Z</updated>
+    <updated>2017-03-04T09:45:50.910Z</updated>
     
-    <content type="html"><![CDATA[<p>项目地址：<a href="https://github.com/tunsuy/TSiOSLogWebBrowser" target="_blank" rel="external">https://github.com/tunsuy/TSiOSLogWebBrowser</a></p>
+    <content type="html"><![CDATA[<p>项目地址：<br><a href="https://github.com/tunsuy/TSiOSLogWebBrowser" target="_blank" rel="external">https://github.com/tunsuy/TSiOSLogWebBrowser</a></p>
 <h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>在测试ios App过程中，有很多时候我们需要一边操作一遍查看输出日志</p>
 <p>对于有mac机的来说，当然在xcode下自己打包测试查看日志那是非常方便的，但是大部分的测试是没有mac机的。</p>
 <p>虽然开发也有将日志写入文件，但是每次操作完了再去打开文件查看，非常不方便</p>
 <p>那有没有一种类似xcode输出日志的方式呢<br>答案就是今天要说的这个： 直接用浏览器实时查看输出的log信息</p>
 <h1 id="二、-原理"><a href="#二、-原理" class="headerlink" title="二、 原理"></a>二、 原理</h1><p>就是在app里面内置一个http server服务器，浏览器作为请求客户端，将app的操作日志实时的输出到浏览器中。</p>
+<a id="more"></a>
 <h1 id="三、-实现"><a href="#三、-实现" class="headerlink" title="三、 实现"></a>三、 实现</h1><p>使用了一个开源框架 GCDWebServer 作为http server<br>具体实现见github项目地址</p>
 <h1 id="四、-使用"><a href="#四、-使用" class="headerlink" title="四、 使用"></a>四、 使用</h1><p>1、将手机置于电脑的同一网络，  </p>
 <p>2、然后在浏览器上输入 手机IP：port（端口是在代码中任意指定的），<br>然后就可以开始测试app了，你将会看到浏览器中会实时显示你的操作日志出来，跟xcode下查看日志的方式一样，</p>
@@ -280,7 +312,12 @@
     
     <summary type="html">
     
-      &lt;p&gt;项目地址：&lt;a href=&quot;https://github.com/tunsuy/TSiOSLogWebBrowser&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/tunsuy/TSiOSLogWebBrowser&lt;/
+      &lt;p&gt;项目地址：&lt;br&gt;&lt;a href=&quot;https://github.com/tunsuy/TSiOSLogWebBrowser&quot;&gt;https://github.com/tunsuy/TSiOSLogWebBrowser&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;一、-背景&quot;&gt;&lt;a href=&quot;#一、-背景&quot; class=&quot;headerlink&quot; title=&quot;一、 背景&quot;&gt;&lt;/a&gt;一、 背景&lt;/h1&gt;&lt;p&gt;在测试ios App过程中，有很多时候我们需要一边操作一遍查看输出日志&lt;/p&gt;
+&lt;p&gt;对于有mac机的来说，当然在xcode下自己打包测试查看日志那是非常方便的，但是大部分的测试是没有mac机的。&lt;/p&gt;
+&lt;p&gt;虽然开发也有将日志写入文件，但是每次操作完了再去打开文件查看，非常不方便&lt;/p&gt;
+&lt;p&gt;那有没有一种类似xcode输出日志的方式呢&lt;br&gt;答案就是今天要说的这个： 直接用浏览器实时查看输出的log信息&lt;/p&gt;
+&lt;h1 id=&quot;二、-原理&quot;&gt;&lt;a href=&quot;#二、-原理&quot; class=&quot;headerlink&quot; title=&quot;二、 原理&quot;&gt;&lt;/a&gt;二、 原理&lt;/h1&gt;&lt;p&gt;就是在app里面内置一个http server服务器，浏览器作为请求客户端，将app的操作日志实时的输出到浏览器中。&lt;/p&gt;
     
     </summary>
     
@@ -298,7 +335,7 @@
     <link href="https://tunsuy.github.io/2016/09/21/ios%EF%BC%9Ahttps-ATS%E6%94%B9%E9%80%A0%E8%BF%87%E7%A8%8B/"/>
     <id>https://tunsuy.github.io/2016/09/21/ios：https-ATS改造过程/</id>
     <published>2016-09-21T05:14:11.000Z</published>
-    <updated>2017-03-04T08:54:13.972Z</updated>
+    <updated>2017-03-04T09:45:50.582Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>苹果官方宣称今年底将全面强制启动https的支持<br>1、不安全的HTTP链接将会遭到拦截  </p>
 <p>2、而且系统 Foundation 框架下的相关网络请求，将不再默认使用 HTTP等不安全的网络协议，而默认采用 TLS 1.</p>
@@ -309,6 +346,7 @@
 <li>数字证书必须使用sha256或者更高级的签名哈希算法，并且保证密钥是2048位及以上的RSA密钥或者256位及以上的ECC密钥。</li>
 </ul>
 <p>2、服务器ATS在线检查：   <a href="https://www.qcloud.com/product/ssl#userDefined10" target="_blank" rel="external">https://www.qcloud.com/product/ssl#userDefined10</a></p>
+<a id="more"></a>
 <h1 id="三、-官方建议"><a href="#三、-官方建议" class="headerlink" title="三、 官方建议"></a>三、 官方建议</h1><p>1、苹果官方是推荐使用NSURLSession去做HTTP请求的  </p>
 <p>2、虽然说NSURLConnection同样支持ATS方面的特性，两者的默认行为上有些不一样<br>所以应该尽早切换到NSURLSession上，避免产生一些不必要错误。</p>
 <h1 id="四、-项目改造"><a href="#四、-项目改造" class="headerlink" title="四、 项目改造"></a>四、 项目改造</h1><p>1、要么将info.plist中的allow全部改成NO</p>
@@ -325,7 +363,14 @@
     <summary type="html">
     
       &lt;h1 id=&quot;一、-背景&quot;&gt;&lt;a href=&quot;#一、-背景&quot; class=&quot;headerlink&quot; title=&quot;一、 背景&quot;&gt;&lt;/a&gt;一、 背景&lt;/h1&gt;&lt;p&gt;苹果官方宣称今年底将全面强制启动https的支持&lt;br&gt;1、不安全的HTTP链接将会遭到拦截  &lt;/p&gt;
-&lt;p&gt;2、
+&lt;p&gt;2、而且系统 Foundation 框架下的相关网络请求，将不再默认使用 HTTP等不安全的网络协议，而默认采用 TLS 1.&lt;/p&gt;
+&lt;h1 id=&quot;二、-服务端改造&quot;&gt;&lt;a href=&quot;#二、-服务端改造&quot; class=&quot;headerlink&quot; title=&quot;二、 服务端改造&quot;&gt;&lt;/a&gt;二、 服务端改造&lt;/h1&gt;&lt;p&gt;1、服务器需要改造的地方：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。&lt;/li&gt;
+&lt;li&gt;通讯中的加密套件配置要求支持列出的正向保密。&lt;/li&gt;
+&lt;li&gt;数字证书必须使用sha256或者更高级的签名哈希算法，并且保证密钥是2048位及以上的RSA密钥或者256位及以上的ECC密钥。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2、服务器ATS在线检查：   &lt;a href=&quot;https://www.qcloud.com/product/ssl#userDefined10&quot;&gt;https://www.qcloud.com/product/ssl#userDefined10&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
@@ -343,11 +388,12 @@
     <link href="https://tunsuy.github.io/2016/09/18/%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F%E4%B9%8BAPI%E8%B0%83%E7%94%A8%E7%89%88%E6%9C%AC%E6%A3%80%E6%9F%A5/"/>
     <id>https://tunsuy.github.io/2016/09/18/代码扫描之API调用版本检查/</id>
     <published>2016-09-18T02:09:21.000Z</published>
-    <updated>2017-03-04T08:54:14.276Z</updated>
+    <updated>2017-03-04T09:45:50.797Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>语言：python语言</p>
 <p>该项目是对工程项目代码进行全面扫描，发现其是否有代码层面的bug<br>目前第一版支持了ios下的api版本控制的扫描检查<br>后续将逐渐支持其他方面的代码检查，比如是否有内存溢出，数组越界等，支持检查项可配置</p>
 <p>完整的项目源码地址：<br><a href="https://github.com/tunsuy/iOS-code-scan" target="_blank" rel="external">https://github.com/tunsuy/iOS-code-scan</a></p>
+<a id="more"></a>
 <p>该项目现已很好的服务于公司的ios项目代码扫描中，有效的检测出很多开发人员疏忽的api版本使用问题</p>
 <p>下面只对api版本控制检查进行实现讲解</p>
 <h1 id="二、-实现思路"><a href="#二、-实现思路" class="headerlink" title="二、 实现思路"></a>二、 实现思路</h1><p>扫描ios项目，将所有的api方法原型依次提取出来，跟ios官方定义的版本进行比对；<br>检查对那些有版本限制的api，在代码中是否有相应的条件判断</p>
@@ -367,7 +413,8 @@
     <summary type="html">
     
       &lt;h1 id=&quot;一、-项目简介&quot;&gt;&lt;a href=&quot;#一、-项目简介&quot; class=&quot;headerlink&quot; title=&quot;一、 项目简介&quot;&gt;&lt;/a&gt;一、 项目简介&lt;/h1&gt;&lt;p&gt;语言：python语言&lt;/p&gt;
-&lt;p&gt;该项目是对工程项目代码进行全面扫描，发现其是否有代码层面的bu
+&lt;p&gt;该项目是对工程项目代码进行全面扫描，发现其是否有代码层面的bug&lt;br&gt;目前第一版支持了ios下的api版本控制的扫描检查&lt;br&gt;后续将逐渐支持其他方面的代码检查，比如是否有内存溢出，数组越界等，支持检查项可配置&lt;/p&gt;
+&lt;p&gt;完整的项目源码地址：&lt;br&gt;&lt;a href=&quot;https://github.com/tunsuy/iOS-code-scan&quot;&gt;https://github.com/tunsuy/iOS-code-scan&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
@@ -387,14 +434,23 @@
     <link href="https://tunsuy.github.io/2016/08/11/ios%EF%BC%9A%E6%80%A7%E8%83%BD%E4%B9%8B%E5%8D%A1%E9%A1%BF%E6%A3%80%E6%B5%8B/"/>
     <id>https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/</id>
     <published>2016-08-11T11:11:51.000Z</published>
-    <updated>2017-03-04T08:54:14.033Z</updated>
+    <updated>2017-03-04T09:45:50.615Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>地址：<a href="https://github.com/tunsuy/iOSMonitorLag" target="_blank" rel="external">https://github.com/tunsuy/iOSMonitorLag</a></p>
+    <content type="html"><![CDATA[<h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>项目地址：<br><a href="https://github.com/tunsuy/iOSMonitorLag" target="_blank" rel="external">https://github.com/tunsuy/iOSMonitorLag</a></p>
 <p>该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果</p>
-<h1 id="二、-方案一-基于RunLoop"><a href="#二、-方案一-基于RunLoop" class="headerlink" title="二、 方案一 基于RunLoop"></a>二、 方案一 基于RunLoop</h1><h2 id="1、-背景"><a href="#1、-背景" class="headerlink" title="1、 背景"></a>1、 背景</h2><p>1、因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作等等放到了主线,所以主线程中包含的这些大量计算、IO、绘制都有可能造成卡顿.</p>
-<p>2、在Xcode中已经集成了非常方便的调试工具Instruments,它可以帮助我们在开发测试阶段分析软件运行的性能消耗</p>
-<h2 id="2、-原理"><a href="#2、-原理" class="headerlink" title="2、 原理"></a>2、 原理</h2><p>1、监控卡顿,最直接就是找到主线程都在干些啥玩意儿.我们知道一个线程的消息事件处理都是依赖于NSRunLoop来驱动,所以要知道线程正在调用什么方法,就需要从NSRunLoop来入手</p>
-<p>2、发现NSRunLoop调用方法主要就是在kCFRunLoopBeforeSources和kCFRunLoopBeforeWaiting之间,还有kCFRunLoopAfterWaiting之后,也就是如果我们发现这两个时间内耗时太长,那么就可以判定出此时主线程卡顿.</p>
+<h1 id="二、-方案一-基于RunLoop"><a href="#二、-方案一-基于RunLoop" class="headerlink" title="二、 方案一 基于RunLoop"></a>二、 方案一 基于RunLoop</h1><h2 id="1、-背景"><a href="#1、-背景" class="headerlink" title="1、 背景"></a>1、 背景</h2><ul>
+<li><p>因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作等等放到了主线,所以主线程中包含的这些大量计算、IO、绘制都有可能造成卡顿.</p>
+</li>
+<li><p>在Xcode中已经集成了非常方便的调试工具Instruments,它可以帮助我们在开发测试阶段分析软件运行的性能消耗</p>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="2、-原理"><a href="#2、-原理" class="headerlink" title="2、 原理"></a>2、 原理</h2><ul>
+<li><p>监控卡顿,最直接就是找到主线程都在干些啥玩意儿.我们知道一个线程的消息事件处理都是依赖于NSRunLoop来驱动,所以要知道线程正在调用什么方法,就需要从NSRunLoop来入手</p>
+</li>
+<li><p>发现NSRunLoop调用方法主要就是在kCFRunLoopBeforeSources和kCFRunLoopBeforeWaiting之间,还有kCFRunLoopAfterWaiting之后,也就是如果我们发现这两个时间内耗时太长,那么就可以判定出此时主线程卡顿.</p>
+</li>
+</ul>
 <h2 id="3、-缺点"><a href="#3、-缺点" class="headerlink" title="3、 缺点"></a>3、 缺点</h2><p>这种方式，当主线程中注册了timer等很多附加的东西时，会不断唤醒主线程，就会大量的调用observer回调，造成一定程度上的性能损耗</p>
 <h1 id="三、-方案二-基于线程"><a href="#三、-方案二-基于线程" class="headerlink" title="三、 方案二 基于线程"></a>三、 方案二 基于线程</h1><h2 id="1、-背景-1"><a href="#1、-背景-1" class="headerlink" title="1、 背景"></a>1、 背景</h2><p>简单来说，主线程为了达到接近60fps的绘制效率，不能在UI线程有单个超过（1/60s≈16ms）的计算任务。通过Instrument设置16ms的采样率可以检测出大部分这种费时的任务，但有以下缺点：  </p>
 <ul>
@@ -402,8 +458,12 @@
 <li>只能针对特定的操作场景进行检测，要预先知道卡顿产生的场景。</li>
 <li>每次猜测，更改，再猜测再以此循环，需要重新profile。<br>我们的目标方案是，检测能够自动发生，并不需要开发人员做任何预先配置或profile。运行时发现卡顿能即时通知开发人员导致卡顿的函数调用栈。</li>
 </ul>
-<h2 id="2、-原理-1"><a href="#2、-原理-1" class="headerlink" title="2、 原理"></a>2、 原理</h2><p>1、最理想的方案是让UI线程“主动汇报”当前耗时的任务，听起来简单做起来不轻松。</p>
-<p>2、我们可以假设这样一套机制：每隔16ms让UI线程来报道一次，如果16ms之后UI线程没来报道，那就一定是在执行某个耗时的任务。</p>
+<h2 id="2、-原理-1"><a href="#2、-原理-1" class="headerlink" title="2、 原理"></a>2、 原理</h2><ul>
+<li><p>最理想的方案是让UI线程“主动汇报”当前耗时的任务，听起来简单做起来不轻松。</p>
+</li>
+<li><p>我们可以假设这样一套机制：每隔16ms让UI线程来报道一次，如果16ms之后UI线程没来报道，那就一定是在执行某个耗时的任务。</p>
+</li>
+</ul>
 <p>下面是以接入口袋助理测试的效果图</p>
 <img src="/2016/08/11/ios：性能之卡顿检测/卡顿图1.jpg" alt="卡顿图1.jpg" title="">
 <img src="/2016/08/11/ios：性能之卡顿检测/卡顿图2.jpg" alt="卡顿图2.jpg" title="">
@@ -412,7 +472,14 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;一、-项目简介&quot;&gt;&lt;a href=&quot;#一、-项目简介&quot; class=&quot;headerlink&quot; title=&quot;一、 项目简介&quot;&gt;&lt;/a&gt;一、 项目简介&lt;/h1&gt;&lt;p&gt;地址：&lt;a href=&quot;https://github.com/tunsuy/iOSMonitorLa
+      &lt;h1 id=&quot;一、-项目简介&quot;&gt;&lt;a href=&quot;#一、-项目简介&quot; class=&quot;headerlink&quot; title=&quot;一、 项目简介&quot;&gt;&lt;/a&gt;一、 项目简介&lt;/h1&gt;&lt;p&gt;项目地址：&lt;br&gt;&lt;a href=&quot;https://github.com/tunsuy/iOSMonitorLag&quot;&gt;https://github.com/tunsuy/iOSMonitorLag&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果&lt;/p&gt;
+&lt;h1 id=&quot;二、-方案一-基于RunLoop&quot;&gt;&lt;a href=&quot;#二、-方案一-基于RunLoop&quot; class=&quot;headerlink&quot; title=&quot;二、 方案一 基于RunLoop&quot;&gt;&lt;/a&gt;二、 方案一 基于RunLoop&lt;/h1&gt;&lt;h2 id=&quot;1、-背景&quot;&gt;&lt;a href=&quot;#1、-背景&quot; class=&quot;headerlink&quot; title=&quot;1、 背景&quot;&gt;&lt;/a&gt;1、 背景&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作等等放到了主线,所以主线程中包含的这些大量计算、IO、绘制都有可能造成卡顿.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在Xcode中已经集成了非常方便的调试工具Instruments,它可以帮助我们在开发测试阶段分析软件运行的性能消耗&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
@@ -430,11 +497,12 @@
     <link href="https://tunsuy.github.io/2016/07/18/redmine%E7%B3%BB%E7%BB%9F%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E4%B9%8Bsearch%E5%8A%9F%E8%83%BD/"/>
     <id>https://tunsuy.github.io/2016/07/18/redmine系统二次开发之search功能/</id>
     <published>2016-07-18T04:30:24.000Z</published>
-    <updated>2017-03-04T08:54:14.228Z</updated>
+    <updated>2017-03-04T09:45:50.744Z</updated>
     
-    <content type="html"><![CDATA[<p>项目地址：<a href="https://github.com/tunsuy/redmine_select_search" target="_blank" rel="external">https://github.com/tunsuy/redmine_select_search</a></p>
+    <content type="html"><![CDATA[<p>项目地址：<br><a href="https://github.com/tunsuy/redmine_select_search" target="_blank" rel="external">https://github.com/tunsuy/redmine_select_search</a></p>
 <h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>该项目主要是对redmine进行简单的二次开发，满足以下需求：<br>在redmine的select选择框中，如果选项特别多，那么选择是非常考验眼力的，可能眼睛看花了都找不到<br>那么就考虑对所有的select框增加搜索功能</p>
 <h1 id="二、-方案一"><a href="#二、-方案一" class="headerlink" title="二、 方案一"></a>二、 方案一</h1><h2 id="1、-下载插件"><a href="#1、-下载插件" class="headerlink" title="1、 下载插件"></a>1、 下载插件</h2><p>使用了chosen插件：<a href="https://harvesthq.github.io/chosen/" target="_blank" rel="external">https://harvesthq.github.io/chosen/</a></p>
+<a id="more"></a>
 <h2 id="2、-添加文件到项目目录中"><a href="#2、-添加文件到项目目录中" class="headerlink" title="2、 添加文件到项目目录中"></a>2、 添加文件到项目目录中</h2><ul>
 <li><p>将<code>chosen.jquery.js</code>文件添加到<code>./apps/redmine/htdocs/public/javascripts/</code></p>
 </li>
@@ -462,7 +530,9 @@
     
     <summary type="html">
     
-      &lt;p&gt;项目地址：&lt;a href=&quot;https://github.com/tunsuy/redmine_select_search&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/tunsuy/redmine_select_se
+      &lt;p&gt;项目地址：&lt;br&gt;&lt;a href=&quot;https://github.com/tunsuy/redmine_select_search&quot;&gt;https://github.com/tunsuy/redmine_select_search&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;一、-项目简介&quot;&gt;&lt;a href=&quot;#一、-项目简介&quot; class=&quot;headerlink&quot; title=&quot;一、 项目简介&quot;&gt;&lt;/a&gt;一、 项目简介&lt;/h1&gt;&lt;p&gt;该项目主要是对redmine进行简单的二次开发，满足以下需求：&lt;br&gt;在redmine的select选择框中，如果选项特别多，那么选择是非常考验眼力的，可能眼睛看花了都找不到&lt;br&gt;那么就考虑对所有的select框增加搜索功能&lt;/p&gt;
+&lt;h1 id=&quot;二、-方案一&quot;&gt;&lt;a href=&quot;#二、-方案一&quot; class=&quot;headerlink&quot; title=&quot;二、 方案一&quot;&gt;&lt;/a&gt;二、 方案一&lt;/h1&gt;&lt;h2 id=&quot;1、-下载插件&quot;&gt;&lt;a href=&quot;#1、-下载插件&quot; class=&quot;headerlink&quot; title=&quot;1、 下载插件&quot;&gt;&lt;/a&gt;1、 下载插件&lt;/h2&gt;&lt;p&gt;使用了chosen插件：&lt;a href=&quot;https://harvesthq.github.io/chosen/&quot;&gt;https://harvesthq.github.io/chosen/&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
@@ -478,13 +548,14 @@
     <link href="https://tunsuy.github.io/2016/07/10/appium-ios%E8%87%AA%E5%8A%A8%E5%8C%96%E5%85%A5%E9%97%A8/"/>
     <id>https://tunsuy.github.io/2016/07/10/appium-ios自动化入门/</id>
     <published>2016-07-10T07:13:01.000Z</published>
-    <updated>2017-03-04T08:54:13.072Z</updated>
+    <updated>2017-03-04T09:45:50.130Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  </p>
 <p>这次先介绍appium的使用过程，后续有时间会看下其源码实现机制。</p>
 <p>在mac下配置appium的自动化测试环境在这里就不说了，网上很多</p>
 <p>因为查了下appium针对ios的自动化测试，网上的资料比较少，且说得不是很清楚，故这篇文章主要介绍怎样使用appium自动化测试自己的项目。</p>
 <p>这些操作步骤均是自己亲自操作并实践通过的</p>
+<a id="more"></a>
 <p>这里已自己实现的一个简单的ios app来一步步介绍<br>这篇文章先介绍在模拟器下运行的情况</p>
 <h1 id="二、-编译ios-app"><a href="#二、-编译ios-app" class="headerlink" title="二、 编译ios app"></a>二、 编译ios app</h1><p>命令行操作<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd /Users/xxx/Documents/lesFour/</div><div class="line">$ xcodebuild -sdk iphonesimulator</div></pre></td></tr></table></figure></p>
 <p>备注：</p>
@@ -524,7 +595,11 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;一、-简介&quot;&gt;&lt;a href=&quot;#一、-简介&quot; class=&quot;headerlink&quot; title=&quot;一、 简介&quot;&gt;&lt;/a&gt;一、 简介&lt;/h1&gt;&lt;p&gt;为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  &lt;
+      &lt;h1 id=&quot;一、-简介&quot;&gt;&lt;a href=&quot;#一、-简介&quot; class=&quot;headerlink&quot; title=&quot;一、 简介&quot;&gt;&lt;/a&gt;一、 简介&lt;/h1&gt;&lt;p&gt;为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  &lt;/p&gt;
+&lt;p&gt;这次先介绍appium的使用过程，后续有时间会看下其源码实现机制。&lt;/p&gt;
+&lt;p&gt;在mac下配置appium的自动化测试环境在这里就不说了，网上很多&lt;/p&gt;
+&lt;p&gt;因为查了下appium针对ios的自动化测试，网上的资料比较少，且说得不是很清楚，故这篇文章主要介绍怎样使用appium自动化测试自己的项目。&lt;/p&gt;
+&lt;p&gt;这些操作步骤均是自己亲自操作并实践通过的&lt;/p&gt;
     
     </summary>
     
@@ -542,18 +617,16 @@
     <link href="https://tunsuy.github.io/2016/06/28/calabash-ios%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3/"/>
     <id>https://tunsuy.github.io/2016/06/28/calabash-ios安装详解/</id>
     <published>2016-06-28T06:48:31.000Z</published>
-    <updated>2017-03-04T08:54:13.437Z</updated>
+    <updated>2017-03-04T09:45:50.327Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  </p>
 <p>这次先介绍calabash的使用过程，后续有时间会看下其源码实现机制。</p>
+<a id="more"></a>
 <h1 id="二、-工具安装"><a href="#二、-工具安装" class="headerlink" title="二、 工具安装"></a>二、 工具安装</h1><p>这里以我自身的安装成功经历记录如下：<br>1、启动终端</p>
-<p>2、切换到被测项目路径下</p>
-<pre><code>cd /Users/XXX/Documents/lesFour/
-</code></pre><p>3、安装 calabash-cucumber gem包</p>
-<pre><code>gem install calabash-cucumber
-</code></pre><p>4、生成 features文件夹</p>
-<pre><code>calabash-ios gen
-</code></pre><h1 id="三、-集成项目"><a href="#三、-集成项目" class="headerlink" title="三、 集成项目"></a>三、 集成项目</h1><p>1、设置 xcode 项目<br>I.复制项目target文件<br>右键如下图红色部分  </p>
+<p>2、切换到被测项目路径下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd /Users/XXX/Documents/lesFour/</div></pre></td></tr></table></figure></p>
+<p>3、安装 calabash-cucumber gem包<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem install calabash-cucumber</div></pre></td></tr></table></figure></p>
+<p>4、生成 features文件夹<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">calabash-ios gen</div></pre></td></tr></table></figure></p>
+<h1 id="三、-集成项目"><a href="#三、-集成项目" class="headerlink" title="三、 集成项目"></a>三、 集成项目</h1><p>1、设置 xcode 项目<br>I.复制项目target文件<br>右键如下图红色部分  </p>
 <img src="/2016/06/28/calabash-ios安装详解/targetcp.jpg" alt="targetcp.jpg" title="">
 <p>弹出提示框，选择Duplicate，弹出如窗口，选择如下图所示  </p>
 <img src="/2016/06/28/calabash-ios安装详解/targetcf.jpg" alt="targetcf.jpg" title="">
@@ -573,14 +646,13 @@
 <img src="/2016/06/28/calabash-ios安装详解/linkfm.jpg" alt="linkfm.jpg" title="">
 <p>V.设置other linker flag<br>如下图所示设置</p>
 <img src="/2016/06/28/calabash-ios安装详解/linkflag.jpg" alt="linkflag.jpg" title="">
-<h1 id="四、-测试安装"><a href="#四、-测试安装" class="headerlink" title="四、 测试安装"></a>四、 测试安装</h1><p>再模拟器中运行该cal项目，窗口控制台输出如下信息则表示配置成功</p>
-<pre><code>2015-03-06 17:27:50.105 lesThree-cal[3279:55236] Started LPHTTP server on port 37265
-2015-03-06 17:27:52.441 lesThree-cal[3279:55421] Bonjour Service Published: domain(local.) type(_http._tcp.) name(Calabash Server)
-</code></pre>]]></content>
+<h1 id="四、-测试安装"><a href="#四、-测试安装" class="headerlink" title="四、 测试安装"></a>四、 测试安装</h1><p>再模拟器中运行该cal项目，窗口控制台输出如下信息则表示配置成功<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">2015</span><span class="number">-03</span><span class="number">-06</span> <span class="number">17</span>:<span class="number">27</span>:<span class="number">50.105</span> lesThree-cal[<span class="number">3279</span>:<span class="number">55236</span>] Started LPHTTP server on port <span class="number">37265</span></div><div class="line"><span class="number">2015</span><span class="number">-03</span><span class="number">-06</span> <span class="number">17</span>:<span class="number">27</span>:<span class="number">52.441</span> lesThree-cal[<span class="number">3279</span>:<span class="number">55421</span>] Bonjour Service Published: domain(local.) type(_http._tcp.) name(Calabash Server)</div></pre></td></tr></table></figure></p>
+]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;一、-简介&quot;&gt;&lt;a href=&quot;#一、-简介&quot; class=&quot;headerlink&quot; title=&quot;一、 简介&quot;&gt;&lt;/a&gt;一、 简介&lt;/h1&gt;&lt;p&gt;为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  &lt;
+      &lt;h1 id=&quot;一、-简介&quot;&gt;&lt;a href=&quot;#一、-简介&quot; class=&quot;headerlink&quot; title=&quot;一、 简介&quot;&gt;&lt;/a&gt;一、 简介&lt;/h1&gt;&lt;p&gt;为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  &lt;/p&gt;
+&lt;p&gt;这次先介绍calabash的使用过程，后续有时间会看下其源码实现机制。&lt;/p&gt;
     
     </summary>
     
@@ -596,12 +668,13 @@
     <link href="https://tunsuy.github.io/2016/06/20/calabash-android%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
     <id>https://tunsuy.github.io/2016/06/20/calabash-android原理分析/</id>
     <published>2016-06-20T07:16:39.000Z</published>
-    <updated>2017-03-04T08:54:13.309Z</updated>
+    <updated>2017-03-04T09:45:50.252Z</updated>
     
     <content type="html"><![CDATA[<p>在前面已经简单的介绍了calabash-ios的原理，这里将继续分析calabash-Android端的原理</p>
 <h1 id="一、-原理解析"><a href="#一、-原理解析" class="headerlink" title="一、 原理解析"></a>一、 原理解析</h1><p>calabash-android架构其实与IOS是相同的</p>
 <p>1、内部使用核心为cucumber的calabash的脚本在运行测试的时候会在虚拟机/真机上预装一个web服务器，这个web服务器就是解释calabash的脚本，</p>
 <p>2、因为calabash-Android是基于robotium框架的，所以在机器上预装的web-server会将下发下来的calabash脚本解释为robotium的脚本，然后向测试app发送robotium的脚本，</p>
+<a id="more"></a>
 <p>3、因为robotium框架就是封装的google测试框架instumentation，所以app拿到robotium脚本后，将其解释为instumentation命令向被测试的app发送这些命令，被测试的app执行这些命令，然后将结果返回。</p>
 <h1 id="二、-系统架构图"><a href="#二、-系统架构图" class="headerlink" title="二、 系统架构图"></a>二、 系统架构图</h1><p>calabash-Android整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
 <img src="/2016/06/20/calabash-android原理分析/calabash-android.jpg" alt="calabash-android.jpg" title="">
@@ -614,7 +687,9 @@
     <summary type="html">
     
       &lt;p&gt;在前面已经简单的介绍了calabash-ios的原理，这里将继续分析calabash-Android端的原理&lt;/p&gt;
-&lt;h1 id=&quot;一、-原理解析&quot;&gt;&lt;a href=&quot;#一、-原理解析&quot; class=&quot;headerlink&quot; title=&quot;一、 原理解析&quot;&gt;&lt;/a&gt;一、 
+&lt;h1 id=&quot;一、-原理解析&quot;&gt;&lt;a href=&quot;#一、-原理解析&quot; class=&quot;headerlink&quot; title=&quot;一、 原理解析&quot;&gt;&lt;/a&gt;一、 原理解析&lt;/h1&gt;&lt;p&gt;calabash-android架构其实与IOS是相同的&lt;/p&gt;
+&lt;p&gt;1、内部使用核心为cucumber的calabash的脚本在运行测试的时候会在虚拟机/真机上预装一个web服务器，这个web服务器就是解释calabash的脚本，&lt;/p&gt;
+&lt;p&gt;2、因为calabash-Android是基于robotium框架的，所以在机器上预装的web-server会将下发下来的calabash脚本解释为robotium的脚本，然后向测试app发送robotium的脚本，&lt;/p&gt;
     
     </summary>
     
@@ -630,12 +705,12 @@
     <link href="https://tunsuy.github.io/2016/06/15/docker%E8%87%AA%E5%AE%9A%E4%B9%89daemon%E9%80%89%E9%A1%B9/"/>
     <id>https://tunsuy.github.io/2016/06/15/docker自定义daemon选项/</id>
     <published>2016-06-15T04:10:23.000Z</published>
-    <updated>2017-03-04T08:54:13.807Z</updated>
+    <updated>2017-03-04T09:45:50.482Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="一、-前提"><a href="#一、-前提" class="headerlink" title="一、 前提"></a>一、 前提</h1><p>可以定义的选项为如下列出来的</p>
-<pre><code>docker-current daemon --help
-</code></pre><h1 id="二、-方案一"><a href="#二、-方案一" class="headerlink" title="二、 方案一"></a>二、 方案一</h1><h2 id="1、-分别定义各环境文件"><a href="#1、-分别定义各环境文件" class="headerlink" title="1、 分别定义各环境文件"></a>1、 分别定义各环境文件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eg：/etc/sysconfig/docker-storage</div><div class="line">/etc/sysconfig/docker-network</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<h1 id="一、-前提"><a href="#一、-前提" class="headerlink" title="一、 前提"></a>一、 前提</h1><p>可以定义的选项为如下列出来的<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-current daemon --help</div></pre></td></tr></table></figure></p>
+<h1 id="二、-方案一"><a href="#二、-方案一" class="headerlink" title="二、 方案一"></a>二、 方案一</h1><h2 id="1、-分别定义各环境文件"><a href="#1、-分别定义各环境文件" class="headerlink" title="1、 分别定义各环境文件"></a>1、 分别定义各环境文件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eg：/etc/sysconfig/docker-storage</div><div class="line">/etc/sysconfig/docker-network</div></pre></td></tr></table></figure>
 <p>该文件中可以自定义环境变量</p>
+<a id="more"></a>
 <h2 id="2、-引入环境文件"><a href="#2、-引入环境文件" class="headerlink" title="2、 引入环境文件"></a>2、 引入环境文件</h2><p>在<code>/usr/lib/systemd/system/docker.service</code>文件中引入环境文件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eg：EnvironmentFile=-<span class="regexp">/etc/</span>sysconfig/docker-storage</div><div class="line">EnvironmentFile=-<span class="regexp">/etc/</span>sysconfig/docker-network</div></pre></td></tr></table></figure></p>
 <p>并使用其环境变量<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ExecStart=<span class="regexp">/usr/</span>bin/docker-current daemon \</div><div class="line">      $DOCKER_STORAGE_OPTIONS \</div><div class="line">      $DOCKER_NETWORK_OPTIONS \</div></pre></td></tr></table></figure></p>
 <p>备注：也可以将所有的自定义选项定义在一个文件中</p>
@@ -651,13 +726,14 @@
 </li>
 </ul>
 <h1 id="三、-方案二"><a href="#三、-方案二" class="headerlink" title="三、 方案二"></a>三、 方案二</h1><p>直接在<code>/usr/lib/systemd/system/docker.service</code>文件中加入选项<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">eg：ExecStart=<span class="regexp">/usr/</span>bin/docker-current daemon \</div><div class="line">      --exec-opt native.cgroupdriver=systemd \</div><div class="line">      --insecure-registry docker.ts.com:<span class="number">5000</span></div></pre></td></tr></table></figure></p>
-<h1 id="四、-方案三"><a href="#四、-方案三" class="headerlink" title="四、 方案三"></a>四、 方案三</h1><p>使用<code>daemon.json</code>文件<br>官方文档：<a href="https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file" target="_blank" rel="external">https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file</a><br>路径：<code>/etc/docker/daemon.json</code><br>备注：使用此方案不要与其他方案相混合使用，否则docker启动的时候会报错</p>
+<h1 id="四、-方案三"><a href="#四、-方案三" class="headerlink" title="四、 方案三"></a>四、 方案三</h1><p>使用<code>daemon.json</code>文件<br>官方文档：<br><a href="https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file" target="_blank" rel="external">https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file</a><br>路径：<code>/etc/docker/daemon.json</code><br>备注：使用此方案不要与其他方案相混合使用，否则docker启动的时候会报错</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;一、-前提&quot;&gt;&lt;a href=&quot;#一、-前提&quot; class=&quot;headerlink&quot; title=&quot;一、 前提&quot;&gt;&lt;/a&gt;一、 前提&lt;/h1&gt;&lt;p&gt;可以定义的选项为如下列出来的&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;docker-current daemon --help
+      &lt;h1 id=&quot;一、-前提&quot;&gt;&lt;a href=&quot;#一、-前提&quot; class=&quot;headerlink&quot; title=&quot;一、 前提&quot;&gt;&lt;/a&gt;一、 前提&lt;/h1&gt;&lt;p&gt;可以定义的选项为如下列出来的&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;docker-current daemon --help&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h1 id=&quot;二、-方案一&quot;&gt;&lt;a href=&quot;#二、-方案一&quot; class=&quot;headerlink&quot; title=&quot;二、 方案一&quot;&gt;&lt;/a&gt;二、 方案一&lt;/h1&gt;&lt;h2 id=&quot;1、-分别定义各环境文件&quot;&gt;&lt;a href=&quot;#1、-分别定义各环境文件&quot; class=&quot;headerlink&quot; title=&quot;1、 分别定义各环境文件&quot;&gt;&lt;/a&gt;1、 分别定义各环境文件&lt;/h2&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;eg：/etc/sysconfig/docker-storage&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/etc/sysconfig/docker-network&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;该文件中可以自定义环境变量&lt;/p&gt;
     
     </summary>
     
@@ -675,10 +751,11 @@
     <link href="https://tunsuy.github.io/2016/06/02/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84moa%E6%9C%8D%E5%8A%A1/"/>
     <id>https://tunsuy.github.io/2016/06/02/基于docker的moa服务/</id>
     <published>2016-06-02T04:15:17.000Z</published>
-    <updated>2017-03-04T08:54:14.393Z</updated>
+    <updated>2017-03-04T09:45:50.875Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>该文章主要讲解将公司的server服务docker化的具体过程，从中可以看到很多docker相关知识的使用以及网络配置等操作<br>文中还设计到自己实现的关于docker自动化配置的两个脚本，供大家学习参考</p>
 <h1 id="二、-docker化步骤"><a href="#二、-docker化步骤" class="headerlink" title="二、 docker化步骤"></a>二、 docker化步骤</h1><p>1、 将初始安装包拷贝到容器主机上</p>
+<a id="more"></a>
 <p>2、在主机上拉取一个centos6.7的docker镜像<br>ps：因为官方的docker镜像都是轻量级的，所有很多linux下的命令都没有</p>
 <ul>
 <li>方法一 就是要么自己将所有的命令工具都安装了</li>
@@ -734,7 +811,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;一、-简介&quot;&gt;&lt;a href=&quot;#一、-简介&quot; class=&quot;headerlink&quot; title=&quot;一、 简介&quot;&gt;&lt;/a&gt;一、 简介&lt;/h1&gt;&lt;p&gt;该文章主要讲解将公司的server服务docker化的具体过程，从中可以看到很多docker相关知识的使用以及网络配
+      &lt;h1 id=&quot;一、-简介&quot;&gt;&lt;a href=&quot;#一、-简介&quot; class=&quot;headerlink&quot; title=&quot;一、 简介&quot;&gt;&lt;/a&gt;一、 简介&lt;/h1&gt;&lt;p&gt;该文章主要讲解将公司的server服务docker化的具体过程，从中可以看到很多docker相关知识的使用以及网络配置等操作&lt;br&gt;文中还设计到自己实现的关于docker自动化配置的两个脚本，供大家学习参考&lt;/p&gt;
+&lt;h1 id=&quot;二、-docker化步骤&quot;&gt;&lt;a href=&quot;#二、-docker化步骤&quot; class=&quot;headerlink&quot; title=&quot;二、 docker化步骤&quot;&gt;&lt;/a&gt;二、 docker化步骤&lt;/h1&gt;&lt;p&gt;1、 将初始安装包拷贝到容器主机上&lt;/p&gt;
     
     </summary>
     
@@ -752,7 +830,7 @@
     <link href="https://tunsuy.github.io/2016/05/19/iOS%E4%B8%8B%E4%BD%BF%E7%94%A8XCTest%E8%BF%9B%E8%A1%8C%E5%8F%91%E5%8C%85%E5%89%8DChecklist%E6%A3%80%E6%9F%A5/"/>
     <id>https://tunsuy.github.io/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/</id>
     <published>2016-05-19T07:16:22.000Z</published>
-    <updated>2017-03-04T08:54:13.853Z</updated>
+    <updated>2017-03-04T09:45:50.532Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-UI-Testing简介"><a href="#一、-UI-Testing简介" class="headerlink" title="一、 UI Testing简介"></a>一、 UI Testing简介</h1><p>1、UI Testing 是基于 XCTest 测试框架的。XCTest 作为 OCUnit 的替代者，目前是 iOS 单元测试框架不二之选，很多其他测试框架也基于 XCTest 封装。XCTest 有如下特点：</p>
 <ul>
@@ -763,6 +841,7 @@
 <li>可以使用 Xcode server 的持续集成。支持 Swift 和 Objective-C</li>
 </ul>
 <p>2、那 UI Testing 在 XCTest 的基础上实际上是扩展了几个类，协议<br>所以本质上 UI Testing 还是 XCTest，所以写用例的时候，还是需要遵从 XCTest 的规则</p>
+<a id="more"></a>
 <p>3、UI Testing 需要依靠 Accessibility 来定位元素。UI Testing 可以通过你的应用提供的 Accessibility 功能来与你的应用连接，这样就解决了设备大小不一的问题。如果你重新调整了 UI 中的某些元素，你也不用重写整套测试。当然实现 Accessibility 的本质不是为了使用 UI Testing，而是为了能帮助行动不便的用户更好地使用你的应用。</p>
 <h1 id="二、-具体实践"><a href="#二、-具体实践" class="headerlink" title="二、 具体实践"></a>二、 具体实践</h1><p>Xcode 7中创建新工程时，可以选择是否要包含UI测试——这里就不演示了  </p>
 <p>下面说说在已有工程的时候，怎么进行UI Testing<br>1、再项目工程中增加一个target<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target1.jpg" alt="target1.jpg" title=""></p>
@@ -780,7 +859,15 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;一、-UI-Testing简介&quot;&gt;&lt;a href=&quot;#一、-UI-Testing简介&quot; class=&quot;headerlink&quot; title=&quot;一、 UI Testing简介&quot;&gt;&lt;/a&gt;一、 UI Testing简介&lt;/h1&gt;&lt;p&gt;1、UI Testing 是基于 X
+      &lt;h1 id=&quot;一、-UI-Testing简介&quot;&gt;&lt;a href=&quot;#一、-UI-Testing简介&quot; class=&quot;headerlink&quot; title=&quot;一、 UI Testing简介&quot;&gt;&lt;/a&gt;一、 UI Testing简介&lt;/h1&gt;&lt;p&gt;1、UI Testing 是基于 XCTest 测试框架的。XCTest 作为 OCUnit 的替代者，目前是 iOS 单元测试框架不二之选，很多其他测试框架也基于 XCTest 封装。XCTest 有如下特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;测试用例需要继承 XCTestCase&lt;/li&gt;
+&lt;li&gt;有类似 Junit 的 setup 或者 teardown方法&lt;/li&gt;
+&lt;li&gt;还算不错的 Assertions&lt;/li&gt;
+&lt;li&gt;和 Xcode 深度集成&lt;/li&gt;
+&lt;li&gt;可以使用 Xcode server 的持续集成。支持 Swift 和 Objective-C&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2、那 UI Testing 在 XCTest 的基础上实际上是扩展了几个类，协议&lt;br&gt;所以本质上 UI Testing 还是 XCTest，所以写用例的时候，还是需要遵从 XCTest 的规则&lt;/p&gt;
     
     </summary>
     
@@ -796,14 +883,15 @@
     <link href="https://tunsuy.github.io/2016/04/14/selenium%E8%BF%9C%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
     <id>https://tunsuy.github.io/2016/04/14/selenium远程启动浏览器/</id>
     <published>2016-04-14T11:08:23.000Z</published>
-    <updated>2017-03-04T08:54:14.259Z</updated>
+    <updated>2017-03-04T09:45:50.779Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-方案一"><a href="#一、-方案一" class="headerlink" title="一、 方案一"></a>一、 方案一</h1><p>通过selenium-server  </p>
 <h2 id="1、-相关下载"><a href="#1、-相关下载" class="headerlink" title="1、 相关下载"></a>1、 相关下载</h2><ul>
 <li>下载server：<a href="http://seleniumhq.org/download/" target="_blank" rel="external">http://seleniumhq.org/download/</a></li>
-<li>下载chrome-driver：<a href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank" rel="external">https://sites.google.com/a/chromium.org/chromedriver/downloads</a></li>
+<li>下载chrome-driver：<br><a href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank" rel="external">https://sites.google.com/a/chromium.org/chromedriver/downloads</a></li>
 </ul>
 <h2 id="2、-开启selenium-server"><a href="#2、-开启selenium-server" class="headerlink" title="2、 开启selenium-server"></a>2、 开启selenium-server</h2><p>在浏览器主机的终端上执行命令：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -Dwebdriver.chrome.driver=<span class="string">"D:\chromedriver.exe"</span> -jar selenium-server.jar</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h2 id="3、-编写client脚本测试"><a href="#3、-编写client脚本测试" class="headerlink" title="3、 编写client脚本测试"></a>3、 编写client脚本测试</h2><p>接下来就可以在其他主机上编写测试脚本并执行了：以python为例</p>
 <ul>
 <li><p>下载基本python的selenium库：</p>
@@ -822,7 +910,11 @@
     <summary type="html">
     
       &lt;h1 id=&quot;一、-方案一&quot;&gt;&lt;a href=&quot;#一、-方案一&quot; class=&quot;headerlink&quot; title=&quot;一、 方案一&quot;&gt;&lt;/a&gt;一、 方案一&lt;/h1&gt;&lt;p&gt;通过selenium-server  &lt;/p&gt;
-&lt;h2 id=&quot;1、-相关下载&quot;&gt;&lt;a href=&quot;#1、-
+&lt;h2 id=&quot;1、-相关下载&quot;&gt;&lt;a href=&quot;#1、-相关下载&quot; class=&quot;headerlink&quot; title=&quot;1、 相关下载&quot;&gt;&lt;/a&gt;1、 相关下载&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;下载server：&lt;a href=&quot;http://seleniumhq.org/download/&quot;&gt;http://seleniumhq.org/download/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载chrome-driver：&lt;br&gt;&lt;a href=&quot;https://sites.google.com/a/chromium.org/chromedriver/downloads&quot;&gt;https://sites.google.com/a/chromium.org/chromedriver/downloads&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2、-开启selenium-server&quot;&gt;&lt;a href=&quot;#2、-开启selenium-server&quot; class=&quot;headerlink&quot; title=&quot;2、 开启selenium-server&quot;&gt;&lt;/a&gt;2、 开启selenium-server&lt;/h2&gt;&lt;p&gt;在浏览器主机的终端上执行命令：&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;java -Dwebdriver.chrome.driver=&lt;span class=&quot;string&quot;&gt;&quot;D:\chromedriver.exe&quot;&lt;/span&gt; -jar selenium-server.jar&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
     
     </summary>
     
@@ -840,12 +932,13 @@
     <link href="https://tunsuy.github.io/2015/10/27/redmine%E8%BF%81%E7%A7%BB%EF%BC%9A%E4%BB%8Ewindows%E4%B8%8B%E8%BF%81%E7%A7%BB%E5%88%B0linux/"/>
     <id>https://tunsuy.github.io/2015/10/27/redmine迁移：从windows下迁移到linux/</id>
     <published>2015-10-27T11:24:22.000Z</published>
-    <updated>2017-03-04T08:54:14.245Z</updated>
+    <updated>2017-03-04T09:45:50.761Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-迁移步骤"><a href="#一、-迁移步骤" class="headerlink" title="一、 迁移步骤"></a>一、 迁移步骤</h1><p>1、在linux下将redmine安装好  </p>
 <p>2、从原来的服务器上（windows）导出数据库文件（sql文件）  </p>
 <p>3、将现在的服务器（linux）上的redmine数据库清空<br>注：是清空，不能删除，因为删除会导致之后访问不了，具体原因可能是兼容问题  </p>
 <p>4、将2步中导出来的sql文件导入3步中清空的redmine数据库中<br>注：可能返回结果会提示说有错误，记下出错的表  </p>
+<a id="more"></a>
 <p>5、将出错的表重新删除再导入<br>注：记住是删除，不是清空<br>到目前为止数据库文件已经全部导入成功了  </p>
 <p>6、附件的导入<br>——将原来的服务器上的redmine中files文件拷贝到现在的服务器上的相同目录下  </p>
 <p>至此全部迁移数据已完成</p>
@@ -874,7 +967,9 @@
     <summary type="html">
     
       &lt;h1 id=&quot;一、-迁移步骤&quot;&gt;&lt;a href=&quot;#一、-迁移步骤&quot; class=&quot;headerlink&quot; title=&quot;一、 迁移步骤&quot;&gt;&lt;/a&gt;一、 迁移步骤&lt;/h1&gt;&lt;p&gt;1、在linux下将redmine安装好  &lt;/p&gt;
-&lt;p&gt;2、从原来的服务器上（windows）导
+&lt;p&gt;2、从原来的服务器上（windows）导出数据库文件（sql文件）  &lt;/p&gt;
+&lt;p&gt;3、将现在的服务器（linux）上的redmine数据库清空&lt;br&gt;注：是清空，不能删除，因为删除会导致之后访问不了，具体原因可能是兼容问题  &lt;/p&gt;
+&lt;p&gt;4、将2步中导出来的sql文件导入3步中清空的redmine数据库中&lt;br&gt;注：可能返回结果会提示说有错误，记下出错的表  &lt;/p&gt;
     
     </summary>
     
@@ -892,10 +987,11 @@
     <link href="https://tunsuy.github.io/2015/06/12/calabash-ios%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
     <id>https://tunsuy.github.io/2015/06/12/calabash-ios原理分析/</id>
     <published>2015-06-12T07:10:51.000Z</published>
-    <updated>2017-03-04T08:54:13.371Z</updated>
+    <updated>2017-03-04T09:45:50.292Z</updated>
     
     <content type="html"><![CDATA[<p>calabash同时支持ios和Android平台，这里只介绍ios平台。</p>
 <h1 id="一、-系统架构图"><a href="#一、-系统架构图" class="headerlink" title="一、 系统架构图"></a>一、 系统架构图</h1><p>calabash-ios整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
+<a id="more"></a>
 <img src="/2015/06/12/calabash-ios原理分析/calabash-ios.jpg" alt="calabash-ios.jpg" title="">
 <h1 id="二、-框架分析"><a href="#二、-框架分析" class="headerlink" title="二、 框架分析"></a>二、 框架分析</h1><p>接上图</p>
 <p>1、其中，Runner 负责接受用户指令，并对其进行数据校验、指令转换等操作</p>
@@ -909,7 +1005,7 @@
     <summary type="html">
     
       &lt;p&gt;calabash同时支持ios和Android平台，这里只介绍ios平台。&lt;/p&gt;
-&lt;h1 id=&quot;一、-系统架构图&quot;&gt;&lt;a href=&quot;#一、-系统架构图&quot; class=&quot;headerlink&quot; title=&quot;一、 系统架构图&quot;&gt;&lt;/a&gt;一、 系统架构图&lt;/h1&gt;&lt;p&gt;c
+&lt;h1 id=&quot;一、-系统架构图&quot;&gt;&lt;a href=&quot;#一、-系统架构图&quot; class=&quot;headerlink&quot; title=&quot;一、 系统架构图&quot;&gt;&lt;/a&gt;一、 系统架构图&lt;/h1&gt;&lt;p&gt;calabash-ios整个框架采用 C/S 的运行模式，系统架构如下图所示：&lt;/p&gt;
     
     </summary>
     
@@ -925,10 +1021,11 @@
     <link href="https://tunsuy.github.io/2015/06/10/%E5%88%A9%E7%94%A8leakcanay%E6%A3%80%E6%B5%8Bandroid%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/"/>
     <id>https://tunsuy.github.io/2015/06/10/利用leakcanay检测android内存泄露/</id>
     <published>2015-06-10T07:21:24.000Z</published>
-    <updated>2017-03-04T08:54:14.312Z</updated>
+    <updated>2017-03-04T09:45:50.857Z</updated>
     
     <content type="html"><![CDATA[<p>leakcanary的知识就不在这里普及了，随便Google下就知道</p>
 <h1 id="一、-项目集成"><a href="#一、-项目集成" class="headerlink" title="一、 项目集成"></a>一、 项目集成</h1><p>直接说在项目中怎么操作，如下：<br>1、在 build.gradle 中加入引用，不同的编译使用不同的引用：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">  debugCompile <span class="string">'com.squareup.leakcanary:leakcanary-android:1.3'</span></div><div class="line">  releaseCompile <span class="string">'com.squareup.leakcanary:leakcanary-android-no-op:1.3'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>2、在你的项目的 Application 中：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleApplication</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate();</div><div class="line">    LeakCanary.install(<span class="keyword">this</span>);    <span class="comment">//加上这一句</span></div><div class="line">  &#125;&#125;</div></pre></td></tr></table></figure></p>
 <p>这样， 重新打包安装之后 ，在操作测试该APP的过程中，如果检测到某个 activity 有内存泄露，LeakCanary 就是自动地显示一个通知。</p>
 <h1 id="二、-具体实践"><a href="#二、-具体实践" class="headerlink" title="二、 具体实践"></a>二、 具体实践</h1><p>具体以我们口袋助理来介绍下：</p>
@@ -948,7 +1045,7 @@
     <summary type="html">
     
       &lt;p&gt;leakcanary的知识就不在这里普及了，随便Google下就知道&lt;/p&gt;
-&lt;h1 id=&quot;一、-项目集成&quot;&gt;&lt;a href=&quot;#一、-项目集成&quot; class=&quot;headerlink&quot; title=&quot;一、 项目集成&quot;&gt;&lt;/a&gt;一、 项目集成&lt;/h1&gt;&lt;p&gt;直接说在项目中怎
+&lt;h1 id=&quot;一、-项目集成&quot;&gt;&lt;a href=&quot;#一、-项目集成&quot; class=&quot;headerlink&quot; title=&quot;一、 项目集成&quot;&gt;&lt;/a&gt;一、 项目集成&lt;/h1&gt;&lt;p&gt;直接说在项目中怎么操作，如下：&lt;br&gt;1、在 build.gradle 中加入引用，不同的编译使用不同的引用：&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  debugCompile &lt;span class=&quot;string&quot;&gt;&#39;com.squareup.leakcanary:leakcanary-android:1.3&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  releaseCompile &lt;span class=&quot;string&quot;&gt;&#39;com.squareup.leakcanary:leakcanary-android-no-op:1.3&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
     
     </summary>
     

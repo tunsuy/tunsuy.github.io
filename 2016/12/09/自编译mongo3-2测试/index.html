@@ -108,16 +108,19 @@
 
 
 
-<meta name="description" content="一、 简介公司将mongodb删除机制进行了自定义，改动了相关源码，故需要配合测试mongodb的功能是否正常">
+<meta name="description" content="一、 简介公司将mongodb删除机制进行了自定义，改动了相关源码，故需要配合测试mongodb的功能是否正常
+二、 检查服务器1、 检查mongo启动情况12netstat -anpt | grep mong* | grep 0.0.0.0mongoa --port 27020（相应的端口）——进入mongo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自编译mongo3.2测试">
 <meta property="og:url" content="https://tunsuy.github.io/2016/12/09/自编译mongo3-2测试/index.html">
 <meta property="og:site_name" content="鱼儿塘">
-<meta property="og:description" content="一、 简介公司将mongodb删除机制进行了自定义，改动了相关源码，故需要配合测试mongodb的功能是否正常">
-<meta property="og:updated_time" content="2017-03-04T09:18:06.348Z">
+<meta property="og:description" content="一、 简介公司将mongodb删除机制进行了自定义，改动了相关源码，故需要配合测试mongodb的功能是否正常
+二、 检查服务器1、 检查mongo启动情况12netstat -anpt | grep mong* | grep 0.0.0.0mongoa --port 27020（相应的端口）——进入mongo">
+<meta property="og:updated_time" content="2017-03-04T09:45:50.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自编译mongo3.2测试">
-<meta name="twitter:description" content="一、 简介公司将mongodb删除机制进行了自定义，改动了相关源码，故需要配合测试mongodb的功能是否正常">
+<meta name="twitter:description" content="一、 简介公司将mongodb删除机制进行了自定义，改动了相关源码，故需要配合测试mongodb的功能是否正常
+二、 检查服务器1、 检查mongo启动情况12netstat -anpt | grep mong* | grep 0.0.0.0mongoa --port 27020（相应的端口）——进入mongo">
 
 
 
@@ -428,9 +431,9 @@
 
       
         <h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>公司将mongodb删除机制进行了自定义，改动了相关源码，故需要配合测试mongodb的功能是否正常</p>
-<a id="more"></a>
 <h1 id="二、-检查服务器"><a href="#二、-检查服务器" class="headerlink" title="二、 检查服务器"></a>二、 检查服务器</h1><h2 id="1、-检查mongo启动情况"><a href="#1、-检查mongo启动情况" class="headerlink" title="1、 检查mongo启动情况"></a>1、 检查mongo启动情况</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">netstat -anpt | grep mong* | grep <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></div><div class="line">mongoa --port <span class="number">27020</span>（相应的端口）——进入mongo</div></pre></td></tr></table></figure>
-<h2 id="2、-100集群数据库情况"><a href="#2、-100集群数据库情况" class="headerlink" title="2、 100集群数据库情况"></a>2、 100集群数据库情况</h2><p><code>cat /etc/hosts | grep db</code>——在169.100下查看<br>——3个数据库分片（sh0，sh1，sh2）<br>——2个统计分片（statis-sh0，statis-sh1）</p>
+<a id="more"></a>
+<h2 id="2、-集群数据库情况"><a href="#2、-集群数据库情况" class="headerlink" title="2、 集群数据库情况"></a>2、 集群数据库情况</h2><p><code>cat /etc/hosts | grep db</code><br>——3个数据库分片（sh0，sh1，sh2）<br>——2个统计分片（statis-sh0，statis-sh1）</p>
 <p>也可以这样查看：</p>
 <ul>
 <li>进入mongos（169.100下）</li>
@@ -679,7 +682,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-简介"><span class="nav-text">一、 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-检查服务器"><span class="nav-text">二、 检查服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-检查mongo启动情况"><span class="nav-text">1、 检查mongo启动情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-100集群数据库情况"><span class="nav-text">2、 100集群数据库情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-主备切换测试"><span class="nav-text">三、 主备切换测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-shard0："><span class="nav-text">1、 shard0：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-依次对shard1、shard2集群进行主备切换"><span class="nav-text">2、 依次对shard1、shard2集群进行主备切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、-chunk迁移测试"><span class="nav-text">四、 chunk迁移测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-查看迁移之前的chunk情况"><span class="nav-text">1、 查看迁移之前的chunk情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-执行迁移命令"><span class="nav-text">2、 执行迁移命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-查看迁移情况"><span class="nav-text">3、 查看迁移情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、-chunk分裂"><span class="nav-text">五、 chunk分裂</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-查看chunk分裂前情况"><span class="nav-text">1、 查看chunk分裂前情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-指定分裂点"><span class="nav-text">2、 指定分裂点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-检查分裂情况"><span class="nav-text">3、 检查分裂情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、-其他"><span class="nav-text">六、 其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-重启moa服务"><span class="nav-text">1、 重启moa服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-检查各模块功能情况"><span class="nav-text">2、 检查各模块功能情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-检查服务器资源情况"><span class="nav-text">3、 检查服务器资源情况</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-简介"><span class="nav-text">一、 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-检查服务器"><span class="nav-text">二、 检查服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-检查mongo启动情况"><span class="nav-text">1、 检查mongo启动情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-集群数据库情况"><span class="nav-text">2、 集群数据库情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-主备切换测试"><span class="nav-text">三、 主备切换测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-shard0："><span class="nav-text">1、 shard0：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-依次对shard1、shard2集群进行主备切换"><span class="nav-text">2、 依次对shard1、shard2集群进行主备切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、-chunk迁移测试"><span class="nav-text">四、 chunk迁移测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-查看迁移之前的chunk情况"><span class="nav-text">1、 查看迁移之前的chunk情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-执行迁移命令"><span class="nav-text">2、 执行迁移命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-查看迁移情况"><span class="nav-text">3、 查看迁移情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、-chunk分裂"><span class="nav-text">五、 chunk分裂</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-查看chunk分裂前情况"><span class="nav-text">1、 查看chunk分裂前情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-指定分裂点"><span class="nav-text">2、 指定分裂点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-检查分裂情况"><span class="nav-text">3、 检查分裂情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、-其他"><span class="nav-text">六、 其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-重启moa服务"><span class="nav-text">1、 重启moa服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-检查各模块功能情况"><span class="nav-text">2、 检查各模块功能情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-检查服务器资源情况"><span class="nav-text">3、 检查服务器资源情况</span></a></li></ol></li></ol></div>
             
 
           </div>

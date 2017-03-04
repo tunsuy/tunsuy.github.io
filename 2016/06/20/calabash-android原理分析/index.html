@@ -121,7 +121,7 @@
 1、内部使用核心为cucumber的calabash的脚本在运行测试的时候会在虚拟机/真机上预装一个web服务器，这个web服务器就是解释calabash的脚本，
 2、因为calabash-Android是基于robo">
 <meta property="og:image" content="https://tunsuy.github.io/2016/06/20/calabash-android原理分析/calabash-android.jpg">
-<meta property="og:updated_time" content="2017-03-04T08:54:13.309Z">
+<meta property="og:updated_time" content="2017-03-04T09:45:50.252Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="calabash-android原理分析">
 <meta name="twitter:description" content="在前面已经简单的介绍了calabash-ios的原理，这里将继续分析calabash-Android端的原理
@@ -420,6 +420,7 @@
 <h1 id="一、-原理解析"><a href="#一、-原理解析" class="headerlink" title="一、 原理解析"></a>一、 原理解析</h1><p>calabash-android架构其实与IOS是相同的</p>
 <p>1、内部使用核心为cucumber的calabash的脚本在运行测试的时候会在虚拟机/真机上预装一个web服务器，这个web服务器就是解释calabash的脚本，</p>
 <p>2、因为calabash-Android是基于robotium框架的，所以在机器上预装的web-server会将下发下来的calabash脚本解释为robotium的脚本，然后向测试app发送robotium的脚本，</p>
+<a id="more"></a>
 <p>3、因为robotium框架就是封装的google测试框架instumentation，所以app拿到robotium脚本后，将其解释为instumentation命令向被测试的app发送这些命令，被测试的app执行这些命令，然后将结果返回。</p>
 <h1 id="二、-系统架构图"><a href="#二、-系统架构图" class="headerlink" title="二、 系统架构图"></a>二、 系统架构图</h1><p>calabash-Android整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
 <img src="/2016/06/20/calabash-android原理分析/calabash-android.jpg" alt="calabash-android.jpg" title="">

@@ -109,21 +109,18 @@
 
 
 <meta name="description" content="一、 drozer的安装与启动1、 安装第一步：从http://mwr.to/drozer下载Drozer (Windows Installer)
-第二步：在Android设备中安装agent.apk1adb install agent.apk
-2、 启动第一步：使用adb连接android设备12C:\Users\vv&amp;gt;adb connect 20.20.20.55connected to">
+第二步：在Android设备中安装agent.apk1adb install agent.apk">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用drozer进行Android渗透测试">
 <meta property="og:url" content="https://tunsuy.github.io/2015/05/10/利用drozer进行Android渗透测试/index.html">
 <meta property="og:site_name" content="鱼儿塘">
 <meta property="og:description" content="一、 drozer的安装与启动1、 安装第一步：从http://mwr.to/drozer下载Drozer (Windows Installer)
-第二步：在Android设备中安装agent.apk1adb install agent.apk
-2、 启动第一步：使用adb连接android设备12C:\Users\vv&amp;gt;adb connect 20.20.20.55connected to">
-<meta property="og:updated_time" content="2017-03-04T08:54:14.292Z">
+第二步：在Android设备中安装agent.apk1adb install agent.apk">
+<meta property="og:updated_time" content="2017-03-04T09:45:50.814Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用drozer进行Android渗透测试">
 <meta name="twitter:description" content="一、 drozer的安装与启动1、 安装第一步：从http://mwr.to/drozer下载Drozer (Windows Installer)
-第二步：在Android设备中安装agent.apk1adb install agent.apk
-2、 启动第一步：使用adb连接android设备12C:\Users\vv&amp;gt;adb connect 20.20.20.55connected to">
+第二步：在Android设备中安装agent.apk1adb install agent.apk">
 
 
 
@@ -413,6 +410,7 @@
       
         <h1 id="一、-drozer的安装与启动"><a href="#一、-drozer的安装与启动" class="headerlink" title="一、 drozer的安装与启动"></a>一、 drozer的安装与启动</h1><h2 id="1、-安装"><a href="#1、-安装" class="headerlink" title="1、 安装"></a>1、 安装</h2><p>第一步：从<a href="http://mwr.to/drozer下载Drozer" target="_blank" rel="external">http://mwr.to/drozer下载Drozer</a> (Windows Installer)</p>
 <p>第二步：在Android设备中安装agent.apk<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb install agent.apk</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h2 id="2、-启动"><a href="#2、-启动" class="headerlink" title="2、 启动"></a>2、 启动</h2><p>第一步：使用adb连接android设备<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">C:\Users\vv&gt;adb connect <span class="number">20.20</span><span class="number">.20</span><span class="number">.55</span></div><div class="line">connected to <span class="number">20.20</span><span class="number">.20</span><span class="number">.55</span>:<span class="number">5555</span></div></pre></td></tr></table></figure></p>
 <p>第二步：使用adb进行端口转发，转发到Drozer使用的端口31415<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C:\Users\vv&gt;adb forward tcp:<span class="number">31415</span> tcp:<span class="number">31415</span></div></pre></td></tr></table></figure></p>
 <p>第三步：在Android设备上开启Drozer Agent<br>选择embedded server-enable</p>
