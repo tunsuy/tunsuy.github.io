@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tunsuy.github.io/"/>
-  <updated>2017-03-04T10:15:48.483Z</updated>
+  <updated>2017-03-10T07:55:11.691Z</updated>
   <id>https://tunsuy.github.io/</id>
   
   <author>
@@ -14,6 +14,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Array族区别及对比实验</title>
+    <link href="https://tunsuy.github.io/2017/03/10/Array%E6%97%8F%E5%8C%BA%E5%88%AB%E5%8F%8A%E5%AF%B9%E6%AF%94%E5%AE%9E%E9%AA%8C/"/>
+    <id>https://tunsuy.github.io/2017/03/10/Array族区别及对比实验/</id>
+    <published>2017-03-10T07:55:11.000Z</published>
+    <updated>2017-03-10T07:55:11.691Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于ruby-trello的trello系统数据写入工具</title>
+    <link href="https://tunsuy.github.io/2017/03/06/%E5%9F%BA%E4%BA%8Eruby-trello%E7%9A%84trello%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5%E5%B7%A5%E5%85%B7/"/>
+    <id>https://tunsuy.github.io/2017/03/06/基于ruby-trello的trello系统数据写入工具/</id>
+    <published>2017-03-06T03:19:08.000Z</published>
+    <updated>2017-03-06T03:19:44.714Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前moa测试这边经常会用excel文档写一些场景测试案例，同时，随着对开发自测能力的加强，还会在trello系统上列一份同样的研发自测案例点，为了减少一些不必要的重复工作，编写了一个工具来将excel文档中的内容根据不同的测试类和测试点自动写入trello系统<br>主要用到了基于ruby的trello API<br>1、首先要先获取trello的key值和相关权限的token值（不同的权限，token值时不一样的）<br>2、通过获取到的key值和token值进行trello认证<br>3、然后调用相关的ruby-trello API，进行相应的读写操作<br>4、这里我还对不同的测试类及其对应的测试点进行了分类写入，这样方便研发根据自己负责的分模块进行自测</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;目前moa测试这边经常会用excel文档写一些场景测试案例，同时，随着对开发自测能力的加强，还会在trello系统上列一份同样的研发自测案例点，为了减少一些不必要的重复工作，编写了一个工具来将excel文档中的内容根据不同的测试类和测试点自动写入trello系统&lt;br&gt;主要
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>移动互联网测试的所思所想</title>
+    <link href="https://tunsuy.github.io/2017/03/06/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E6%B5%8B%E8%AF%95%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3/"/>
+    <id>https://tunsuy.github.io/2017/03/06/移动互联网测试的所思所想/</id>
+    <published>2017-03-06T03:11:34.000Z</published>
+    <updated>2017-03-06T03:13:59.608Z</updated>
+    
+    <content type="html"><![CDATA[<p>操作问题<br>    ·　在不应该返回的时候返回了；<br>    ·　不耐心而且多次敲按键；<br>    ·　输入错误的数据；<br>    ·　不理解该怎么做；<br>     ·　可能没有按要求进行设置；<br>     ·　可能会自以为是地认为自己知道该怎做什么（比如通常不阅读说明）<br>设计问题<br>    ·　如果处于一直被使用或者负荷情况下，状况会怎么样？会反应迟钝吗？会崩溃吗？会更新吗？有反馈吗？<br>　　·　崩溃报告会反馈到App吗？<br>　　·　用户可能有哪些创造性的、逻辑性的或是消极的导航方式？用户相信你的品牌吗？<br>　　·　用户的数据安全如何？<br>　　·　有可能被中断或是被破解吗？<br>　　·　运行到极限时会发生什么状况？<br>　　·　会要求打开相关服务吗(如GPS、Wi-Fi)？如果用户打开会怎样？没打开又会怎样？<br>　　·　将用户重新引向哪儿？去网页？还是从网页到App？这会导致问题出现吗？<br>　　·　沟通过程和市场反馈是否符合该App的功能、设计和内容？<br>　　·　登录流程是怎样的？能在App上直接登录还是要去网页端？<br>　　·　登录是否整合了其他服务，比如用Facebook和Twitter帐号登录？<br>数据问题<br>·　 移动设备数据已满；<br>·　测试人员移除了所有的数据；<br>·　测试人员删除了App，那数据怎么办？<br>·　 测试人员删除并重装了App，数据怎么办？<br>·　 过多或者过少的内容导致设计和布局的改变；<br>·　在不同的时间段和时区使用；<br>·　 数据不同步；<br>·　同步被中断；<br>·　数据更新影响其他的服务（比如网页和云端服务）；<br>·　快速处理数据或是处理大量的数据；<br>·　使用无效的数据；<br>UI问题<br>·　出错提醒的UI设计可以接受吗？<br>·　错误信息内容可以理解吗？<br>·　错误信息是否保持一致？<br>·　这些错误信息有帮助吗？<br>·　错误信息内容是否合适？<br>·　这些错误是否符合惯例和标准？<br>·　这些错误信息本身是否安全？<br>·　运行记录和崩溃是否能被用户和开发者获得？<br>·　是否所有的错误都被测试过？<br>·　用户处理完错误信息后，将处于什么状态<br>·　是否在用户应该接受错误信息时，却没有错误信息弹出？</p>
+<p>平台相关<br>·　是否遵照了这个特定平台的设计规范？<br>·　与竞争对手以及行业内的设计相比如何？<br>·　是否适应外围设备？<br>·　触摸屏支持手势吗，如：轻拍、双击、长按、拖动、摇动、夹捏、轻拂、滑动？<br>·　这个App可以被理解吗？<br>·　当转动设备的方向时，有什么变化？<br>·　可以使用地图和GPS吗？<br>·　有用户指南吗？<br>·　电子邮件的工作流程友好吗？<br>·　通过网络分享时，它运行得流畅吗？是否整合了其他社交应用或网站？<br>·　当用户正在进行多任务工作，并在不同App间切换的时候，它还运行正常吗？<br>·　当用户更新它时，它是否会显示时间进度？<br>·　默认设置如何?有经过调整吗？<br>·　使用音效会有不同吗？</p>
+<p>连接问题<br>·　走动环境下？<br>·　Wi-Fi连接下？<br>·　没有Wi-Fi的情况下？<br>·　3G模式下？<br>·　间歇性地连接？<br>·　设置为飞行模式？<br>·　一个电话打进来时？<br>·　接收到一条信息时？<br>·　接收到一个提醒通知时？<br>·　在电量很低甚至自动关机时？<br>·　被强制更新时？<br>·　收到一条语音留言时？</p>
+<p>外界环境<br>·　我可以下载这个App吗？<br>·　我可以下载并安装更新吗？<br>·　更新之后还能使用吗？<br>·　当很多App处于等待更新状态时，我能更新它吗？<br>·　系统更新后，它会发生什么？<br>·　系统未更新，它又会发生什么？<br>·　它会通过iTunes自动同步下载到其他设备吗？<br>·　它自动执行任务或测试有意义吗？<br>·　它会连接到网络服务吗？这会带来什么不同？</p>
+<p>其他<br>·　测试用户可输入的极限值；<br>·　用重复的数据进行测试；<br>·　在全新无数据的手机里测试；<br>·　在老手机上测试；<br>·　预先安装不同类型的数据；<br>·　考虑聚集大家的资源来进行测试；<br>·　让一些测试自动化；<br>·　用一些超出预期的数据去测试，看它是怎么处理的；<br>·　分析信息和数据是怎么影响用户体验的；<br>·　不管用户看到的是否正确，都要一直问问题。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;操作问题&lt;br&gt;    ·　在不应该返回的时候返回了；&lt;br&gt;    ·　不耐心而且多次敲按键；&lt;br&gt;    ·　输入错误的数据；&lt;br&gt;    ·　不理解该怎么做；&lt;br&gt;     ·　可能没有按要求进行设置；&lt;br&gt;     ·　可能会自以为是地认为自己知道该怎做什么
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>自编译mongo3.2测试</title>
@@ -248,18 +304,18 @@
       <category term="redmine" scheme="https://tunsuy.github.io/categories/redmine/"/>
     
     
-      <category term="redmine" scheme="https://tunsuy.github.io/tags/redmine/"/>
-    
       <category term="python" scheme="https://tunsuy.github.io/tags/python/"/>
+    
+      <category term="redmine" scheme="https://tunsuy.github.io/tags/redmine/"/>
     
   </entry>
   
   <entry>
-    <title>ios：UIWebView与WKWebView注意事项</title>
+    <title>iOS：UIWebView与WKWebView注意事项</title>
     <link href="https://tunsuy.github.io/2016/09/28/ios%EF%BC%9AUIWebView%E4%B8%8EWKWebView%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
     <id>https://tunsuy.github.io/2016/09/28/ios：UIWebView与WKWebView注意事项/</id>
     <published>2016-09-28T09:14:51.000Z</published>
-    <updated>2017-03-04T10:15:48.099Z</updated>
+    <updated>2017-03-14T01:32:56.335Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-基本介绍"><a href="#一、-基本介绍" class="headerlink" title="一、 基本介绍"></a>一、 基本介绍</h1><p>1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 运行的上下文环境 JSContext 注入对象 Bridge；</p>
 <p>2、WKWebView 使用的 WebKit 框架，交互时为 webkit.messageHandlers 注入对象</p>
@@ -335,11 +391,11 @@
   </entry>
   
   <entry>
-    <title>ios：https/ATS改造过程</title>
+    <title>iOS：https/ATS改造过程</title>
     <link href="https://tunsuy.github.io/2016/09/21/ios%EF%BC%9Ahttps-ATS%E6%94%B9%E9%80%A0%E8%BF%87%E7%A8%8B/"/>
     <id>https://tunsuy.github.io/2016/09/21/ios：https-ATS改造过程/</id>
     <published>2016-09-21T05:14:11.000Z</published>
-    <updated>2017-03-04T10:15:48.077Z</updated>
+    <updated>2017-03-14T01:32:56.335Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>苹果官方宣称今年底将全面强制启动https的支持<br>1、不安全的HTTP链接将会遭到拦截  </p>
 <p>2、而且系统 Foundation 框架下的相关网络请求，将不再默认使用 HTTP等不安全的网络协议，而默认采用 TLS 1.</p>
@@ -434,11 +490,69 @@
   </entry>
   
   <entry>
-    <title>ios：性能之卡顿检测</title>
+    <title>Python：iterator pattern—迭代器模式</title>
+    <link href="https://tunsuy.github.io/2016/08/18/Python%EF%BC%9Aiterator-pattern%E2%80%94%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://tunsuy.github.io/2016/08/18/Python：iterator-pattern—迭代器模式/</id>
+    <published>2016-08-18T08:53:38.000Z</published>
+    <updated>2017-03-14T01:32:56.646Z</updated>
+    
+    <content type="html"><![CDATA[<p>翻译于<a href="https://davidcorne.com/2013/02/22/iterator-pattern/" target="_blank" rel="external">https://davidcorne.com/2013/02/22/iterator-pattern/</a></p>
+<p>注：不是原文翻译，有些自己的理解改动</p>
+<p>该文章主要从python语言的角度去讲解</p>
+<h1 id="一、-目的"><a href="#一、-目的" class="headerlink" title="一、 目的"></a>一、 目的</h1><p>这个模式背后的意思是：有一个对象，你能够循环它而不需要知道这个对象数据的内部表现。在Python这门语言中，没有什么是私有的（<code>译者注：python中的访问控制是约定</code>），你能够找到一个类的内部构成，这个迭代器模式给了你一个标准的接口。</p>
+<p>我认为在python中一个iterator最好的例子就是使用list，因此这里我确定你已经知道怎么使用这个list了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">list = [<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>]</div><div class="line"><span class="keyword">for</span> number <span class="keyword">in</span> list:</div><div class="line">    print(number)</div></pre></td></tr></table></figure>
+<p>这将得到下面的输出：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">one</div><div class="line">two</div><div class="line">three</div></pre></td></tr></table></figure></p>
+<p>在python中这个模式的目标就是为了让用户自定义的类也能够像这样使用。</p>
+<h1 id="二、-模式"><a href="#二、-模式" class="headerlink" title="二、 模式"></a>二、 模式</h1><p>这是十分轻量的一个模式，因此我将主要关注实现细节而不是设计。<br>下面是这个设计模式的UML类图</p>
+<img src="/2016/08/18/Python：iterator-pattern—迭代器模式/Iterator_general.png" alt="Iterator_general.png" title="">
+<p>从上图可以看出，iterator通过组合的方式持有一个容器类实例，它不拥有/删除这个容器本地，只是对这个容器实例的一个引用。</p>
+<p>你能看到我们这里是在谈论一般的集合数据结构而不是特指一个list或者dictionary。这些集合类的这些方法是为了定义一个集合/迭代器的接口，接下来我将详细的介绍它们。</p>
+<h1 id="三、-python协议"><a href="#三、-python协议" class="headerlink" title="三、 python协议"></a>三、 python协议</h1><p>协议是python中给出的名字（<code>译者注：OC语言中也有协议这个说法</code>），是你定义某一类对象的接口。它不像接口那样是一个正式的需要。它只是一个指导性作用。</p>
+<p>它们主要集中在魔术方法，就是那些名字前后是”–”的方法。</p>
+<p>我将简单的谈论下可变和不可变容器或者迭代器中的协议。</p>
+<h2 id="1、-不可变容器"><a href="#1、-不可变容器" class="headerlink" title="1、 不可变容器"></a>1、 不可变容器</h2><p>不可变容器是指你不能修改容器中元素项，只能获取它们长度或者获取其中的元素项。</p>
+<p>下面是不可变容器中的魔术方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="string">""" Returns the length of the container. Called like len(class) """</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, key)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Returns the keyth item in the container.</div><div class="line">    Should raise TypeError if the type of the key is wrong.</div><div class="line">    Should raise KeyError if there is no item for the key.</div><div class="line">    Called like class[key]</div><div class="line">    """</div></pre></td></tr></table></figure></p>
+<h2 id="2、-可变容器"><a href="#2、-可变容器" class="headerlink" title="2、 可变容器"></a>2、 可变容器</h2><p>正如你期望的，一个可变容器跟不可变容器有一样的获取方法，另外还有setting和adding方法。</p>
+<p>下面是这些魔术方法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Returns the length of the container.</div><div class="line">    Called like len(class)</div><div class="line">    """</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, key)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Returns the keyth item in the container.</div><div class="line">    Should raise TypeError if the type of the key is wrong.</div><div class="line">    Should raise KeyError if there is no item for the key.</div><div class="line">    Called like class[key]</div><div class="line">    """</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__setitem__</span><span class="params">(self, key, value)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Sets the keyth item in the container.</div><div class="line">    Should raise TypeError if the type of the key is wrong.</div><div class="line">    Should raise KeyError if there is no item for the key.</div><div class="line">    Called like class[key] = value</div><div class="line">    """</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__delitem__</span><span class="params">(self, key)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Deletes an item from the collection.  </div><div class="line">    Should raise TypeError if the type of the key is wrong.</div><div class="line">    Should raise KeyError if there is no item for the key.</div><div class="line">    Called like del class[key]</div><div class="line">    """</div></pre></td></tr></table></figure></p>
+<p>对于一个不可变容器，你可能也想要有一些方法来增加容器中的元素，对于list/array这类的容器，这些方法可能形如 <code>append(self, key)</code>，或者对于dictionary/table这类容器，则可能是形如 <code>__setitem__(self, key, value)</code></p>
+<p>你也可以增加其他的一些方法，比如 <code>__reversed__(self)</code> 和 <code>__contains__(self, item)</code>，但这些对于核心方法族不是必须的。这儿是更好的描述<a href="http://www.rafekettler.com/magicmethods.html#sequence" target="_blank" rel="external">here</a></p>
+<h2 id="3、-iterator迭代器"><a href="#3、-iterator迭代器" class="headerlink" title="3、 iterator迭代器"></a>3、 iterator迭代器</h2><p>一个迭代器的协议是非常简单的。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Returns an iterator for the collection.</div><div class="line">    Called like iter(class) or for item in class:</div><div class="line">    """</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">next</span><span class="params">(self)</span>:</span></div><div class="line">   <span class="string">"""</span></div><div class="line">   Returns the next item in the collection.</div><div class="line">   Called in a for loop, or manually.</div><div class="line">   Should raise StopIteration on the last item.</div><div class="line">   """</div></pre></td></tr></table></figure></p>
+<p>这个<strong>iter</strong>方法通常返回一个迭代器对象或者返回它自己。注意在python3中 <code>next()</code> 被重命名为了 <code>__next__()</code></p>
+<h1 id="四、-一个例子使用"><a href="#四、-一个例子使用" class="headerlink" title="四、 一个例子使用"></a>四、 一个例子使用</h1><p>这里是一个例子告诉你怎么实现一个简单的迭代器，这个例子是循环来反转一个集合。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReverseIterator</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Iterates the object given to it in reverse so it shows the difference.</div><div class="line">    """</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, iterable_object)</span>:</span></div><div class="line">        self.list = iterable_object</div><div class="line">        <span class="comment"># start at the end of the iterable_object</span></div><div class="line">        self.index = len(iterable_object)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="comment"># return an iterator</span></div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">""" Return the list backwards so it's noticeably different."""</span></div><div class="line">        <span class="keyword">if</span> (self.index == <span class="number">0</span>):</div><div class="line">            <span class="comment"># the list is over, raise a stop index exception</span></div><div class="line">            <span class="keyword">raise</span> StopIteration</div><div class="line">        self.index = self.index - <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> self.list[self.index]</div></pre></td></tr></table></figure></p>
+<p>注意这里仅仅定义了迭代器协议所需要的两个方法。</p>
+<p>这些方法的意思很明显了，构造函数 (<code>__init__</code>) 引用了一个可迭代对象，并且保持了这个可迭代对象的长度作为 <code>index</code>。这个 <code>__iter__</code> 返回它自己，因为它已经定义了一个 <code>next()</code> 方法。这个 <code>next()</code> 方法对 <code>index</code> 递减，然后返回这个元素项，除非没有元素项了，就抛出一个 <code>StopIteration</code> 异常</p>
+<p>在这个例子中，这个 <code>ReverseIterator</code> 迭代器对象被 <code>Days</code> 对象使用。代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Days</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.days = [</div><div class="line">        <span class="string">"Monday"</span>,</div><div class="line">        <span class="string">"Tuesday"</span>,</div><div class="line">        <span class="string">"Wednesday"</span>,</div><div class="line">        <span class="string">"Thursday"</span>,</div><div class="line">        <span class="string">"Friday"</span>,</div><div class="line">        <span class="string">"Saturday"</span>,</div><div class="line">        <span class="string">"Sunday"</span></div><div class="line">        ]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverse_iter</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> ReverseIterator(self.days)</div></pre></td></tr></table></figure></p>
+<p>这个类仅仅是对一周的日期list的装饰器，有一个公开的方法返回一个迭代器。</p>
+<p>下面的代码显示了怎么使用 <code>Days</code> 类。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="keyword">if</span> (__name__ == <span class="string">"__main__"</span>):</div><div class="line">    days = Days()</div><div class="line">    <span class="keyword">for</span> day <span class="keyword">in</span> days.reverse_iter():</div><div class="line">        print(day)</div></pre></td></tr></table></figure></p>
+<p>注：我也能够定义一个 <code>__iter__</code> 方法代替 <code>reverse_iter()</code> 方法，然后就可以像下面这样使用了：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="keyword">if</span> (__name__ == <span class="string">"__main__"</span>):</div><div class="line">    days = Days()</div><div class="line">    <span class="keyword">for</span> day <span class="keyword">in</span> days:</div><div class="line">        print(day)</div></pre></td></tr></table></figure></p>
+<p>都将正确的输出下面的结果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Sunday</div><div class="line">Saturday</div><div class="line">Friday</div><div class="line">Thursday</div><div class="line">Wednesday</div><div class="line">Tuesday</div><div class="line">Monday</div></pre></td></tr></table></figure></p>
+<p>这部分的代码可以在这个文件找到<a href="https://github.com/davidcorne/Design-Patterns-In-Python/blob/master/Behavioural/Iterator.py" target="_blank" rel="external">this file</a></p>
+<p>下面是这些类的UML类图</p>
+<img src="/2016/08/18/Python：iterator-pattern—迭代器模式/Iterator_specific.png" alt="Iterator_specific.png" title="">
+<p>这篇文章所以得代码都能在这里找到<a href="https://github.com/davidcorne/Design-Patterns-In-Python" target="_blank" rel="external">here</a></p>
+<p>感谢你的阅读</p>
+]]></content>
+    
+    <summary type="html">
+    
+      基于python语言的设计模式详解，迭代器模式
+    
+    </summary>
+    
+    
+      <category term="python" scheme="https://tunsuy.github.io/tags/python/"/>
+    
+      <category term="设计模式" scheme="https://tunsuy.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS：性能之卡顿检测</title>
     <link href="https://tunsuy.github.io/2016/08/11/ios%EF%BC%9A%E6%80%A7%E8%83%BD%E4%B9%8B%E5%8D%A1%E9%A1%BF%E6%A3%80%E6%B5%8B/"/>
     <id>https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/</id>
     <published>2016-08-11T11:11:51.000Z</published>
-    <updated>2017-03-04T10:15:48.124Z</updated>
+    <updated>2017-03-14T01:32:56.421Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>项目地址：<br><a href="https://github.com/tunsuy/iOSMonitorLag" target="_blank" rel="external">https://github.com/tunsuy/iOSMonitorLag</a></p>
 <p>该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果</p>
@@ -497,6 +611,51 @@
   </entry>
   
   <entry>
+    <title>Python：builder pattern—建造者模式</title>
+    <link href="https://tunsuy.github.io/2016/08/11/Python%EF%BC%9Abuilder-pattern%E2%80%94%E5%BB%BA%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://tunsuy.github.io/2016/08/11/Python：builder-pattern—建造器模式/</id>
+    <published>2016-08-11T10:00:47.000Z</published>
+    <updated>2017-03-14T01:32:56.523Z</updated>
+    
+    <content type="html"><![CDATA[<p>翻译于<a href="https://davidcorne.com/2013/01/21/builder-pattern/" target="_blank" rel="external">https://davidcorne.com/2013/01/21/builder-pattern/</a></p>
+<p>注：不是原文翻译，有些自己的理解改动</p>
+<h1 id="一、-目的"><a href="#一、-目的" class="headerlink" title="一、 目的"></a>一、 目的</h1><p>builder设计模式（以下均称建造者模式）的意思是指一个对象的构造是抽象的，以便于许多的实现能够使用相同的builder，实际的类构造逻辑跟它的表现是分开的。</p>
+<h1 id="二、-模式"><a href="#二、-模式" class="headerlink" title="二、 模式"></a>二、 模式</h1><p>下面是一般的UML类图</p>
+<img src="/2016/08/11/Python：builder-pattern—建造器模式/Builder_general.png" alt="Builder_general.png" title="">
+<p>上图中的 <code>product</code> 表示你想要创建的实际的类，这个类被称为 <code>Director</code> （导演）所调用。</p>
+<p>这个 <code>Director</code> 持有 <code>builder</code> 的一个实例，并调用它的 <code>create()</code> 方法，这个成员是 <code>ConcreteBuilder</code> 类的一个实例，这个 <code>ConcreteBuilder</code> 类实现了你想要的指定 <code>product</code> 的逻辑</p>
+<p>这个抽象的逻辑是需要用来创建不同的 <code>product</code> 类型，这个 <code>product</code> 也可以是一个接口，每个 <code>ConcreteBuilder</code> 也可能返回一个不同的产品类型。</p>
+<p>译者注：<code>Director</code> 表示具体创建 <code>product</code> 的类或者代码块；<br><code>ConcreteBuilder</code> 表示一个具体的 <code>builder</code> 类，</p>
+<h1 id="三、-一个例子使用"><a href="#三、-一个例子使用" class="headerlink" title="三、 一个例子使用"></a>三、 一个例子使用</h1><p>这个例子主要描述不同车辆的构造，所有的代码包含在这个文件中<a href="https://github.com/davidcorne/Design-Patterns-In-Python/blob/master/Structural/Builder.py" target="_blank" rel="external">this file</a></p>
+<p>这个例子中的车辆就表示 <code>product</code> ，下面是具体的类：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vehicle</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, type_name)</span>:</span></div><div class="line">        self.type = type_name</div><div class="line">        self.wheels = <span class="keyword">None</span></div><div class="line">        self.doors = <span class="keyword">None</span></div><div class="line">        self.seats = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">view</span><span class="params">(self)</span>:</span></div><div class="line">        print(</div><div class="line">            <span class="string">"This vehicle is a "</span> +</div><div class="line">            self.type +</div><div class="line">            <span class="string">" with; "</span> +</div><div class="line">            str(self.wheels) +</div><div class="line">            <span class="string">" wheels, "</span> +</div><div class="line">            str(self.doors) +</div><div class="line">            <span class="string">" doors, and "</span> +</div><div class="line">            str(self.seats) +</div><div class="line">            <span class="string">" seats."</span></div><div class="line">            )</div></pre></td></tr></table></figure></p>
+<p>因此不同的车辆有不同的名字、轮胎的数量和座位数，这个 <code>view()</code> 方法将打印出车辆的具体信息。</p>
+<p>车辆实例的构造将通过 <code>ConcreteBuilder</code> 类来完成的，这些类是来自 <code>builder</code> 接口（抽象类）,下面是 <code>builder</code>，即这个例子中的 <code>VehicleBuilder</code> 类代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">VehicleBuilder</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    An abstract builder class, for concrete builders to be derived from.</div><div class="line">    """</div><div class="line">    __metadata__ = abc.ABCMeta</div><div class="line"></div><div class="line"><span class="meta">    @abc.abstractmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_wheels</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">raise</span></div><div class="line"></div><div class="line"><span class="meta">    @abc.abstractmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_doors</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">raise</span></div><div class="line"></div><div class="line"><span class="meta">    @abc.abstractmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_seats</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">raise</span></div></pre></td></tr></table></figure></p>
+<p>这里使用了python中的 <code>ABC</code> 模块<br>译者注：<code>ABC</code> 模块是python中关于抽象类的一些定义</p>
+<p>这个 <code>builder</code> 有三个方法用来设置车辆，这个例子中的 <code>ConcreteBuilder</code> 有两个： <code>CarBuilder</code> 和 <code>BikeBuilder</code> ，他们都是继承于 <code>VehicleBuilder</code> ,下面是这些类的实现：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CarBuilder</span><span class="params">(VehicleBuilder)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.vehicle = Vehicle(<span class="string">"Car "</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_wheels</span><span class="params">(self)</span>:</span></div><div class="line">        self.vehicle.wheels = <span class="number">4</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_doors</span><span class="params">(self)</span>:</span></div><div class="line">        self.vehicle.doors = <span class="number">3</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_seats</span><span class="params">(self)</span>:</span></div><div class="line">        self.vehicle.seats = <span class="number">5</span></div><div class="line"></div><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BikeBuilder</span><span class="params">(VehicleBuilder)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.vehicle = Vehicle(<span class="string">"Bike"</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_wheels</span><span class="params">(self)</span>:</span></div><div class="line">        self.vehicle.wheels = <span class="number">2</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_doors</span><span class="params">(self)</span>:</span></div><div class="line">        self.vehicle.doors = <span class="number">0</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_seats</span><span class="params">(self)</span>:</span></div><div class="line">        self.vehicle.seats = <span class="number">2</span></div></pre></td></tr></table></figure></p>
+<p>这些类的逻辑就是对车辆的创建及属性的设置。为了使用这些，我们需要创建一个 <code>Director</code> 类，这个例子中就叫做 <code>VehicleManufacturer</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">VehicleManufacturer</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    The director class, this will keep a concrete builder.</div><div class="line">    """</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.builder = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        Creates and returns a Vehicle using self.builder</div><div class="line">        Precondition: not self.builder is None</div><div class="line">        """</div><div class="line">        <span class="keyword">assert</span> <span class="keyword">not</span> self.builder <span class="keyword">is</span> <span class="keyword">None</span>, <span class="string">"No defined builder"</span></div><div class="line">        self.builder.make_wheels()</div><div class="line">        self.builder.make_doors()</div><div class="line">        self.builder.make_seats()</div><div class="line">        <span class="keyword">return</span> self.builder.vehicle</div></pre></td></tr></table></figure></p>
+<p>这个类有一个 <code>create()</code> 方法。作为你看到的，在注释中写明了：需要一个前提条件就是，需要给这个类中的 <code>builder</code> 属性显示的指定 <code>ConcreteBuilder</code> 。</p>
+<p>下面是这个类的调用方式：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="keyword">if</span> (__name__ == <span class="string">"__main__"</span>):</div><div class="line">    manufacturer = VehicleManufacturer()</div><div class="line"></div><div class="line">    manufacturer.builder = CarBuilder()</div><div class="line">    car = manufacturer.create()</div><div class="line">    car.view()</div><div class="line"></div><div class="line">    manufacturer.builder = BikeBuilder()</div><div class="line">    bike = manufacturer.create()</div><div class="line">    bike.view()</div></pre></td></tr></table></figure></p>
+<p>下面是结果输出：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">This vehicle <span class="keyword">is</span> a Car  <span class="keyword">with</span>; <span class="number">4</span> wheels, <span class="number">3</span> doors, <span class="keyword">and</span> <span class="number">5</span> seats.</div><div class="line">This vehicle <span class="keyword">is</span> a Bike <span class="keyword">with</span>; <span class="number">2</span> wheels, <span class="number">0</span> doors, <span class="keyword">and</span> <span class="number">2</span> seats.</div></pre></td></tr></table></figure></p>
+<p>下面是这个例子的UML类图：</p>
+<img src="/2016/08/11/Python：builder-pattern—建造器模式/Builder_specific.png" alt="Builder_specific.png" title="">
+<p>这篇文章中的所有代码能在这里找到<a href="https://github.com/davidcorne/Design-Patterns-In-Python" target="_blank" rel="external">here</a></p>
+<p>感谢你的阅读</p>
+]]></content>
+    
+    <summary type="html">
+    
+      基于python语言的设计模式详解之建造者模式
+    
+    </summary>
+    
+    
+      <category term="python" scheme="https://tunsuy.github.io/tags/python/"/>
+    
+      <category term="设计模式" scheme="https://tunsuy.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>redmine系统二次开发之search功能</title>
     <link href="https://tunsuy.github.io/2016/07/18/redmine%E7%B3%BB%E7%BB%9F%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E4%B9%8Bsearch%E5%8A%9F%E8%83%BD/"/>
     <id>https://tunsuy.github.io/2016/07/18/redmine系统二次开发之search功能/</id>
@@ -546,6 +705,77 @@
       <category term="redmine" scheme="https://tunsuy.github.io/tags/redmine/"/>
     
       <category term="web" scheme="https://tunsuy.github.io/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java：重温数据结构-链表</title>
+    <link href="https://tunsuy.github.io/2016/07/13/Java%EF%BC%9A%E9%87%8D%E6%B8%A9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/"/>
+    <id>https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/</id>
+    <published>2016-07-13T01:59:43.000Z</published>
+    <updated>2017-03-14T01:32:56.513Z</updated>
+    
+    <content type="html"><![CDATA[<p>翻译于<a href="https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html" target="_blank" rel="external">https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html</a></p>
+<p>注：不是原文翻译，有些自己的理解改动</p>
+<h1 id="一、-引言"><a href="#一、-引言" class="headerlink" title="一、 引言"></a>一、 引言</h1><p>一个链表就是一个线性的数据结构，如下图所示：</p>
+<img src="/2016/07/13/Java：重温数据结构-链表/linkedlist.bmp" alt="linkedlist.bmp" title="">
+<p>一个链表中的每个元素（我们叫它节点）包含两个部分-数据和指向下一个节点的引用，最后一个节点的引用部分则指向null。指向链表的一个对象（实体）叫做这个链表的head（头部），这个head不是链表中一个独立的节点，但它是指向链表的第一个节点。如果链表为空，head则表示一个空的引用。</p>
+<p>链表是一个动态的数据结构，链表中节点的数量不是固定的，能够根据需要动态的增减。如果一个应用需要处理的对象（实体）数是不确定的，则需要使用链表来表示。</p>
+<p>链表相对于数组来说的一个缺点就是不允许直接访问其中的元素。如果你想要访问一个指定的元素，你必须从链表的head开始，依次找到它的下一个引用，直到你得到这个想要的元素。</p>
+<p>链表的另外一个缺点就是比数组占用更多的内存空间。因为需要使用额外的空间保存下一个节点引用（next）。</p>
+<h1 id="二、-链表的类型"><a href="#二、-链表的类型" class="headerlink" title="二、 链表的类型"></a>二、 链表的类型</h1><p>1、单链表，就是上面描述的<br>2、双向链表，就是指一个链表有两个引用，一个指向下一个节点，另一个指向前一个节点，如图</p>
+<img src="/2016/07/13/Java：重温数据结构-链表/doubly.bmp" alt="doubly.bmp" title="">
+<p>链表的另一个重要的类型叫循环链表，就是指链表的最后一个节点指向链表的第一个节点（或者head）。</p>
+<h1 id="三、-节点类"><a href="#三、-节点类" class="headerlink" title="三、 节点类"></a>三、 节点类</h1><p>java语言中，你可以定义一个类（B）被包含于另一个类（A）。类A叫做外部类，类B叫做内部类。内部类的作用仅仅就是用于内部帮助类。下面就是链表内部节点类的定义<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">AnyType</span>&gt;</span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">private</span> AnyType data;</div><div class="line">   <span class="keyword">private</span> Node&lt;AnyType&gt; next;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(AnyType data, Node&lt;AnyType&gt; next)</span></span></div><div class="line">   &#123;</div><div class="line">      <span class="keyword">this</span>.data = data;</div><div class="line">      <span class="keyword">this</span>.next = next;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>一个内部类就是外部类的一个成员，能够访问外部类的其他成员（包括私有成员）。反之亦然，外部类也能够访问内部类的所有成员。一个内部类能够被private、public、protected或者package访问权限修饰。有两种内部类：静态和非静态的。</p>
+<p>这里我们使用两个内部类来实现链表：静态 <code>Node</code> 类和非静态 <code>LinkedListIterator</code> 。完整的实现请看 <a href="https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/code/LinkedList.java" target="_blank" rel="external">LinkedList.java</a></p>
+<h1 id="四、-例子"><a href="#四、-例子" class="headerlink" title="四、 例子"></a>四、 例子</h1><p>让我们分段的来跟踪每一步的影响，在每一步执行之前，链表存储它的初始状态。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">head = head.next;</div></pre></td></tr></table></figure>
+<img src="/2016/07/13/Java：重温数据结构-链表/linkedlist2.bmp" alt="linkedlist2.bmp" title="">
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">head.next = head.next.next;</div></pre></td></tr></table></figure>
+<img src="/2016/07/13/Java：重温数据结构-链表/linkedlist3.bmp" alt="linkedlist3.bmp" title="">
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">head.next.next.next.next = head;</div></pre></td></tr></table></figure>
+<img src="/2016/07/13/Java：重温数据结构-链表/linkedlist4.bmp" alt="linkedlist4.bmp" title="">
+<h1 id="五、-链表操作"><a href="#五、-链表操作" class="headerlink" title="五、 链表操作"></a>五、 链表操作</h1><h2 id="1、-addFirst"><a href="#1、-addFirst" class="headerlink" title="1、 addFirst"></a>1、 addFirst</h2><p>这个方法创建一个节点，并放在链表的开始位置，如图：</p>
+<img src="/2016/07/13/Java：重温数据结构-链表/prepend.bmp" alt="prepend.bmp" title="">
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(AnyType item)</span></span></div><div class="line">&#123;</div><div class="line">   head = <span class="keyword">new</span> Node&lt;AnyType&gt;(item, head);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2、-Traversing"><a href="#2、-Traversing" class="headerlink" title="2、 Traversing"></a>2、 Traversing</h2><p>从head开始，访问每一个节点，直到null，不改变head的引用。如图：</p>
+<img src="/2016/07/13/Java：重温数据结构-链表/traverse.bmp" alt="traverse.bmp" title="">
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Node tmp = head;</div><div class="line"></div><div class="line"><span class="keyword">while</span>(tmp != <span class="keyword">null</span>) tmp = tmp.next;</div></pre></td></tr></table></figure>
+<h2 id="3、-addLast"><a href="#3、-addLast" class="headerlink" title="3、 addLast"></a>3、 addLast</h2><p>这个方法增加一个节点到链表的最后，这需要 <code>Traversing</code> ，但确保在最后一个节点的时候停止。如图：</p>
+<img src="/2016/07/13/Java：重温数据结构-链表/append.bmp" alt="append.bmp" title="">
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(AnyType item)</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">if</span>(head == <span class="keyword">null</span>) addFirst(item);</div><div class="line">   <span class="keyword">else</span></div><div class="line">   &#123;</div><div class="line">      Node&lt;AnyType&gt; tmp = head;</div><div class="line">      <span class="keyword">while</span>(tmp.next != <span class="keyword">null</span>) tmp = tmp.next;</div><div class="line"></div><div class="line">      tmp.next = <span class="keyword">new</span> Node&lt;AnyType&gt;(item, <span class="keyword">null</span>);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="4、-Inserting-“after”"><a href="#4、-Inserting-“after”" class="headerlink" title="4、 Inserting “after”"></a>4、 Inserting “after”</h2><p>找到指定key的节点，然后在它之后插入一个节点。如下图所示，我们在”E”之后插入一个新的节点。</p>
+<img src="/2016/07/13/Java：重温数据结构-链表/after.bmp" alt="after.bmp" title="">
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertAfter</span><span class="params">(AnyType key, AnyType toInsert)</span></span></div><div class="line">&#123;</div><div class="line">   Node&lt;AnyType&gt; tmp = head;</div><div class="line">   <span class="keyword">while</span>(tmp != <span class="keyword">null</span> &amp;&amp; !tmp.data.equals(key)) tmp = tmp.next;</div><div class="line"></div><div class="line">   <span class="keyword">if</span>(tmp != <span class="keyword">null</span>)</div><div class="line">      tmp.next = <span class="keyword">new</span> Node&lt;AnyType&gt;(toInsert, tmp.next);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="5、-Inserting-“before”"><a href="#5、-Inserting-“before”" class="headerlink" title="5、 Inserting “before”"></a>5、 Inserting “before”</h2><p>找到指定key的节点，然后在它之前插入一个节点。如下图所示，我们在”A”之前插入一个新的节点。</p>
+<img src="/2016/07/13/Java：重温数据结构-链表/before.bmp" alt="before.bmp" title="">
+<p>为了方便起见，我们增加两个引用 <code>pre</code> 和 <code>cur</code>，保证 <code>pre</code> 在 <code>cur</code> 之前。同时平移这两个引用，直到 <code>cur</code> 到达我们想要插入的节点之前。如果 <code>cur</code> 到达null，则不插入，否则我们插入一个新的节点在 <code>pre</code> 和 <code>cur</code> 之间。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertBefore</span><span class="params">(AnyType key, AnyType toInsert)</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">   <span class="keyword">if</span>(head.data.equals(key))</div><div class="line">   &#123;</div><div class="line">      addFirst(toInsert);</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   Node&lt;AnyType&gt; prev = <span class="keyword">null</span>;</div><div class="line">   Node&lt;AnyType&gt; cur = head;</div><div class="line"></div><div class="line">   <span class="keyword">while</span>(cur != <span class="keyword">null</span> &amp;&amp; !cur.data.equals(key))</div><div class="line">   &#123;</div><div class="line">      prev = cur;</div><div class="line">      cur = cur.next;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//insert between cur and prev</span></div><div class="line">   <span class="keyword">if</span>(cur != <span class="keyword">null</span>) prev.next = <span class="keyword">new</span> Node&lt;AnyType&gt;(toInsert, cur);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="6、-Deletion"><a href="#6、-Deletion" class="headerlink" title="6、 Deletion"></a>6、 Deletion</h2><p>找到指定key的节点并删除它。如下图所示删除包含”A”的节点。</p>
+<img src="/2016/07/13/Java：重温数据结构-链表/delete.bmp" alt="delete.bmp" title="">
+<p>这个方法的算法和前一个很相似。为了方便起见，我们增加两个引用 <code>pre</code> 和 <code>cur</code>，保证 <code>pre</code> 在 <code>cur</code> 之前。同时平移这两个引用，直到 <code>cur</code> 到达我们想要删除的节点。这里有三种情况需要注意：<br>1、链表为空<br>2、删除的是head节点<br>3、需要删除的节点不再链表中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(AnyType key)</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"cannot delete"</span>);</div><div class="line"></div><div class="line">   <span class="keyword">if</span>( head.data.equals(key) )</div><div class="line">   &#123;</div><div class="line">      head = head.next;</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   Node&lt;AnyType&gt; cur  = head;</div><div class="line">   Node&lt;AnyType&gt; prev = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">   <span class="keyword">while</span>(cur != <span class="keyword">null</span> &amp;&amp; !cur.data.equals(key) )</div><div class="line">   &#123;</div><div class="line">      prev = cur;</div><div class="line">      cur = cur.next;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="keyword">if</span>(cur == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"cannot delete"</span>);</div><div class="line"></div><div class="line">   <span class="comment">//delete cur node</span></div><div class="line">   prev.next = cur.next;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="7、-Iterator"><a href="#7、-Iterator" class="headerlink" title="7、 Iterator"></a>7、 Iterator</h1><p>迭代器提供了对集合数据的访问方式，隐藏集合数据的内部表示形式。在java中迭代器是一个对象，因此需要创建一个类来实现，并且这个类需要实现 <code>Iterator</code> 接口。通常这样的类是作为一个内部类来实现的。<code>iterator</code> 接口包含下面三个方法：<br>1、AnyType next() - 返回容器中的下一个元素<br>2、boolean hasNext() - 检查是否还有下一个元素<br>3、void remove() - (可选的操作).移除通过 <code>next()</code> 方法返回的元素</p>
+<p>下面讲讲 <code>LinkedList</code> 类中的 <code>iterator</code> 实现。首先我在 <code>LinkedList</code> 中增加一个方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Iterator&lt;AnyType&gt; <span class="title">iterator</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">new</span> LinkedListIterator();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面 <code>LinkedListIterator</code> 是 <code>LinkedList</code> 的一个私有内部类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedListIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">AnyType</span>&gt;</span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">private</span> Node&lt;AnyType&gt; nextNode;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="title">LinkedListIterator</span><span class="params">()</span></span></div><div class="line">   &#123;</div><div class="line">      nextNode = head;</div><div class="line">   &#125;</div><div class="line">   ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>LinkedListIterator</code> 类 必须实现 <code>next()</code> 和  <code>hasNext()</code> 方法.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> AnyType <span class="title">next</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">if</span>(!hasNext()) <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</div><div class="line">   AnyType res = nextNode.data;</div><div class="line">   nextNode = nextNode.next;</div><div class="line">   <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="六、-Cloning克隆"><a href="#六、-Cloning克隆" class="headerlink" title="六、 Cloning克隆"></a>六、 Cloning克隆</h1><p>就像任何其他一个对象一样，我们需要学习怎样clone一个链表。如果我们简单的使用 <code>Object</code> 类的 <code>clone()</code> 方法，那么就是”浅复制”，如下图所示：</p>
+<img src="/2016/07/13/Java：重温数据结构-链表/shallowclone.bmp" alt="shallowclone.bmp" title="">
+<p>这个Object的 <code>clone()</code> 方法只会对第一个节点进行一份内容复制，其他节点都是引用复制，内容共享。这显然不是我们想要的效果，那么看看下面的”深复制”</p>
+<img src="/2016/07/13/Java：重温数据结构-链表/deepclone.bmp" alt="deepclone.bmp" title="">
+<p>有几种方法可以”深复制”链表，一种简单的方法就是遍历每一个节点，然后使用 <code>addFirst()</code> 方法。最后你将得到一个倒序的新的链表，然后我们不得不反转这个链表。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">copy</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">   LinkedList&lt;AnyType&gt; twin = <span class="keyword">new</span> LinkedList&lt;AnyType&gt;();</div><div class="line">   Node&lt;AnyType&gt; tmp = head;</div><div class="line">   <span class="keyword">while</span>(tmp != <span class="keyword">null</span>)</div><div class="line">   &#123;</div><div class="line">      twin.addFirst( tmp.data );</div><div class="line">      tmp = tmp.next;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="keyword">return</span> twin.reverse();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>一个更好的方法就是对这个新链表使用尾引用，在最后的节点增加每一个新节点。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> LinkedList&lt;AnyType&gt; <span class="title">copy3</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">if</span>(head==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">   LinkedList&lt;AnyType&gt; twin = <span class="keyword">new</span> LinkedList&lt;AnyType&gt;();</div><div class="line">   Node tmp = head;</div><div class="line">   twin.head = <span class="keyword">new</span> Node&lt;AnyType&gt;(head.data, <span class="keyword">null</span>);</div><div class="line">   Node tmpTwin = twin.head;</div><div class="line"></div><div class="line">   <span class="keyword">while</span>(tmp.next != <span class="keyword">null</span>)</div><div class="line">   &#123;</div><div class="line">      tmp = tmp.next;</div><div class="line">      tmpTwin.next = <span class="keyword">new</span> Node&lt;AnyType&gt;(tmp.data, <span class="keyword">null</span>);</div><div class="line">      tmpTwin = tmpTwin.next;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="keyword">return</span> twin;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;翻译于&lt;a href=&quot;https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://w
+    
+    </summary>
+    
+    
+      <category term="java" scheme="https://tunsuy.github.io/tags/java/"/>
+    
+      <category term="数据结构" scheme="https://tunsuy.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
@@ -755,322 +985,6 @@
       <category term="linux" scheme="https://tunsuy.github.io/tags/linux/"/>
     
       <category term="docker" scheme="https://tunsuy.github.io/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基于docker的moa服务</title>
-    <link href="https://tunsuy.github.io/2016/06/02/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84moa%E6%9C%8D%E5%8A%A1/"/>
-    <id>https://tunsuy.github.io/2016/06/02/基于docker的moa服务/</id>
-    <published>2016-06-02T04:15:17.000Z</published>
-    <updated>2017-03-04T10:15:48.412Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>该文章主要讲解将公司的server服务docker化的具体过程，从中可以看到很多docker相关知识的使用以及网络配置等操作<br>文中还设计到自己实现的关于docker自动化配置的两个脚本，供大家学习参考</p>
-<h1 id="二、-docker化步骤"><a href="#二、-docker化步骤" class="headerlink" title="二、 docker化步骤"></a>二、 docker化步骤</h1><p>1、 将初始安装包拷贝到容器主机上</p>
-<a id="more"></a>
-<p>2、在主机上拉取一个centos6.7的docker镜像<br>ps：因为官方的docker镜像都是轻量级的，所有很多linux下的命令都没有</p>
-<ul>
-<li>方法一 就是要么自己将所有的命令工具都安装了</li>
-<li>方法二 找一个别人建好的docker镜像</li>
-</ul>
-<p>3、将主机上的安装包共享给容器，并交互式形式启动<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -t -i --name moa_centos7 -v /home/tunsuy/toContainer:/home/tunsuy/fromHost centos:centos7 /bin/bash</div></pre></td></tr></table></figure></p>
-<p>4、因为没有空白机的公有云安装包，所以这里以私有云空白安装包来安装<br>ps：<code>./install.sh -m test -d public_clound</code><br>——参考./install.sh脚本实现</p>
-<p>5、安装过程中可能会遇到一些问题  </p>
-<ul>
-<li>提示没有xx命令——一律<code>yum install xx</code>即可</li>
-<li>提示连接不上mongodb<br>——中断安装（其实moa依赖的一些软件环境已经安装成功了）<br>——参考其他虚拟机公有云的mongodb安装情况，调整该docker容器中的mongodb并成功启动</li>
-</ul>
-<p>6、单独安装公有云升级包（该包中需要包含dbserver服务包）</p>
-<p>7、安装包成功之后，检查各项服务是否成功（包括web、流程、商店等）  </p>
-<ul>
-<li>可能会发现mysql安装异常<br>——手动安装：进入私有云空白安装包中的init目录下，运行./install.sh<br>————安装过程中可能会报错，缺少某些依赖<br>————依次yum install安装（有的可能需要自己下载安装）</li>
-</ul>
-<p>8、所有的服务都检查无误时，制作镜像并上传</p>
-<ul>
-<li>搭建私有仓库（按照官方文档做就可以了，这里不详细写）</li>
-<li><p>将容器制作为镜像</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker commit --author <span class="string">"ts"</span> --message <span class="string">"更正moaserver初始化包环境"</span> 容器名 docker.ts.com:5000/moaserver_env:init</div></pre></td></tr></table></figure>
-</li>
-<li><p>上传镜像到私有仓库</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker push docker.ts.com:<span class="number">5000</span>/moaserver_env:init</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>ps：配置私有仓库http访问<br>编辑文件：<code>vim /etc/sysconfig/docker</code><br>添加以下内容<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">OPTIONS=<span class="string">'--selinux-enabled --insecure-registry=docker.ts.com:5000'</span></div></pre></td></tr></table></figure></p>
-<p>或者编辑文件：<code>vim /usr/lib/systemd/system/docker.service</code><br>添加以下内容<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">  ExecStart=/usr/bin/docker-current daemon \</div><div class="line">    --exec-opt native.cgroupdriver=systemd \</div><div class="line">    <span class="variable">$OPTIONS</span> \</div><div class="line">    <span class="variable">$DOCKER_STORAGE_OPTIONS</span> \</div><div class="line">    <span class="variable">$DOCKER_NETWORK_OPTIONS</span> \</div><div class="line">    <span class="variable">$ADD_REGISTRY</span> \</div><div class="line">    <span class="variable">$BLOCK_REGISTRY</span> \</div><div class="line">    <span class="variable">$INSECURE_REGISTRY</span> \</div><div class="line">--insecure-registry docker.ts.com:5000</div></pre></td></tr></table></figure></p>
-<p>注：centos7的防火墙使用的是firewalld，因为之前对iptables比较熟，<br>     所以可以关掉firewalld，安装iptables服务<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">systemctl stop firewalld</div><div class="line">systemctl mask firewalld</div><div class="line">yum install iptables-services</div></pre></td></tr></table></figure></p>
-<h1 id="三、-服务使用"><a href="#三、-服务使用" class="headerlink" title="三、 服务使用"></a>三、 服务使用</h1><h2 id="1、-从私有仓库拉取该镜像并使用"><a href="#1、-从私有仓库拉取该镜像并使用" class="headerlink" title="1、 从私有仓库拉取该镜像并使用"></a>1、 从私有仓库拉取该镜像并使用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -t -i --name=moaserver_env --net=<span class="string">"none"</span> -v /home/tunsuy/toContainer:<span class="regexp">/home/</span>tunsuy/fromHost docker.ts.com:<span class="number">5000</span>/moaserver_env:init /bin/bash</div></pre></td></tr></table></figure>
-<p>ps：这里采用none的网络方式，是因为想自己配置所有网络</p>
-<h2 id="2、-配置容器IP"><a href="#2、-配置容器IP" class="headerlink" title="2、 配置容器IP"></a>2、 配置容器IP</h2><p>这里使用我写的一个工具脚本：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh bind_addr.sh moaserver_env <span class="number">172.17</span><span class="number">.0</span><span class="number">.2</span></div></pre></td></tr></table></figure></p>
-<p>ps：需要在主机上执行，而不是在容器中<br>脚本地址：<br><a href="https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关" target="_blank" rel="external">https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关</a></p>
-<h2 id="3、-配置环境变量"><a href="#3、-配置环境变量" class="headerlink" title="3、 配置环境变量"></a>3、 配置环境变量</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> /etc/profile</div></pre></td></tr></table></figure>
-<p>ps：由于之前在镜像中配置的环境变量，在容器中不能自动生效（原因不明）</p>
-<h2 id="4、-启动mongo和mysql"><a href="#4、-启动mongo和mysql" class="headerlink" title="4、 启动mongo和mysql"></a>4、 启动mongo和mysql</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/mongod start</div><div class="line">/etc/init.d/mysqlaccd stop</div><div class="line">/etc/init.d/mysqld start</div></pre></td></tr></table></figure>
-<h2 id="5、-更新hosts文件"><a href="#5、-更新hosts文件" class="headerlink" title="5、 更新hosts文件"></a>5、 更新hosts文件</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#将模板文件写入hosts：</span></div><div class="line">cat /home/tunsuy/fromHost/host_templet &gt;&gt; /etc/hosts</div><div class="line"></div><div class="line"><span class="comment">#将hosts中的IP改成容器ip</span></div><div class="line">mdbg -p 23808 -o changeip oldip=172.17.0.1,newip=172.17.0.2</div></pre></td></tr></table></figure>
-<p>ps：容器的/etc/hosts、/etc/resolv.conf文件是挂载在宿主机中的</p>
-<h2 id="6、-启动moa服务"><a href="#6、-启动moa服务" class="headerlink" title="6、 启动moa服务"></a>6、 启动moa服务</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/moa start</div></pre></td></tr></table></figure>
-<h2 id="7、端口映射"><a href="#7、端口映射" class="headerlink" title="7、端口映射"></a>7、端口映射</h2><p>想要外部访问该docker，还需要进行主机和容器的端口映射<br>有两种方式：</p>
-<ul>
-<li>在新建一个容器的时候就指定（一般都是这样）</li>
-<li>在已生成的容器中动态配置：主要还是基于iptables来设置（因为docker的原理实际上也是这样的）<br>因为之前我们在创建容器的时候没有指定，所以这里以第二种来配置<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">iptables -A DOCKER ! -i docker0 -o docker0 -p tcp --dport <span class="number">443</span> -d <span class="number">172.17</span><span class="number">.0</span><span class="number">.1</span> -j ACCEPT</div><div class="line">iptables -t nat -A POSTROUTING -p tcp --dport <span class="number">443</span> -s <span class="number">172.17</span><span class="number">.0</span><span class="number">.1</span> -d <span class="number">172.17</span><span class="number">.0</span><span class="number">.1</span> -j MASQUERADE</div><div class="line">iptables -t nat -A DOCKER ! -i dokcer0 -p tcp --dport <span class="number">443</span> -j DNAT --to-destination <span class="number">172.17</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">443</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>ps：为了方便，写了一个工具脚本<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh docker_expose.sh moaserver_env <span class="number">172.17</span><span class="number">.0</span><span class="number">.2</span> add <span class="number">4432</span>:<span class="number">443</span></div></pre></td></tr></table></figure></p>
-<p>脚本地址：<br>        <a href="https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关" target="_blank" rel="external">https://github.com/tunsuy/TSTools/tree/master/ShellTools/docker相关</a></p>
-<p>注：查看iptables情况<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">iptables -nvxL --line-numbers</div><div class="line">iptables -t nat -nvxL --line-numbers</div></pre></td></tr></table></figure></p>
-<h1 id="四、-不足之处"><a href="#四、-不足之处" class="headerlink" title="四、 不足之处"></a>四、 不足之处</h1><p>因为所有的容器都是基于宿主机的，最多通过修改时区来设置，也就只能偏移24小时<br>网上有一种方案，不知可行不：<a href="https://github.com/wolfcw/libfaketime/" target="_blank" rel="external">https://github.com/wolfcw/libfaketime/</a></p>
-<h1 id="五、-参考链接"><a href="#五、-参考链接" class="headerlink" title="五、 参考链接"></a>五、 参考链接</h1><p><a href="https://yeasy.gitbooks.io/docker_practice/content/cases/supervisor.html" target="_blank" rel="external">https://yeasy.gitbooks.io/docker_practice/content/cases/supervisor.html</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、-简介&quot;&gt;&lt;a href=&quot;#一、-简介&quot; class=&quot;headerlink&quot; title=&quot;一、 简介&quot;&gt;&lt;/a&gt;一、 简介&lt;/h1&gt;&lt;p&gt;该文章主要讲解将公司的server服务docker化的具体过程，从中可以看到很多docker相关知识的使用以及网络配置等操作&lt;br&gt;文中还设计到自己实现的关于docker自动化配置的两个脚本，供大家学习参考&lt;/p&gt;
-&lt;h1 id=&quot;二、-docker化步骤&quot;&gt;&lt;a href=&quot;#二、-docker化步骤&quot; class=&quot;headerlink&quot; title=&quot;二、 docker化步骤&quot;&gt;&lt;/a&gt;二、 docker化步骤&lt;/h1&gt;&lt;p&gt;1、 将初始安装包拷贝到容器主机上&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="docker" scheme="https://tunsuy.github.io/categories/docker/"/>
-    
-    
-      <category term="linux" scheme="https://tunsuy.github.io/tags/linux/"/>
-    
-      <category term="docker" scheme="https://tunsuy.github.io/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS下使用UI-Testing进行发包前Checklist检查</title>
-    <link href="https://tunsuy.github.io/2016/05/19/iOS%E4%B8%8B%E4%BD%BF%E7%94%A8XCTest%E8%BF%9B%E8%A1%8C%E5%8F%91%E5%8C%85%E5%89%8DChecklist%E6%A3%80%E6%9F%A5/"/>
-    <id>https://tunsuy.github.io/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/</id>
-    <published>2016-05-19T07:16:22.000Z</published>
-    <updated>2017-03-04T10:15:48.018Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-UI-Testing简介"><a href="#一、-UI-Testing简介" class="headerlink" title="一、 UI Testing简介"></a>一、 UI Testing简介</h1><p>1、UI Testing 是基于 XCTest 测试框架的。XCTest 作为 OCUnit 的替代者，目前是 iOS 单元测试框架不二之选，很多其他测试框架也基于 XCTest 封装。XCTest 有如下特点：</p>
-<ul>
-<li>测试用例需要继承 XCTestCase</li>
-<li>有类似 Junit 的 setup 或者 teardown方法</li>
-<li>还算不错的 Assertions</li>
-<li>和 Xcode 深度集成</li>
-<li>可以使用 Xcode server 的持续集成。支持 Swift 和 Objective-C</li>
-</ul>
-<p>2、那 UI Testing 在 XCTest 的基础上实际上是扩展了几个类，协议<br>所以本质上 UI Testing 还是 XCTest，所以写用例的时候，还是需要遵从 XCTest 的规则</p>
-<a id="more"></a>
-<p>3、UI Testing 需要依靠 Accessibility 来定位元素。UI Testing 可以通过你的应用提供的 Accessibility 功能来与你的应用连接，这样就解决了设备大小不一的问题。如果你重新调整了 UI 中的某些元素，你也不用重写整套测试。当然实现 Accessibility 的本质不是为了使用 UI Testing，而是为了能帮助行动不便的用户更好地使用你的应用。</p>
-<h1 id="二、-具体实践"><a href="#二、-具体实践" class="headerlink" title="二、 具体实践"></a>二、 具体实践</h1><p>Xcode 7中创建新工程时，可以选择是否要包含UI测试——这里就不演示了  </p>
-<p>下面说说在已有工程的时候，怎么进行UI Testing<br>1、再项目工程中增加一个target<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target1.jpg" alt="target1.jpg" title=""></p>
-<p>如图中1所示点击添加UI Testing Bundle<br>添加之后如图中2、3所示。</p>
-<p>2、编写测试类或者测试方法<br>在图中3所示中的.m文件中添加测试方法，<br>当然实际项目中，肯定是根据各自的模块自己新建一系列的类及方法<br>（注：测试类及其测试方法必须按照XCTest的命令规则及要求来）</p>
-<p>3、运行测试用例<br>可以直接在导航栏中点击test运行整个UI用例 也可以如图中所示<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target2.jpg" alt="target2.jpg" title=""></p>
-<p>点击用例右边的勾运行单个用例</p>
-<p>UI testing 也具有录制功能 如图<br><img src="/2016/05/19/iOS下使用XCTest进行发包前Checklist检查/target3.jpg" alt="target3.jpg" title=""></p>
-<p>点击图中所示 它将重新启动app ，然后你的每一步操作都将在你鼠标所在处自动生成OC代码<br>（注：由于UI testing 刚出来 所以录制出来的代码可能不是很规范 需要手动改一下。不过作为官方推出来的东西，以后肯定会变得更简单强大）</p>
-<h1 id="三、-使用建议"><a href="#三、-使用建议" class="headerlink" title="三、 使用建议"></a>三、 使用建议</h1><p>UI testing到底适用于什么地方呢  </p>
-<p>个人认为用来做一些简单的发包前check list比较合适</p>
-<p>比如 我们项目在迭代发包钱都需要测试或者开发自己跑一遍check list ，作为程序员，这些简单重复的操作交给程序来运行就好了。<br>因为UI testing 可以使用OC语言来写 所以对于开发来说 这将是非常简单的。</p>
-<h1 id="四、-最后"><a href="#四、-最后" class="headerlink" title="四、 最后"></a>四、 最后</h1><p>具体的UI testing API 可以参看官方文档 不多比较简单</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、-UI-Testing简介&quot;&gt;&lt;a href=&quot;#一、-UI-Testing简介&quot; class=&quot;headerlink&quot; title=&quot;一、 UI Testing简介&quot;&gt;&lt;/a&gt;一、 UI Testing简介&lt;/h1&gt;&lt;p&gt;1、UI Testing 是基于 XCTest 测试框架的。XCTest 作为 OCUnit 的替代者，目前是 iOS 单元测试框架不二之选，很多其他测试框架也基于 XCTest 封装。XCTest 有如下特点：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;测试用例需要继承 XCTestCase&lt;/li&gt;
-&lt;li&gt;有类似 Junit 的 setup 或者 teardown方法&lt;/li&gt;
-&lt;li&gt;还算不错的 Assertions&lt;/li&gt;
-&lt;li&gt;和 Xcode 深度集成&lt;/li&gt;
-&lt;li&gt;可以使用 Xcode server 的持续集成。支持 Swift 和 Objective-C&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;2、那 UI Testing 在 XCTest 的基础上实际上是扩展了几个类，协议&lt;br&gt;所以本质上 UI Testing 还是 XCTest，所以写用例的时候，还是需要遵从 XCTest 的规则&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ios" scheme="https://tunsuy.github.io/categories/ios/"/>
-    
-    
-      <category term="ios" scheme="https://tunsuy.github.io/tags/ios/"/>
-    
-      <category term="自动化测试" scheme="https://tunsuy.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>selenium远程启动浏览器</title>
-    <link href="https://tunsuy.github.io/2016/04/14/selenium%E8%BF%9C%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-    <id>https://tunsuy.github.io/2016/04/14/selenium远程启动浏览器/</id>
-    <published>2016-04-14T11:08:23.000Z</published>
-    <updated>2017-03-04T10:15:48.298Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-方案一"><a href="#一、-方案一" class="headerlink" title="一、 方案一"></a>一、 方案一</h1><p>通过selenium-server  </p>
-<h2 id="1、-相关下载"><a href="#1、-相关下载" class="headerlink" title="1、 相关下载"></a>1、 相关下载</h2><ul>
-<li>下载server：<a href="http://seleniumhq.org/download/" target="_blank" rel="external">http://seleniumhq.org/download/</a></li>
-<li>下载chrome-driver：<br><a href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank" rel="external">https://sites.google.com/a/chromium.org/chromedriver/downloads</a></li>
-</ul>
-<h2 id="2、-开启selenium-server"><a href="#2、-开启selenium-server" class="headerlink" title="2、 开启selenium-server"></a>2、 开启selenium-server</h2><p>在浏览器主机的终端上执行命令：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -Dwebdriver.chrome.driver=<span class="string">"D:\chromedriver.exe"</span> -jar selenium-server.jar</div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<h2 id="3、-编写client脚本测试"><a href="#3、-编写client脚本测试" class="headerlink" title="3、 编写client脚本测试"></a>3、 编写client脚本测试</h2><p>接下来就可以在其他主机上编写测试脚本并执行了：以python为例</p>
-<ul>
-<li><p>下载基本python的selenium库：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install selenium</div></pre></td></tr></table></figure>
-</li>
-<li><p>编写示例脚本如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> selenium.webdriver.common.desired_capabilities <span class="keyword">import</span> DesiredCapabilities</div><div class="line"></div><div class="line">driver = webdriver.Remote(</div><div class="line">   command_executor=<span class="string">'http://200.200.105.63:4444/wd/hub'</span>,</div><div class="line">   desired_capabilities=webdriver.DesiredCapabilities.CHROME)</div><div class="line"></div><div class="line">driver.get(<span class="string">'https://200.200.169.165'</span>);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="二、-方案二"><a href="#二、-方案二" class="headerlink" title="二、 方案二"></a>二、 方案二</h1><p>直接使用driver  </p>
-<h2 id="1、-相关下载-1"><a href="#1、-相关下载-1" class="headerlink" title="1、 相关下载"></a>1、 相关下载</h2><p>按照1中的下载好相应的浏览器驱动</p>
-<h2 id="2、-开启chromedriver"><a href="#2、-开启chromedriver" class="headerlink" title="2、 开启chromedriver"></a>2、 开启chromedriver</h2><p>在浏览器主机的终端上执行命令：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chromedriver.exe --whitelisted-ips=<span class="string">"200.200.169.162"</span></div></pre></td></tr></table></figure></p>
-<h2 id="3、-编写client脚本测试-1"><a href="#3、-编写client脚本测试-1" class="headerlink" title="3、 编写client脚本测试"></a>3、 编写client脚本测试</h2><p>编写示例脚本如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"></div><div class="line">driver = webdriver.Remote(</div><div class="line">   command_executor=<span class="string">'http://200.200.105.63:9515'</span>,</div><div class="line">   desired_capabilities=DesiredCapabilities.CHROME)</div><div class="line"></div><div class="line">driver.get(<span class="string">'https://200.200.169.165'</span>);</div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、-方案一&quot;&gt;&lt;a href=&quot;#一、-方案一&quot; class=&quot;headerlink&quot; title=&quot;一、 方案一&quot;&gt;&lt;/a&gt;一、 方案一&lt;/h1&gt;&lt;p&gt;通过selenium-server  &lt;/p&gt;
-&lt;h2 id=&quot;1、-相关下载&quot;&gt;&lt;a href=&quot;#1、-相关下载&quot; class=&quot;headerlink&quot; title=&quot;1、 相关下载&quot;&gt;&lt;/a&gt;1、 相关下载&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;下载server：&lt;a href=&quot;http://seleniumhq.org/download/&quot;&gt;http://seleniumhq.org/download/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;下载chrome-driver：&lt;br&gt;&lt;a href=&quot;https://sites.google.com/a/chromium.org/chromedriver/downloads&quot;&gt;https://sites.google.com/a/chromium.org/chromedriver/downloads&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2、-开启selenium-server&quot;&gt;&lt;a href=&quot;#2、-开启selenium-server&quot; class=&quot;headerlink&quot; title=&quot;2、 开启selenium-server&quot;&gt;&lt;/a&gt;2、 开启selenium-server&lt;/h2&gt;&lt;p&gt;在浏览器主机的终端上执行命令：&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;java -Dwebdriver.chrome.driver=&lt;span class=&quot;string&quot;&gt;&quot;D:\chromedriver.exe&quot;&lt;/span&gt; -jar selenium-server.jar&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="selenium" scheme="https://tunsuy.github.io/categories/selenium/"/>
-    
-    
-      <category term="web" scheme="https://tunsuy.github.io/tags/web/"/>
-    
-      <category term="selenium" scheme="https://tunsuy.github.io/tags/selenium/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redmine迁移：从windows下迁移到linux</title>
-    <link href="https://tunsuy.github.io/2015/10/27/redmine%E8%BF%81%E7%A7%BB%EF%BC%9A%E4%BB%8Ewindows%E4%B8%8B%E8%BF%81%E7%A7%BB%E5%88%B0linux/"/>
-    <id>https://tunsuy.github.io/2015/10/27/redmine迁移：从windows下迁移到linux/</id>
-    <published>2015-10-27T11:24:22.000Z</published>
-    <updated>2017-03-04T10:15:48.280Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-迁移步骤"><a href="#一、-迁移步骤" class="headerlink" title="一、 迁移步骤"></a>一、 迁移步骤</h1><p>1、在linux下将redmine安装好  </p>
-<p>2、从原来的服务器上（windows）导出数据库文件（sql文件）  </p>
-<p>3、将现在的服务器（linux）上的redmine数据库清空<br>注：是清空，不能删除，因为删除会导致之后访问不了，具体原因可能是兼容问题  </p>
-<p>4、将2步中导出来的sql文件导入3步中清空的redmine数据库中<br>注：可能返回结果会提示说有错误，记下出错的表  </p>
-<a id="more"></a>
-<p>5、将出错的表重新删除再导入<br>注：记住是删除，不是清空<br>到目前为止数据库文件已经全部导入成功了  </p>
-<p>6、附件的导入<br>——将原来的服务器上的redmine中files文件拷贝到现在的服务器上的相同目录下  </p>
-<p>至此全部迁移数据已完成</p>
-<h1 id="二、-问题及解决方法："><a href="#二、-问题及解决方法：" class="headerlink" title="二、 问题及解决方法："></a>二、 问题及解决方法：</h1><h2 id="1、-redmine的rtx提醒链接错误"><a href="#1、-redmine的rtx提醒链接错误" class="headerlink" title="1、 redmine的rtx提醒链接错误"></a>1、 redmine的rtx提醒链接错误</h2><p>收到的连接还是原来服务器的链接<br>排查：</p>
-<ul>
-<li>查看邮件配置文件是否正确——正确</li>
-<li>通过rtx提醒的脚本调试<br>发现redmine传递给rtx的提醒内容就是提问题时填写的内容（也就是数据库中的内容）</li>
-<li>于是进入数据库中相应表（setting）查看，问题真是出在这里：<br>这个表有个字段是设置hostname的，填写的还是以前的url（因为是导入以前的数据嘛）  </li>
-</ul>
-<p>解决：将该字段改为正确的访问ip即可</p>
-<h2 id="2、-redmine上的时间显示不对"><a href="#2、-redmine上的时间显示不对" class="headerlink" title="2、 redmine上的时间显示不对"></a>2、 redmine上的时间显示不对</h2><p>排查：查看服务器时间——问题确实出在这里<br>解决：将服务器时间设为当前时间</p>
-<h2 id="3、-无法上传附件"><a href="#3、-无法上传附件" class="headerlink" title="3、 无法上传附件"></a>3、 无法上传附件</h2><p>排查：</p>
-<ul>
-<li>上传一个附件，没有返回错误，但是就是显示不出来</li>
-<li>查看数据库，确实没有插入进去</li>
-<li>既然能查看以前的附件，为什么迁移过来后就上传不了呢？</li>
-<li>联想：附件目录（files）是不是只有可读权限啊</li>
-</ul>
-<p>解决：</p>
-<ul>
-<li>将files目录设置为可读写权限（chmod 777 ./files/*）</li>
-<li>重启服务，再次上传，成功</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、-迁移步骤&quot;&gt;&lt;a href=&quot;#一、-迁移步骤&quot; class=&quot;headerlink&quot; title=&quot;一、 迁移步骤&quot;&gt;&lt;/a&gt;一、 迁移步骤&lt;/h1&gt;&lt;p&gt;1、在linux下将redmine安装好  &lt;/p&gt;
-&lt;p&gt;2、从原来的服务器上（windows）导出数据库文件（sql文件）  &lt;/p&gt;
-&lt;p&gt;3、将现在的服务器（linux）上的redmine数据库清空&lt;br&gt;注：是清空，不能删除，因为删除会导致之后访问不了，具体原因可能是兼容问题  &lt;/p&gt;
-&lt;p&gt;4、将2步中导出来的sql文件导入3步中清空的redmine数据库中&lt;br&gt;注：可能返回结果会提示说有错误，记下出错的表  &lt;/p&gt;
-    
-    </summary>
-    
-      <category term="redmine" scheme="https://tunsuy.github.io/categories/redmine/"/>
-    
-    
-      <category term="linux" scheme="https://tunsuy.github.io/tags/linux/"/>
-    
-      <category term="redmine" scheme="https://tunsuy.github.io/tags/redmine/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>calabash-ios原理分析</title>
-    <link href="https://tunsuy.github.io/2015/06/12/calabash-ios%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
-    <id>https://tunsuy.github.io/2015/06/12/calabash-ios原理分析/</id>
-    <published>2015-06-12T07:10:51.000Z</published>
-    <updated>2017-03-04T10:15:47.781Z</updated>
-    
-    <content type="html"><![CDATA[<p>calabash同时支持ios和Android平台，这里只介绍ios平台。</p>
-<h1 id="一、-系统架构图"><a href="#一、-系统架构图" class="headerlink" title="一、 系统架构图"></a>一、 系统架构图</h1><p>calabash-ios整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
-<a id="more"></a>
-<img src="/2015/06/12/calabash-ios原理分析/calabash-ios.jpg" alt="calabash-ios.jpg" title="">
-<h1 id="二、-框架分析"><a href="#二、-框架分析" class="headerlink" title="二、 框架分析"></a>二、 框架分析</h1><p>接上图</p>
-<p>1、其中，Runner 负责接受用户指令，并对其进行数据校验、指令转换等操作</p>
-<p>2、之后将其交给客户端处理（这里的客户端是指运行pc上的代码）</p>
-<p>3、客户端将指令发送给对应服务器http server（这里的服务器就是编译进app中的calabash.framework），请求其执行对应操作</p>
-<p>4、client-server两者之间通过 JSON 格式的数据进行交互</p>
-<p>5、所有执行结果最终会被收集到 Results 中。</p>
-<p>6、Calabash-iOS 服务器是基于Frank构建的，Frank也是一种基于cucumber的自动化测试框架。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;calabash同时支持ios和Android平台，这里只介绍ios平台。&lt;/p&gt;
-&lt;h1 id=&quot;一、-系统架构图&quot;&gt;&lt;a href=&quot;#一、-系统架构图&quot; class=&quot;headerlink&quot; title=&quot;一、 系统架构图&quot;&gt;&lt;/a&gt;一、 系统架构图&lt;/h1&gt;&lt;p&gt;calabash-ios整个框架采用 C/S 的运行模式，系统架构如下图所示：&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ios" scheme="https://tunsuy.github.io/categories/ios/"/>
-    
-    
-      <category term="ios" scheme="https://tunsuy.github.io/tags/ios/"/>
-    
-      <category term="自动化测试" scheme="https://tunsuy.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>利用leakcanary检测android内存泄露</title>
-    <link href="https://tunsuy.github.io/2015/06/10/%E5%88%A9%E7%94%A8leakcanay%E6%A3%80%E6%B5%8Bandroid%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/"/>
-    <id>https://tunsuy.github.io/2015/06/10/利用leakcanay检测android内存泄露/</id>
-    <published>2015-06-10T07:21:24.000Z</published>
-    <updated>2017-03-04T10:15:48.360Z</updated>
-    
-    <content type="html"><![CDATA[<p>leakcanary的知识就不在这里普及了，随便Google下就知道</p>
-<h1 id="一、-项目集成"><a href="#一、-项目集成" class="headerlink" title="一、 项目集成"></a>一、 项目集成</h1><p>直接说在项目中怎么操作，如下：<br>1、在 build.gradle 中加入引用，不同的编译使用不同的引用：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">  debugCompile <span class="string">'com.squareup.leakcanary:leakcanary-android:1.3'</span></div><div class="line">  releaseCompile <span class="string">'com.squareup.leakcanary:leakcanary-android-no-op:1.3'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>2、在你的项目的 Application 中：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleApplication</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate();</div><div class="line">    LeakCanary.install(<span class="keyword">this</span>);    <span class="comment">//加上这一句</span></div><div class="line">  &#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>这样， 重新打包安装之后 ，在操作测试该APP的过程中，如果检测到某个 activity 有内存泄露，LeakCanary 就是自动地显示一个通知。</p>
-<h1 id="二、-具体实践"><a href="#二、-具体实践" class="headerlink" title="二、 具体实践"></a>二、 具体实践</h1><p>具体以我们口袋助理来介绍下：</p>
-<p>1、在build.gradle 中加入引用</p>
-<p>2、在MoaApplication.java中的onCreate方法中加入<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LeakCanary.install(<span class="keyword">this</span>);</div></pre></td></tr></table></figure></p>
-<p>3、故意造一个内存泄露的地方<br>以创建工作汇报为例：将CreateWorkReportActivity.java中的EditText变量改为静态的(static)</p>
-<p>4、编译打包查看效果</p>
-<ul>
-<li>这个时候安装应用到手机，会自动安装一个Leaks应用<br>注：有的手机需要重启下才能看到Leaks应用，比如我用的华为手机就是这样</li>
-</ul>
-<p>5、检查是否真的如我们预期的一样：在创建工作汇报的时候存在内存泄露<br>创建一个工作汇报，回到汇报列表，此时我们会发现收到了一个Leaks的通知<br>如图：</p>
-<img src="/2015/06/10/利用leakcanay检测android内存泄露/leak-notify.jpg" alt="leak-notify.jpg" title="">
-<p>点击该通知，进入Leaks，可以查看到详细的该内存泄露的调用信息，从而定位到该内存泄露<br>如图：</p>
-<img src="/2015/06/10/利用leakcanay检测android内存泄露/leak-info.jpg" alt="leak-info.jpg" title="">
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;leakcanary的知识就不在这里普及了，随便Google下就知道&lt;/p&gt;
-&lt;h1 id=&quot;一、-项目集成&quot;&gt;&lt;a href=&quot;#一、-项目集成&quot; class=&quot;headerlink&quot; title=&quot;一、 项目集成&quot;&gt;&lt;/a&gt;一、 项目集成&lt;/h1&gt;&lt;p&gt;直接说在项目中怎么操作，如下：&lt;br&gt;1、在 build.gradle 中加入引用，不同的编译使用不同的引用：&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  debugCompile &lt;span class=&quot;string&quot;&gt;&#39;com.squareup.leakcanary:leakcanary-android:1.3&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  releaseCompile &lt;span class=&quot;string&quot;&gt;&#39;com.squareup.leakcanary:leakcanary-android-no-op:1.3&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="android" scheme="https://tunsuy.github.io/categories/android/"/>
-    
-    
-      <category term="android" scheme="https://tunsuy.github.io/tags/android/"/>
-    
-      <category term="测试" scheme="https://tunsuy.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   

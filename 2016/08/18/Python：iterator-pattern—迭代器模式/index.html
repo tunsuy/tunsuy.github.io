@@ -1,0 +1,1115 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="baidu-site-verification" content="1AtMgOQafj" />
+
+<meta name="google-site-verification" content="OBsr4k89YaSgNU5IJZxIMjW5YvAMvXQzodsx1oFR_iY" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="http://fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Menlo:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,iterator,设计模式,集合" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="基于python语言的设计模式详解，迭代器模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python：iterator pattern—迭代器模式">
+<meta property="og:url" content="https://tunsuy.github.io/2016/08/18/Python：iterator-pattern—迭代器模式/index.html">
+<meta property="og:site_name" content="鱼儿塘">
+<meta property="og:description" content="基于python语言的设计模式详解，迭代器模式">
+<meta property="og:image" content="https://tunsuy.github.io/2016/08/18/Python：iterator-pattern—迭代器模式/Iterator_general.png">
+<meta property="og:image" content="https://tunsuy.github.io/2016/08/18/Python：iterator-pattern—迭代器模式/Iterator_specific.png">
+<meta property="og:updated_time" content="2017-03-14T01:32:56.646Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python：iterator pattern—迭代器模式">
+<meta name="twitter:description" content="基于python语言的设计模式详解，迭代器模式">
+<meta name="twitter:image" content="https://tunsuy.github.io/2016/08/18/Python：iterator-pattern—迭代器模式/Iterator_general.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6391721495294379000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tunsuy.github.io/2016/08/18/Python：iterator-pattern—迭代器模式/"/>
+
+
+
+
+
+  <title> Python：iterator pattern—迭代器模式 | 鱼儿塘 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鱼儿塘</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/08/18/Python：iterator-pattern—迭代器模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python：iterator pattern—迭代器模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-18T16:53:38+08:00">
+                2016-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/18/Python：iterator-pattern—迭代器模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/18/Python：iterator-pattern—迭代器模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/08/18/Python：iterator-pattern—迭代器模式/" class="leancloud_visitors" data-flag-title="Python：iterator pattern—迭代器模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  基于python语言的设计模式详解，迭代器模式
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>翻译于<a href="https://davidcorne.com/2013/02/22/iterator-pattern/" target="_blank" rel="external">https://davidcorne.com/2013/02/22/iterator-pattern/</a></p>
+<p>注：不是原文翻译，有些自己的理解改动</p>
+<p>该文章主要从python语言的角度去讲解</p>
+<h1 id="一、-目的"><a href="#一、-目的" class="headerlink" title="一、 目的"></a>一、 目的</h1><p>这个模式背后的意思是：有一个对象，你能够循环它而不需要知道这个对象数据的内部表现。在Python这门语言中，没有什么是私有的（<code>译者注：python中的访问控制是约定</code>），你能够找到一个类的内部构成，这个迭代器模式给了你一个标准的接口。</p>
+<p>我认为在python中一个iterator最好的例子就是使用list，因此这里我确定你已经知道怎么使用这个list了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">list = [<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>]</div><div class="line"><span class="keyword">for</span> number <span class="keyword">in</span> list:</div><div class="line">    print(number)</div></pre></td></tr></table></figure>
+<p>这将得到下面的输出：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">one</div><div class="line">two</div><div class="line">three</div></pre></td></tr></table></figure></p>
+<p>在python中这个模式的目标就是为了让用户自定义的类也能够像这样使用。</p>
+<h1 id="二、-模式"><a href="#二、-模式" class="headerlink" title="二、 模式"></a>二、 模式</h1><p>这是十分轻量的一个模式，因此我将主要关注实现细节而不是设计。<br>下面是这个设计模式的UML类图</p>
+<img src="/2016/08/18/Python：iterator-pattern—迭代器模式/Iterator_general.png" alt="Iterator_general.png" title="">
+<p>从上图可以看出，iterator通过组合的方式持有一个容器类实例，它不拥有/删除这个容器本地，只是对这个容器实例的一个引用。</p>
+<p>你能看到我们这里是在谈论一般的集合数据结构而不是特指一个list或者dictionary。这些集合类的这些方法是为了定义一个集合/迭代器的接口，接下来我将详细的介绍它们。</p>
+<h1 id="三、-python协议"><a href="#三、-python协议" class="headerlink" title="三、 python协议"></a>三、 python协议</h1><p>协议是python中给出的名字（<code>译者注：OC语言中也有协议这个说法</code>），是你定义某一类对象的接口。它不像接口那样是一个正式的需要。它只是一个指导性作用。</p>
+<p>它们主要集中在魔术方法，就是那些名字前后是”–”的方法。</p>
+<p>我将简单的谈论下可变和不可变容器或者迭代器中的协议。</p>
+<h2 id="1、-不可变容器"><a href="#1、-不可变容器" class="headerlink" title="1、 不可变容器"></a>1、 不可变容器</h2><p>不可变容器是指你不能修改容器中元素项，只能获取它们长度或者获取其中的元素项。</p>
+<p>下面是不可变容器中的魔术方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="string">""" Returns the length of the container. Called like len(class) """</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, key)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Returns the keyth item in the container.</div><div class="line">    Should raise TypeError if the type of the key is wrong.</div><div class="line">    Should raise KeyError if there is no item for the key.</div><div class="line">    Called like class[key]</div><div class="line">    """</div></pre></td></tr></table></figure></p>
+<h2 id="2、-可变容器"><a href="#2、-可变容器" class="headerlink" title="2、 可变容器"></a>2、 可变容器</h2><p>正如你期望的，一个可变容器跟不可变容器有一样的获取方法，另外还有setting和adding方法。</p>
+<p>下面是这些魔术方法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Returns the length of the container.</div><div class="line">    Called like len(class)</div><div class="line">    """</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, key)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Returns the keyth item in the container.</div><div class="line">    Should raise TypeError if the type of the key is wrong.</div><div class="line">    Should raise KeyError if there is no item for the key.</div><div class="line">    Called like class[key]</div><div class="line">    """</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__setitem__</span><span class="params">(self, key, value)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Sets the keyth item in the container.</div><div class="line">    Should raise TypeError if the type of the key is wrong.</div><div class="line">    Should raise KeyError if there is no item for the key.</div><div class="line">    Called like class[key] = value</div><div class="line">    """</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__delitem__</span><span class="params">(self, key)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Deletes an item from the collection.  </div><div class="line">    Should raise TypeError if the type of the key is wrong.</div><div class="line">    Should raise KeyError if there is no item for the key.</div><div class="line">    Called like del class[key]</div><div class="line">    """</div></pre></td></tr></table></figure></p>
+<p>对于一个不可变容器，你可能也想要有一些方法来增加容器中的元素，对于list/array这类的容器，这些方法可能形如 <code>append(self, key)</code>，或者对于dictionary/table这类容器，则可能是形如 <code>__setitem__(self, key, value)</code></p>
+<p>你也可以增加其他的一些方法，比如 <code>__reversed__(self)</code> 和 <code>__contains__(self, item)</code>，但这些对于核心方法族不是必须的。这儿是更好的描述<a href="http://www.rafekettler.com/magicmethods.html#sequence" target="_blank" rel="external">here</a></p>
+<h2 id="3、-iterator迭代器"><a href="#3、-iterator迭代器" class="headerlink" title="3、 iterator迭代器"></a>3、 iterator迭代器</h2><p>一个迭代器的协议是非常简单的。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Returns an iterator for the collection.</div><div class="line">    Called like iter(class) or for item in class:</div><div class="line">    """</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">next</span><span class="params">(self)</span>:</span></div><div class="line">   <span class="string">"""</span></div><div class="line">   Returns the next item in the collection.</div><div class="line">   Called in a for loop, or manually.</div><div class="line">   Should raise StopIteration on the last item.</div><div class="line">   """</div></pre></td></tr></table></figure></p>
+<p>这个<strong>iter</strong>方法通常返回一个迭代器对象或者返回它自己。注意在python3中 <code>next()</code> 被重命名为了 <code>__next__()</code></p>
+<h1 id="四、-一个例子使用"><a href="#四、-一个例子使用" class="headerlink" title="四、 一个例子使用"></a>四、 一个例子使用</h1><p>这里是一个例子告诉你怎么实现一个简单的迭代器，这个例子是循环来反转一个集合。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReverseIterator</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Iterates the object given to it in reverse so it shows the difference.</div><div class="line">    """</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, iterable_object)</span>:</span></div><div class="line">        self.list = iterable_object</div><div class="line">        <span class="comment"># start at the end of the iterable_object</span></div><div class="line">        self.index = len(iterable_object)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="comment"># return an iterator</span></div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">""" Return the list backwards so it's noticeably different."""</span></div><div class="line">        <span class="keyword">if</span> (self.index == <span class="number">0</span>):</div><div class="line">            <span class="comment"># the list is over, raise a stop index exception</span></div><div class="line">            <span class="keyword">raise</span> StopIteration</div><div class="line">        self.index = self.index - <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> self.list[self.index]</div></pre></td></tr></table></figure></p>
+<p>注意这里仅仅定义了迭代器协议所需要的两个方法。</p>
+<p>这些方法的意思很明显了，构造函数 (<code>__init__</code>) 引用了一个可迭代对象，并且保持了这个可迭代对象的长度作为 <code>index</code>。这个 <code>__iter__</code> 返回它自己，因为它已经定义了一个 <code>next()</code> 方法。这个 <code>next()</code> 方法对 <code>index</code> 递减，然后返回这个元素项，除非没有元素项了，就抛出一个 <code>StopIteration</code> 异常</p>
+<p>在这个例子中，这个 <code>ReverseIterator</code> 迭代器对象被 <code>Days</code> 对象使用。代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Days</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.days = [</div><div class="line">        <span class="string">"Monday"</span>,</div><div class="line">        <span class="string">"Tuesday"</span>,</div><div class="line">        <span class="string">"Wednesday"</span>,</div><div class="line">        <span class="string">"Thursday"</span>,</div><div class="line">        <span class="string">"Friday"</span>,</div><div class="line">        <span class="string">"Saturday"</span>,</div><div class="line">        <span class="string">"Sunday"</span></div><div class="line">        ]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverse_iter</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> ReverseIterator(self.days)</div></pre></td></tr></table></figure></p>
+<p>这个类仅仅是对一周的日期list的装饰器，有一个公开的方法返回一个迭代器。</p>
+<p>下面的代码显示了怎么使用 <code>Days</code> 类。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="keyword">if</span> (__name__ == <span class="string">"__main__"</span>):</div><div class="line">    days = Days()</div><div class="line">    <span class="keyword">for</span> day <span class="keyword">in</span> days.reverse_iter():</div><div class="line">        print(day)</div></pre></td></tr></table></figure></p>
+<p>注：我也能够定义一个 <code>__iter__</code> 方法代替 <code>reverse_iter()</code> 方法，然后就可以像下面这样使用了：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#==============================================================================</span></div><div class="line"><span class="keyword">if</span> (__name__ == <span class="string">"__main__"</span>):</div><div class="line">    days = Days()</div><div class="line">    <span class="keyword">for</span> day <span class="keyword">in</span> days:</div><div class="line">        print(day)</div></pre></td></tr></table></figure></p>
+<p>都将正确的输出下面的结果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Sunday</div><div class="line">Saturday</div><div class="line">Friday</div><div class="line">Thursday</div><div class="line">Wednesday</div><div class="line">Tuesday</div><div class="line">Monday</div></pre></td></tr></table></figure></p>
+<p>这部分的代码可以在这个文件找到<a href="https://github.com/davidcorne/Design-Patterns-In-Python/blob/master/Behavioural/Iterator.py" target="_blank" rel="external">this file</a></p>
+<p>下面是这些类的UML类图</p>
+<img src="/2016/08/18/Python：iterator-pattern—迭代器模式/Iterator_specific.png" alt="Iterator_specific.png" title="">
+<p>这篇文章所以得代码都能在这里找到<a href="https://github.com/davidcorne/Design-Patterns-In-Python" target="_blank" rel="external">here</a></p>
+<p>感谢你的阅读</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="tunsuy WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="tunsuy Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/11/ios：性能之卡顿检测/" rel="next" title="iOS：性能之卡顿检测">
+                <i class="fa fa-chevron-left"></i> iOS：性能之卡顿检测
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/18/代码扫描之API调用版本检查/" rel="prev" title="代码扫描之API调用版本检查">
+                代码扫描之API调用版本检查 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/18/Python：iterator-pattern—迭代器模式/"
+           data-title="Python：iterator pattern—迭代器模式" data-url="https://tunsuy.github.io/2016/08/18/Python：iterator-pattern—迭代器模式/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/headpic.jpg"
+               alt="tunsuy" />
+          <p class="site-author-name" itemprop="name">tunsuy</p>
+           
+              <p class="site-description motion-element" itemprop="description">一切只为变得更好</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tunsuy/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-目的"><span class="nav-text">一、 目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-模式"><span class="nav-text">二、 模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-python协议"><span class="nav-text">三、 python协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-不可变容器"><span class="nav-text">1、 不可变容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-可变容器"><span class="nav-text">2、 可变容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-iterator迭代器"><span class="nav-text">3、 iterator迭代器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、-一个例子使用"><span class="nav-text">四、 一个例子使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tunsuy</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"blogdis"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("QNtye0Peaz21qnUyw7RluVTO-gzGzoHsz", "MBm8aORfutl1RHYXFcEWQb01");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>
