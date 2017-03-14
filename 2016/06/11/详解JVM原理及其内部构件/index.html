@@ -92,7 +92,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ios," />
+  <meta name="keywords" content="java,jvm,虚拟机" />
 
 
 
@@ -108,25 +108,26 @@
 
 
 
-<meta name="description" content="一、 基本介绍1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 运行的上下文环境 JSContext 注入对象 Bridge；
-2、WKWebView 使用的 WebKit 框架，交互时为 webkit.messageHandlers 注入对象
-二、 测试注意事项1、加载速度
-2、占用内存">
+<meta name="description" content="节选自：http://www.cubrid.org/blog/dev-platform/understanding-jvm-internals/
+一、 JVM特性1、 简介1、虚拟机栈：最流行的计算机架构比如intel x86架构和arm架构都是基于寄存器运行的，然而，jvm是基于栈运行的  
+2、符号引用：所有的类型（类和接口）除了原始类型（即基本类型）都是被符号引用所引用的，代替显示的通过内存">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS：UIWebView与WKWebView注意事项">
-<meta property="og:url" content="https://tunsuy.github.io/2016/09/28/ios：UIWebView与WKWebView注意事项/index.html">
+<meta property="og:title" content="详解JVM原理及其内部构件">
+<meta property="og:url" content="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/index.html">
 <meta property="og:site_name" content="鱼儿塘">
-<meta property="og:description" content="一、 基本介绍1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 运行的上下文环境 JSContext 注入对象 Bridge；
-2、WKWebView 使用的 WebKit 框架，交互时为 webkit.messageHandlers 注入对象
-二、 测试注意事项1、加载速度
-2、占用内存">
-<meta property="og:updated_time" content="2017-03-14T02:28:04.302Z">
+<meta property="og:description" content="节选自：http://www.cubrid.org/blog/dev-platform/understanding-jvm-internals/
+一、 JVM特性1、 简介1、虚拟机栈：最流行的计算机架构比如intel x86架构和arm架构都是基于寄存器运行的，然而，jvm是基于栈运行的  
+2、符号引用：所有的类型（类和接口）除了原始类型（即基本类型）都是被符号引用所引用的，代替显示的通过内存">
+<meta property="og:image" content="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/java-code-execution-process.png">
+<meta property="og:image" content="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/class-loader-delegation-model.png">
+<meta property="og:image" content="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/runtime-data-access-configuration.png">
+<meta property="og:updated_time" content="2017-03-14T04:43:26.262Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS：UIWebView与WKWebView注意事项">
-<meta name="twitter:description" content="一、 基本介绍1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 运行的上下文环境 JSContext 注入对象 Bridge；
-2、WKWebView 使用的 WebKit 框架，交互时为 webkit.messageHandlers 注入对象
-二、 测试注意事项1、加载速度
-2、占用内存">
+<meta name="twitter:title" content="详解JVM原理及其内部构件">
+<meta name="twitter:description" content="节选自：http://www.cubrid.org/blog/dev-platform/understanding-jvm-internals/
+一、 JVM特性1、 简介1、虚拟机栈：最流行的计算机架构比如intel x86架构和arm架构都是基于寄存器运行的，然而，jvm是基于栈运行的  
+2、符号引用：所有的类型（类和接口）除了原始类型（即基本类型）都是被符号引用所引用的，代替显示的通过内存">
+<meta name="twitter:image" content="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/java-code-execution-process.png">
 
 
 
@@ -154,13 +155,13 @@
 
 
 
-  <link rel="canonical" href="https://tunsuy.github.io/2016/09/28/ios：UIWebView与WKWebView注意事项/"/>
+  <link rel="canonical" href="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/"/>
 
 
 
 
 
-  <title> iOS：UIWebView与WKWebView注意事项 | 鱼儿塘 </title>
+  <title> 详解JVM原理及其内部构件 | 鱼儿塘 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -321,7 +322,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/09/28/ios：UIWebView与WKWebView注意事项/">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tunsuy">
@@ -342,7 +343,7 @@
             
             
               
-                iOS：UIWebView与WKWebView注意事项
+                详解JVM原理及其内部构件
               
             
           </h1>
@@ -357,8 +358,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-28T17:14:51+08:00">
-                2016-09-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-11T12:54:40+08:00">
+                2016-06-11
               </time>
             
 
@@ -380,8 +381,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -398,8 +399,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/09/28/ios：UIWebView与WKWebView注意事项/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/28/ios：UIWebView与WKWebView注意事项/" itemprop="commentCount"></span>
+                <a href="/2016/06/11/详解JVM原理及其内部构件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/11/详解JVM原理及其内部构件/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -407,7 +408,7 @@
 
           
           
-             <span id="/2016/09/28/ios：UIWebView与WKWebView注意事项/" class="leancloud_visitors" data-flag-title="iOS：UIWebView与WKWebView注意事项">
+             <span id="/2016/06/11/详解JVM原理及其内部构件/" class="leancloud_visitors" data-flag-title="详解JVM原理及其内部构件">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -436,18 +437,41 @@
       
 
       
-        <h1 id="一、-基本介绍"><a href="#一、-基本介绍" class="headerlink" title="一、 基本介绍"></a>一、 基本介绍</h1><p>1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 运行的上下文环境 JSContext 注入对象 Bridge；</p>
-<p>2、WKWebView 使用的 WebKit 框架，交互时为 webkit.messageHandlers 注入对象</p>
-<h1 id="二、-测试注意事项"><a href="#二、-测试注意事项" class="headerlink" title="二、 测试注意事项"></a>二、 测试注意事项</h1><p>1、加载速度</p>
-<p>2、占用内存</p>
-<a id="more"></a>
-<p>3、缓存问题：<br>H5页面更新了，app端显示还是老的，不同的ios系统处理方式不一样</p>
-<p>4、cookie问题<br>页面很多，不断切换浏览，cookie失效等</p>
-<p>5、跨域问题<br>webkit框架不允许跨域，比如从一个http页面对https发起请求</p>
-<p>6、request拦截问题<br>有可能之前用的好好的hybrid框架，换了wkwebview之后，有些就不起作用了</p>
-<p>7、本地html文件加载<br>不同的ios系统不一样</p>
-<p>8、手势操作</p>
-<h1 id="三、-参考链接"><a href="#三、-参考链接" class="headerlink" title="三、 参考链接"></a>三、 参考链接</h1><p><a href="http://mp.weixin.qq.com/s/18xXQWboHcjybd_VtcTmUg##" target="_blank" rel="external">http://mp.weixin.qq.com/s/18xXQWboHcjybd_VtcTmUg##</a></p>
+        <p>节选自：<a href="http://www.cubrid.org/blog/dev-platform/understanding-jvm-internals/" target="_blank" rel="external">http://www.cubrid.org/blog/dev-platform/understanding-jvm-internals/</a></p>
+<h1 id="一、-JVM特性"><a href="#一、-JVM特性" class="headerlink" title="一、 JVM特性"></a>一、 JVM特性</h1><h2 id="1、-简介"><a href="#1、-简介" class="headerlink" title="1、 简介"></a>1、 简介</h2><p>1、虚拟机栈：最流行的计算机架构比如intel x86架构和arm架构都是基于寄存器运行的，然而，jvm是基于栈运行的  </p>
+<p>2、符号引用：所有的类型（类和接口）除了原始类型（即基本类型）都是被符号引用所引用的，代替显示的通过内存地址引用<br>译者注：符号引用即变量  </p>
+<p>3、GC垃圾回收：一个类实例通过用户代码显示的创建，而通过GC自动回收，不用手动干预。  </p>
+<p>4、基本数据类型平台独立：传统的编程语言比如c++根据不同的平台有不同的int类型内存大小，而jvm显示的定义了基本数据类型的内存大小，跟平台是无关的。  </p>
+<p>5、网络字节序：java类文件使用的时候网络字节序。为的是保持平台无关性：Intel x86架构使用的是小端字节序，而RISC 系列架构使用的大端字节序，所有一个固定的字节序必须被保持。jvm使用的网络字节序是被用于网络传输的。网络字节序是大端字节序。  </p>
+<p>虽然java 是sun公司开发的，但是任何的供应商只要遵循jvm规范，都可以开发和提供jvm虚拟机。正因为这个原因，有各种各样的jvm，包括oracle Hotspot jvm 和IBM JVM。Google的安卓系统上的Dalvik VM也是JVM中的一种，但是它没有遵循JVM规范。不同于java VMs的虚拟机栈，Dalvik VM是基于寄存器架构的。Dalvik VM会将java字节码转换成基于寄存器的指令集。</p>
+<h2 id="2、-Java字节码："><a href="#2、-Java字节码：" class="headerlink" title="2、 Java字节码："></a>2、 Java字节码：</h2><p>为了实现平台无关性，JVM使用java字节码，java字节码是处于java（用户语言）和机器语言的一种中间语言，java字节码是发布java代码最小的单元。<br>在解释java字节码之前，让我们先来看看它，这个列子是发生在开发进程中的真实列子的总结。</p>
+<h1 id="二、-JVM结构"><a href="#二、-JVM结构" class="headerlink" title="二、 JVM结构"></a>二、 JVM结构</h1><h2 id="1、-执行流程"><a href="#1、-执行流程" class="headerlink" title="1、 执行流程"></a>1、 执行流程</h2><p>java代码是按照下图所示的流程执行的</p>
+<img src="/2016/06/11/详解JVM原理及其内部构件/java-code-execution-process.png" alt="java-code-execution-process.png" title="">
+<p>类加载器将javac编译的java字节码加载进运行时数据区；而执行机则执行java字节码</p>
+<h2 id="2、-类加载器"><a href="#2、-类加载器" class="headerlink" title="2、 类加载器"></a>2、 类加载器</h2><p>java提供了动态加载特性；类加载器是在运行时而不是编译时，将加载和链接它所引用到的类。JVM的类加载器执行这个动态加载。<br>类加载器具有如下这些特性：</p>
+<p>1、分层结构：类加载器是以父子关系组成的一个分层结构，Bootstrap 加载器是所有加载器的父类。</p>
+<p>2、委托模式：基于这个分层结构，类加载器之间是委托加载的。当一个类加载的时候，这个父类加载器将被检查来确定这个类是否在这个父类加载器中，如果父类加载器已经有了这个类，则直接使用，否则，这个类加载器将加载这个类。</p>
+<p>3、可见性：一个子类加载器可以找到父类加载器中的类，但是，一个父子类加载器不能找到子类加载器中的类。</p>
+<p>4、不能卸载：一个类加载器可以加载类但是不能卸载类，代替卸载的是，这个类加载器可以被删除，然后重新创建一个类加载器。</p>
+<p>每一个类加载器有自己的名字空间用来存储加载的类。当一个类加载器加载一个类时，它根据FQCN （全类名匹配）在存储在名字空间中的类来搜索类，并且检查其是否已经被加载过了。如果一个类有相同的名字但是在不同的名字空间，类加载器会认为它是一个不同的类。如图</p>
+<img src="/2016/06/11/详解JVM原理及其内部构件/class-loader-delegation-model.png" alt="class-loader-delegation-model.png" title="">
+<h2 id="3、-运行时数据区"><a href="#3、-运行时数据区" class="headerlink" title="3、 运行时数据区"></a>3、 运行时数据区</h2><img src="/2016/06/11/详解JVM原理及其内部构件/runtime-data-access-configuration.png" alt="runtime-data-access-configuration.png" title="">
+<p>运行时数据区是一个内存区域，是在JVM程序在操作系统上运行时分配的。这个运行时区分为6个区域：  </p>
+<ul>
+<li>线程私有：PC寄存器（程序计数器），JVM栈，本地方法栈</li>
+<li>线程共享：堆，方法区，运行时常量池</li>
+</ul>
+<p>1、PC寄存器：又叫程序计数器，存在于每一个线程中，在线程开始的时候被创建，它存储正在被执行的JVM指令地址</p>
+<p>2、JVM栈：存在于每一个线程中，在线程开始的时候被创建。它是一个个结构体（栈帧）的栈空间。JVM将栈帧入栈和出栈  </p>
+<ul>
+<li>栈帧：一个栈帧当一个方法在JVM中执行的时候被创建，然后被添加进这个线程的JVM栈中。当这个方法结束的时候，这个栈帧就被移除了。每个栈帧包括本地变量组的引用，操作栈和该方法所属的类的运行时常量池。本地变量组和操作栈的大小在编译时就被确定了，因此，一个栈帧的大小是根据方法来确定的。</li>
+<li>本地变量组：它的索引从0开始，0表示这个方法所属的类实例的引用，所以方法参数是从索引1开始保存在这个本地变量组中的。最后才是依次保存该方法的本地变量。</li>
+<li>操作栈：表示一个方法的实际工作空间。每个方法在操作栈和本地变量组之间交换数据。对其他方法的调用结果进行出栈和入栈。操作栈所需要的空间在编译时就被确定了。</li>
+</ul>
+<p>3、本地方法栈：表示其他语言（非java）写的本地代码栈。换句话说，它是一个被JNI调用的C/C++代码执行时使用的栈空间。</p>
+<p>4、方法区：这个方法区被所有的线程共享。当JVM开始的时候被创建。它存储运行时常量池，域和方法信息，静态变量和被JVM读取的每个类和接口的方法字节码。方法区根据不同的JVM供应商而被实现为了不同的格式。Oracle Hotspot JVM 叫它永生代。对于每个JVM供应商，这个方法区对于GC是可选的。</p>
+<p>5、运行时常量池：这个区域包含在方法区中，它是JVM操作中的一个很核心的角色。因此，JVM规范分开描述了它的重要性。包含了每个类和接口的常量，方法和域的引用。简单的说，当一个方法和域被引用的时候，JVM搜索这个方法和域在运行时常量池中的实际的地址</p>
+<p>6、堆：存储实例和对象的一个空间。是GC的一个操作目标。这个空间在讨论JVM性能的时候被经常提到。这JVM供应商能确定这个堆怎么配置或者不被回收。</p>
 
       
     </div>
@@ -501,7 +525,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ios/" rel="tag"># ios</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
       
@@ -514,8 +538,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/23/实现浏览器中实时查看iOS日志/" rel="next" title="实现浏览器中实时查看iOS日志">
-                <i class="fa fa-chevron-left"></i> 实现浏览器中实时查看iOS日志
+              <a href="/2016/06/02/基于docker的moa服务/" rel="next" title="基于docker的moa服务">
+                <i class="fa fa-chevron-left"></i> 基于docker的moa服务
               </a>
             
           </div>
@@ -524,8 +548,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/08/redmine-数据统计/" rel="prev" title="redmine-数据统计">
-                redmine-数据统计 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/06/15/docker自定义daemon选项/" rel="prev" title="docker自定义daemon选项">
+                docker自定义daemon选项 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -552,8 +576,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/28/ios：UIWebView与WKWebView注意事项/"
-           data-title="iOS：UIWebView与WKWebView注意事项" data-url="https://tunsuy.github.io/2016/09/28/ios：UIWebView与WKWebView注意事项/">
+      <div class="ds-thread" data-thread-key="2016/06/11/详解JVM原理及其内部构件/"
+           data-title="详解JVM原理及其内部构件" data-url="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/">
       </div>
     
   </div>
@@ -666,7 +690,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-基本介绍"><span class="nav-text">一、 基本介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-测试注意事项"><span class="nav-text">二、 测试注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-参考链接"><span class="nav-text">三、 参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-JVM特性"><span class="nav-text">一、 JVM特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-简介"><span class="nav-text">1、 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-Java字节码："><span class="nav-text">2、 Java字节码：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-JVM结构"><span class="nav-text">二、 JVM结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-执行流程"><span class="nav-text">1、 执行流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-类加载器"><span class="nav-text">2、 类加载器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-运行时数据区"><span class="nav-text">3、 运行时数据区</span></a></li></ol></li></ol></div>
             
 
           </div>

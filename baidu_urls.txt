@@ -1,10 +1,10 @@
 https://tunsuy.github.io/2016/12/09/自编译mongo3-2测试/
 https://tunsuy.github.io/2016/11/16/App三方交互逻辑实践/
 https://tunsuy.github.io/2016/10/15/mongodb集群3-0-X升级3-2-X/
+https://tunsuy.github.io/2016/10/09/深入理解Java中的线程安全和集合/
 https://tunsuy.github.io/2016/10/08/redmine-数据统计/
-https://tunsuy.github.io/2016/09/28/ios：UIWebView与WKWebView注意事项/
 https://tunsuy.github.io/2016/09/23/实现浏览器中实时查看iOS日志/
-https://tunsuy.github.io/2016/09/21/ios：https-ATS改造过程/
 https://tunsuy.github.io/2016/09/18/代码扫描之API调用版本检查/
+https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/
 https://tunsuy.github.io/2016/08/18/Python：iterator-pattern—迭代器模式/
 https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/

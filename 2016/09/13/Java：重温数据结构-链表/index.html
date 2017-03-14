@@ -115,27 +115,27 @@
 一个链表中的每个元素（我们叫它节点）包含两个部分-数据和指向下一个节点的引用，最后一个节点的引用部分则指向null。指向链表的一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java：重温数据结构-链表">
-<meta property="og:url" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/index.html">
+<meta property="og:url" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/index.html">
 <meta property="og:site_name" content="鱼儿塘">
 <meta property="og:description" content="翻译于https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html
 注：不是原文翻译，有些自己的理解改动
 一、 引言一个链表就是一个线性的数据结构，如下图所示：
 
 一个链表中的每个元素（我们叫它节点）包含两个部分-数据和指向下一个节点的引用，最后一个节点的引用部分则指向null。指向链表的一个">
-<meta property="og:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/linkedlist.bmp">
-<meta property="og:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/doubly.bmp">
-<meta property="og:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/linkedlist2.bmp">
-<meta property="og:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/linkedlist3.bmp">
-<meta property="og:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/linkedlist4.bmp">
-<meta property="og:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/prepend.bmp">
-<meta property="og:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/traverse.bmp">
-<meta property="og:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/append.bmp">
-<meta property="og:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/after.bmp">
-<meta property="og:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/before.bmp">
-<meta property="og:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/delete.bmp">
-<meta property="og:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/shallowclone.bmp">
-<meta property="og:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/deepclone.bmp">
-<meta property="og:updated_time" content="2017-03-14T02:28:04.480Z">
+<meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/linkedlist.bmp">
+<meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/doubly.bmp">
+<meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/linkedlist2.bmp">
+<meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/linkedlist3.bmp">
+<meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/linkedlist4.bmp">
+<meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/prepend.bmp">
+<meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/traverse.bmp">
+<meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/append.bmp">
+<meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/after.bmp">
+<meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/before.bmp">
+<meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/delete.bmp">
+<meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/shallowclone.bmp">
+<meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/deepclone.bmp">
+<meta property="og:updated_time" content="2017-03-14T04:42:38.707Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java：重温数据结构-链表">
 <meta name="twitter:description" content="翻译于https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html
@@ -143,7 +143,7 @@
 一、 引言一个链表就是一个线性的数据结构，如下图所示：
 
 一个链表中的每个元素（我们叫它节点）包含两个部分-数据和指向下一个节点的引用，最后一个节点的引用部分则指向null。指向链表的一个">
-<meta name="twitter:image" content="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/linkedlist.bmp">
+<meta name="twitter:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/linkedlist.bmp">
 
 
 
@@ -171,7 +171,7 @@
 
 
 
-  <link rel="canonical" href="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/"/>
+  <link rel="canonical" href="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/"/>
 
 
 
@@ -338,7 +338,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tunsuy">
@@ -374,8 +374,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-13T09:59:43+08:00">
-                2016-07-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-13T09:59:43+08:00">
+                2016-09-13
               </time>
             
 
@@ -415,8 +415,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/07/13/Java：重温数据结构-链表/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/13/Java：重温数据结构-链表/" itemprop="commentCount"></span>
+                <a href="/2016/09/13/Java：重温数据结构-链表/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/13/Java：重温数据结构-链表/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -424,7 +424,7 @@
 
           
           
-             <span id="/2016/07/13/Java：重温数据结构-链表/" class="leancloud_visitors" data-flag-title="Java：重温数据结构-链表">
+             <span id="/2016/09/13/Java：重温数据结构-链表/" class="leancloud_visitors" data-flag-title="Java：重温数据结构-链表">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -456,50 +456,50 @@
         <p>翻译于<a href="https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html" target="_blank" rel="external">https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html</a></p>
 <p>注：不是原文翻译，有些自己的理解改动</p>
 <h1 id="一、-引言"><a href="#一、-引言" class="headerlink" title="一、 引言"></a>一、 引言</h1><p>一个链表就是一个线性的数据结构，如下图所示：</p>
-<img src="/2016/07/13/Java：重温数据结构-链表/linkedlist.bmp" alt="linkedlist.bmp" title="">
+<img src="/2016/09/13/Java：重温数据结构-链表/linkedlist.bmp" alt="linkedlist.bmp" title="">
 <p>一个链表中的每个元素（我们叫它节点）包含两个部分-数据和指向下一个节点的引用，最后一个节点的引用部分则指向null。指向链表的一个对象（实体）叫做这个链表的head（头部），这个head不是链表中一个独立的节点，但它是指向链表的第一个节点。如果链表为空，head则表示一个空的引用。</p>
 <p>链表是一个动态的数据结构，链表中节点的数量不是固定的，能够根据需要动态的增减。如果一个应用需要处理的对象（实体）数是不确定的，则需要使用链表来表示。</p>
 <p>链表相对于数组来说的一个缺点就是不允许直接访问其中的元素。如果你想要访问一个指定的元素，你必须从链表的head开始，依次找到它的下一个引用，直到你得到这个想要的元素。</p>
 <p>链表的另外一个缺点就是比数组占用更多的内存空间。因为需要使用额外的空间保存下一个节点引用（next）。</p>
 <h1 id="二、-链表的类型"><a href="#二、-链表的类型" class="headerlink" title="二、 链表的类型"></a>二、 链表的类型</h1><p>1、单链表，就是上面描述的<br>2、双向链表，就是指一个链表有两个引用，一个指向下一个节点，另一个指向前一个节点，如图</p>
-<img src="/2016/07/13/Java：重温数据结构-链表/doubly.bmp" alt="doubly.bmp" title="">
+<img src="/2016/09/13/Java：重温数据结构-链表/doubly.bmp" alt="doubly.bmp" title="">
 <p>链表的另一个重要的类型叫循环链表，就是指链表的最后一个节点指向链表的第一个节点（或者head）。</p>
 <h1 id="三、-节点类"><a href="#三、-节点类" class="headerlink" title="三、 节点类"></a>三、 节点类</h1><p>java语言中，你可以定义一个类（B）被包含于另一个类（A）。类A叫做外部类，类B叫做内部类。内部类的作用仅仅就是用于内部帮助类。下面就是链表内部节点类的定义<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">AnyType</span>&gt;</span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">private</span> AnyType data;</div><div class="line">   <span class="keyword">private</span> Node&lt;AnyType&gt; next;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(AnyType data, Node&lt;AnyType&gt; next)</span></span></div><div class="line">   &#123;</div><div class="line">      <span class="keyword">this</span>.data = data;</div><div class="line">      <span class="keyword">this</span>.next = next;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>一个内部类就是外部类的一个成员，能够访问外部类的其他成员（包括私有成员）。反之亦然，外部类也能够访问内部类的所有成员。一个内部类能够被private、public、protected或者package访问权限修饰。有两种内部类：静态和非静态的。</p>
 <p>这里我们使用两个内部类来实现链表：静态 <code>Node</code> 类和非静态 <code>LinkedListIterator</code> 。完整的实现请看 <a href="https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/code/LinkedList.java" target="_blank" rel="external">LinkedList.java</a></p>
 <h1 id="四、-例子"><a href="#四、-例子" class="headerlink" title="四、 例子"></a>四、 例子</h1><p>让我们分段的来跟踪每一步的影响，在每一步执行之前，链表存储它的初始状态。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">head = head.next;</div></pre></td></tr></table></figure>
-<img src="/2016/07/13/Java：重温数据结构-链表/linkedlist2.bmp" alt="linkedlist2.bmp" title="">
+<img src="/2016/09/13/Java：重温数据结构-链表/linkedlist2.bmp" alt="linkedlist2.bmp" title="">
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">head.next = head.next.next;</div></pre></td></tr></table></figure>
-<img src="/2016/07/13/Java：重温数据结构-链表/linkedlist3.bmp" alt="linkedlist3.bmp" title="">
+<img src="/2016/09/13/Java：重温数据结构-链表/linkedlist3.bmp" alt="linkedlist3.bmp" title="">
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">head.next.next.next.next = head;</div></pre></td></tr></table></figure>
-<img src="/2016/07/13/Java：重温数据结构-链表/linkedlist4.bmp" alt="linkedlist4.bmp" title="">
+<img src="/2016/09/13/Java：重温数据结构-链表/linkedlist4.bmp" alt="linkedlist4.bmp" title="">
 <h1 id="五、-链表操作"><a href="#五、-链表操作" class="headerlink" title="五、 链表操作"></a>五、 链表操作</h1><h2 id="1、-addFirst"><a href="#1、-addFirst" class="headerlink" title="1、 addFirst"></a>1、 addFirst</h2><p>这个方法创建一个节点，并放在链表的开始位置，如图：</p>
-<img src="/2016/07/13/Java：重温数据结构-链表/prepend.bmp" alt="prepend.bmp" title="">
+<img src="/2016/09/13/Java：重温数据结构-链表/prepend.bmp" alt="prepend.bmp" title="">
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(AnyType item)</span></span></div><div class="line">&#123;</div><div class="line">   head = <span class="keyword">new</span> Node&lt;AnyType&gt;(item, head);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="2、-Traversing"><a href="#2、-Traversing" class="headerlink" title="2、 Traversing"></a>2、 Traversing</h2><p>从head开始，访问每一个节点，直到null，不改变head的引用。如图：</p>
-<img src="/2016/07/13/Java：重温数据结构-链表/traverse.bmp" alt="traverse.bmp" title="">
+<img src="/2016/09/13/Java：重温数据结构-链表/traverse.bmp" alt="traverse.bmp" title="">
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Node tmp = head;</div><div class="line"></div><div class="line"><span class="keyword">while</span>(tmp != <span class="keyword">null</span>) tmp = tmp.next;</div></pre></td></tr></table></figure>
 <h2 id="3、-addLast"><a href="#3、-addLast" class="headerlink" title="3、 addLast"></a>3、 addLast</h2><p>这个方法增加一个节点到链表的最后，这需要 <code>Traversing</code> ，但确保在最后一个节点的时候停止。如图：</p>
-<img src="/2016/07/13/Java：重温数据结构-链表/append.bmp" alt="append.bmp" title="">
+<img src="/2016/09/13/Java：重温数据结构-链表/append.bmp" alt="append.bmp" title="">
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(AnyType item)</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">if</span>(head == <span class="keyword">null</span>) addFirst(item);</div><div class="line">   <span class="keyword">else</span></div><div class="line">   &#123;</div><div class="line">      Node&lt;AnyType&gt; tmp = head;</div><div class="line">      <span class="keyword">while</span>(tmp.next != <span class="keyword">null</span>) tmp = tmp.next;</div><div class="line"></div><div class="line">      tmp.next = <span class="keyword">new</span> Node&lt;AnyType&gt;(item, <span class="keyword">null</span>);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="4、-Inserting-“after”"><a href="#4、-Inserting-“after”" class="headerlink" title="4、 Inserting “after”"></a>4、 Inserting “after”</h2><p>找到指定key的节点，然后在它之后插入一个节点。如下图所示，我们在”E”之后插入一个新的节点。</p>
-<img src="/2016/07/13/Java：重温数据结构-链表/after.bmp" alt="after.bmp" title="">
+<img src="/2016/09/13/Java：重温数据结构-链表/after.bmp" alt="after.bmp" title="">
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertAfter</span><span class="params">(AnyType key, AnyType toInsert)</span></span></div><div class="line">&#123;</div><div class="line">   Node&lt;AnyType&gt; tmp = head;</div><div class="line">   <span class="keyword">while</span>(tmp != <span class="keyword">null</span> &amp;&amp; !tmp.data.equals(key)) tmp = tmp.next;</div><div class="line"></div><div class="line">   <span class="keyword">if</span>(tmp != <span class="keyword">null</span>)</div><div class="line">      tmp.next = <span class="keyword">new</span> Node&lt;AnyType&gt;(toInsert, tmp.next);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="5、-Inserting-“before”"><a href="#5、-Inserting-“before”" class="headerlink" title="5、 Inserting “before”"></a>5、 Inserting “before”</h2><p>找到指定key的节点，然后在它之前插入一个节点。如下图所示，我们在”A”之前插入一个新的节点。</p>
-<img src="/2016/07/13/Java：重温数据结构-链表/before.bmp" alt="before.bmp" title="">
+<img src="/2016/09/13/Java：重温数据结构-链表/before.bmp" alt="before.bmp" title="">
 <p>为了方便起见，我们增加两个引用 <code>pre</code> 和 <code>cur</code>，保证 <code>pre</code> 在 <code>cur</code> 之前。同时平移这两个引用，直到 <code>cur</code> 到达我们想要插入的节点之前。如果 <code>cur</code> 到达null，则不插入，否则我们插入一个新的节点在 <code>pre</code> 和 <code>cur</code> 之间。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertBefore</span><span class="params">(AnyType key, AnyType toInsert)</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">   <span class="keyword">if</span>(head.data.equals(key))</div><div class="line">   &#123;</div><div class="line">      addFirst(toInsert);</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   Node&lt;AnyType&gt; prev = <span class="keyword">null</span>;</div><div class="line">   Node&lt;AnyType&gt; cur = head;</div><div class="line"></div><div class="line">   <span class="keyword">while</span>(cur != <span class="keyword">null</span> &amp;&amp; !cur.data.equals(key))</div><div class="line">   &#123;</div><div class="line">      prev = cur;</div><div class="line">      cur = cur.next;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//insert between cur and prev</span></div><div class="line">   <span class="keyword">if</span>(cur != <span class="keyword">null</span>) prev.next = <span class="keyword">new</span> Node&lt;AnyType&gt;(toInsert, cur);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="6、-Deletion"><a href="#6、-Deletion" class="headerlink" title="6、 Deletion"></a>6、 Deletion</h2><p>找到指定key的节点并删除它。如下图所示删除包含”A”的节点。</p>
-<img src="/2016/07/13/Java：重温数据结构-链表/delete.bmp" alt="delete.bmp" title="">
+<img src="/2016/09/13/Java：重温数据结构-链表/delete.bmp" alt="delete.bmp" title="">
 <p>这个方法的算法和前一个很相似。为了方便起见，我们增加两个引用 <code>pre</code> 和 <code>cur</code>，保证 <code>pre</code> 在 <code>cur</code> 之前。同时平移这两个引用，直到 <code>cur</code> 到达我们想要删除的节点。这里有三种情况需要注意：<br>1、链表为空<br>2、删除的是head节点<br>3、需要删除的节点不再链表中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(AnyType key)</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"cannot delete"</span>);</div><div class="line"></div><div class="line">   <span class="keyword">if</span>( head.data.equals(key) )</div><div class="line">   &#123;</div><div class="line">      head = head.next;</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   Node&lt;AnyType&gt; cur  = head;</div><div class="line">   Node&lt;AnyType&gt; prev = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">   <span class="keyword">while</span>(cur != <span class="keyword">null</span> &amp;&amp; !cur.data.equals(key) )</div><div class="line">   &#123;</div><div class="line">      prev = cur;</div><div class="line">      cur = cur.next;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="keyword">if</span>(cur == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"cannot delete"</span>);</div><div class="line"></div><div class="line">   <span class="comment">//delete cur node</span></div><div class="line">   prev.next = cur.next;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h1 id="7、-Iterator"><a href="#7、-Iterator" class="headerlink" title="7、 Iterator"></a>7、 Iterator</h1><p>迭代器提供了对集合数据的访问方式，隐藏集合数据的内部表示形式。在java中迭代器是一个对象，因此需要创建一个类来实现，并且这个类需要实现 <code>Iterator</code> 接口。通常这样的类是作为一个内部类来实现的。<code>iterator</code> 接口包含下面三个方法：<br>1、AnyType next() - 返回容器中的下一个元素<br>2、boolean hasNext() - 检查是否还有下一个元素<br>3、void remove() - (可选的操作).移除通过 <code>next()</code> 方法返回的元素</p>
 <p>下面讲讲 <code>LinkedList</code> 类中的 <code>iterator</code> 实现。首先我在 <code>LinkedList</code> 中增加一个方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Iterator&lt;AnyType&gt; <span class="title">iterator</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">new</span> LinkedListIterator();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>下面 <code>LinkedListIterator</code> 是 <code>LinkedList</code> 的一个私有内部类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedListIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">AnyType</span>&gt;</span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">private</span> Node&lt;AnyType&gt; nextNode;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="title">LinkedListIterator</span><span class="params">()</span></span></div><div class="line">   &#123;</div><div class="line">      nextNode = head;</div><div class="line">   &#125;</div><div class="line">   ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><code>LinkedListIterator</code> 类 必须实现 <code>next()</code> 和  <code>hasNext()</code> 方法.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> AnyType <span class="title">next</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">if</span>(!hasNext()) <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</div><div class="line">   AnyType res = nextNode.data;</div><div class="line">   nextNode = nextNode.next;</div><div class="line">   <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h1 id="六、-Cloning克隆"><a href="#六、-Cloning克隆" class="headerlink" title="六、 Cloning克隆"></a>六、 Cloning克隆</h1><p>就像任何其他一个对象一样，我们需要学习怎样clone一个链表。如果我们简单的使用 <code>Object</code> 类的 <code>clone()</code> 方法，那么就是”浅复制”，如下图所示：</p>
-<img src="/2016/07/13/Java：重温数据结构-链表/shallowclone.bmp" alt="shallowclone.bmp" title="">
+<img src="/2016/09/13/Java：重温数据结构-链表/shallowclone.bmp" alt="shallowclone.bmp" title="">
 <p>这个Object的 <code>clone()</code> 方法只会对第一个节点进行一份内容复制，其他节点都是引用复制，内容共享。这显然不是我们想要的效果，那么看看下面的”深复制”</p>
-<img src="/2016/07/13/Java：重温数据结构-链表/deepclone.bmp" alt="deepclone.bmp" title="">
+<img src="/2016/09/13/Java：重温数据结构-链表/deepclone.bmp" alt="deepclone.bmp" title="">
 <p>有几种方法可以”深复制”链表，一种简单的方法就是遍历每一个节点，然后使用 <code>addFirst()</code> 方法。最后你将得到一个倒序的新的链表，然后我们不得不反转这个链表。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">copy</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">   LinkedList&lt;AnyType&gt; twin = <span class="keyword">new</span> LinkedList&lt;AnyType&gt;();</div><div class="line">   Node&lt;AnyType&gt; tmp = head;</div><div class="line">   <span class="keyword">while</span>(tmp != <span class="keyword">null</span>)</div><div class="line">   &#123;</div><div class="line">      twin.addFirst( tmp.data );</div><div class="line">      tmp = tmp.next;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="keyword">return</span> twin.reverse();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>一个更好的方法就是对这个新链表使用尾引用，在最后的节点增加每一个新节点。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> LinkedList&lt;AnyType&gt; <span class="title">copy3</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">if</span>(head==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">   LinkedList&lt;AnyType&gt; twin = <span class="keyword">new</span> LinkedList&lt;AnyType&gt;();</div><div class="line">   Node tmp = head;</div><div class="line">   twin.head = <span class="keyword">new</span> Node&lt;AnyType&gt;(head.data, <span class="keyword">null</span>);</div><div class="line">   Node tmpTwin = twin.head;</div><div class="line"></div><div class="line">   <span class="keyword">while</span>(tmp.next != <span class="keyword">null</span>)</div><div class="line">   &#123;</div><div class="line">      tmp = tmp.next;</div><div class="line">      tmpTwin.next = <span class="keyword">new</span> Node&lt;AnyType&gt;(tmp.data, <span class="keyword">null</span>);</div><div class="line">      tmpTwin = tmpTwin.next;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="keyword">return</span> twin;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
@@ -570,8 +570,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/10/appium-ios自动化入门/" rel="next" title="appium-ios自动化入门">
-                <i class="fa fa-chevron-left"></i> appium-ios自动化入门
+              <a href="/2016/08/18/Python：iterator-pattern—迭代器模式/" rel="next" title="Python：iterator pattern—迭代器模式">
+                <i class="fa fa-chevron-left"></i> Python：iterator pattern—迭代器模式
               </a>
             
           </div>
@@ -580,8 +580,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/07/18/redmine系统二次开发之search功能/" rel="prev" title="redmine系统二次开发之search功能">
-                redmine系统二次开发之search功能 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/18/代码扫描之API调用版本检查/" rel="prev" title="代码扫描之API调用版本检查">
+                代码扫描之API调用版本检查 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -608,8 +608,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/13/Java：重温数据结构-链表/"
-           data-title="Java：重温数据结构-链表" data-url="https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/">
+      <div class="ds-thread" data-thread-key="2016/09/13/Java：重温数据结构-链表/"
+           data-title="Java：重温数据结构-链表" data-url="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/">
       </div>
     
   </div>

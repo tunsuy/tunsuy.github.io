@@ -92,7 +92,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ios,https," />
+  <meta name="keywords" content="ios," />
 
 
 
@@ -108,34 +108,25 @@
 
 
 
-<meta name="description" content="一、 背景苹果官方宣称今年底将全面强制启动https的支持1、不安全的HTTP链接将会遭到拦截  
-2、而且系统 Foundation 框架下的相关网络请求，将不再默认使用 HTTP等不安全的网络协议，而默认采用 TLS 1.
-二、 服务端改造1、服务器需要改造的地方：
-
-ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
-通讯中的加密套件配置要求支持列出的正向保密。
-数字证书必须使用">
+<meta name="description" content="一、 基本介绍1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 运行的上下文环境 JSContext 注入对象 Bridge；
+2、WKWebView 使用的 WebKit 框架，交互时为 webkit.messageHandlers 注入对象
+二、 测试注意事项1、加载速度
+2、占用内存">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS：https/ATS改造过程">
-<meta property="og:url" content="https://tunsuy.github.io/2016/09/21/ios：https-ATS改造过程/index.html">
+<meta property="og:title" content="iOS：UIWebView与WKWebView注意事项">
+<meta property="og:url" content="https://tunsuy.github.io/2016/04/28/ios：UIWebView与WKWebView注意事项/index.html">
 <meta property="og:site_name" content="鱼儿塘">
-<meta property="og:description" content="一、 背景苹果官方宣称今年底将全面强制启动https的支持1、不安全的HTTP链接将会遭到拦截  
-2、而且系统 Foundation 框架下的相关网络请求，将不再默认使用 HTTP等不安全的网络协议，而默认采用 TLS 1.
-二、 服务端改造1、服务器需要改造的地方：
-
-ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
-通讯中的加密套件配置要求支持列出的正向保密。
-数字证书必须使用">
-<meta property="og:updated_time" content="2017-03-14T02:28:04.213Z">
+<meta property="og:description" content="一、 基本介绍1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 运行的上下文环境 JSContext 注入对象 Bridge；
+2、WKWebView 使用的 WebKit 框架，交互时为 webkit.messageHandlers 注入对象
+二、 测试注意事项1、加载速度
+2、占用内存">
+<meta property="og:updated_time" content="2017-03-14T04:34:08.033Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS：https/ATS改造过程">
-<meta name="twitter:description" content="一、 背景苹果官方宣称今年底将全面强制启动https的支持1、不安全的HTTP链接将会遭到拦截  
-2、而且系统 Foundation 框架下的相关网络请求，将不再默认使用 HTTP等不安全的网络协议，而默认采用 TLS 1.
-二、 服务端改造1、服务器需要改造的地方：
-
-ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
-通讯中的加密套件配置要求支持列出的正向保密。
-数字证书必须使用">
+<meta name="twitter:title" content="iOS：UIWebView与WKWebView注意事项">
+<meta name="twitter:description" content="一、 基本介绍1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 运行的上下文环境 JSContext 注入对象 Bridge；
+2、WKWebView 使用的 WebKit 框架，交互时为 webkit.messageHandlers 注入对象
+二、 测试注意事项1、加载速度
+2、占用内存">
 
 
 
@@ -163,13 +154,13 @@ ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
 
 
 
-  <link rel="canonical" href="https://tunsuy.github.io/2016/09/21/ios：https-ATS改造过程/"/>
+  <link rel="canonical" href="https://tunsuy.github.io/2016/04/28/ios：UIWebView与WKWebView注意事项/"/>
 
 
 
 
 
-  <title> iOS：https/ATS改造过程 | 鱼儿塘 </title>
+  <title> iOS：UIWebView与WKWebView注意事项 | 鱼儿塘 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -330,7 +321,7 @@ ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/09/21/ios：https-ATS改造过程/">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/04/28/ios：UIWebView与WKWebView注意事项/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tunsuy">
@@ -351,7 +342,7 @@ ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
             
             
               
-                iOS：https/ATS改造过程
+                iOS：UIWebView与WKWebView注意事项
               
             
           </h1>
@@ -366,8 +357,8 @@ ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-21T13:14:11+08:00">
-                2016-09-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-28T17:14:51+08:00">
+                2016-04-28
               </time>
             
 
@@ -407,8 +398,8 @@ ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/09/21/ios：https-ATS改造过程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/21/ios：https-ATS改造过程/" itemprop="commentCount"></span>
+                <a href="/2016/04/28/ios：UIWebView与WKWebView注意事项/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/28/ios：UIWebView与WKWebView注意事项/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -416,7 +407,7 @@ ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
 
           
           
-             <span id="/2016/09/21/ios：https-ATS改造过程/" class="leancloud_visitors" data-flag-title="iOS：https/ATS改造过程">
+             <span id="/2016/04/28/ios：UIWebView与WKWebView注意事项/" class="leancloud_visitors" data-flag-title="iOS：UIWebView与WKWebView注意事项">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -445,27 +436,18 @@ ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
       
 
       
-        <h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>苹果官方宣称今年底将全面强制启动https的支持<br>1、不安全的HTTP链接将会遭到拦截  </p>
-<p>2、而且系统 Foundation 框架下的相关网络请求，将不再默认使用 HTTP等不安全的网络协议，而默认采用 TLS 1.</p>
-<h1 id="二、-服务端改造"><a href="#二、-服务端改造" class="headerlink" title="二、 服务端改造"></a>二、 服务端改造</h1><p>1、服务器需要改造的地方：</p>
-<ul>
-<li>ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。</li>
-<li>通讯中的加密套件配置要求支持列出的正向保密。</li>
-<li>数字证书必须使用sha256或者更高级的签名哈希算法，并且保证密钥是2048位及以上的RSA密钥或者256位及以上的ECC密钥。</li>
-</ul>
-<p>2、服务器ATS在线检查：   <a href="https://www.qcloud.com/product/ssl#userDefined10" target="_blank" rel="external">https://www.qcloud.com/product/ssl#userDefined10</a></p>
+        <h1 id="一、-基本介绍"><a href="#一、-基本介绍" class="headerlink" title="一、 基本介绍"></a>一、 基本介绍</h1><p>1、UIWebView 使用的 JavaScriptCore 框架，交互时为 JavaScript 运行的上下文环境 JSContext 注入对象 Bridge；</p>
+<p>2、WKWebView 使用的 WebKit 框架，交互时为 webkit.messageHandlers 注入对象</p>
+<h1 id="二、-测试注意事项"><a href="#二、-测试注意事项" class="headerlink" title="二、 测试注意事项"></a>二、 测试注意事项</h1><p>1、加载速度</p>
+<p>2、占用内存</p>
 <a id="more"></a>
-<h1 id="三、-官方建议"><a href="#三、-官方建议" class="headerlink" title="三、 官方建议"></a>三、 官方建议</h1><p>1、苹果官方是推荐使用NSURLSession去做HTTP请求的  </p>
-<p>2、虽然说NSURLConnection同样支持ATS方面的特性，两者的默认行为上有些不一样<br>所以应该尽早切换到NSURLSession上，避免产生一些不必要错误。</p>
-<h1 id="四、-项目改造"><a href="#四、-项目改造" class="headerlink" title="四、 项目改造"></a>四、 项目改造</h1><p>1、要么将info.plist中的allow全部改成NO</p>
-<p>2、要么在提交审批的时候向苹果说明</p>
-<h1 id="五、-测试"><a href="#五、-测试" class="headerlink" title="五、 测试"></a>五、 测试</h1><p>1、抓包查看所有请求情况<br>ps：推荐Charles——mac下很好用的一款抓包软件</p>
-<p>2、在项目im中浏览https网址和http网址<br><a href="https://www.baidu.com——SSL错误" target="_blank" rel="external">https://www.baidu.com——SSL错误</a><br>原因： 百度自身服务器ssl协议没有指定支持TSLv1.0<br>解决：(参考)</p>
-<ul>
-<li>服务器自身配置下</li>
-<li>在Info.plist里配置，指定支持TSLv1.0<br><a href="https://github.com/sinaweibosdk/weibo_ios_sdk" target="_blank" rel="external">https://github.com/sinaweibosdk/weibo_ios_sdk</a></li>
-</ul>
-<h1 id="六、-参考链接"><a href="#六、-参考链接" class="headerlink" title="六、 参考链接"></a>六、 参考链接</h1><p><a href="http://www.liuchungui.com/blog/2015/10/11/ios9zhi-gua-pei-ats/" target="_blank" rel="external">http://www.liuchungui.com/blog/2015/10/11/ios9zhi-gua-pei-ats/</a><br><a href="https://my.oschina.net/vimfung/blog/494687?_t_t_t=0.1896578531749944" target="_blank" rel="external">https://my.oschina.net/vimfung/blog/494687?_t_t_t=0.1896578531749944</a><br><a href="https://onevcat.com/2016/06/ios-10-ats/" target="_blank" rel="external">https://onevcat.com/2016/06/ios-10-ats/</a></p>
+<p>3、缓存问题：<br>H5页面更新了，app端显示还是老的，不同的ios系统处理方式不一样</p>
+<p>4、cookie问题<br>页面很多，不断切换浏览，cookie失效等</p>
+<p>5、跨域问题<br>webkit框架不允许跨域，比如从一个http页面对https发起请求</p>
+<p>6、request拦截问题<br>有可能之前用的好好的hybrid框架，换了wkwebview之后，有些就不起作用了</p>
+<p>7、本地html文件加载<br>不同的ios系统不一样</p>
+<p>8、手势操作</p>
+<h1 id="三、-参考链接"><a href="#三、-参考链接" class="headerlink" title="三、 参考链接"></a>三、 参考链接</h1><p><a href="http://mp.weixin.qq.com/s/18xXQWboHcjybd_VtcTmUg##" target="_blank" rel="external">http://mp.weixin.qq.com/s/18xXQWboHcjybd_VtcTmUg##</a></p>
 
       
     </div>
@@ -521,8 +503,6 @@ ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
           
             <a href="/tags/ios/" rel="tag"># ios</a>
           
-            <a href="/tags/https/" rel="tag"># https</a>
-          
         </div>
       
 
@@ -534,8 +514,8 @@ ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/18/代码扫描之API调用版本检查/" rel="next" title="代码扫描之API调用版本检查">
-                <i class="fa fa-chevron-left"></i> 代码扫描之API调用版本检查
+              <a href="/2016/04/14/selenium远程启动浏览器/" rel="next" title="selenium远程启动浏览器">
+                <i class="fa fa-chevron-left"></i> selenium远程启动浏览器
               </a>
             
           </div>
@@ -544,8 +524,8 @@ ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/23/实现浏览器中实时查看iOS日志/" rel="prev" title="实现浏览器中实时查看iOS日志">
-                实现浏览器中实时查看iOS日志 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/13/Java：ArrayList和LinkedList的对比/" rel="prev" title="Java：ArrayList和LinkedList的对比">
+                Java：ArrayList和LinkedList的对比 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -572,8 +552,8 @@ ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/21/ios：https-ATS改造过程/"
-           data-title="iOS：https/ATS改造过程" data-url="https://tunsuy.github.io/2016/09/21/ios：https-ATS改造过程/">
+      <div class="ds-thread" data-thread-key="2016/04/28/ios：UIWebView与WKWebView注意事项/"
+           data-title="iOS：UIWebView与WKWebView注意事项" data-url="https://tunsuy.github.io/2016/04/28/ios：UIWebView与WKWebView注意事项/">
       </div>
     
   </div>
@@ -686,7 +666,7 @@ ATS要求TLS1.2或者更高，TLS 是 SSL 新的别称。
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-背景"><span class="nav-text">一、 背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-服务端改造"><span class="nav-text">二、 服务端改造</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-官方建议"><span class="nav-text">三、 官方建议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、-项目改造"><span class="nav-text">四、 项目改造</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、-测试"><span class="nav-text">五、 测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、-参考链接"><span class="nav-text">六、 参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-基本介绍"><span class="nav-text">一、 基本介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-测试注意事项"><span class="nav-text">二、 测试注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-参考链接"><span class="nav-text">三、 参考链接</span></a></li></ol></div>
             
 
           </div>

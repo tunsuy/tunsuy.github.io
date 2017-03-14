@@ -118,7 +118,7 @@
 <meta property="og:description" content="一、 博客简介现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客  
 搭建博客一般有几种方式：1、全部自己实现：包括服务器、自己做网站、购买域名等——费时费力费钱2、租用云服务器，采用静态博客生成工具：但是云服务器一般也是要付费的
 那有没有免费的呢？答案是有的，那就是github">
-<meta property="og:updated_time" content="2017-03-14T02:28:04.213Z">
+<meta property="og:updated_time" content="2017-03-14T04:32:10.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo+github博客部署问题记录">
 <meta name="twitter:description" content="一、 博客简介现在越来越多的人开始有了自己的博客，记录一下自己的学习和生活，个人博客一般都是静态博客  
@@ -457,7 +457,22 @@
 <p>ps: 要显示多级目录时，在用md编辑文章时，目录只能依次，而不能跨级<br>eg：#-&gt;## ，而不能 #-&gt;###</p>
 <h2 id="5、分类"><a href="#5、分类" class="headerlink" title="5、分类"></a>5、分类</h2><p>hexo不支持一篇文章属于多个同级分类</p>
 <h2 id="6、文章内链接显示蓝色"><a href="#6、文章内链接显示蓝色" class="headerlink" title="6、文章内链接显示蓝色"></a>6、文章内链接显示蓝色</h2><p>编辑：<code>./themes/next/source/css/_common/components/post/post.styl</code><br>加入如下css样式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.post-body p a&#123;</div><div class="line">  color: #0593d3;</div><div class="line">  border-bottom: none;</div><div class="line"></div><div class="line">  &amp;:hover &#123;</div><div class="line">    color: #0477ab;</div><div class="line">    text-decoration: underline;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="三、-好文推荐"><a href="#三、-好文推荐" class="headerlink" title="三、 好文推荐"></a>三、 好文推荐</h1><p><a href="http://www.zaoanx.com/Hexo-SEO优化.html" target="_blank" rel="external">Hexo-SEO优化</a><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo官方文档</a><br><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">主题next官方文档</a><br><a href="http://www.wuxubj.cn/2016/08/Hexo-nexT-build-personal-blog/" target="_blank" rel="external">Next优化</a></p>
+<h2 id="7、Next主题宽度调节"><a href="#7、Next主题宽度调节" class="headerlink" title="7、Next主题宽度调节"></a>7、Next主题宽度调节</h2><ul>
+<li>打开 <code>themes/next/source/css/_common/components/post/post-expand.styl</code> 文件，找到<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> (max-width: <span class="number">767px</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>改为<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> (max-width: <span class="number">1080px</span>)</div></pre></td></tr></table></figure></p>
+<ul>
+<li>打开 <code>themes/next/source/css/_variables/base.styl</code> 文件，找到<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$main-desktop                   = 960px</div><div class="line">$main-desktop-large             = 1200px</div><div class="line">$content-desktop                = 700px</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>修改 <code>$main-desktop</code> 和 <code>$content-desktop</code> 的数值：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$main-desktop                   = 1080px</div><div class="line">$main-desktop-large             = 1200px</div><div class="line">$content-desktop                = 810px</div></pre></td></tr></table></figure></p>
+<p>Next.Mist 主题的文章宽度至此改完了。如果你用的是 Next.Pisces，还需要继续修改。</p>
+<ul>
+<li>打开 <code>themes/next/source/css/_schemes/Pisces/_layout.styl</code> 文件，将第 4 行的 width改为1080px ，修改后如下：<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.header</span> &#123;</div><div class="line">  <span class="attribute">position</span>: relative;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</div><div class="line">  <span class="attribute">width</span>: <span class="number">1080px</span>;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="三、-好文推荐"><a href="#三、-好文推荐" class="headerlink" title="三、 好文推荐"></a>三、 好文推荐</h1><p><a href="http://www.zaoanx.com/Hexo-SEO优化.html" target="_blank" rel="external">Hexo-SEO优化</a><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo官方文档</a><br><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">主题next官方文档</a><br><a href="http://www.wuxubj.cn/2016/08/Hexo-nexT-build-personal-blog/" target="_blank" rel="external">Next优化</a><br><a href="http://blog.ynxiu.com/2016/hexo-next-theme-optimize.html" target="_blank" rel="external">Hexo+NexT主题配置备忘</a></p>
 
       
     </div>
@@ -676,7 +691,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-博客简介"><span class="nav-text">一、 博客简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-问题记录"><span class="nav-text">二、 问题记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-推送hexo博客内容到github"><span class="nav-text">1、 推送hexo博客内容到github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、搜索引擎收录"><span class="nav-text">2、搜索引擎收录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、字体配置"><span class="nav-text">3、字体配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、文章目录配置"><span class="nav-text">4、文章目录配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、分类"><span class="nav-text">5、分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、文章内链接显示蓝色"><span class="nav-text">6、文章内链接显示蓝色</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-好文推荐"><span class="nav-text">三、 好文推荐</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-博客简介"><span class="nav-text">一、 博客简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-问题记录"><span class="nav-text">二、 问题记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-推送hexo博客内容到github"><span class="nav-text">1、 推送hexo博客内容到github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、搜索引擎收录"><span class="nav-text">2、搜索引擎收录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、字体配置"><span class="nav-text">3、字体配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、文章目录配置"><span class="nav-text">4、文章目录配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、分类"><span class="nav-text">5、分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、文章内链接显示蓝色"><span class="nav-text">6、文章内链接显示蓝色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、Next主题宽度调节"><span class="nav-text">7、Next主题宽度调节</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-好文推荐"><span class="nav-text">三、 好文推荐</span></a></li></ol></div>
             
 
           </div>
