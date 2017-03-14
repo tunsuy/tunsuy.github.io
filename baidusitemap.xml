@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2015/04/06/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E6%B5%8B%E8%AF%95%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3/</loc>
-    <lastmod>2017-03-14T02:05:51.517Z</lastmod>
+    <lastmod>2017-03-14T02:28:05.287Z</lastmod>
     <data>
         <display>
         <title>移动互联网测试的所思所想</title>
@@ -15,23 +15,9 @@
          
          
            
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tunsuy.github.io/2015/04/06/%E5%9F%BA%E4%BA%8Eruby-trello%E7%9A%84trello%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2017-03-14T02:05:51.283Z</lastmod>
-    <data>
-        <display>
-        <title>基于ruby-trello的trello系统数据写入工具</title>
-        <pubTime>2015-04-06T03:19:08.000Z</pubTime>
-        
-        <tag>ruby</tag>
-         
-         
-           
+             
+              <breadCrumb title="杂谈" url="https://tunsuy.github.io/categories/%E6%9D%82%E8%B0%88/"/>
+          
         </display>
     </data>
     </url>
@@ -39,7 +25,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/04/11/%E8%AF%A6%E8%A7%A3JVM%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E5%86%85%E9%83%A8%E6%9E%84%E4%BB%B6/</loc>
-    <lastmod>2017-03-14T01:32:56.730Z</lastmod>
+    <lastmod>2017-03-14T02:28:05.193Z</lastmod>
     <data>
         <display>
         <title>详解JVM原理及其内部构件</title>
@@ -49,6 +35,9 @@
          
          
            
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
         </display>
     </data>
     </url>
@@ -56,7 +45,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/06/09/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%92%8C%E9%9B%86%E5%90%88/</loc>
-    <lastmod>2017-03-14T01:32:56.646Z</lastmod>
+    <lastmod>2017-03-14T02:28:05.108Z</lastmod>
     <data>
         <display>
         <title>深入理解Java中的线程安全和集合</title>
@@ -66,6 +55,29 @@
          
          
            
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/04/06/%E5%9F%BA%E4%BA%8Eruby-trello%E7%9A%84trello%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2017-03-14T02:28:05.015Z</lastmod>
+    <data>
+        <display>
+        <title>基于ruby-trello的trello系统数据写入工具</title>
+        <pubTime>2015-04-06T03:19:08.000Z</pubTime>
+        
+        <tag>ruby</tag>
+         
+         
+           
+             
+              <breadCrumb title="ruby" url="https://tunsuy.github.io/categories/ruby/"/>
+          
         </display>
     </data>
     </url>
@@ -73,7 +85,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/08/18/Python%EF%BC%9Aiterator-pattern%E2%80%94%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2017-03-14T01:32:56.646Z</lastmod>
+    <lastmod>2017-03-14T02:28:04.662Z</lastmod>
     <data>
         <display>
         <title>Python：iterator pattern—迭代器模式</title>
@@ -85,6 +97,9 @@
          
          
            
+             
+              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+          
         </display>
     </data>
     </url>
@@ -92,7 +107,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/08/11/Python%EF%BC%9Abuilder-pattern%E2%80%94%E5%BB%BA%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2017-03-14T01:32:56.523Z</lastmod>
+    <lastmod>2017-03-14T02:28:04.575Z</lastmod>
     <data>
         <display>
         <title>Python：builder pattern—建造者模式</title>
@@ -104,6 +119,9 @@
          
          
            
+             
+              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+          
         </display>
     </data>
     </url>
@@ -111,7 +129,7 @@
     
   <url>
     <loc>https://tunsuy.github.io/2016/07/13/Java%EF%BC%9A%E9%87%8D%E6%B8%A9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/</loc>
-    <lastmod>2017-03-14T01:32:56.513Z</lastmod>
+    <lastmod>2017-03-14T02:28:04.480Z</lastmod>
     <data>
         <display>
         <title>Java：重温数据结构-链表</title>
@@ -123,6 +141,29 @@
          
          
            
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/05/13/Java%EF%BC%9AArrayList%E5%92%8CLinkedList%E7%9A%84%E5%AF%B9%E6%AF%94/</loc>
+    <lastmod>2017-03-14T02:28:04.395Z</lastmod>
+    <data>
+        <display>
+        <title>Java：ArrayList和LinkedList的对比</title>
+        <pubTime>2016-05-13T02:00:53.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
         </display>
     </data>
     </url>
@@ -145,23 +186,6 @@
              
               <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tunsuy.github.io/2016/05/13/Java%EF%BC%9AArrayList%E5%92%8CLinkedList%E7%9A%84%E5%AF%B9%E6%AF%94/</loc>
-    <lastmod>2017-03-14T01:32:56.421Z</lastmod>
-    <data>
-        <display>
-        <title>Java：ArrayList和LinkedList的对比</title>
-        <pubTime>2016-05-13T02:00:53.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-         
-           
         </display>
     </data>
     </url>

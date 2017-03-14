@@ -438,7 +438,7 @@
     <link href="https://tunsuy.github.io/2016/08/18/Python%EF%BC%9Aiterator-pattern%E2%80%94%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
     <id>https://tunsuy.github.io/2016/08/18/Python：iterator-pattern—迭代器模式/</id>
     <published>2016-08-18T08:53:38.000Z</published>
-    <updated>2017-03-14T01:32:56.646Z</updated>
+    <updated>2017-03-14T02:28:04.662Z</updated>
     
     <content type="html"><![CDATA[<p>翻译于<a href="https://davidcorne.com/2013/02/22/iterator-pattern/" target="_blank" rel="external">https://davidcorne.com/2013/02/22/iterator-pattern/</a></p>
 <p>注：不是原文翻译，有些自己的理解改动</p>
@@ -483,6 +483,8 @@
       基于python语言的设计模式详解，迭代器模式
     
     </summary>
+    
+      <category term="python" scheme="https://tunsuy.github.io/categories/python/"/>
     
     
       <category term="python" scheme="https://tunsuy.github.io/tags/python/"/>
@@ -559,7 +561,7 @@
     <link href="https://tunsuy.github.io/2016/08/11/Python%EF%BC%9Abuilder-pattern%E2%80%94%E5%BB%BA%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
     <id>https://tunsuy.github.io/2016/08/11/Python：builder-pattern—建造器模式/</id>
     <published>2016-08-11T10:00:47.000Z</published>
-    <updated>2017-03-14T01:32:56.523Z</updated>
+    <updated>2017-03-14T02:28:04.575Z</updated>
     
     <content type="html"><![CDATA[<p>翻译于<a href="https://davidcorne.com/2013/01/21/builder-pattern/" target="_blank" rel="external">https://davidcorne.com/2013/01/21/builder-pattern/</a></p>
 <p>注：不是原文翻译，有些自己的理解改动</p>
@@ -591,6 +593,8 @@
       基于python语言的设计模式详解之建造者模式
     
     </summary>
+    
+      <category term="python" scheme="https://tunsuy.github.io/categories/python/"/>
     
     
       <category term="python" scheme="https://tunsuy.github.io/tags/python/"/>
@@ -657,7 +661,7 @@
     <link href="https://tunsuy.github.io/2016/07/13/Java%EF%BC%9A%E9%87%8D%E6%B8%A9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/"/>
     <id>https://tunsuy.github.io/2016/07/13/Java：重温数据结构-链表/</id>
     <published>2016-07-13T01:59:43.000Z</published>
-    <updated>2017-03-14T01:32:56.513Z</updated>
+    <updated>2017-03-14T02:28:04.480Z</updated>
     
     <content type="html"><![CDATA[<p>翻译于<a href="https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html" target="_blank" rel="external">https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html</a></p>
 <p>注：不是原文翻译，有些自己的理解改动</p>
@@ -715,6 +719,8 @@
       &lt;p&gt;翻译于&lt;a href=&quot;https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://w
     
     </summary>
+    
+      <category term="java" scheme="https://tunsuy.github.io/categories/java/"/>
     
     
       <category term="java" scheme="https://tunsuy.github.io/tags/java/"/>
@@ -937,7 +943,7 @@
     <link href="https://tunsuy.github.io/2016/06/09/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%92%8C%E9%9B%86%E5%90%88/"/>
     <id>https://tunsuy.github.io/2016/06/09/深入理解Java中的线程安全和集合/</id>
     <published>2016-06-09T11:20:00.000Z</published>
-    <updated>2017-03-14T01:32:56.646Z</updated>
+    <updated>2017-03-14T02:28:05.108Z</updated>
     
     <content type="html"><![CDATA[<p>翻译于<a href="http://www.codejava.net/java-core/collections/understanding-collections-and-thread-safety-in-java" target="_blank" rel="external">http://www.codejava.net/java-core/collections/understanding-collections-and-thread-safety-in-java</a></p>
 <p>注：不是原文翻译，有些自己的理解改动</p>
@@ -987,6 +993,8 @@
       &lt;p&gt;翻译于&lt;a href=&quot;http://www.codejava.net/java-core/collections/understanding-collections-and-thread-safety-in-java&quot; target=&quot;_blank&quot; rel=&quot;exter
     
     </summary>
+    
+      <category term="java" scheme="https://tunsuy.github.io/categories/java/"/>
     
     
       <category term="java" scheme="https://tunsuy.github.io/tags/java/"/>
