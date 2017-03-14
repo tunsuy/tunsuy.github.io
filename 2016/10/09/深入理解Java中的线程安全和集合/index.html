@@ -118,7 +118,7 @@
 <meta property="og:description" content="翻译于http://www.codejava.net/java-core/collections/understanding-collections-and-thread-safety-in-java
 注：不是原文翻译，有些自己的理解改动
 一、 简介为什么大部分的collection类都是线程不安全的呢？正如你知道的，大部分的collection类如：ArrayList、LinkedList、Ha">
-<meta property="og:updated_time" content="2017-03-14T05:14:10.590Z">
+<meta property="og:updated_time" content="2017-03-14T10:09:22.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解Java中的线程安全和集合">
 <meta name="twitter:description" content="翻译于http://www.codejava.net/java-core/collections/understanding-collections-and-thread-safety-in-java
@@ -470,7 +470,7 @@
 <p>为了执行计算或者更新变量的值，它对变量在本地做了一份复制，计算的时候使用的是这个本地的值。当它想要更新这个变量的值时，它会用本地的值跟这个变量进行对比，如果它们是相同的，则用新的值更新这个变量。</p>
 <p>如果它们是不相同的，那么说明这个变量被其他线程改变了，这种情况下，<code>CAS</code> 线程会尝试使用这个新值进行计算，或者放弃，或者继续。<code>CAS</code> 包括 <code>ConcurrentLinkedQueue</code> 和  <code>ConcurrentSkipListMap</code>。</p>
 <p>注意：<code>CAS</code> 集合的迭代器是弱一致性的。就是指它可能只会反射这个集合中的一些而不是所有的变化。弱一致性不会抛出 <code>ConcurrentModificationException</code>。</p>
-<h2 id="3、-special-lock-object"><a href="#3、-special-lock-object" class="headerlink" title="3、 special lock object"></a>3、 special lock object</h2><p>第三组叫 <code>concurrent collections using a special lock object (java.util.concurrent.lock.Lock)</code>：<br>这个机制是比经典的同步机制更加的灵活。</p>
+<h2 id="4、-special-lock-object"><a href="#4、-special-lock-object" class="headerlink" title="4、 special lock object"></a>4、 special lock object</h2><p>第三组叫 <code>concurrent collections using a special lock object (java.util.concurrent.lock.Lock)</code>：<br>这个机制是比经典的同步机制更加的灵活。</p>
 <p>这个锁跟经典的同步有相同的行为，但是一个线程在以下几种情况也能够获取它：锁目前不被持有，超时或者线程没有被中断。</p>
 <p>不同于同步代码，一个锁对象在代码块或者方法被执行的时候就被持有。而这个 <code>lock</code> 是在 <code>unlock()</code> 方法被调用时才持有。这个机制很有用的一些实现就是将集合分成部分，从而可以分别持有。为了提高并发，比如 <code>LinkedBlockingQueue</code> ，这个队列的头和尾被分开 <code>lock</code>，因此这个元素能够并行的增减。</p>
 <p>一些集合使用包含 <code>ConcurrentHashMap</code> 的锁和 <code>BlockingQueue</code> 的大部分实现。</p>
@@ -693,7 +693,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-简介"><span class="nav-text">一、 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-快速失败"><span class="nav-text">二、 快速失败</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-同步装饰器"><span class="nav-text">三、 同步装饰器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-简介"><span class="nav-text">1、 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-注意"><span class="nav-text">2、 注意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、-并发集合"><span class="nav-text">四、 并发集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-简介-1"><span class="nav-text">1、 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-copy-on-write-collections"><span class="nav-text">2、 copy-on-write collections</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-CAS-collections"><span class="nav-text">3、 CAS collections</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-special-lock-object"><span class="nav-text">3、 special lock object</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-简介"><span class="nav-text">一、 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-快速失败"><span class="nav-text">二、 快速失败</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-同步装饰器"><span class="nav-text">三、 同步装饰器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-简介"><span class="nav-text">1、 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-注意"><span class="nav-text">2、 注意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、-并发集合"><span class="nav-text">四、 并发集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-简介-1"><span class="nav-text">1、 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-copy-on-write-collections"><span class="nav-text">2、 copy-on-write collections</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-CAS-collections"><span class="nav-text">3、 CAS collections</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、-special-lock-object"><span class="nav-text">4、 special lock object</span></a></li></ol></li></ol></div>
             
 
           </div>
