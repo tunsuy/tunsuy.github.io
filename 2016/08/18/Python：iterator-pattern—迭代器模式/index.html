@@ -116,7 +116,7 @@
 <meta property="og:description" content="基于python语言的设计模式详解，迭代器模式">
 <meta property="og:image" content="https://tunsuy.github.io/2016/08/18/Python：iterator-pattern—迭代器模式/Iterator_general.png">
 <meta property="og:image" content="https://tunsuy.github.io/2016/08/18/Python：iterator-pattern—迭代器模式/Iterator_specific.png">
-<meta property="og:updated_time" content="2017-03-14T02:28:04.662Z">
+<meta property="og:updated_time" content="2017-03-14T05:14:10.127Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python：iterator pattern—迭代器模式">
 <meta name="twitter:description" content="基于python语言的设计模式详解，迭代器模式">
@@ -439,6 +439,7 @@
 <p>该文章主要从python语言的角度去讲解</p>
 <h1 id="一、-目的"><a href="#一、-目的" class="headerlink" title="一、 目的"></a>一、 目的</h1><p>这个模式背后的意思是：有一个对象，你能够循环它而不需要知道这个对象数据的内部表现。在Python这门语言中，没有什么是私有的（<code>译者注：python中的访问控制是约定</code>），你能够找到一个类的内部构成，这个迭代器模式给了你一个标准的接口。</p>
 <p>我认为在python中一个iterator最好的例子就是使用list，因此这里我确定你已经知道怎么使用这个list了</p>
+<a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">list = [<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>]</div><div class="line"><span class="keyword">for</span> number <span class="keyword">in</span> list:</div><div class="line">    print(number)</div></pre></td></tr></table></figure>
 <p>这将得到下面的输出：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">one</div><div class="line">two</div><div class="line">three</div></pre></td></tr></table></figure></p>
 <p>在python中这个模式的目标就是为了让用户自定义的类也能够像这样使用。</p>

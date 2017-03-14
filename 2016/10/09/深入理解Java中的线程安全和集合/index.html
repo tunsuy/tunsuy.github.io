@@ -118,7 +118,7 @@
 <meta property="og:description" content="翻译于http://www.codejava.net/java-core/collections/understanding-collections-and-thread-safety-in-java
 注：不是原文翻译，有些自己的理解改动
 一、 简介为什么大部分的collection类都是线程不安全的呢？正如你知道的，大部分的collection类如：ArrayList、LinkedList、Ha">
-<meta property="og:updated_time" content="2017-03-14T04:44:11.158Z">
+<meta property="og:updated_time" content="2017-03-14T05:14:10.590Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解Java中的线程安全和集合">
 <meta name="twitter:description" content="翻译于http://www.codejava.net/java-core/collections/understanding-collections-and-thread-safety-in-java
@@ -437,6 +437,7 @@
 <p>注：不是原文翻译，有些自己的理解改动</p>
 <h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>为什么大部分的collection类都是线程不安全的呢？<br>正如你知道的，大部分的collection类如：<code>ArrayList、LinkedList、HashMap、HashSet、TreeMap、TreeSet</code> 等等都是线程不安全的。事实上，在 <code>java.util</code> 包中的所有collection类（除了 <code>Vector</code> 和 <code>HashTable</code> ）都是线程不安全的。为什么呢？</p>
 <p>原因：同步的代价是很大的。</p>
+<a id="more"></a>
 <p><code>Vector</code> 和<code>HashTable</code> 是java早期就存在的两个集合，他们一开始就被设计为线程安全的（如果你看源码，你会发现他们的所有方法都是 <code>synchronized</code> 的）。然而，很快在多线程程序中它们就被暴露出性能是很低下的，因为同步是需要加锁的，这很耗性能。</p>
 <p>这也是为什么在后来新的collections( <code>List、Set、Map</code> 等)都提供了在单线程应用中非并发性的控制来获得最大的性能。</p>
 <p>下面的程序比较了 <code>Vector</code> 和 <code>ArrayList</code> 的性能（ <code>Vector</code> 是线程安全的，而 <code>ArrayList</code> 不是）：</p>

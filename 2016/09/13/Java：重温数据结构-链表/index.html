@@ -110,18 +110,14 @@
 
 <meta name="description" content="翻译于https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html
 注：不是原文翻译，有些自己的理解改动
-一、 引言一个链表就是一个线性的数据结构，如下图所示：
-
-一个链表中的每个元素（我们叫它节点）包含两个部分-数据和指向下一个节点的引用，最后一个节点的引用部分则指向null。指向链表的一个">
+一、 引言一个链表就是一个线性的数据结构，如下图所示：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java：重温数据结构-链表">
 <meta property="og:url" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/index.html">
 <meta property="og:site_name" content="鱼儿塘">
 <meta property="og:description" content="翻译于https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html
 注：不是原文翻译，有些自己的理解改动
-一、 引言一个链表就是一个线性的数据结构，如下图所示：
-
-一个链表中的每个元素（我们叫它节点）包含两个部分-数据和指向下一个节点的引用，最后一个节点的引用部分则指向null。指向链表的一个">
+一、 引言一个链表就是一个线性的数据结构，如下图所示：">
 <meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/linkedlist.bmp">
 <meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/doubly.bmp">
 <meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/linkedlist2.bmp">
@@ -135,14 +131,12 @@
 <meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/delete.bmp">
 <meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/shallowclone.bmp">
 <meta property="og:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/deepclone.bmp">
-<meta property="og:updated_time" content="2017-03-14T04:42:38.707Z">
+<meta property="og:updated_time" content="2017-03-14T05:14:09.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java：重温数据结构-链表">
 <meta name="twitter:description" content="翻译于https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html
 注：不是原文翻译，有些自己的理解改动
-一、 引言一个链表就是一个线性的数据结构，如下图所示：
-
-一个链表中的每个元素（我们叫它节点）包含两个部分-数据和指向下一个节点的引用，最后一个节点的引用部分则指向null。指向链表的一个">
+一、 引言一个链表就是一个线性的数据结构，如下图所示：">
 <meta name="twitter:image" content="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/linkedlist.bmp">
 
 
@@ -457,6 +451,7 @@
 <p>注：不是原文翻译，有些自己的理解改动</p>
 <h1 id="一、-引言"><a href="#一、-引言" class="headerlink" title="一、 引言"></a>一、 引言</h1><p>一个链表就是一个线性的数据结构，如下图所示：</p>
 <img src="/2016/09/13/Java：重温数据结构-链表/linkedlist.bmp" alt="linkedlist.bmp" title="">
+<a id="more"></a>
 <p>一个链表中的每个元素（我们叫它节点）包含两个部分-数据和指向下一个节点的引用，最后一个节点的引用部分则指向null。指向链表的一个对象（实体）叫做这个链表的head（头部），这个head不是链表中一个独立的节点，但它是指向链表的第一个节点。如果链表为空，head则表示一个空的引用。</p>
 <p>链表是一个动态的数据结构，链表中节点的数量不是固定的，能够根据需要动态的增减。如果一个应用需要处理的对象（实体）数是不确定的，则需要使用链表来表示。</p>
 <p>链表相对于数组来说的一个缺点就是不允许直接访问其中的元素。如果你想要访问一个指定的元素，你必须从链表的head开始，依次找到它的下一个引用，直到你得到这个想要的元素。</p>

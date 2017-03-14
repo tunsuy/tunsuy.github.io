@@ -116,7 +116,7 @@
 <meta property="og:description" content="基于python语言的设计模式详解之建造者模式">
 <meta property="og:image" content="https://tunsuy.github.io/2016/08/11/Python：builder-pattern—建造器模式/Builder_general.png">
 <meta property="og:image" content="https://tunsuy.github.io/2016/08/11/Python：builder-pattern—建造器模式/Builder_specific.png">
-<meta property="og:updated_time" content="2017-03-14T02:28:04.575Z">
+<meta property="og:updated_time" content="2017-03-14T05:14:10.036Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python：builder pattern—建造者模式">
 <meta name="twitter:description" content="基于python语言的设计模式详解之建造者模式">
@@ -438,6 +438,7 @@
 <p>注：不是原文翻译，有些自己的理解改动</p>
 <h1 id="一、-目的"><a href="#一、-目的" class="headerlink" title="一、 目的"></a>一、 目的</h1><p>builder设计模式（以下均称建造者模式）的意思是指一个对象的构造是抽象的，以便于许多的实现能够使用相同的builder，实际的类构造逻辑跟它的表现是分开的。</p>
 <h1 id="二、-模式"><a href="#二、-模式" class="headerlink" title="二、 模式"></a>二、 模式</h1><p>下面是一般的UML类图</p>
+<a id="more"></a>
 <img src="/2016/08/11/Python：builder-pattern—建造器模式/Builder_general.png" alt="Builder_general.png" title="">
 <p>上图中的 <code>product</code> 表示你想要创建的实际的类，这个类被称为 <code>Director</code> （导演）所调用。</p>
 <p>这个 <code>Director</code> 持有 <code>builder</code> 的一个实例，并调用它的 <code>create()</code> 方法，这个成员是 <code>ConcreteBuilder</code> 类的一个实例，这个 <code>ConcreteBuilder</code> 类实现了你想要的指定 <code>product</code> 的逻辑</p>

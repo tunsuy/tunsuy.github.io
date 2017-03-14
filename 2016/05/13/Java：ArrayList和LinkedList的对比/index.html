@@ -118,7 +118,7 @@
 <meta property="og:description" content="ArrayList 和 LinkedList 都实现了 list 接口，它们的方法和返回结果都几乎是一样的。然而它们还是有一些差异，不同的场合它们各自有不同的优势。
 一、 不同点1、 Search搜索ArrayList 的搜索操作比 LinkedList 快很多。get(int index) 在 ArrayList 的时间复杂度为 O(1)，而在 LinkedList 中是 O(n).
 原因：Ar">
-<meta property="og:updated_time" content="2017-03-14T02:28:04.395Z">
+<meta property="og:updated_time" content="2017-03-14T05:14:09.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java：ArrayList和LinkedList的对比">
 <meta name="twitter:description" content="ArrayList 和 LinkedList 都实现了 list 接口，它们的方法和返回结果都几乎是一样的。然而它们还是有一些差异，不同的场合它们各自有不同的优势。
@@ -436,6 +436,7 @@
         <p><code>ArrayList</code> 和 <code>LinkedList</code> 都实现了 <code>list</code> 接口，它们的方法和返回结果都几乎是一样的。然而它们还是有一些差异，不同的场合它们各自有不同的优势。</p>
 <h1 id="一、-不同点"><a href="#一、-不同点" class="headerlink" title="一、 不同点"></a>一、 不同点</h1><h2 id="1、-Search搜索"><a href="#1、-Search搜索" class="headerlink" title="1、 Search搜索"></a>1、 Search搜索</h2><p><code>ArrayList</code> 的搜索操作比 <code>LinkedList</code> 快很多。<code>get(int index)</code> 在 <code>ArrayList</code> 的时间复杂度为 <code>O(1)</code>，而在 <code>LinkedList</code> 中是 <code>O(n)</code>.</p>
 <p>原因：<code>ArrayList</code> 是基于索引的元素，因为它内部是使用的array数据结构。而 <code>LinkedList</code> 是基于双向链表的实现，需要遍历元素来找到需要的元素。</p>
+<a id="more"></a>
 <h2 id="2、-Deletion删除"><a href="#2、-Deletion删除" class="headerlink" title="2、 Deletion删除"></a>2、 Deletion删除</h2><p><code>LinkedList</code> 的删除操作的时间复杂度为 <code>O(1)</code>，而 <code>ArrayList</code> 在最坏的情况下(删除首元素)为 <code>O(n)</code>，最好的情况下(删除最后一个元素)为 <code>O(1)</code>。</p>
 <p>结论：<code>LinkedList</code> 元素删除操作是快于 <code>ArrayList</code> 的。</p>
 <p>原因：<code>LinkedList</code> 每个元素都持有两个引用指向相邻的元素。因此删除元素只需要改变所删除元素相邻节点的引用即可。然而 <code>ArrayList</code> 需要移动所有的元素来填充被删除元素的位置。</p>

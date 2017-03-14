@@ -121,7 +121,7 @@
 <meta property="og:image" content="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/java-code-execution-process.png">
 <meta property="og:image" content="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/class-loader-delegation-model.png">
 <meta property="og:image" content="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/runtime-data-access-configuration.png">
-<meta property="og:updated_time" content="2017-03-14T04:43:26.262Z">
+<meta property="og:updated_time" content="2017-03-14T05:14:10.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="详解JVM原理及其内部构件">
 <meta name="twitter:description" content="节选自：http://www.cubrid.org/blog/dev-platform/understanding-jvm-internals/
@@ -442,6 +442,7 @@
 <p>2、符号引用：所有的类型（类和接口）除了原始类型（即基本类型）都是被符号引用所引用的，代替显示的通过内存地址引用<br>译者注：符号引用即变量  </p>
 <p>3、GC垃圾回收：一个类实例通过用户代码显示的创建，而通过GC自动回收，不用手动干预。  </p>
 <p>4、基本数据类型平台独立：传统的编程语言比如c++根据不同的平台有不同的int类型内存大小，而jvm显示的定义了基本数据类型的内存大小，跟平台是无关的。  </p>
+<a id="more"></a>
 <p>5、网络字节序：java类文件使用的时候网络字节序。为的是保持平台无关性：Intel x86架构使用的是小端字节序，而RISC 系列架构使用的大端字节序，所有一个固定的字节序必须被保持。jvm使用的网络字节序是被用于网络传输的。网络字节序是大端字节序。  </p>
 <p>虽然java 是sun公司开发的，但是任何的供应商只要遵循jvm规范，都可以开发和提供jvm虚拟机。正因为这个原因，有各种各样的jvm，包括oracle Hotspot jvm 和IBM JVM。Google的安卓系统上的Dalvik VM也是JVM中的一种，但是它没有遵循JVM规范。不同于java VMs的虚拟机栈，Dalvik VM是基于寄存器架构的。Dalvik VM会将java字节码转换成基于寄存器的指令集。</p>
 <h2 id="2、-Java字节码："><a href="#2、-Java字节码：" class="headerlink" title="2、 Java字节码："></a>2、 Java字节码：</h2><p>为了实现平台无关性，JVM使用java字节码，java字节码是处于java（用户语言）和机器语言的一种中间语言，java字节码是发布java代码最小的单元。<br>在解释java字节码之前，让我们先来看看它，这个列子是发生在开发进程中的真实列子的总结。</p>
