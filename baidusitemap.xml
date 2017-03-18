@@ -4,6 +4,66 @@
 
     
   <url>
+    <loc>https://tunsuy.github.io/2017/02/07/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3Python%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8/</loc>
+    <lastmod>2017-03-18T03:40:35.469Z</lastmod>
+    <data>
+        <display>
+        <title>深入了解Python中的装饰器</title>
+        <pubTime>2017-02-07T03:39:34.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2017/03/05/Python%E4%B8%AD%E7%9A%84%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2017-03-18T03:39:04.643Z</lastmod>
+    <data>
+        <display>
+        <title>Python中的异步编程详解</title>
+        <pubTime>2017-03-05T03:36:37.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2017/02/18/%E9%AB%98%E6%95%88Python%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0/</loc>
+    <lastmod>2017-03-18T03:33:57.465Z</lastmod>
+    <data>
+        <display>
+        <title>高效Python编程之方法参数</title>
+        <pubTime>2017-02-18T03:31:28.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://tunsuy.github.io/2015/05/15/%E5%9F%BA%E4%BA%8Eruby-trello%E7%9A%84trello%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2017-03-14T10:14:58.497Z</lastmod>
     <data>
@@ -86,6 +146,26 @@
 
     
   <url>
+    <loc>https://tunsuy.github.io/2015/04/06/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E6%B5%8B%E8%AF%95%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3/</loc>
+    <lastmod>2017-03-14T05:14:10.767Z</lastmod>
+    <data>
+        <display>
+        <title>移动互联网测试的所思所想</title>
+        <pubTime>2015-04-06T03:11:34.000Z</pubTime>
+        
+        <tag>测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="杂谈" url="https://tunsuy.github.io/categories/%E6%9D%82%E8%B0%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://tunsuy.github.io/2016/12/09/%E8%87%AA%E7%BC%96%E8%AF%91mongo3-2%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2017-03-14T05:14:10.767Z</lastmod>
     <data>
@@ -101,26 +181,6 @@
            
              
               <breadCrumb title="mongodb" url="https://tunsuy.github.io/categories/mongodb/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tunsuy.github.io/2015/04/06/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E6%B5%8B%E8%AF%95%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3/</loc>
-    <lastmod>2017-03-14T05:14:10.767Z</lastmod>
-    <data>
-        <display>
-        <title>移动互联网测试的所思所想</title>
-        <pubTime>2015-04-06T03:11:34.000Z</pubTime>
-        
-        <tag>测试</tag>
-         
-         
-           
-             
-              <breadCrumb title="杂谈" url="https://tunsuy.github.io/categories/%E6%9D%82%E8%B0%88/"/>
           
         </display>
     </data>
@@ -242,28 +302,6 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2016/04/14/selenium%E8%BF%9C%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8/</loc>
-    <lastmod>2017-03-14T05:14:10.313Z</lastmod>
-    <data>
-        <display>
-        <title>selenium远程启动浏览器</title>
-        <pubTime>2016-04-14T11:08:23.000Z</pubTime>
-        
-        <tag>web</tag>
-         
-        <tag>selenium</tag>
-         
-         
-           
-             
-              <breadCrumb title="selenium" url="https://tunsuy.github.io/categories/selenium/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://tunsuy.github.io/2015/04/27/%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B9%8C%E4%BA%91%E7%BD%91%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2017-03-14T05:14:10.313Z</lastmod>
     <data>
@@ -286,21 +324,21 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2016/10/08/redmine-%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/</loc>
-    <lastmod>2017-03-14T05:14:10.220Z</lastmod>
+    <loc>https://tunsuy.github.io/2016/04/14/selenium%E8%BF%9C%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8/</loc>
+    <lastmod>2017-03-14T05:14:10.313Z</lastmod>
     <data>
         <display>
-        <title>redmine-数据统计</title>
-        <pubTime>2016-10-08T12:11:06.000Z</pubTime>
+        <title>selenium远程启动浏览器</title>
+        <pubTime>2016-04-14T11:08:23.000Z</pubTime>
         
-        <tag>python</tag>
+        <tag>web</tag>
          
-        <tag>redmine</tag>
+        <tag>selenium</tag>
          
          
            
              
-              <breadCrumb title="redmine" url="https://tunsuy.github.io/categories/redmine/"/>
+              <breadCrumb title="selenium" url="https://tunsuy.github.io/categories/selenium/"/>
           
         </display>
     </data>
@@ -330,21 +368,21 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2016/08/18/Python%EF%BC%9Aiterator-pattern%E2%80%94%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2017-03-14T05:14:10.127Z</lastmod>
+    <loc>https://tunsuy.github.io/2016/10/08/redmine-%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/</loc>
+    <lastmod>2017-03-14T05:14:10.220Z</lastmod>
     <data>
         <display>
-        <title>Python：iterator pattern—迭代器模式</title>
-        <pubTime>2016-08-18T08:53:38.000Z</pubTime>
+        <title>redmine-数据统计</title>
+        <pubTime>2016-10-08T12:11:06.000Z</pubTime>
         
         <tag>python</tag>
          
-        <tag>设计模式</tag>
+        <tag>redmine</tag>
          
          
            
              
-              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+              <breadCrumb title="redmine" url="https://tunsuy.github.io/categories/redmine/"/>
           
         </display>
     </data>
@@ -367,6 +405,28 @@
            
              
               <breadCrumb title="redmine" url="https://tunsuy.github.io/categories/redmine/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/08/18/Python%EF%BC%9Aiterator-pattern%E2%80%94%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-03-14T05:14:10.127Z</lastmod>
+    <data>
+        <display>
+        <title>Python：iterator pattern—迭代器模式</title>
+        <pubTime>2016-08-18T08:53:38.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
           
         </display>
     </data>
@@ -526,28 +586,6 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2016/06/21/ios%EF%BC%9Ahttps-ATS%E6%94%B9%E9%80%A0%E8%BF%87%E7%A8%8B/</loc>
-    <lastmod>2017-03-14T05:14:09.669Z</lastmod>
-    <data>
-        <display>
-        <title>iOS：https/ATS改造过程</title>
-        <pubTime>2016-06-21T05:14:11.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-        <tag>https</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://tunsuy.github.io/2015/02/20/hexo-github%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2017-03-14T05:14:09.669Z</lastmod>
     <data>
@@ -565,6 +603,28 @@
            
              
               <breadCrumb title="blog" url="https://tunsuy.github.io/categories/blog/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/06/21/ios%EF%BC%9Ahttps-ATS%E6%94%B9%E9%80%A0%E8%BF%87%E7%A8%8B/</loc>
+    <lastmod>2017-03-14T05:14:09.669Z</lastmod>
+    <data>
+        <display>
+        <title>iOS：https/ATS改造过程</title>
+        <pubTime>2016-06-21T05:14:11.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>https</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
           
         </display>
     </data>

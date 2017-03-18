@@ -313,6 +313,583 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2017/03/05/Python中的异步编程详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/05/Python中的异步编程详解/" itemprop="url">
+                  Python中的异步编程详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-05T11:36:37+08:00">
+                2017-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/05/Python中的异步编程详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/05/Python中的异步编程详解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/05/Python中的异步编程详解/" class="leancloud_visitors" data-flag-title="Python中的异步编程详解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一、-协程和线程"><a href="#一、-协程和线程" class="headerlink" title="一、 协程和线程"></a>一、 协程和线程</h1><p>多线程的Python程序总是让你看起来像是同时在运行多个函数。但是多线程有三大问题：</p>
+<ul>
+<li>它们需要特殊的工具来协调各个线程之间的安全。这让编写代码比单线程程序更加的苦难。并且这让代码变得更加的难以维护和扩展。</li>
+<li>线程需要更多的内存，每个执行中的线程大概需要8M。这对于现在大部分计算机来说可能不算什么。但是如果你想让你的程序同时运行成千上万的功能，这可能就会导致有些线程不工作了。</li>
+<li>开启一个线程的代价是很高的。如果你频繁的创建和销毁一个线程，那么这开销将会是很大的，将拖慢整个系统。</li>
+</ul>
+<p>Python用协程将解决这些问题。协程让你的Python程序看起来有很多同时工作的函数功能。它们被实现为作为生成器的扩展功能。开启一个生成器协程的代价就只相当于一个函数调用。一旦开启协程，它们的内存消耗少于1KB。</p>
+<p>关于Python的协程发展，这篇文章讲的比较好 <a href="http://shangliuyan.github.io/2015/07/06/python%E7%9A%84%E5%8D%8F%E7%A8%8B/" target="_blank" rel="external">python的协程</a></p>
+<p>下面先来看看Python中的生成器</p>
+<h1 id="二、-生成器"><a href="#二、-生成器" class="headerlink" title="二、 生成器"></a>二、 生成器</h1><p>简单来说，生成器就是一个生产值的方法。一个方法通常返回一个值之后，内存调用栈中就会将该方法的调用信息给销毁了。当我们再次调用该方法时，又会从入口开始从头执行，它是一次性执行的。但是一个生成器能够 <code>yield</code> 一个值，并且暂停该方法的执行吗，同时将线程控制器交给调用者。当我们想要得到其他值的时候，又可以再次恢复这个方法的执行。示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">simple_gen</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">yield</span> <span class="string">"Hello"</span></div><div class="line">    <span class="keyword">yield</span> <span class="string">"World"</span></div><div class="line"></div><div class="line"></div><div class="line">gen = simple_gen()</div><div class="line">print(next(gen))</div><div class="line">print(next(gen))</div></pre></td></tr></table></figure></p>
+<p>注：一个生成器方法被调用时不会直接返回任何的值，而是当返回一个生成器对象（类似于迭代器）。我们可以对这个生成器调用 <code>next()</code> 方法来获取每一个值，或者运行 <code>for</code> 循环。</p>
+<p>生成器有什么用呢？</p>
+<p>假如你的老板要求你写一个方法来生成100以内的序列（一个 <code>range()</code> 的超级简化版本）。你可能这样实现它：你定义一个空列表，然后将数字添加进入，最后返回该列表。后来这个需求变更了，需要生成千万的序列。这时如果你在一个列表中存储千万的数据，这将导致内存溢出。这时，生成器可以解决这个问题：你可以生成这些数据，但是不用存储在列表中，下面是示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_nums</span><span class="params">()</span>:</span></div><div class="line">    num = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        <span class="keyword">yield</span> num</div><div class="line">        num = num + <span class="number">1</span></div><div class="line"></div><div class="line"></div><div class="line">nums = generate_nums()</div><div class="line"></div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> nums:</div><div class="line">    print(x)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> x &gt; <span class="number">9</span>:</div><div class="line">        <span class="keyword">break</span></div></pre></td></tr></table></figure></p>
+<h1 id="三、-协程"><a href="#三、-协程" class="headerlink" title="三、 协程"></a>三、 协程</h1><p>在上一节中，我们已经看见了，使用生成器我们可以从方法上下文中拿到数据。那如果我们也想要传递一些数据给该方法上下文中的变量呢？这就是协程发挥的作用了。<code>yield</code> 关键字能够用来获取数据，也能作为一个表达式。我们能够对生成器对象使用 <code>send()</code> 方法来传递数据给方法。这就是所谓的 <code>“基于生成器的协程”</code>。示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">coro</span><span class="params">()</span>:</span></div><div class="line">    hello = <span class="keyword">yield</span> <span class="string">"Hello"</span></div><div class="line">    <span class="keyword">yield</span> hello</div><div class="line"></div><div class="line"></div><div class="line">c = coro()</div><div class="line">print(next(c))</div><div class="line">print(c.send(<span class="string">"World"</span>))</div></pre></td></tr></table></figure></p>
+<p>这段代码是怎样工作的呢？首先我们执行 <code>next(c)</code>, 第一次拿到 <code>coro()</code> 中的数据 <code>Hello</code> (此时 <code>coro()</code> 方法暂停，等待下一次恢复)。然后我们通过 <code>send()</code> 方法向方法 <code>coro()</code> 传递一个值 <code>World</code>，此时 <code>coro()</code> 方法恢复执行，并且将我们发送的数据赋值给 <code>hello</code> 变量。并开始往下执行直到遇到下一个 <code>yield</code> ，此时方法返回 <code>World</code> 。</p>
+<p>Python的生成器是协程coroutine的一种形式，但它的局限性在于只能向它的直接调用者yield值。这意味着那些包含yield的代码不能想其他代码那样被分离出来放到一个单独的函数中。这也正是 <code>yield from</code> 要解决的。</p>
+<h1 id="四、-yield-from"><a href="#四、-yield-from" class="headerlink" title="四、 yield from"></a>四、 yield from</h1><p> <code>yield from</code> 允许一个generator生成器将其部分操作委派给另一个生成器。其产生的主要动力在于使生成器能够很容易分为多个拥有send和throw方法的子生成器，像一个大函数可以分为多个子函数一样简单。示例：<br> <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">accumulate</span><span class="params">()</span>:</span>    <span class="comment"># 子生成器，将传进的非None值累加，传进的值若为None，则返回累加结果</span></div><div class="line"><span class="meta">... </span>    tally = <span class="number">0</span></div><div class="line"><span class="meta">... </span>    <span class="keyword">while</span> <span class="number">1</span>:</div><div class="line"><span class="meta">... </span>        next = <span class="keyword">yield</span></div><div class="line"><span class="meta">... </span>        <span class="keyword">if</span> next <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line"><span class="meta">... </span>            <span class="keyword">return</span> tally</div><div class="line"><span class="meta">... </span>        tally += next</div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">gather_tallies</span><span class="params">(tallies)</span>:</span>    <span class="comment"># 外部生成器，将累加操作任务委托给子生成器</span></div><div class="line"><span class="meta">... </span>    <span class="keyword">while</span> <span class="number">1</span>:</div><div class="line"><span class="meta">... </span>        tally = <span class="keyword">yield</span> <span class="keyword">from</span> accumulate()</div><div class="line"><span class="meta">... </span>        tallies.append(tally)</div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>tallies = []</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>acc = gather_tallies(tallies)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>next(acc)    <span class="comment"># 使累加生成器准备好接收传入值</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</div><div class="line"><span class="meta">... </span>    acc.send(i)</div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>acc.send(<span class="keyword">None</span>)    <span class="comment"># 结束第一次累加</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</div><div class="line"><span class="meta">... </span>    acc.send(i)</div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>acc.send(<span class="keyword">None</span>)    <span class="comment"># 结束第二次累加</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>tallies    <span class="comment"># 输出最终结果</span></div><div class="line">[<span class="number">6</span>, <span class="number">10</span>]</div></pre></td></tr></table></figure></p>
+<p>基于生成器的协程在Python2.5以上就有了，但是在Python3.5，又有了更加灵活强大的协程支持 <code>async/await</code> 以及本地协程。</p>
+<h1 id="五、-异步I-O"><a href="#五、-异步I-O" class="headerlink" title="五、 异步I/O"></a>五、 异步I/O</h1><p>从Python3.4起，有了一个叫做 <code>asyncio</code> 的新模块，提供了很多好的API来处理异步程序。我们可以使用协程和asyncio模块更加容易的处理异常程序。示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> asyncio</div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">import</span> random</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@asyncio.coroutine</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_date</span><span class="params">(num, loop)</span>:</span></div><div class="line">    end_time = loop.time() + <span class="number">50.0</span></div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        print(<span class="string">"Loop: &#123;&#125; Time: &#123;&#125;"</span>.format(num, datetime.datetime.now()))</div><div class="line">        <span class="keyword">if</span> (loop.time() + <span class="number">1.0</span>) &gt;= end_time:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        <span class="keyword">yield</span> <span class="keyword">from</span> asyncio.sleep(random.randint(<span class="number">0</span>, <span class="number">5</span>))</div><div class="line"></div><div class="line"></div><div class="line">loop = asyncio.get_event_loop()</div><div class="line"></div><div class="line">asyncio.ensure_future(display_date(<span class="number">1</span>, loop))</div><div class="line">asyncio.ensure_future(display_date(<span class="number">2</span>, loop))</div><div class="line"></div><div class="line">loop.run_forever()</div></pre></td></tr></table></figure></p>
+<p>这段代码中，我们创建了一个协程 <code>display_date(num, loop)</code> 。它使用一个 <code>yield from</code> 来等待子协程 <code>asyncio.sleep()</code> 的返回结果。<code>asyncio.sleep()</code> 是一个协程，在给定的时间之后完成。因此我们传递随机的时间给它。然后我们使用 <code>asyncio.ensure_future()</code> 在默认时间循环中调度 <code>display_date()</code> 协程的执行。</p>
+<p>通过输出，我们可以看到两个协程在并发的执行。当我们使用 <code>yield from</code> 时，这事件循环知道它将耗时一会，所以它会自动中断这个协程的执行，转而去执行另外一个。因此看起来是并发的执行（但不是并行，因为事件循环是一个单线程）。</p>
+<p>正如你知道的，<code>yield from</code> 是一个语法糖：<code>for x in asyncio.sleep(random.randint(0, 5)): yield x</code>。</p>
+<h1 id="六、-原生协程"><a href="#六、-原生协程" class="headerlink" title="六、 原生协程"></a>六、 原生协程</h1><p>在Python3.5起，提供了 <code>async/await</code> 来支持原生协程。上一节的代码可以这样重写：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> asyncio</div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">import</span> random</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">display_date</span><span class="params">(num, loop, )</span>:</span></div><div class="line">    end_time = loop.time() + <span class="number">50.0</span></div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        print(<span class="string">"Loop: &#123;&#125; Time: &#123;&#125;"</span>.format(num, datetime.datetime.now()))</div><div class="line">        <span class="keyword">if</span> (loop.time() + <span class="number">1.0</span>) &gt;= end_time:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        <span class="keyword">await</span> asyncio.sleep(random.randint(<span class="number">0</span>, <span class="number">5</span>))</div><div class="line"></div><div class="line"></div><div class="line">loop = asyncio.get_event_loop()</div><div class="line"></div><div class="line">asyncio.ensure_future(display_date(<span class="number">1</span>, loop))</div><div class="line">asyncio.ensure_future(display_date(<span class="number">2</span>, loop))</div><div class="line"></div><div class="line">loop.run_forever()</div></pre></td></tr></table></figure></p>
+<h1 id="七、-两种模式对比"><a href="#七、-两种模式对比" class="headerlink" title="七、 两种模式对比"></a>七、 两种模式对比</h1><p>原生协程和基于生成器的协程在功能上没有什么差异，除了使用的关键字不同而已。两者之间不能混用，比如在原生中使用 <code>yield/yield from</code> ，在基于生成器的协程中使用 <code>await</code> 。</p>
+<p>尽管有使用上的不同，但是我们也可以对他们进行互操作。我们只需要增加 <code>@types.coroutine</code> 装饰器到旧的基于生成器协程上。也就是说，我们能够在原生协程中使用 <code>await</code> 来等待一个基于生成器的协程，在基于生成器的协程中使用 <code>yield from</code> 来等待一个原生协程。示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> asyncio</div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">import</span> random</div><div class="line"><span class="keyword">import</span> types</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@types.coroutine</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_sleep_func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">yield</span> <span class="keyword">from</span> asyncio.sleep(random.randint(<span class="number">0</span>, <span class="number">5</span>))</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">display_date</span><span class="params">(num, loop, )</span>:</span></div><div class="line">    end_time = loop.time() + <span class="number">50.0</span></div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        print(<span class="string">"Loop: &#123;&#125; Time: &#123;&#125;"</span>.format(num, datetime.datetime.now()))</div><div class="line">        <span class="keyword">if</span> (loop.time() + <span class="number">1.0</span>) &gt;= end_time:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        <span class="keyword">await</span> my_sleep_func()</div><div class="line"></div><div class="line"></div><div class="line">loop = asyncio.get_event_loop()</div><div class="line"></div><div class="line">asyncio.ensure_future(display_date(<span class="number">1</span>, loop))</div><div class="line">asyncio.ensure_future(display_date(<span class="number">2</span>, loop))</div><div class="line"></div><div class="line">loop.run_forever()</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2017/02/18/高效Python编程之方法参数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/18/高效Python编程之方法参数/" itemprop="url">
+                  高效Python编程之方法参数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-18T11:31:28+08:00">
+                2017-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/18/高效Python编程之方法参数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/18/高效Python编程之方法参数/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/18/高效Python编程之方法参数/" class="leancloud_visitors" data-flag-title="高效Python编程之方法参数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一、-可变数量参数"><a href="#一、-可变数量参数" class="headerlink" title="一、 可变数量参数"></a>一、 可变数量参数</h1><h2 id="1、-概述"><a href="#1、-概述" class="headerlink" title="1、 概述"></a>1、 概述</h2><p>可变数量参数是指参数前带 <code>*</code> 的。如 <code>*args</code>.<br>比如，你想要通过一些参数信息来打印日志。使用固定参数如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(message, values)</span>:</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> values:</div><div class="line">        print(message)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        values_str = <span class="string">', '</span>.join(str(x) <span class="keyword">for</span> x <span class="keyword">in</span> values)</div><div class="line">        print(<span class="string">'%s: %s'</span> % (message, values_str))</div><div class="line"></div><div class="line">log(<span class="string">'My numbers are'</span>, [<span class="number">1</span>, <span class="number">2</span>])</div><div class="line">log(<span class="string">'Hi there'</span>, [])</div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line">My numbers are: <span class="number">1</span>, <span class="number">2</span></div><div class="line">Hi there</div></pre></td></tr></table></figure></p>
+<p>可以看出，当你没有values值传递的时候，你也不得不传递一个 <code>[]</code> 。</p>
+<p>最好的做法就是没有值，第二个参数就留空。那么你能够在最后一个参数前加 <code>*</code> 来达到这样的效果。那么最后一个参数，你传递多少个值都是合法的。如下所示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(message, *values)</span>:</span>  <span class="comment"># The only difference</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> values:</div><div class="line">        print(message)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        values_str = <span class="string">', '</span>.join(str(x) <span class="keyword">for</span> x <span class="keyword">in</span> values)</div><div class="line">        print(<span class="string">'%s: %s'</span> % (message, values_str))</div><div class="line"></div><div class="line">log(<span class="string">'My numbers are'</span>, <span class="number">1</span>, <span class="number">2</span>)</div><div class="line">log(<span class="string">'Hi there'</span>)  <span class="comment"># Much better</span></div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line">My numbers are: <span class="number">1</span>, <span class="number">2</span></div><div class="line">Hi there</div></pre></td></tr></table></figure></p>
+<p>如果你已经有了一个列表变量，想要传递给像log这样的可选参数方法。你能够直接在列表变量前加 <code>*</code> 传递给方法。这表示让Python将列表中的元素项依次传递给方法。示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">favorites = [<span class="number">7</span>, <span class="number">33</span>, <span class="number">99</span>]</div><div class="line">log(<span class="string">'Favorite colors'</span>, *favorites)</div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line">Favorite colors: <span class="number">7</span>, <span class="number">33</span>, <span class="number">99</span></div></pre></td></tr></table></figure></p>
+<h2 id="2、-问题注意"><a href="#2、-问题注意" class="headerlink" title="2、 问题注意"></a>2、 问题注意</h2><p>接受可变位置的可变数量的参数有两个问题：</p>
+<p>第一个问题就是可变参数在被传递到方法中时总是被转换为一个元组。这就意味着如果一个方法的参数是生成器前加 <code>*</code> 。那么该生成器参数将全部迭代完所有的元素，然后返回包含来自该生成器的所有元素组成的元组，这就有可能在数据量比较大的时候占用很大的内存，导致程序crash。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_generator</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</div><div class="line">        <span class="keyword">yield</span> i</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_func</span><span class="params">(*args)</span>:</span></div><div class="line">    print(args)</div><div class="line"></div><div class="line">it = my_generator()</div><div class="line">my_func(*it)</div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line">(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>)</div></pre></td></tr></table></figure></p>
+<p>第二个问题就是参数是位置对应的，传递的参数需要根据参数位置来传递，如果中间某个参数没有，那么可变参数中的元素将被填充到那个没有传参的参数中，具体示例如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(sequence, message, *values)</span>:</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> values:</div><div class="line">        print(<span class="string">'%s: %s'</span> % (sequence, message))</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        values_str = <span class="string">', '</span>.join(str(x) <span class="keyword">for</span> x <span class="keyword">in</span> values)</div><div class="line">        print(<span class="string">'%s: %s: %s'</span> % (sequence, message, values_str))</div><div class="line"></div><div class="line">log(<span class="number">1</span>, <span class="string">'Favorites'</span>, <span class="number">7</span>, <span class="number">33</span>)      <span class="comment"># New usage is OK</span></div><div class="line">log(<span class="string">'Favorite numbers'</span>, <span class="number">7</span>, <span class="number">33</span>)  <span class="comment"># Old usage breaks</span></div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="number">1</span>: Favorites: <span class="number">7</span>, <span class="number">33</span></div><div class="line">Favorite numbers: <span class="number">7</span>: <span class="number">33</span></div></pre></td></tr></table></figure></p>
+<h1 id="二、-关键字参数"><a href="#二、-关键字参数" class="headerlink" title="二、 关键字参数"></a>二、 关键字参数</h1><h2 id="1、-概述-1"><a href="#1、-概述-1" class="headerlink" title="1、 概述"></a>1、 概述</h2><p>跟其他程序语言一样，在Python中调用方法允许使用位置来传递参数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">remainder</span><span class="params">(number, divisor)</span>:</span></div><div class="line">    <span class="keyword">return</span> number % divisor</div><div class="line"></div><div class="line"><span class="keyword">assert</span> remainder(<span class="number">20</span>, <span class="number">7</span>) == <span class="number">6</span></div></pre></td></tr></table></figure></p>
+<p>在Python中所有的位置参数也都可以使用关键字来传递，方法定义中的关键字也就是方法调用中的赋值变量。关键字参数能够以任意的位置来传递，也能够同位置参数混合使用。下面的调用都是等效的：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">remainder(<span class="number">20</span>, <span class="number">7</span>)</div><div class="line">remainder(<span class="number">20</span>, divisor=<span class="number">7</span>)</div><div class="line">remainder(number=<span class="number">20</span>, divisor=<span class="number">7</span>)</div><div class="line">remainder(divisor=<span class="number">7</span>, number=<span class="number">20</span>)</div></pre></td></tr></table></figure></p>
+<h2 id="2、-问题注意-1"><a href="#2、-问题注意-1" class="headerlink" title="2、 问题注意"></a>2、 问题注意</h2><p>位置参数必现在关键字参数之前被指定，看下面就是一个违法的调用：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">remainder(number=<span class="number">20</span>, <span class="number">7</span>)</div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line">SyntaxError: non-keyword arg after keyword arg</div></pre></td></tr></table></figure></p>
+<p>每一个参数只能被指定一次：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">remainder(<span class="number">20</span>, number=<span class="number">7</span>)</div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line">TypeError: remainder() got multiple values <span class="keyword">for</span> argument <span class="string">'number'</span></div></pre></td></tr></table></figure></p>
+<h2 id="3、-优点"><a href="#3、-优点" class="headerlink" title="3、 优点"></a>3、 优点</h2><p>使用关键字参数让程序可读性更好，通过参数名即可知道传递的参数的作用。</p>
+<p>关键字参数可以指定默认的值，这对于某些逻辑是很有作用的。在调用的时候则可以不用传递参数，那么该方法将使用默认的值。示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">flow_rate</span><span class="params">(weight_diff, time_diff, period=<span class="number">1</span>)</span>:</span></div><div class="line">    <span class="keyword">return</span> (weight_diff / time_diff) * period</div></pre></td></tr></table></figure></p>
+<p>调用：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">flow_per_second = flow_rate(weight_diff, time_diff)</div><div class="line">flow_per_hour = flow_rate(weight_diff, time_diff, period=<span class="number">3600</span>)</div></pre></td></tr></table></figure></p>
+<p>有利于程序的扩展性。可以对增加的关键字使用默认值，达到向后兼容的效果，不需要改动已有的代码，示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">flow_rate</span><span class="params">(weight_diff, time_diff,</span></span></div><div class="line">              period=<span class="number">1</span>, units_per_kg=<span class="number">1</span>):</div><div class="line">    <span class="keyword">return</span> ((weight_diff * units_per_kg) / time_diff) * period</div></pre></td></tr></table></figure></p>
+<p>新增的调用逻辑：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pounds_per_hour = flow_rate(weight_diff, time_diff,</div><div class="line">                            period=<span class="number">3600</span>, units_per_kg=<span class="number">2.2</span>)</div></pre></td></tr></table></figure></p>
+<h1 id="三、-动态默认参数"><a href="#三、-动态默认参数" class="headerlink" title="三、 动态默认参数"></a>三、 动态默认参数</h1><p>有时候你可能需要一个动态的默认参数值。先来看一个列子：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(message, when=datetime.now<span class="params">()</span>)</span>:</span></div><div class="line">    print(<span class="string">'%s: %s'</span> % (when, message))</div><div class="line"></div><div class="line">log(<span class="string">'Hi there!'</span>)</div><div class="line">sleep(<span class="number">0.1</span>)</div><div class="line">log(<span class="string">'Hi again!'</span>)</div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="number">2014</span><span class="number">-11</span><span class="number">-15</span> <span class="number">21</span>:<span class="number">10</span>:<span class="number">10.371432</span>: Hi there!</div><div class="line"><span class="number">2014</span><span class="number">-11</span><span class="number">-15</span> <span class="number">21</span>:<span class="number">10</span>:<span class="number">10.371432</span>: Hi again!</div></pre></td></tr></table></figure></p>
+<p>我们发现这个时间是一样的，这是因为 <code>datetime.now()</code> 只执行了一次：当这个函数被定义的时候。这是因为当程序启动的时候，加载模块，这个模块包含的代码也被加载了，那么这个默认参数值就被确认了。</p>
+<p>一般的做法是给这个参数赋 <code>None</code> 值，然后在代码文档注释中说明。具体动态默认值在程序中指定。示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(message, when=None)</span>:</span></div><div class="line">    <span class="string">"""Log a message with a timestamp.</span></div><div class="line"></div><div class="line">    Args:</div><div class="line">        message: Message to print.</div><div class="line">        when: datetime of when the message occurred.</div><div class="line">            Defaults to the present time.</div><div class="line">    """</div><div class="line">    when = datetime.now() <span class="keyword">if</span> when <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">else</span> when</div><div class="line">    print(<span class="string">'%s: %s'</span> % (when, message))</div></pre></td></tr></table></figure></p>
+<p>这时输出就是动态的参数值了：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">log(<span class="string">'Hi there!'</span>)</div><div class="line">sleep(<span class="number">0.1</span>)</div><div class="line">log(<span class="string">'Hi again!'</span>)</div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="number">2014</span><span class="number">-11</span><span class="number">-15</span> <span class="number">21</span>:<span class="number">10</span>:<span class="number">10.472303</span>: Hi there!</div><div class="line"><span class="number">2014</span><span class="number">-11</span><span class="number">-15</span> <span class="number">21</span>:<span class="number">10</span>:<span class="number">10.573395</span>: Hi again!</div></pre></td></tr></table></figure></p>
+<p>使用None作为参数默认值时很重要的，特别是当你的参数是可变的时候。比如，你想要加载一个data，并使用json编码。如果编码失败，你想要返回一个空的字典。你可能这样做：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode</span><span class="params">(data, default=&#123;&#125;)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="keyword">return</span> json.loads(data)</div><div class="line">    <span class="keyword">except</span> ValueError:</div><div class="line">        <span class="keyword">return</span> default</div></pre></td></tr></table></figure></p>
+<p>这个效果之前一个列子一样，所有的调用使用的都是同样的默认值，这会导致无法预期的效果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">foo = decode(<span class="string">'bad data'</span>)</div><div class="line">foo[<span class="string">'stuff'</span>] = <span class="number">5</span></div><div class="line">bar = decode(<span class="string">'also bad'</span>)</div><div class="line">bar[<span class="string">'meep'</span>] = <span class="number">1</span></div><div class="line">print(<span class="string">'Foo:'</span>, foo)</div><div class="line">print(<span class="string">'Bar:'</span>, bar)</div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line">Foo: &#123;<span class="string">'stuff'</span>: <span class="number">5</span>, <span class="string">'meep'</span>: <span class="number">1</span>&#125;</div><div class="line">Bar: &#123;<span class="string">'stuff'</span>: <span class="number">5</span>, <span class="string">'meep'</span>: <span class="number">1</span>&#125;</div></pre></td></tr></table></figure></p>
+<p>可以发现，两个对象的值都是一样的，改变一个影响了另一个。这是因为两个都是同一个默认值，指向的是同一个对象。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">assert</span> foo <span class="keyword">is</span> bar</div></pre></td></tr></table></figure></p>
+<p>使用 <code>None</code> 作为默认值可以解决这个问题<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode</span><span class="params">(data, default=None)</span>:</span></div><div class="line">    <span class="string">"""Load JSON data from a string.</span></div><div class="line"></div><div class="line">    Args:</div><div class="line">        data: JSON data to decode.</div><div class="line">        default: Value to return if decoding fails.</div><div class="line">            Defaults to an empty dictionary.</div><div class="line">    """</div><div class="line">    <span class="keyword">if</span> default <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        default = &#123;&#125;</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="keyword">return</span> json.loads(data)</div><div class="line">    <span class="keyword">except</span> ValueError:</div><div class="line">        <span class="keyword">return</span> default</div></pre></td></tr></table></figure></p>
+<p>现在调用可以发现是正确的了：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">foo = decode(<span class="string">'bad data'</span>)</div><div class="line">foo[<span class="string">'stuff'</span>] = <span class="number">5</span></div><div class="line">bar = decode(<span class="string">'also bad'</span>)</div><div class="line">bar[<span class="string">'meep'</span>] = <span class="number">1</span></div><div class="line">print(<span class="string">'Foo:'</span>, foo)</div><div class="line">print(<span class="string">'Bar:'</span>, bar)</div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line">Foo: &#123;<span class="string">'stuff'</span>: <span class="number">5</span>&#125;</div><div class="line">Bar: &#123;<span class="string">'meep'</span>: <span class="number">1</span>&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="四、-强制使用关键字参数"><a href="#四、-强制使用关键字参数" class="headerlink" title="四、 强制使用关键字参数"></a>四、 强制使用关键字参数</h1><p>比如，你在处理两个数相除时，有时候可能想要忽略 <code>ZeroDivisionError</code> 异常，返回无穷大。有时候想要忽略 <code>OverflowError</code> 异常，返回0.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">safe_division</span><span class="params">(number, divisor, ignore_overflow,</span></span></div><div class="line">                  ignore_zero_division):</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="keyword">return</span> number / divisor</div><div class="line">    <span class="keyword">except</span> OverflowError:</div><div class="line">        <span class="keyword">if</span> ignore_overflow:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">raise</span></div><div class="line">    <span class="keyword">except</span> ZeroDivisionError:</div><div class="line">        <span class="keyword">if</span> ignore_zero_division:</div><div class="line">            <span class="keyword">return</span> float(<span class="string">'inf'</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">raise</span></div></pre></td></tr></table></figure></p>
+<p>调用：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">result = safe_division(<span class="number">1</span>, <span class="number">10</span>**<span class="number">500</span>, <span class="keyword">True</span>, <span class="keyword">False</span>)</div><div class="line">print(result)</div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="number">0.0</span></div></pre></td></tr></table></figure></p>
+<p>或者：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">result = safe_division(<span class="number">1</span>, <span class="number">0</span>, <span class="keyword">False</span>, <span class="keyword">True</span>)</div><div class="line">print(result)</div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line">inf</div></pre></td></tr></table></figure></p>
+<p>但是你会发现只看调用，是非常不直观的，不知道每个参数是什么意思，这时可以用关键字参数来指示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">safe_division_b</span><span class="params">(number, divisor,</span></span></div><div class="line">                    ignore_overflow=False,</div><div class="line">                    ignore_zero_division=False):</div><div class="line">    <span class="comment"># ...</span></div></pre></td></tr></table></figure></p>
+<p>调用：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">safe_division_b(<span class="number">1</span>, <span class="number">10</span>**<span class="number">500</span>, ignore_overflow=<span class="keyword">True</span>)</div><div class="line">safe_division_b(<span class="number">1</span>, <span class="number">0</span>, ignore_zero_division=<span class="keyword">True</span>)</div></pre></td></tr></table></figure></p>
+<p>但是还有一个问题就是，这个关键字参数是可选，你任然可以使用位置参数来调用：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">safe_division_b(<span class="number">1</span>, <span class="number">10</span>**<span class="number">500</span>, <span class="keyword">True</span>, <span class="keyword">False</span>)</div></pre></td></tr></table></figure></p>
+<p>那么可不可以强制调用者使用关键字呢？在Python3中可以这样做：在参数中加一个 <code>*</code> 参数，表示之前的参数是位置参数，之后的参数是关键字参数，必须强制表明。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">safe_division_c</span><span class="params">(number, divisor, *,</span></span></div><div class="line">                    ignore_overflow=False,</div><div class="line">                    ignore_zero_division=False):</div><div class="line">    <span class="comment"># ...</span></div></pre></td></tr></table></figure></p>
+<p>现在使用位置参数来调用将报错：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">safe_division_c(<span class="number">1</span>, <span class="number">10</span>**<span class="number">500</span>, <span class="keyword">True</span>, <span class="keyword">False</span>)</div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line">TypeError: safe_division_c() takes <span class="number">2</span> positional arguments but <span class="number">4</span> were given</div></pre></td></tr></table></figure></p>
+<p>正确调用：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">safe_division_c(<span class="number">1</span>, <span class="number">0</span>, ignore_zero_division=<span class="keyword">True</span>)  <span class="comment"># OK</span></div><div class="line"></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    safe_division_c(<span class="number">1</span>, <span class="number">0</span>)</div><div class="line"><span class="keyword">except</span> ZeroDivisionError:</div><div class="line">    <span class="keyword">pass</span>  <span class="comment"># Expected</span></div></pre></td></tr></table></figure></p>
+<h1 id="五、-可变数量关键字参数"><a href="#五、-可变数量关键字参数" class="headerlink" title="五、 可变数量关键字参数"></a>五、 可变数量关键字参数</h1><p>将数量不定的可变数量关键字参数传递给方法时，可以使用 <code>**</code> 参数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_args</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'Positional:'</span>, args</div><div class="line">    <span class="keyword">print</span> <span class="string">'Keyword:   '</span>, kwargs</div><div class="line"></div><div class="line">print_args(<span class="number">1</span>, <span class="number">2</span>, foo=<span class="string">'bar'</span>, stuff=<span class="string">'meep'</span>)</div><div class="line"></div><div class="line">&gt;&gt;&gt;</div><div class="line">Positional: (<span class="number">1</span>, <span class="number">2</span>)</div><div class="line">Keyword:    &#123;<span class="string">'foo'</span>: <span class="string">'bar'</span>, <span class="string">'stuff'</span>: <span class="string">'meep'</span>&#125;</div></pre></td></tr></table></figure></p>
+<p>调用的时候，会将传递的所有的关键字参数传递给 <code>kwargs</code> 参数，Python会将其转化成一个字典。</p>
+<h1 id="六、-参数顺序"><a href="#六、-参数顺序" class="headerlink" title="六、 参数顺序"></a>六、 参数顺序</h1><p>几种方法参数的定义顺序为：位置参数，关键字参数，非关键字可变长参数(<code>*args</code>)，可变数量关键字参数(<code>**kwargs</code>)。</p>
+<p>根据传递的参数顺序来依次匹配，先逐级匹配，如果还有剩余的参数再匹配下一级参数。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2017/02/07/深入了解Python中的装饰器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/07/深入了解Python中的装饰器/" itemprop="url">
+                  深入了解Python中的装饰器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-07T11:39:34+08:00">
+                2017-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/07/深入了解Python中的装饰器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/07/深入了解Python中的装饰器/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/07/深入了解Python中的装饰器/" class="leancloud_visitors" data-flag-title="深入了解Python中的装饰器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一、-概述"><a href="#一、-概述" class="headerlink" title="一、 概述"></a>一、 概述</h1><p>Python的装饰器是AOP编程的一种实现，其他很多语言也都支持装饰器模式。<br>注：AOP是指面向切面编程，详见 <a href="https://en.wikipedia.org/wiki/Aspect-oriented_programming" target="_blank" rel="external">AOP概念</a></p>
+<p>一个装饰器允许你增加、修改或者完全修改一个方法或者函数的逻辑。使用装饰器，将与业务无关的逻辑移到装饰器中，这将会让你的代码更加的干净紧凑。</p>
+<h1 id="二、-装饰器举例"><a href="#二、-装饰器举例" class="headerlink" title="二、 装饰器举例"></a>二、 装饰器举例</h1><p>最经典的例子当然是Python内建的装饰器：<code>@staticmethod</code> 和 <code>@classmethod</code> 。这些装饰器将一个类中的方法转换为静态方法(该方法的第一个参数不是 <code>self</code>)，和类方法(该方法的第一个参数是 <code>cls</code>)。</p>
+<p>如下所示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(cls)</span>:</span></div><div class="line">        <span class="keyword">print</span> cls.__name__</div><div class="line"></div><div class="line"><span class="meta">    @staticmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'I have no use for the instance or class'</span></div><div class="line"></div><div class="line"></div><div class="line">A.foo()</div><div class="line">A.bar()</div></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">A</div><div class="line">I have no use <span class="keyword">for</span> the instance <span class="keyword">or</span> <span class="class"><span class="keyword">class</span></span></div></pre></td></tr></table></figure></p>
+<h1 id="三、-装饰器定义"><a href="#三、-装饰器定义" class="headerlink" title="三、 装饰器定义"></a>三、 装饰器定义</h1><p>装饰器就是一个接受一个可调用对象(被装饰的目标)的可调用对象，返回一个和源目标(被装饰对象)接受相同参数的可调用对象(装饰器)。</p>
+<p>下面来解释下这段文字：</p>
+<p>首先，什么是可调用对象呢？一个可调用对象在Python中就是包含一个叫 <code>call()</code> 方法的对象。具体来说就是可以是代码块、方法或者类。你也可以给你自己的类实现这个 <code>call()</code> 方法，这样你的类实例就变成了一个可调用对象，为了检测一个对象是否是可调用的，你可以在命令行中使用内建的 <code>callable()</code> 方法测试下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">callable(len)</div><div class="line"><span class="keyword">True</span></div><div class="line"></div><div class="line">callable(<span class="string">'123'</span>)</div><div class="line"><span class="keyword">False</span></div></pre></td></tr></table></figure></p>
+<p>注意：<code>callable()</code> 方法在Python3.0被移除了，但是在Python3.2又重新加入了。</p>
+<h1 id="四、-函数装饰器"><a href="#四、-函数装饰器" class="headerlink" title="四、 函数装饰器"></a>四、 函数装饰器</h1><p>一个函数装饰器是用来装饰一个函数或者方法的。假设我们想要在每个执行之前都先输出一个字符串”Yeah, it works!”。下面以非装饰器的方式来实现它。<br>原始方法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'foo() here'</span></div><div class="line"></div><div class="line">foo()</div></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">foo() here</div></pre></td></tr></table></figure></p>
+<p>下面以一种很丑陋的方式来实现我们的需求<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">original_foo = foo</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decorated_foo</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'Yeah, it works!'</span></div><div class="line">    original_foo()</div><div class="line"></div><div class="line">foo = decorated_foo</div><div class="line">foo()</div></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Yeah, it works!</div><div class="line">foo() here</div></pre></td></tr></table></figure></p>
+<p>这种方式有几个问题：</p>
+<ul>
+<li>它会增加很多工作</li>
+<li>用中间名字污染了名字空间，如：<code>original_foo()</code> 和 <code>decorated_foo()</code></li>
+<li>你不得不对每一个你想要增加这个需求的方法增加同样的逻辑</li>
+</ul>
+<p>然而用迭代器同样能够实现这样的需求，并且是可以重用的。如下所示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">yeah_it_works</span><span class="params">(f)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decorated</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'Yeah, it works'</span></div><div class="line">        <span class="keyword">return</span> f(*args, **kwargs)</div><div class="line">   <span class="keyword">return</span> decorated</div></pre></td></tr></table></figure></p>
+<p>注：<code>yeah_it_works()</code> 是一个接受一个可调用对象f的函数。返回一个接受任何类型和数量的参数的可调用对象(嵌套函数 <code>decorated</code>)<br>现在我们可以在任何函数中重用它<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">@yeah_it_works</div><div class="line">def f1()</div><div class="line">    print 'f1() here'</div><div class="line"></div><div class="line">@yeah_it_works</div><div class="line">def f2()</div><div class="line">    print 'f3() here'</div><div class="line"></div><div class="line">@yeah_it_works</div><div class="line">def f3()</div><div class="line">    print 'f3() here'</div><div class="line"></div><div class="line">f1()</div><div class="line">f2()</div><div class="line">f3()</div></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Yeah, it works</div><div class="line">f1() here</div><div class="line">Yeah, it works</div><div class="line">f2() here</div><div class="line">Yeah, it works</div><div class="line">f3() here</div></pre></td></tr></table></figure></p>
+<h1 id="类装饰器"><a href="#类装饰器" class="headerlink" title="类装饰器"></a>类装饰器</h1><p>类装饰器是装饰整个类。它们在类定义时被替换。你能够对一个装饰器类增加或者减少方法，甚至将迭代器应用到所有的类的方法中。</p>
+<p>假设我们要跟踪一个类抛出的所有异常，让我们假设已经有了一个函数装饰器叫 <code>track_exceptions_decorator</code> ，如果没有类装饰器，那么我们需要对每个方法应用这个函数装饰器或者采用 <code>metaclasses</code>。示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">    @track_exceptions_decorator</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">()</span>:</span></div><div class="line">        ...</div><div class="line"></div><div class="line"><span class="meta">    @track_exceptions_decorator</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">()</span>:</span></div><div class="line">        ...</div><div class="line">    .</div><div class="line">    .</div><div class="line">    .</div><div class="line"><span class="meta">    @track_exceptions_decorator</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f100</span><span class="params">()</span>:</span></div><div class="line">        ...</div></pre></td></tr></table></figure></p>
+<p>一个类装饰器可以达到相同的效果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">track_exception</span><span class="params">(cls)</span>:</span></div><div class="line">    <span class="comment"># Get all callable attributes of the class</span></div><div class="line">    callable_attributes = &#123;k:v <span class="keyword">for</span> k, v <span class="keyword">in</span> cls.__dict__.items() <span class="keyword">if</span> callable(v)&#125;</div><div class="line">    <span class="comment"># Decorate each callable attribute of to the input class</span></div><div class="line">    <span class="keyword">for</span> name, func <span class="keyword">in</span> callable_attributes.items():</div><div class="line">        decorated = track_exceptions_decorator(func)</div><div class="line">        setattr(cls, name, decorated)</div><div class="line">    <span class="keyword">return</span> cls</div><div class="line"></div><div class="line"><span class="meta">@track_exceptions</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">'1'</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">'2'</span>)</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/12/09/自编译mongo3-2测试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1506,524 +2083,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/09/13/Java：重温数据结构-链表/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tunsuy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headpic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鱼儿塘">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/13/Java：重温数据结构-链表/" itemprop="url">
-                  Java：重温数据结构-链表
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-13T09:59:43+08:00">
-                2016-09-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/09/13/Java：重温数据结构-链表/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/13/Java：重温数据结构-链表/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/09/13/Java：重温数据结构-链表/" class="leancloud_visitors" data-flag-title="Java：重温数据结构-链表">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>翻译于<a href="https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html">https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html</a></p>
-<p>注：不是原文翻译，有些自己的理解改动</p>
-<h1 id="一、-引言"><a href="#一、-引言" class="headerlink" title="一、 引言"></a>一、 引言</h1><p>一个链表就是一个线性的数据结构，如下图所示：</p>
-<img src="/2016/09/13/Java：重温数据结构-链表/linkedlist.bmp" alt="linkedlist.bmp" title="">
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/09/13/Java：重温数据结构-链表/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/08/18/Python：iterator-pattern—迭代器模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tunsuy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headpic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鱼儿塘">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/18/Python：iterator-pattern—迭代器模式/" itemprop="url">
-                  Python：iterator pattern—迭代器模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-18T16:53:38+08:00">
-                2016-08-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/18/Python：iterator-pattern—迭代器模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/18/Python：iterator-pattern—迭代器模式/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/08/18/Python：iterator-pattern—迭代器模式/" class="leancloud_visitors" data-flag-title="Python：iterator pattern—迭代器模式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>翻译于<a href="https://davidcorne.com/2013/02/22/iterator-pattern/">https://davidcorne.com/2013/02/22/iterator-pattern/</a></p>
-<p>注：不是原文翻译，有些自己的理解改动</p>
-<p>该文章主要从python语言的角度去讲解</p>
-<h1 id="一、-目的"><a href="#一、-目的" class="headerlink" title="一、 目的"></a>一、 目的</h1><p>这个模式背后的意思是：有一个对象，你能够循环它而不需要知道这个对象数据的内部表现。在Python这门语言中，没有什么是私有的（<code>译者注：python中的访问控制是约定</code>），你能够找到一个类的内部构成，这个迭代器模式给了你一个标准的接口。</p>
-<p>我认为在python中一个iterator最好的例子就是使用list，因此这里我确定你已经知道怎么使用这个list了</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/08/18/Python：iterator-pattern—迭代器模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/08/11/ios：性能之卡顿检测/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tunsuy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headpic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鱼儿塘">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/11/ios：性能之卡顿检测/" itemprop="url">
-                  iOS：性能之卡顿检测
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-11T19:11:51+08:00">
-                2016-08-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/11/ios：性能之卡顿检测/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/ios：性能之卡顿检测/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/08/11/ios：性能之卡顿检测/" class="leancloud_visitors" data-flag-title="iOS：性能之卡顿检测">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>项目地址：<br><a href="https://github.com/tunsuy/iOSMonitorLag">https://github.com/tunsuy/iOSMonitorLag</a></p>
-<p>该项目主要是针对ios项目的卡顿监控的探索，结合ios的运行机制和业界的实践，将其应用于公司项目中进行试运行，查看相关效果</p>
-<h1 id="二、-方案一-基于RunLoop"><a href="#二、-方案一-基于RunLoop" class="headerlink" title="二、 方案一 基于RunLoop"></a>二、 方案一 基于RunLoop</h1><h2 id="1、-背景"><a href="#1、-背景" class="headerlink" title="1、 背景"></a>1、 背景</h2><ul>
-<li><p>因为UIKit本身的特性,需要将所有的UI操作都放在主线程执行,所以也造成不少程序员都习惯将一些线程安全性不确定的逻辑,以及其它线程结束后的汇总工作等等放到了主线,所以主线程中包含的这些大量计算、IO、绘制都有可能造成卡顿.</p>
-</li>
-<li><p>在Xcode中已经集成了非常方便的调试工具Instruments,它可以帮助我们在开发测试阶段分析软件运行的性能消耗</p>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/08/11/ios：性能之卡顿检测/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2073,7 +2132,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
