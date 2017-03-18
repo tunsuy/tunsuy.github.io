@@ -122,7 +122,7 @@
 它们需要特殊的工具来协调各个线程之间的安全。这让编写代码比单线程程序更加的苦难。并且这让代码变得更加的难以维护和扩展。
 线程需要更多的内存，每个执行中的线程大概需要8M。这对于现在大部分计算机来说可能不算什么。但是如果你想让你的程序同时运行成千上万的功能，这可能就会导致有些线程不工作了。
 开启一">
-<meta property="og:updated_time" content="2017-03-18T03:39:04.643Z">
+<meta property="og:updated_time" content="2017-03-18T03:55:36.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python中的异步编程详解">
 <meta name="twitter:description" content="一、 协程和线程多线程的Python程序总是让你看起来像是同时在运行多个函数。但是多线程有三大问题：
@@ -445,6 +445,7 @@
 <li>线程需要更多的内存，每个执行中的线程大概需要8M。这对于现在大部分计算机来说可能不算什么。但是如果你想让你的程序同时运行成千上万的功能，这可能就会导致有些线程不工作了。</li>
 <li>开启一个线程的代价是很高的。如果你频繁的创建和销毁一个线程，那么这开销将会是很大的，将拖慢整个系统。</li>
 </ul>
+<a id="more"></a>
 <p>Python用协程将解决这些问题。协程让你的Python程序看起来有很多同时工作的函数功能。它们被实现为作为生成器的扩展功能。开启一个生成器协程的代价就只相当于一个函数调用。一旦开启协程，它们的内存消耗少于1KB。</p>
 <p>关于Python的协程发展，这篇文章讲的比较好 <a href="http://shangliuyan.github.io/2015/07/06/python%E7%9A%84%E5%8D%8F%E7%A8%8B/" target="_blank" rel="external">python的协程</a></p>
 <p>下面先来看看Python中的生成器</p>
