@@ -1,10 +1,10 @@
 https://tunsuy.github.io/2017/03/05/Python中的异步编程详解/
 https://tunsuy.github.io/2017/02/18/高效Python编程之方法参数/
 https://tunsuy.github.io/2017/02/07/深入了解Python中的装饰器/
+https://tunsuy.github.io/2016/12/18/深入详解Java的NIO之Buffer/
+https://tunsuy.github.io/2016/12/13/深入详解Java的NIO之Channel/
 https://tunsuy.github.io/2016/12/09/自编译mongo3-2测试/
 https://tunsuy.github.io/2016/11/16/App三方交互逻辑实践/
 https://tunsuy.github.io/2016/10/15/mongodb集群3-0-X升级3-2-X/
 https://tunsuy.github.io/2016/10/09/深入理解Java中的线程安全和集合/
 https://tunsuy.github.io/2016/10/08/redmine-数据统计/
-https://tunsuy.github.io/2016/09/23/实现浏览器中实时查看iOS日志/
-https://tunsuy.github.io/2016/09/18/代码扫描之API调用版本检查/

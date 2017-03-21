@@ -180,6 +180,136 @@
   </entry>
   
   <entry>
+    <title>深入详解Java的NIO之Buffer</title>
+    <link href="https://tunsuy.github.io/2016/12/18/%E6%B7%B1%E5%85%A5%E8%AF%A6%E8%A7%A3Java%E7%9A%84NIO%E4%B9%8BBuffer/"/>
+    <id>https://tunsuy.github.io/2016/12/18/深入详解Java的NIO之Buffer/</id>
+    <published>2016-12-18T12:03:09.000Z</published>
+    <updated>2017-03-21T09:39:00.535Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>Buffer是一个写入通道或者从通道中读取的数据块。Buffer是Java I/O和Java NIO的主要差异之一。对于早期的Java I/O，数据是基于流的方式进行读写的，而现在NIO是基于buffer的方式来读写的。NIO中的通道跟流是一个意思。</p>
+<h1 id="二、-Buffer特性"><a href="#二、-Buffer特性" class="headerlink" title="二、 Buffer特性"></a>二、 Buffer特性</h1><ul>
+<li>Buffer是Java NIO的基本构成组件。</li>
+<li>Buffer提供了一个固定大小的容器来读写数据。</li>
+<li>每个buffer都是可读的，但是只有被选中的buffer才是可写的。</li>
+<li>Buffer是通道的端点。</li>
+<li>在一个只读buffer中，内容是不可变的，但是它的 mark, position, limit 是可变的。</li>
+<li>默认的buffer是线程不安全的</li>
+</ul>
+<a id="more"></a>
+<p>Buffer的读写模式如图所示：</p>
+<img src="/2016/12/18/深入详解Java的NIO之Buffer/JavaNIOBuffer.png" alt="JavaNIOBuffer.png" title="">
+<h1 id="三、-Buffer的类型"><a href="#三、-Buffer的类型" class="headerlink" title="三、 Buffer的类型"></a>三、 Buffer的类型</h1><p>每个基本类型都有一个buffer类型想对应。所有的buffer类都实现了 Buffer 接口。大部分使用的类型是 <code>ByteBuffer</code>。下面是在Java NIO包中可用的buffer类型：</p>
+<ul>
+<li>ByteBuffer</li>
+<li>CharBuffer</li>
+<li>ShortBuffer</li>
+<li>IntBuffer</li>
+<li>LongBuffer</li>
+<li>FloatBuffer</li>
+<li>DoubleBuffer</li>
+<li>MappedByteBuffer<br>如图所示：</li>
+</ul>
+<img src="/2016/12/18/深入详解Java的NIO之Buffer/java-nio-buffer-classes.png" alt="java-nio-buffer-classes.png" title="">
+<p>这些类都不能直接实例化，因为他们都是抽象类，但是每个都包含了静态工厂方法来创建适当类的实例。</p>
+<h1 id="四、-Buffer的基本属性"><a href="#四、-Buffer的基本属性" class="headerlink" title="四、 Buffer的基本属性"></a>四、 Buffer的基本属性</h1><p>Buffer有四个基本的属性，下面简单介绍下</p>
+<p>1、容量Capacity<br>Buffer是一个固定大小的类型，这个最大固定大小就叫做capacity。一旦这个buffer是满了，那么就应该在写入它之前清空它。一旦capacity被设置，在它的生命周期内就不能再被改变了。</p>
+<p>2、上界Limit<br>对于写模式，limit 是等于buffer的 capacity的。对于读模式，limit是buffer的最后填充索引的下一个。当buffer被写入时，limit会自增。limit满足下面的条件： <code>0 &lt;= limit &lt;= capacity</code></p>
+<p>3、位置Position<br>Position是buffer中下一个要被读或者写的元素的索引。当buffer被创建时，position被初始化为0。当读写时，position是自增的。position总是处于0和limit之间。</p>
+<p>4、标记Mark<br>Mark就像是buffer中为position设置的书签一样。调用 <code>mark()</code> 来设定 <code>mark = position</code>，调用 <code>reset()</code> 来设定 <code>position = mark</code> 。</p>
+<h1 id="五、-Buffer相关操作"><a href="#五、-Buffer相关操作" class="headerlink" title="五、 Buffer相关操作"></a>五、 Buffer相关操作</h1><p>1、flip()<br>该方法被用来为 <code>get()</code> 操作准备一个 buffer ，或者是用来准备一个新的写序列。<code>flip()</code> 方法设置 <code>limit</code> 等于buffer的当前 <code>position</code>，然后将 <code>position = 0</code>。</p>
+<p>2、clear()<br>该方法用来为 <code>put()</code> 操作准备一个 buffer，或者用来准备一个新的读序列。<code>clear()</code> 方法设置 <code>limit = capacity</code> 和 <code>position = 0</code>。</p>
+<p>3、rewind()<br>该方法用来再次读取数据。它设置 <code>position = 0</code>。</p>
+<h1 id="六、-Buffer的创建"><a href="#六、-Buffer的创建" class="headerlink" title="六、 Buffer的创建"></a>六、 Buffer的创建</h1><p>Buffer是通过 <code>allocation</code> 或者 <code>wrapping</code> 来创建的。<code>allocation</code> 创建一个buffer对象，并且分配指定容量的私有空间来容纳数据元素。<code>wrapping</code> 创建一个buffer对象，但是不分配任何的空间来保存数据元素，它使用你提供的数组空间来存储buffer的数据元素。</p>
+<p>举例，创建一个能够容纳100个字符的 <code>CharBuffer</code>：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CharBuffer charBuffer = CharBuffer.allocate (<span class="number">100</span>);</div></pre></td></tr></table></figure></p>
+<p>上面这种方式，隐式的从堆上分配了一个char数组来存储这100个字符。如果你想要使用你自己创建的数组来存储，则使用 <code>wrap()</code> 方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> [] myArray = <span class="keyword">new</span> <span class="keyword">char</span> [<span class="number">100</span>];</div><div class="line">CharBuffer charbuffer = CharBuffer.wrap (myArray);</div></pre></td></tr></table></figure></p>
+<p>这意味着通过调用 <code>put()</code> 方法对buffer做的变更都会反映到这个数组中。同样的，对这个数组做的任何改变都将反映到buffer中。</p>
+<p>你也能够通过指定偏移和长度值作为 <code>position</code> 和 <code>limit</code> 来构造buffer：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> [] myArray = <span class="keyword">new</span> <span class="keyword">char</span> [<span class="number">100</span>];</div><div class="line">CharBuffer charbuffer = CharBuffer.wrap (myArray , <span class="number">12</span>, <span class="number">42</span>);</div></pre></td></tr></table></figure></p>
+<p>注：</p>
+<ul>
+<li>这个方法不会创建一个buffer，而是指向改数组的一个子集</li>
+<li>这个方法拥有这个数组整体的访问权，偏移和长度参数仅仅只是设置初始状态。</li>
+<li>调用这个buffer的 <code>clear()</code> 方法将使它的 <code>limit</code> 范围变为这个数组的所有元素</li>
+<li>调用 <code>slice()</code> 方法能够创建一个buffer指向这个数组的一部分</li>
+</ul>
+<p>通过 <code>allocate()</code> 或者 <code>wrap()</code> 方法创建的buffer都不是直接在内存中开辟空间的，而是指向一个已有的数组。使用 <code>hasArray()</code> 方法告诉你这个buffer是否有一个相关联的数组，如果返回 <code>true</code>，则可以使用 <code>array()</code> 方法返回一个数组的引用给buffer。如果返回 <code>false</code>，就不要调用 <code>array()</code> 和 <code>arrayOffset()</code>，否则将抛出 <code>UnsupportedOperationException</code> 异常。</p>
+<h1 id="七、访问Buffer"><a href="#七、访问Buffer" class="headerlink" title="七、访问Buffer"></a>七、访问Buffer</h1><p>每个buffer类都提供了  <code>get()</code> 和 <code>put()</code> 方法来访问buffer，比如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ByteBuffer</span> <span class="keyword">extends</span> <span class="title">Buffer</span> <span class="keyword">implements</span> <span class="title">Comparable</span></span></div><div class="line">&#123;</div><div class="line">        <span class="comment">// This is a partial API listing</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">byte</span> <span class="title">get</span><span class="params">()</span></span>;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">byte</span> <span class="title">get</span> <span class="params">(<span class="keyword">int</span> index)</span></span>;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> ByteBuffer <span class="title">put</span> <span class="params">(<span class="keyword">byte</span> b)</span></span>;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> ByteBuffer <span class="title">put</span> <span class="params">(<span class="keyword">int</span> index, <span class="keyword">byte</span> b)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p> 访问API有绝对和相对之分，调用相对访问API时，<code>position</code> 会自动的向前进一个，调用绝对访问API时，指定索引位置的内容会被覆盖掉或者按指定索引返回内容。</p>
+<h1 id="八、-Buffer的比较"><a href="#八、-Buffer的比较" class="headerlink" title="八、 Buffer的比较"></a>八、 Buffer的比较</h1><p> 所有的buffer类都提供了一个自定义的 <code>equals()</code> 方法 和 <code>compareTo()</code> 方法，比如：<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (buffer1.equals (buffer2)) &#123;</div><div class="line">        doSomething();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>两个buffer按照下面的规则进行比较：</p>
+<ul>
+<li>包含的对象必须是同等类型的</li>
+<li>两个buffer必须包含有相等数量的元素， 也就是说，buffer的容量不需要相同，buffer中剩余的数据索引不需要相同，但是buffer中剩余元素的数量（从 <code>position</code> 到 <code>limit</code>）必须相同</li>
+<li>从 <code>get()</code> 返回的剩余数据元素的序列在每个缓冲区中必须相同。</li>
+</ul>
+<p>buffer还支持使用<code>compareTo()</code>方法进行词典比较。该方法返回一个正数、负数或者0。比如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (buffer1.compareTo (buffer2) &gt; <span class="number">0</span>) &#123;</div><div class="line">        doSomething();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>参考文章 <a href="http://howtodoinjava.com/java-7/nio/java-nio-2-0-working-with-buffers/" target="_blank" rel="external">Working With Buffers</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、-简介&quot;&gt;&lt;a href=&quot;#一、-简介&quot; class=&quot;headerlink&quot; title=&quot;一、 简介&quot;&gt;&lt;/a&gt;一、 简介&lt;/h1&gt;&lt;p&gt;Buffer是一个写入通道或者从通道中读取的数据块。Buffer是Java I/O和Java NIO的主要差异之一。对于早期的Java I/O，数据是基于流的方式进行读写的，而现在NIO是基于buffer的方式来读写的。NIO中的通道跟流是一个意思。&lt;/p&gt;
+&lt;h1 id=&quot;二、-Buffer特性&quot;&gt;&lt;a href=&quot;#二、-Buffer特性&quot; class=&quot;headerlink&quot; title=&quot;二、 Buffer特性&quot;&gt;&lt;/a&gt;二、 Buffer特性&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;Buffer是Java NIO的基本构成组件。&lt;/li&gt;
+&lt;li&gt;Buffer提供了一个固定大小的容器来读写数据。&lt;/li&gt;
+&lt;li&gt;每个buffer都是可读的，但是只有被选中的buffer才是可写的。&lt;/li&gt;
+&lt;li&gt;Buffer是通道的端点。&lt;/li&gt;
+&lt;li&gt;在一个只读buffer中，内容是不可变的，但是它的 mark, position, limit 是可变的。&lt;/li&gt;
+&lt;li&gt;默认的buffer是线程不安全的&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="java" scheme="https://tunsuy.github.io/categories/java/"/>
+    
+    
+      <category term="java" scheme="https://tunsuy.github.io/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入详解Java的NIO之Channel</title>
+    <link href="https://tunsuy.github.io/2016/12/13/%E6%B7%B1%E5%85%A5%E8%AF%A6%E8%A7%A3Java%E7%9A%84NIO%E4%B9%8BChannel/"/>
+    <id>https://tunsuy.github.io/2016/12/13/深入详解Java的NIO之Channel/</id>
+    <published>2016-12-13T09:30:58.000Z</published>
+    <updated>2017-03-21T09:37:49.689Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>通道是java.nio在buffer之后的第二个主要创新。通道提供与I/O服务的直接连接。通道是一种在字节缓冲区和通道另一端的实体（通常是文件或套接字）之间高效传输数据的介质。通常通道与操作系统文件描述符具有一对一的关系。通道类提供了支持平台无关性所需的抽象，但仍然具有对现代操作系统的本机I/O建模的能力。通道是网关，通过它可以以最小的开销访问操作系统的本地I/O服务。</p>
+<a id="more"></a>
+<h1 id="二、-Channel接口"><a href="#二、-Channel接口" class="headerlink" title="二、 Channel接口"></a>二、 Channel接口</h1><p>通道与缓冲区不同，通道 API 主要由接口指定。不同的操作系统上通道实现（Channel Implementation）会有根本性的差异，所以通道 API 仅仅描述了可以做什么。因此很自然地，通道实现经常使用操作系统的本地代码。通道接口允许您以一种受控且可移植的方式来访问底层的 I/O服务。</p>
+<p>通道类簇图如下：</p>
+<img src="/2016/12/13/深入详解Java的NIO之Channel/nio-channel.png" alt="nio-channel.png" title="">
+<p><code>Channel</code> 作为NIO通道类的顶层类，是一个接口，如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> java.nio.channels;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Channel</span></span></div><div class="line">&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isOpen</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>从 Channel 接口引申出的其他接口都是面向字节的子接口，包括 Writable ByteChannel 和ReadableByteChannel。这也正好支持了我们之前所学的：通道只能在字节缓冲区上操作。</p>
+<h1 id="三、-打开通道"><a href="#三、-打开通道" class="headerlink" title="三、 打开通道"></a>三、 打开通道</h1><p>作为我们都知道的，I/O 分为两大类：文件I/O 和 流I/O。因此，这也就对应两种通道类型：<code>FileChannel</code>类 和 <code>SocketChannel</code>类</p>
+<p><code>FileChannel</code> 对象只能通过在一个打开的<code>RandomAccessFile</code>，<code>FileInputStream</code> 或 <code>FileOutputStream</code> 对象上调用 <code>getChannel()</code> 方法获得。示例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RandomAccessFile raf = <span class="keyword">new</span> RandomAccessFile (<span class="string">"somefile"</span>, <span class="string">"r"</span>);</div><div class="line">FileChannel fc = raf.getChannel();</div></pre></td></tr></table></figure></p>
+<p>相对于 <code>FileChannel</code>，<code>SocketChannel</code> 自身有工厂方法来创建新的socket通道，示例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//How to open SocketChannel</span></div><div class="line">SocketChannel sc = SocketChannel.open();</div><div class="line">sc.connect(<span class="keyword">new</span> InetSocketAddress(<span class="string">"somehost"</span>, someport));</div><div class="line"></div><div class="line"><span class="comment">//How to open ServerSocketChannel</span></div><div class="line">ServerSocketChannel ssc = ServerSocketChannel.open();</div><div class="line">ssc.socket().bind (<span class="keyword">new</span> InetSocketAddress (somelocalport));</div><div class="line"></div><div class="line"><span class="comment">//How to open DatagramChannel</span></div><div class="line">DatagramChannel dc = DatagramChannel.open();</div></pre></td></tr></table></figure></p>
+<h1 id="四、-打开通道"><a href="#四、-打开通道" class="headerlink" title="四、 打开通道"></a>四、 打开通道</h1><p>通过实现以下接口的相关方法，可以实现读写操作：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ReadableByteChannel</span> <span class="keyword">extends</span> <span class="title">Channel</span></span></div><div class="line">&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span> <span class="params">(ByteBuffer dst)</span> <span class="keyword">throws</span> IOException</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WritableByteChannel</span> <span class="keyword">extends</span> <span class="title">Channel</span></span></div><div class="line">&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">write</span> <span class="params">(ByteBuffer src)</span> <span class="keyword">throws</span> IOException</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ByteChannel</span> <span class="keyword">extends</span> <span class="title">ReadableByteChannel</span>, <span class="title">WritableByteChannel</span></span></div><div class="line">&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>通道可以是单向或者双向的，一个通道类只实现 <code>ReadableByteChannel</code> 接口，那么它就是单向的只读通道；如果一个通道类只实现 <code>WritableByteChannel</code> 接口，那么它就是单向的只写通道。如果一个通道类两者都实现了，那么它就是双向的可读写通道。</p>
+<p>文件通道和socket通道都实现了这三个接口，都是双向通道。</p>
+<p>对于文件通道来说，有一点需要注意：通过 <code>FileInputStream</code> 对象的 <code>getChannel()</code> 方法获得的 <code>FileChannel</code> 对象是只读的，但是因为 <code>FileChannel</code> 实现了 <code>ByteChannel</code> ，所以从接口层面上是双向的。如果在 <code>FileChannel</code> 上调用 <code>write()</code> 方法将抛出 <code>NonWritableChannelException</code> 异常。因此，请记住，当通道连接到特定的I/O服务时，通道实例的功能将受其连接的服务的特性约束：连接到只读文件的通道实例无法写入，即使该通道实例所属的类可能具有write()方法。示例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">FileInputStream input = <span class="keyword">new</span> FileInputStream (<span class="string">"readOnlyFile.txt"</span>);</div><div class="line">FileChannel channel = input.getChannel();</div><div class="line"></div><div class="line"><span class="comment">// This will compile but will throw an IOException</span></div><div class="line"><span class="comment">// because the underlying file is read-only</span></div><div class="line">channel.write (buffer);</div></pre></td></tr></table></figure></p>
+<p><code>ByteChannel</code> 的 <code>read()</code> 和 <code>write()</code> 方法以ByteBuffer对象作为参数。返回传输的字节数，可以小于缓冲区中的字节数，甚至为零。如果执行了部分传输，则可以将缓冲区重新传递到通道，以在其中断的地方继续传输数据。如此重复，直到缓冲区的 <code>hasRemaining()</code> 方法返回false。</p>
+<h1 id="五、工作模式"><a href="#五、工作模式" class="headerlink" title="五、工作模式"></a>五、工作模式</h1><p>通道可以工作在阻塞或非阻塞模式。非阻塞模式下，所请求的操作可以立即完成，也可以返回表示什么都没有完成的结果。</p>
+<p>只有面向流的信道，例如套接字和管道，可以被置于非阻塞模式。</p>
+<p><code>FileChannel</code> 总是阻塞的，因此不能被设置成非阻塞模式</p>
+<h1 id="六、-关闭通道"><a href="#六、-关闭通道" class="headerlink" title="六、 关闭通道"></a>六、 关闭通道</h1><p>想要关闭通道，需要使用 <code>close()</code> 方法。一个被关闭的通道不能再被使用。</p>
+<p>可以对一个通道多次调用 <code>close()</code> 方法，对一个已关闭的通道调用 <code>close()</code> 方法时，什么都不做，直接返回。</p>
+<p>可以使用 <code>isOpen()</code> 放来检查一个通道的打开状态。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、-简介&quot;&gt;&lt;a href=&quot;#一、-简介&quot; class=&quot;headerlink&quot; title=&quot;一、 简介&quot;&gt;&lt;/a&gt;一、 简介&lt;/h1&gt;&lt;p&gt;通道是java.nio在buffer之后的第二个主要创新。通道提供与I/O服务的直接连接。通道是一种在字节缓冲区和通道另一端的实体（通常是文件或套接字）之间高效传输数据的介质。通常通道与操作系统文件描述符具有一对一的关系。通道类提供了支持平台无关性所需的抽象，但仍然具有对现代操作系统的本机I/O建模的能力。通道是网关，通过它可以以最小的开销访问操作系统的本地I/O服务。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="java" scheme="https://tunsuy.github.io/categories/java/"/>
+    
+    
+      <category term="java" scheme="https://tunsuy.github.io/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>自编译mongo3.2测试</title>
     <link href="https://tunsuy.github.io/2016/12/09/%E8%87%AA%E7%BC%96%E8%AF%91mongo3-2%E6%B5%8B%E8%AF%95/"/>
     <id>https://tunsuy.github.io/2016/12/09/自编译mongo3-2测试/</id>
@@ -1050,91 +1180,6 @@
       <category term="ios" scheme="https://tunsuy.github.io/tags/ios/"/>
     
       <category term="https" scheme="https://tunsuy.github.io/tags/https/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>calabash-android原理分析</title>
-    <link href="https://tunsuy.github.io/2016/06/20/calabash-android%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
-    <id>https://tunsuy.github.io/2016/06/20/calabash-android原理分析/</id>
-    <published>2016-06-20T07:16:39.000Z</published>
-    <updated>2017-03-14T05:14:09.416Z</updated>
-    
-    <content type="html"><![CDATA[<p>在前面已经简单的介绍了calabash-ios的原理，这里将继续分析calabash-Android端的原理</p>
-<h1 id="一、-原理解析"><a href="#一、-原理解析" class="headerlink" title="一、 原理解析"></a>一、 原理解析</h1><p>calabash-android架构其实与IOS是相同的</p>
-<p>1、内部使用核心为cucumber的calabash的脚本在运行测试的时候会在虚拟机/真机上预装一个web服务器，这个web服务器就是解释calabash的脚本，</p>
-<p>2、因为calabash-Android是基于robotium框架的，所以在机器上预装的web-server会将下发下来的calabash脚本解释为robotium的脚本，然后向测试app发送robotium的脚本，</p>
-<a id="more"></a>
-<p>3、因为robotium框架就是封装的google测试框架instumentation，所以app拿到robotium脚本后，将其解释为instumentation命令向被测试的app发送这些命令，被测试的app执行这些命令，然后将结果返回。</p>
-<h1 id="二、-系统架构图"><a href="#二、-系统架构图" class="headerlink" title="二、 系统架构图"></a>二、 系统架构图</h1><p>calabash-Android整个框架采用 C/S 的运行模式，系统架构如下图所示：</p>
-<img src="/2016/06/20/calabash-android原理分析/calabash-android.jpg" alt="calabash-android.jpg" title="">
-<h1 id="三、-框架图解释"><a href="#三、-框架图解释" class="headerlink" title="三、 框架图解释"></a>三、 框架图解释</h1><p>1、Runner 负责接受用户指令，并对其进行数据校验、指令转换等操作，之后将其交由客户端处理（这里的客户端是指运行在pc上的用户自己编写的代码），</p>
-<p>2、instrumentation test server就是预装在设备上的web-server，客户端在接收到指令之后，将指令发送给它，请求其执行对应操作，</p>
-<p>3、web-server在接收到指令之后，解释该命令并与app进行交互，</p>
-<p>4、所有执行结果最终会被收集到 Results 中。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在前面已经简单的介绍了calabash-ios的原理，这里将继续分析calabash-Android端的原理&lt;/p&gt;
-&lt;h1 id=&quot;一、-原理解析&quot;&gt;&lt;a href=&quot;#一、-原理解析&quot; class=&quot;headerlink&quot; title=&quot;一、 原理解析&quot;&gt;&lt;/a&gt;一、 原理解析&lt;/h1&gt;&lt;p&gt;calabash-android架构其实与IOS是相同的&lt;/p&gt;
-&lt;p&gt;1、内部使用核心为cucumber的calabash的脚本在运行测试的时候会在虚拟机/真机上预装一个web服务器，这个web服务器就是解释calabash的脚本，&lt;/p&gt;
-&lt;p&gt;2、因为calabash-Android是基于robotium框架的，所以在机器上预装的web-server会将下发下来的calabash脚本解释为robotium的脚本，然后向测试app发送robotium的脚本，&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="android" scheme="https://tunsuy.github.io/categories/android/"/>
-    
-    
-      <category term="自动化测试" scheme="https://tunsuy.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
-    
-      <category term="android" scheme="https://tunsuy.github.io/tags/android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>docker自定义daemon选项</title>
-    <link href="https://tunsuy.github.io/2016/06/15/docker%E8%87%AA%E5%AE%9A%E4%B9%89daemon%E9%80%89%E9%A1%B9/"/>
-    <id>https://tunsuy.github.io/2016/06/15/docker自定义daemon选项/</id>
-    <published>2016-06-15T04:10:23.000Z</published>
-    <updated>2017-03-14T05:14:09.576Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、-前提"><a href="#一、-前提" class="headerlink" title="一、 前提"></a>一、 前提</h1><p>可以定义的选项为如下列出来的<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-current daemon --help</div></pre></td></tr></table></figure></p>
-<h1 id="二、-方案一"><a href="#二、-方案一" class="headerlink" title="二、 方案一"></a>二、 方案一</h1><h2 id="1、-分别定义各环境文件"><a href="#1、-分别定义各环境文件" class="headerlink" title="1、 分别定义各环境文件"></a>1、 分别定义各环境文件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eg：/etc/sysconfig/docker-storage</div><div class="line">/etc/sysconfig/docker-network</div></pre></td></tr></table></figure>
-<p>该文件中可以自定义环境变量</p>
-<a id="more"></a>
-<h2 id="2、-引入环境文件"><a href="#2、-引入环境文件" class="headerlink" title="2、 引入环境文件"></a>2、 引入环境文件</h2><p>在<code>/usr/lib/systemd/system/docker.service</code>文件中引入环境文件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eg：EnvironmentFile=-<span class="regexp">/etc/</span>sysconfig/docker-storage</div><div class="line">EnvironmentFile=-<span class="regexp">/etc/</span>sysconfig/docker-network</div></pre></td></tr></table></figure></p>
-<p>并使用其环境变量<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ExecStart=<span class="regexp">/usr/</span>bin/docker-current daemon \</div><div class="line">      $DOCKER_STORAGE_OPTIONS \</div><div class="line">      $DOCKER_NETWORK_OPTIONS \</div></pre></td></tr></table></figure></p>
-<p>备注：也可以将所有的自定义选项定义在一个文件中</p>
-<p>例：将官方镜像仓库替换为阿里云镜像仓库</p>
-<ul>
-<li>前提：注册阿里云用户，此时才会获取到一个私有的镜像仓库地址<pre><code>https://cr.console.aliyun.com/
-</code></pre></li>
-<li><p>在<code>/etc/sysconfig/docker</code>中的option变量中加上如下选项</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">--registry-mirror=https:<span class="comment">//u6nqa61i.mirror.aliyuncs.com</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>重启docker：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart docker</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="三、-方案二"><a href="#三、-方案二" class="headerlink" title="三、 方案二"></a>三、 方案二</h1><p>直接在<code>/usr/lib/systemd/system/docker.service</code>文件中加入选项<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">eg：ExecStart=<span class="regexp">/usr/</span>bin/docker-current daemon \</div><div class="line">      --exec-opt native.cgroupdriver=systemd \</div><div class="line">      --insecure-registry docker.ts.com:<span class="number">5000</span></div></pre></td></tr></table></figure></p>
-<h1 id="四、-方案三"><a href="#四、-方案三" class="headerlink" title="四、 方案三"></a>四、 方案三</h1><p>使用<code>daemon.json</code>文件<br>官方文档：<br><a href="https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file" target="_blank" rel="external">https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file</a><br>路径：<code>/etc/docker/daemon.json</code><br>备注：使用此方案不要与其他方案相混合使用，否则docker启动的时候会报错</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、-前提&quot;&gt;&lt;a href=&quot;#一、-前提&quot; class=&quot;headerlink&quot; title=&quot;一、 前提&quot;&gt;&lt;/a&gt;一、 前提&lt;/h1&gt;&lt;p&gt;可以定义的选项为如下列出来的&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;docker-current daemon --help&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h1 id=&quot;二、-方案一&quot;&gt;&lt;a href=&quot;#二、-方案一&quot; class=&quot;headerlink&quot; title=&quot;二、 方案一&quot;&gt;&lt;/a&gt;二、 方案一&lt;/h1&gt;&lt;h2 id=&quot;1、-分别定义各环境文件&quot;&gt;&lt;a href=&quot;#1、-分别定义各环境文件&quot; class=&quot;headerlink&quot; title=&quot;1、 分别定义各环境文件&quot;&gt;&lt;/a&gt;1、 分别定义各环境文件&lt;/h2&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;eg：/etc/sysconfig/docker-storage&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/etc/sysconfig/docker-network&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;该文件中可以自定义环境变量&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="docker" scheme="https://tunsuy.github.io/categories/docker/"/>
-    
-    
-      <category term="linux" scheme="https://tunsuy.github.io/tags/linux/"/>
-    
-      <category term="docker" scheme="https://tunsuy.github.io/tags/docker/"/>
     
   </entry>
   
