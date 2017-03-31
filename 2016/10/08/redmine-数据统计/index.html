@@ -134,7 +134,7 @@
 个人遗留问题数
 
 如果要加上其他维度的统计，也是非常简单的">
-<meta property="og:updated_time" content="2017-03-14T05:14:10.220Z">
+<meta property="og:updated_time" content="2017-03-31T09:58:35.049Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redmine-数据统计">
 <meta name="twitter:description" content="一、 项目说明语言：python语言
@@ -485,7 +485,7 @@
 <p>6、授予所有操作权限<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">grant</span> all <span class="keyword">privileges</span> <span class="keyword">on</span> bitnami_redmine.* <span class="keyword">to</span> <span class="string">'redmine_static'</span>@<span class="string">'200.200.169.162'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'moatest'</span>;</div></pre></td></tr></table></figure></p>
 <p>7、删除用户<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">drop</span> <span class="keyword">user</span> redmine_static@<span class="string">'%'</span>;</div></pre></td></tr></table></figure></p>
 <p>8、创建用户<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">user</span> redmine_static@<span class="string">'%'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'moatest'</span>;</div></pre></td></tr></table></figure></p>
-<h1 id="五、-redmine统计说明"><a href="#五、-redmine统计说明" class="headerlink" title="五、 redmine统计说明"></a>五、 redmine统计说明</h1><p>以我们公司项目为例<br>1、项目地址：200.200.169.162<br>2、在redmine服务器中新增一个mysql用户：redmine_static/moatest<br>——该用户只能在169.162中以用户名和密码的方式访问<br>——见如上2说明  </p>
+<h1 id="五、-redmine统计说明"><a href="#五、-redmine统计说明" class="headerlink" title="五、 redmine统计说明"></a>五、 redmine统计说明</h1><p>1、在redmine服务器中新增一个mysql用户：<br>——该用户只能在169.162中以用户名和密码的方式访问<br>——见如上2说明  </p>
 <h1 id="六、-使用"><a href="#六、-使用" class="headerlink" title="六、 使用"></a>六、 使用</h1><p>1、切换python环境：<code>pyenv activate venv2710</code><br>2、切换到项目路径<br>3、执行：python main.py [统计开始时间 统计结束时间]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">eg：python main.py <span class="number">2016</span><span class="number">-9</span><span class="number">-1</span> <span class="number">2016</span><span class="number">-12</span><span class="number">-31</span></div></pre></td></tr></table></figure></p>
 
       
