@@ -118,7 +118,7 @@
 <meta property="og:description" content="一、 项目简介语言：python语言
 该项目是对工程项目代码进行全面扫描，发现其是否有代码层面的bug目前第一版支持了ios下的api版本控制的扫描检查后续将逐渐支持其他方面的代码检查，比如是否有内存溢出，数组越界等，支持检查项可配置
 完整的项目源码地址：https://github.com/tunsuy/iOS-code-scan">
-<meta property="og:updated_time" content="2017-03-14T05:14:10.407Z">
+<meta property="og:updated_time" content="2017-04-11T08:17:29.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代码扫描之API调用版本检查">
 <meta name="twitter:description" content="一、 项目简介语言：python语言
@@ -450,7 +450,18 @@
 <li>多线程技术</li>
 <li>抽象类和类继承、生成器等高级技术</li>
 </ul>
-<h1 id="五、-对ios代码规范的建议"><a href="#五、-对ios代码规范的建议" class="headerlink" title="五、 对ios代码规范的建议"></a>五、 对ios代码规范的建议</h1><p>对于版本控制，统一使用宏定义<br>代码不要一行写多条语句，尽量按照ios开发规范来写代码</p>
+<h1 id="五、-工程介绍"><a href="#五、-工程介绍" class="headerlink" title="五、 工程介绍"></a>五、 工程介绍</h1><p>该工程包括两个项目</p>
+<h2 id="1、-爬虫项目"><a href="#1、-爬虫项目" class="headerlink" title="1、 爬虫项目"></a>1、 爬虫项目</h2><p>爬取所有的苹果官方object-c下的API相关信息，并保存在数据库中<br>使用</p>
+<ul>
+<li>切换到工程下的iOSAPI目录下</li>
+<li>执行scrapy crawl objcApi<br>会在当前目录下生成IOSAPI.db数据库文件<br>该数据库保存了所有API的相关信息</li>
+</ul>
+<h2 id="2、-扫描iOS项目"><a href="#2、-扫描iOS项目" class="headerlink" title="2、 扫描iOS项目"></a>2、 扫描iOS项目</h2><p>支持扫描单个文件或者项目目录，根据自己输入的参数决定<br>使用</p>
+<ul>
+<li>切换到工程下的scan_proj目录下</li>
+<li>执行python main.py 需要扫描的项目路径 结果保存文件<br>注：路径可以是单个文件名或者项目目录</li>
+</ul>
+<h1 id="六、-对ios代码规范的建议"><a href="#六、-对ios代码规范的建议" class="headerlink" title="六、 对ios代码规范的建议"></a>六、 对ios代码规范的建议</h1><p>对于版本控制，统一使用宏定义<br>代码不要一行写多条语句，尽量按照ios开发规范来写代码</p>
 
       
     </div>
@@ -609,7 +620,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">43</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -682,7 +693,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-项目简介"><span class="nav-text">一、 项目简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-实现思路"><span class="nav-text">二、 实现思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-解决方案如下"><span class="nav-text">三、 解决方案如下</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、-使用技术"><span class="nav-text">四、 使用技术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、-对ios代码规范的建议"><span class="nav-text">五、 对ios代码规范的建议</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-项目简介"><span class="nav-text">一、 项目简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-实现思路"><span class="nav-text">二、 实现思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-解决方案如下"><span class="nav-text">三、 解决方案如下</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、-使用技术"><span class="nav-text">四、 使用技术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、-工程介绍"><span class="nav-text">五、 工程介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-爬虫项目"><span class="nav-text">1、 爬虫项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-扫描iOS项目"><span class="nav-text">2、 扫描iOS项目</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、-对ios代码规范的建议"><span class="nav-text">六、 对ios代码规范的建议</span></a></li></ol></div>
             
 
           </div>

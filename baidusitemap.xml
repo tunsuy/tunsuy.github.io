@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>https://tunsuy.github.io/2016/09/18/%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F%E4%B9%8BAPI%E8%B0%83%E7%94%A8%E7%89%88%E6%9C%AC%E6%A3%80%E6%9F%A5/</loc>
+    <lastmod>2017-04-11T08:17:29.747Z</lastmod>
+    <data>
+        <display>
+        <title>代码扫描之API调用版本检查</title>
+        <pubTime>2016-09-18T02:09:21.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>python</tag>
+         
+        <tag>sqlite</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/03/20/redmine%E6%95%B0%E6%8D%AE%E5%AE%9A%E6%9C%9F%E5%A4%87%E4%BB%BD%E6%9C%BA%E5%88%B6/</loc>
+    <lastmod>2017-04-11T07:24:09.572Z</lastmod>
+    <data>
+        <display>
+        <title>redmine数据定期备份机制</title>
+        <pubTime>2015-03-20T07:21:24.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>redmine</tag>
+         
+         
+           
+             
+              <breadCrumb title="redmine" url="https://tunsuy.github.io/categories/redmine/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://tunsuy.github.io/2016/06/25/%E6%B5%85%E5%B0%9DPython%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/</loc>
     <lastmod>2017-04-10T12:06:04.881Z</lastmod>
     <data>
@@ -294,26 +340,6 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2015/04/06/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E6%B5%8B%E8%AF%95%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3/</loc>
-    <lastmod>2017-03-14T05:14:10.767Z</lastmod>
-    <data>
-        <display>
-        <title>移动互联网测试的所思所想</title>
-        <pubTime>2015-04-06T03:11:34.000Z</pubTime>
-        
-        <tag>测试</tag>
-         
-         
-           
-             
-              <breadCrumb title="杂谈" url="https://tunsuy.github.io/categories/%E6%9D%82%E8%B0%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://tunsuy.github.io/2016/12/09/%E8%87%AA%E7%BC%96%E8%AF%91mongo3-2%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2017-03-14T05:14:10.767Z</lastmod>
     <data>
@@ -329,6 +355,26 @@
            
              
               <breadCrumb title="mongodb" url="https://tunsuy.github.io/categories/mongodb/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/04/06/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E6%B5%8B%E8%AF%95%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3/</loc>
+    <lastmod>2017-03-14T05:14:10.767Z</lastmod>
+    <data>
+        <display>
+        <title>移动互联网测试的所思所想</title>
+        <pubTime>2015-04-06T03:11:34.000Z</pubTime>
+        
+        <tag>测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="杂谈" url="https://tunsuy.github.io/categories/%E6%9D%82%E8%B0%88/"/>
           
         </display>
     </data>
@@ -426,23 +472,21 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2016/09/18/%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F%E4%B9%8BAPI%E8%B0%83%E7%94%A8%E7%89%88%E6%9C%AC%E6%A3%80%E6%9F%A5/</loc>
-    <lastmod>2017-03-14T05:14:10.407Z</lastmod>
+    <loc>https://tunsuy.github.io/2016/04/14/selenium%E8%BF%9C%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8/</loc>
+    <lastmod>2017-03-14T05:14:10.313Z</lastmod>
     <data>
         <display>
-        <title>代码扫描之API调用版本检查</title>
-        <pubTime>2016-09-18T02:09:21.000Z</pubTime>
+        <title>selenium远程启动浏览器</title>
+        <pubTime>2016-04-14T11:08:23.000Z</pubTime>
         
-        <tag>ios</tag>
+        <tag>web</tag>
          
-        <tag>python</tag>
-         
-        <tag>sqlite</tag>
+        <tag>selenium</tag>
          
          
            
              
-              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+              <breadCrumb title="selenium" url="https://tunsuy.github.io/categories/selenium/"/>
           
         </display>
     </data>
@@ -465,28 +509,6 @@
            
              
               <breadCrumb title="linux" url="https://tunsuy.github.io/categories/linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tunsuy.github.io/2016/04/14/selenium%E8%BF%9C%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8/</loc>
-    <lastmod>2017-03-14T05:14:10.313Z</lastmod>
-    <data>
-        <display>
-        <title>selenium远程启动浏览器</title>
-        <pubTime>2016-04-14T11:08:23.000Z</pubTime>
-        
-        <tag>web</tag>
-         
-        <tag>selenium</tag>
-         
-         
-           
-             
-              <breadCrumb title="selenium" url="https://tunsuy.github.io/categories/selenium/"/>
           
         </display>
     </data>
@@ -613,9 +635,9 @@
         
         <tag>linux</tag>
          
-        <tag>redmine</tag>
-         
         <tag>ruby</tag>
+         
+        <tag>redmine</tag>
          
          
            
@@ -897,9 +919,9 @@
         
         <tag>ios</tag>
          
-        <tag>自动化测试</tag>
-         
         <tag>appium</tag>
+         
+        <tag>自动化测试</tag>
          
          
            

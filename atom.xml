@@ -663,7 +663,7 @@
     <link href="https://tunsuy.github.io/2016/09/18/%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F%E4%B9%8BAPI%E8%B0%83%E7%94%A8%E7%89%88%E6%9C%AC%E6%A3%80%E6%9F%A5/"/>
     <id>https://tunsuy.github.io/2016/09/18/代码扫描之API调用版本检查/</id>
     <published>2016-09-18T02:09:21.000Z</published>
-    <updated>2017-03-14T05:14:10.407Z</updated>
+    <updated>2017-04-11T08:17:29.747Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一、-项目简介"><a href="#一、-项目简介" class="headerlink" title="一、 项目简介"></a>一、 项目简介</h1><p>语言：python语言</p>
 <p>该项目是对工程项目代码进行全面扫描，发现其是否有代码层面的bug<br>目前第一版支持了ios下的api版本控制的扫描检查<br>后续将逐渐支持其他方面的代码检查，比如是否有内存溢出，数组越界等，支持检查项可配置</p>
@@ -682,7 +682,18 @@
 <li>多线程技术</li>
 <li>抽象类和类继承、生成器等高级技术</li>
 </ul>
-<h1 id="五、-对ios代码规范的建议"><a href="#五、-对ios代码规范的建议" class="headerlink" title="五、 对ios代码规范的建议"></a>五、 对ios代码规范的建议</h1><p>对于版本控制，统一使用宏定义<br>代码不要一行写多条语句，尽量按照ios开发规范来写代码</p>
+<h1 id="五、-工程介绍"><a href="#五、-工程介绍" class="headerlink" title="五、 工程介绍"></a>五、 工程介绍</h1><p>该工程包括两个项目</p>
+<h2 id="1、-爬虫项目"><a href="#1、-爬虫项目" class="headerlink" title="1、 爬虫项目"></a>1、 爬虫项目</h2><p>爬取所有的苹果官方object-c下的API相关信息，并保存在数据库中<br>使用</p>
+<ul>
+<li>切换到工程下的iOSAPI目录下</li>
+<li>执行scrapy crawl objcApi<br>会在当前目录下生成IOSAPI.db数据库文件<br>该数据库保存了所有API的相关信息</li>
+</ul>
+<h2 id="2、-扫描iOS项目"><a href="#2、-扫描iOS项目" class="headerlink" title="2、 扫描iOS项目"></a>2、 扫描iOS项目</h2><p>支持扫描单个文件或者项目目录，根据自己输入的参数决定<br>使用</p>
+<ul>
+<li>切换到工程下的scan_proj目录下</li>
+<li>执行python main.py 需要扫描的项目路径 结果保存文件<br>注：路径可以是单个文件名或者项目目录</li>
+</ul>
+<h1 id="六、-对ios代码规范的建议"><a href="#六、-对ios代码规范的建议" class="headerlink" title="六、 对ios代码规范的建议"></a>六、 对ios代码规范的建议</h1><p>对于版本控制，统一使用宏定义<br>代码不要一行写多条语句，尽量按照ios开发规范来写代码</p>
 ]]></content>
     
     <summary type="html">
@@ -1071,9 +1082,9 @@
     
       <category term="ios" scheme="https://tunsuy.github.io/tags/ios/"/>
     
-      <category term="自动化测试" scheme="https://tunsuy.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
-    
       <category term="appium" scheme="https://tunsuy.github.io/tags/appium/"/>
+    
+      <category term="自动化测试" scheme="https://tunsuy.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
