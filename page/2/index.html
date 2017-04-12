@@ -486,6 +486,180 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/09/20/谈谈在线支付的安全性问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/20/谈谈在线支付的安全性问题/" itemprop="url">
+                  谈谈在线支付的安全性问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-20T11:02:43+08:00">
+                2016-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/安全/" itemprop="url" rel="index">
+                    <span itemprop="name">安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/20/谈谈在线支付的安全性问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/20/谈谈在线支付的安全性问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/09/20/谈谈在线支付的安全性问题/" class="leancloud_visitors" data-flag-title="谈谈在线支付的安全性问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这篇文章主要是简单的谈谈在线支付的一些安全性漏洞，以及一些编码建议，最后附件是web安全的一些CheckList检查项。</p>
+<h1 id="一、-常见漏洞"><a href="#一、-常见漏洞" class="headerlink" title="一、 常见漏洞"></a>一、 常见漏洞</h1><p>1、支付过程中可直接修改数据包中的支付金额<br>这种漏洞是支付漏洞中最常见的。 开发人员为了方便，直接在支付的关键步骤数据包中直接传递需要支付的金额。 而这种金额后端没有做校验，传递过程中也没有做签名，导致可以随意篡改金额提交。</p>
+<p>2、没有对购买数量进行限制<br>2.1、产生的原因是开发人员没有对购买的数量参数进行严格的限制。 这种同样是数量的参数没有做签名，导致可随意修改。  </p>
+<p>2.2、经典的修改方式就是改成负数。 当购买的数量是一个负数时，总额的算法仍然是“购买数量x单价=总价”。 所以这样就会导致有一个负数的需支付金额。 若支付成功，则可能导致购买到了一个负数数量的产品，并有可能返还相应的积分/金币到你的账户上。  </p>
+<p>2.3、也有将数量改成一个超大的数。结果可能导致商品数量或者支付的金额超过一定数值而归0。</p>
+<p>3、请求重放<br>未对订单唯一性进行验证，导致购买商品成功后，重放其中请求，可以使购买商品一直增加。</p>
+<p>4、其他参数干扰<br>由于对商品价格，数量等以外的其它会影响最终金额参数(如：运费)缺乏验证导致最终金额可被控制。</p>
+<h1 id="二、-编码建议"><a href="#二、-编码建议" class="headerlink" title="二、 编码建议"></a>二、 编码建议</h1><p>1、对传递的金钱，数量等对最后支付金额会产生影响的所有参数做签名。并且注意签名算法不可被猜测到。使被修改过的数据无法通过验证。</p>
+<p>2、对重要的参数进行校检和有效性验证。</p>
+<p>3、注意验证订单的唯一性，防止重放攻击。</p>
+<h1 id="三、-安全检测CheckList"><a href="#三、-安全检测CheckList" class="headerlink" title="三、 安全检测CheckList"></a>三、 安全检测CheckList</h1>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/09/18/代码扫描之API调用版本检查/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -786,6 +960,393 @@
             </a>
           </div>
           <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/08/25/谈谈Android下App的安全性问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/25/谈谈Android下App的安全性问题/" itemprop="url">
+                  谈谈Android下App的安全性问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-25T10:24:56+08:00">
+                2016-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/安全/" itemprop="url" rel="index">
+                    <span itemprop="name">安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/25/谈谈Android下App的安全性问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/25/谈谈Android下App的安全性问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/08/25/谈谈Android下App的安全性问题/" class="leancloud_visitors" data-flag-title="谈谈Android下App的安全性问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>下面从Android的几大组件详细的谈谈一些注意事项和安全编码建议，以及一些测试方法</p>
+<h1 id="一、-Android-activity"><a href="#一、-Android-activity" class="headerlink" title="一、 Android-activity"></a>一、 Android-activity</h1><h2 id="1、-注意事项"><a href="#1、-注意事项" class="headerlink" title="1、 注意事项"></a>1、 注意事项</h2><p>1.1、app内使用的私有Activity不应配置 <code>intent-filter</code>，如果配置了 <code>intent-filter</code> 需设置 <code>exported</code> 属性为false。<br>1.2、使用默认 <code>taskAffinity</code><br>1.3、使用默认 <code>launchMode</code><br>1.4、启动Activity时不设置 <code>intent</code> 的 <code>FLAG_ACTIVITY_NEW_TASK</code> 标签<br>1.5、谨慎处理接收的intent以及其携带的信息<br>1.6、签名验证内部（in-house）app<br>1.7、当Activity返回数据时候需注意目标Activity是否有泄露信息的风险<br>1.8、目的Activity十分明确时使用显示启动<br>1.9、谨慎处理Activity返回的数据，目的Activity返回的数据有可能是恶意应用伪造的<br>1.10、验证目标Activity是否恶意app，以免受到intent欺骗，可用hash签名验证<br>1.11、尽可能的不发送敏感信息，应考虑到启动 <code>public Activity</code> 中 <code>intent</code> 的信息均有可能被恶意应用窃取的风险</p>
+<h2 id="2、-测试方法"><a href="#2、-测试方法" class="headerlink" title="2、 测试方法"></a>2、 测试方法</h2><p>2.1、查看activity：</p>
+<ul>
+<li>反编译查看配置文件AndroidManifest.xml中activity组件（关注配置了intent-filter的及未设置export=“false”的）</li>
+<li>直接用RE打开安装后的app查看配置文件</li>
+<li>Drozer扫描:run app.activity.info -a packagename</li>
+<li>动态查看：logcat设置filter的tag为ActivityManager</li>
+</ul>
+<p>2.2、启动activity：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">adb shell：am start -a action -n package/componet</div><div class="line">drozer: run app.activity.start –action android.action.intent.VIEW …</div></pre></td></tr></table></figure></p>
+<ul>
+<li>自己编写app调用 <code>startActiviy()</code> 或 <code>startActivityForResult()</code></li>
+<li>浏览器 <code>intent scheme</code>远程启动: <code>Intent scheme URL attack</code></li>
+</ul>
+<h1 id="二、-Android-service"><a href="#二、-Android-service" class="headerlink" title="二、 Android-service"></a>二、 Android-service</h1><h2 id="1、-intent-filter与exported组合建议"><a href="#1、-intent-filter与exported组合建议" class="headerlink" title="1、 intent-filter与exported组合建议"></a>1、 intent-filter与exported组合建议</h2><p>1.1、<code>exported</code> 属性明确定义<br>1.2、私有service不定义 <code>intent-filter</code> 并且设置 <code>exported</code> 为false<br>1.3、公开的service设置 <code>exported</code>为true, <code>intent-filter</code> 可以定义或者不定义<br>1.4、内部/合作service设置 <code>exported</code> 为true, <code>intent-filter</code> 不定义  </p>
+<h2 id="2、-注意事项"><a href="#2、-注意事项" class="headerlink" title="2、 注意事项"></a>2、 注意事项</h2><p>2.1、只被应用本身使用的service应设置为私有<br>2.2、service接收到的数据需需谨慎处理<br>2.3、内部service需使用签名级别的 <code>protectionLevel</code> 来判断是否未内部应用调用<br>2.4、不应在service创建(<code>onCreate</code>方法被调用)的时候决定是否提供服务,应在 <code>onStartCommand/onBind/onHandleIntent</code> 等方法被调用的时候做判断.<br>2.5、当service又返回数据的时候,因判断数据接收app是否又信息泄露的风险<br>2.6、有明确的服务需调用时使用显示意图<br>2.7、尽量不发送敏感信息<br>2.8、合作service需对合作公司的app签名做效验</p>
+<h2 id="3、-测试方法"><a href="#3、-测试方法" class="headerlink" title="3、 测试方法"></a>3、 测试方法</h2><p>3.1、service不像 <code>broadcast receicer</code> 只能静态注册,通过反编译查看配置文件 <code>Androidmanifest.xml</code> 即可确定service,若有导出的service则进行下一步<br>3.2、方法查看service类,重点关注 <code>onCreate/onStarCommand/onHandleIntent</code> 方法<br>3.3、检索所有类中 <code>startService/bindService</code> 方法及其传递的数据<br>3.4、根据业务情况编写测试poc或者直接使用adb命令测试</p>
+<h1 id="三、-Android-Content-Provider"><a href="#三、-Android-Content-Provider" class="headerlink" title="三、 Android-Content Provider"></a>三、 Android-Content Provider</h1><h2 id="1、-安全建议"><a href="#1、-安全建议" class="headerlink" title="1、 安全建议"></a>1、 安全建议</h2><p>1.1、<code>minSdkVersion</code> 不低于9<br>1.2、不向外部app提供的数据的私有 <code>content provider</code> 设置 <code>exported=“false”</code> 避免组件暴露(编译api小于17时更应注意此点)<br>1.3、使用参数化查询避免注入<br>1.4、内部app通过 <code>content provid</code> 交换数据设置 <code>protectionLevel=“signature”</code> 验证签名<br>1.5、公开的 <code>content provider</code> 确保不存储敏感数据<br>1.6、提供asset文件时注意权限保护</p>
+<h2 id="2、-测试方法-1"><a href="#2、-测试方法-1" class="headerlink" title="2、 测试方法"></a>2、 测试方法</h2><p>2.1、反编译查看 <code>AndroidManifest.xml</code>（drozer扫描）文件定位 <code>content provider</code> 是否导出，是否配置权限，确定authority<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!bash</span></div><div class="line">drozer:</div><div class="line">run app.provider.info <span class="_">-a</span> cn.etouch.ecalendar</div></pre></td></tr></table></figure></p>
+<p>2.2、反编译查找path，关键字 <code>addURI、hook api</code> 动态监测推荐使用zjdroid<br>2.3、确定authority和path后根据业务编写POC、使用drozer、使用小工具 <code>Content Provider Helper、adb shell</code>(没有对应权限会提示错误)</p>
+<h1 id="四、-Android-Broadcast"><a href="#四、-Android-Broadcast" class="headerlink" title="四、 Android-Broadcast"></a>四、 Android-Broadcast</h1><h2 id="1、-安全建议-1"><a href="#1、-安全建议-1" class="headerlink" title="1、 安全建议"></a>1、 安全建议</h2><p>1.1、私有广播接收器设置 <code>exported=&#39;false&#39;</code>，并且不配置 <code>intent-filter</code>。(私有广播接收器依然能接收到同UID的广播)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;receiver android:name=“.PrivateReceiver” android:exported=“<span class="keyword">false</span>” /&gt;</div></pre></td></tr></table></figure></p>
+<p>1.2、对接收来的广播进行验证<br>1.3、内部app之间的广播使用 <code>protectionLevel=&#39;signature&#39;</code> 验证其是否真是内部app<br>1.4、返回结果时需注意接收app是否会泄露信息<br>1.5、发送的广播包含敏感信息时需指定广播接收器，使用显示意图<br>1.6、<code>sticky broadcast</code> 粘性广播中不应包含敏感信息<br>1.7、<code>Ordered Broadcast</code> 建议设置接收权限 <code>receiverPermission</code>，避免恶意应用设置高优先级抢收此广播后并执行 <code>abortBroadcast()</code> 方法。</p>
+<h2 id="2、-测试方法-2"><a href="#2、-测试方法-2" class="headerlink" title="2、 测试方法"></a>2、 测试方法</h2><p>2.1、查找动态广播接收器：反编译后检索 <code>registerReceiver()</code>,<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dz&gt; run app.broadcast.info -a android -i</div></pre></td></tr></table></figure></p>
+<p>2.2、查找静态广播接收器：反编译后查看配置文件查找广播接收器组件，注意exported属性<br>2.3、查找发送广播内的信息检索 <code>sendBroadcast</code> 与 <code>sendOrderedBroadcast</code>，注意 <code>setPackage</code> 方法于 <code>receiverPermission</code> 变量。</p>
+<h1 id="五、-Android-webview"><a href="#五、-Android-webview" class="headerlink" title="五、 Android-webview"></a>五、 Android-webview</h1><h2 id="1、-webview接口"><a href="#1、-webview接口" class="headerlink" title="1、 webview接口"></a>1、 webview接口</h2><p>1.1、Android 4.2 （api17）已经开始采用新的接口方法，<code>@JavascriptInterface</code> 代替 <code>addjavascriptInterface</code>, 有些android 2.3不再升级，浏览器需要兼容。<br>1.2、在使用 <code>js2java</code> 的 <code>bridge</code> 时候，需要对每个传入的参数进行验证，屏蔽攻击代码。<br>1.3、控制相关权限或者尽可能不要使用 <code>js2java</code> 的 <code>Bridge</code>。</p>
+<h2 id="2、-webview-UXSS"><a href="#2、-webview-UXSS" class="headerlink" title="2、 webview UXSS"></a>2、 webview UXSS</h2><p>2.1、服务端禁止 <code>frame</code> 嵌套 <code>X-FRAME-OPTIONS:DENY</code>。<br>2.2、客户端使用 <code>setAllowFileAccess(false)</code> 方法禁止 <code>webview</code> 访问本地域。<br>2.3、客户端使用 <code>onPageStarted (WebView view, String url, Bitmap favicon)</code> 方法在跳转前进行跨域判断。<br>2.4、客户端对 <code>iframe object</code> 标签属性进行过滤。</p>
+<h1 id="六、-Android开发的安全防护"><a href="#六、-Android开发的安全防护" class="headerlink" title="六、 Android开发的安全防护"></a>六、 Android开发的安全防护</h1><p>安卓应用在开发过程中有很多安全保护的方案</p>
+<p>1、使用混淆保护,对APK代码进行基础的防护。<br>2、使用伪加密保护方式，通过java代码对APK(压缩文件)进行伪加密，其修改原理是修改连续4位字节标记为”PK0102”的后第5位字节，奇数表示不加密偶数表示加密。伪加密后的APK不但可以防止PC端对它的解压和查看也同样能防止反编译工具编译。<br>3、通过标志尾添加其他数据从而防止PC工具解压反编译，这样处理后把APK看做压缩文件的PC端来说这个文件被破坏了，所以你要对其进行解压或者查看都会提示文件已损坏，用反编译工具也会提示文件已损坏，但是它却不会影响在Android系统里面的正常运行和安装而且也能兼容到所有系统<br>4、验证签名信息,通过本地或网络对签名的信息进行验证<br>5、网上针对app防止反编译的做法是可以使用加壳技术</p>
+<h1 id="七、-安全检测CheckList"><a href="#七、-安全检测CheckList" class="headerlink" title="七、 安全检测CheckList"></a>七、 安全检测CheckList</h1>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/08/20/谈谈iOS下App的安全性问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/20/谈谈iOS下App的安全性问题/" itemprop="url">
+                  谈谈iOS下App的安全性问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-20T09:22:44+08:00">
+                2016-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/安全/" itemprop="url" rel="index">
+                    <span itemprop="name">安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/20/谈谈iOS下App的安全性问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/20/谈谈iOS下App的安全性问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/08/20/谈谈iOS下App的安全性问题/" class="leancloud_visitors" data-flag-title="谈谈iOS下App的安全性问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>下面从几个方面谈谈App的安全性问题，也有一些解决方案建议。</p>
+<h1 id="一、-URL-Scheme"><a href="#一、-URL-Scheme" class="headerlink" title="一、 URL Scheme"></a>一、 URL Scheme</h1><p>在iOS官方说明中：“在多个应用程序注册了同一种URL Scheme 的时候，iOS 系统程序的优先级高于第三方开发程序。但是如果一种URL Scheme 的注册应用程序都是第三方开发的，那么这些程序的优先级关系是不确定的</p>
+<p>针对第三方应用。这里至少有两种方法可以检测自己应用的URL Scheme是否被Hijack：<br>1、应用本身可以发送一条URL Scheme请求给自己，如果自己可以接收到的话，说明URL Scheme没有被劫持，如果不能收到的话，就说明被劫持了，这时候可以提醒用户卸载有冲突的app。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@“alipay://test“]];</div></pre></td></tr></table></figure></p>
+<p>2、利用 <code>MobileCoreServices</code> 服务中的 <code>applicationsAvailableForHandlingURLScheme()</code> 方法可以所有注册了该URL Schemes的应用和处理顺序，随后应用就可以检测自己，或者别人的URL Scheme是否被劫持了。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Class LSApplicationWorkspace_class = objc_getClass(&quot;LSApplicationWorkspace&quot;);</div><div class="line">NSObject* workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];</div><div class="line">NSLog(@&quot;openURL: %@&quot;,[workspace performSelector:@selector(applicationsAvailableForHandlingURLScheme:)withObject:@&quot;alipay&quot;]);</div></pre></td></tr></table></figure></p>
+<p>编码建议：<br>一个App如果对外的URL Scheme没有做异常数据检测，那么在传输一个异常的参数时，会导致应用崩溃。所以需要做一些异常数据的检测处理。</p>
+<h1 id="二、-Storage"><a href="#二、-Storage" class="headerlink" title="二、 Storage"></a>二、 Storage</h1><p>iOS app安装之后的目录如下：<br>1、Document目录：目录存储用户数据或其他应该定期备份的信息。<br>2、AppName.app目录：这是应用程序的程序包目录，包括应用程序本身，在AppStore上下载的APP是需要脱壳的才能将程序用IDA反编译的。<br>3、Library目录：这个目录下有两个子目录Caches和Preference，Caches目录存储应用程序专用的支持文件，保存应用程序再次启动过程中需要的信息，而Preference目录包含程序的偏好设置。</p>
+<p>数据库文件：<br>1、Sqlite db：存储app使用过程中的一些用户数据</p>
+<p>编码建议：<br>一些敏感数据不要存储在本地文件中，也不要打印在log日志中，如果需要存储，则需要加密存储。</p>
+<p>2、Cache dbs<br>存储一些通过NSURLConnection 产生的请求回复数据</p>
+<p>编码建议：<br>对于一些附件的链接，需要设置token有效时间，当然这是服务端需要处理的问题</p>
+<h1 id="三、-Cookie"><a href="#三、-Cookie" class="headerlink" title="三、 Cookie"></a>三、 Cookie</h1><p>iOS开发中的Cookie一般存储在 <code>cookie.binary</code> 或者 <code>keychain</code></p>
+<p>1、cookie.binary<br>保存在 <code>cookie.binary</code> 中，很容易就被别人利用（即使不越狱）<br>路径： <code>/private/var/mobile/Application/x-x-x/Library/Cookies/Cookies.binarycookies</code></p>
+<p>2、Keychain<br>iOS系统及第三方应用都会使用Keychain来作为数据持久化存储媒介，或者应用间数据共享的渠道。<br>那么怎么来查看存储的内容呢，利用keychain_dumper工具。</p>
+<p>操作步骤极其简单：  </p>
+<ul>
+<li>首先在手机上安装keychain_dumper工具，在cydia上安装就可以了，然后使用ssh登录手机终端</li>
+<li><p>赋予Keychain数据库可读权限</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># cd /private/var/Keychains/ </div><div class="line"># ls </div><div class="line">TrustStore.sqlite3  accountStatus.plist  caissuercache.sqlite3  keychain-2.db  keychain-2.db-shm  keychain-2.db-wal  ocspcache.sqlite3  ocspcache.sqlite3-shm  ocspcache.sqlite3-wal </div><div class="line"># chmod +r keychain-2.db</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用Keychain-Dumper导出Keychain</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Primer:/private/var/Keychainsroot# /your_path/keychain_dumper &gt; keychain-export.txt</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后拷贝到本地查看，到底iOS系统和第三方应用都存放了哪些信息，就一览无余了。</p>
+<p>Cookie安全设计的几点建议：</p>
+<ul>
+<li>Cookie 存放在 非Keychain 中，那么就应该加 随机数和Token 双层加密，虽然还有被逆向的可能，但是将难度大大增加</li>
+<li>Cookie 存放在 非Keychain 中，加入越狱检测代码，如果检测到越狱就提醒不要存放或者登陆，例子是 支付宝的指纹功能在越狱机提示不能用。</li>
+<li>将Cookie的一部分 存放在 Keychain中，并且加密，另外一部分存放在别处(或者就在 另一处Keychain)，被逆向的难度也大大增加.</li>
+<li>将网页Cookie和App Cookie 的验证分开，这样的情况还没遇到过</li>
+</ul>
+<h1 id="四、-安全检测CheckList"><a href="#四、-安全检测CheckList" class="headerlink" title="四、 安全检测CheckList"></a>四、 安全检测CheckList</h1><a href="/2016/08/20/谈谈iOS下App的安全性问题/iOS安全检查点.xlsx" title="iOS安全检查点.xlsx">iOS安全检查点.xlsx</a>
+
+          
         
       
     </div>
@@ -1506,516 +2067,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/07/10/appium-ios自动化入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tunsuy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headpic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鱼儿塘">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/10/appium-ios自动化入门/" itemprop="url">
-                  appium-ios自动化入门
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-10T15:13:01+08:00">
-                2016-07-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/07/10/appium-ios自动化入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/appium-ios自动化入门/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/07/10/appium-ios自动化入门/" class="leancloud_visitors" data-flag-title="appium-ios自动化入门">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  </p>
-<p>这次先介绍appium的使用过程，后续有时间会看下其源码实现机制。</p>
-<p>在mac下配置appium的自动化测试环境在这里就不说了，网上很多</p>
-<p>因为查了下appium针对ios的自动化测试，网上的资料比较少，且说得不是很清楚，故这篇文章主要介绍怎样使用appium自动化测试自己的项目。</p>
-<p>这些操作步骤均是自己亲自操作并实践通过的</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/07/10/appium-ios自动化入门/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/07/05/深入详解Java迭代器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tunsuy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headpic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鱼儿塘">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/05/深入详解Java迭代器/" itemprop="url">
-                  深入详解Java迭代器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-05T18:16:54+08:00">
-                2016-07-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/07/05/深入详解Java迭代器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/05/深入详解Java迭代器/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/07/05/深入详解Java迭代器/" class="leancloud_visitors" data-flag-title="深入详解Java迭代器">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>java中的迭代器有三种</p>
-<h1 id="一、-Enumeration"><a href="#一、-Enumeration" class="headerlink" title="一、 Enumeration"></a>一、 Enumeration</h1><p>它是用于获取早期遗留集合（Vector，Hashtable）元素的接口。<code>Enumeration</code> 是JDK 1.0中的第一个迭代器，其余的包含在JDK 1.2中，具有更多的功能。<code>Enumeration</code> 也用于指定 <code>SequenceInputStream</code> 的输入流。<br>我们可以通过在任何 <code>Vector</code> 对象上调用 <code>elements()</code> 方法来创建 <code>Enumeration</code> 对象<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Enumeration e = v.elements();</div></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/07/05/深入详解Java迭代器/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/06/28/calabash-ios安装详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tunsuy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/headpic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鱼儿塘">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/28/calabash-ios安装详解/" itemprop="url">
-                  calabash-ios安装详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-28T14:48:31+08:00">
-                2016-06-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/06/28/calabash-ios安装详解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/28/calabash-ios安装详解/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/06/28/calabash-ios安装详解/" class="leancloud_visitors" data-flag-title="calabash-ios安装详解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、 简介"></a>一、 简介</h1><p>为了更好的理解业内app自动化测试框架的原理机制，以便看是否有很好的办法在解决目前项目自动化测试存在的一些问题  </p>
-<p>这次先介绍calabash的使用过程，后续有时间会看下其源码实现机制。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/06/28/calabash-ios安装详解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2065,7 +2116,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2074,7 +2125,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2083,7 +2134,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
