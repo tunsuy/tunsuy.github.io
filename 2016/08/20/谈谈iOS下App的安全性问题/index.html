@@ -118,7 +118,7 @@
 <meta property="og:description" content="下面从几个方面谈谈App的安全性问题，也有一些解决方案建议。
 一、 URL Scheme在iOS官方说明中：“在多个应用程序注册了同一种URL Scheme 的时候，iOS 系统程序的优先级高于第三方开发程序。但是如果一种URL Scheme 的注册应用程序都是第三方开发的，那么这些程序的优先级关系是不确定的
 针对第三方应用。这里至少有两种方法可以检测自己应用的URL Scheme是否被Hijac">
-<meta property="og:updated_time" content="2017-04-12T03:18:11.207Z">
+<meta property="og:updated_time" content="2017-04-12T03:28:41.331Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈iOS下App的安全性问题">
 <meta name="twitter:description" content="下面从几个方面谈谈App的安全性问题，也有一些解决方案建议。
@@ -437,8 +437,8 @@
 <h1 id="一、-URL-Scheme"><a href="#一、-URL-Scheme" class="headerlink" title="一、 URL Scheme"></a>一、 URL Scheme</h1><p>在iOS官方说明中：“在多个应用程序注册了同一种URL Scheme 的时候，iOS 系统程序的优先级高于第三方开发程序。但是如果一种URL Scheme 的注册应用程序都是第三方开发的，那么这些程序的优先级关系是不确定的</p>
 <p>针对第三方应用。这里至少有两种方法可以检测自己应用的URL Scheme是否被Hijack：<br>1、应用本身可以发送一条URL Scheme请求给自己，如果自己可以接收到的话，说明URL Scheme没有被劫持，如果不能收到的话，就说明被劫持了，这时候可以提醒用户卸载有冲突的app。代码如下：</p>
 <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@“alipay://test“]];</div></pre></td></tr></table></figure>
-<p>2、利用 <code>MobileCoreServices</code> 服务中的 <code>applicationsAvailableForHandlingURLScheme()</code> 方法可以所有注册了该URL Schemes的应用和处理顺序，随后应用就可以检测自己，或者别人的URL Scheme是否被劫持了。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Class LSApplicationWorkspace_class = objc_getClass(&quot;LSApplicationWorkspace&quot;);</div><div class="line">NSObject* workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];</div><div class="line">NSLog(@&quot;openURL: %@&quot;,[workspace performSelector:@selector(applicationsAvailableForHandlingURLScheme:)withObject:@&quot;alipay&quot;]);</div></pre></td></tr></table></figure></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[<span class="built_in">UIApplication</span> sharedApplication] openURL:[<span class="built_in">NSURL</span> URLWithString:@“alipay:<span class="comment">//test“]];</span></div></pre></td></tr></table></figure>
+<p>2、利用 <code>MobileCoreServices</code> 服务中的 <code>applicationsAvailableForHandlingURLScheme()</code> 方法可以所有注册了该URL Schemes的应用和处理顺序，随后应用就可以检测自己，或者别人的URL Scheme是否被劫持了。代码如下：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Class LSApplicationWorkspace_class = objc_getClass(<span class="string">"LSApplicationWorkspace"</span>);</div><div class="line"><span class="built_in">NSObject</span>* workspace = [LSApplicationWorkspace_class performSelector:<span class="keyword">@selector</span>(defaultWorkspace)];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"openURL: %@"</span>,[workspace performSelector:<span class="keyword">@selector</span>(applicationsAvailableForHandlingURLScheme:)withObject:<span class="string">@"alipay"</span>]);</div></pre></td></tr></table></figure></p>
 <p>编码建议：<br>一个App如果对外的URL Scheme没有做异常数据检测，那么在传输一个异常的参数时，会导致应用崩溃。所以需要做一些异常数据的检测处理。</p>
 <h1 id="二、-Storage"><a href="#二、-Storage" class="headerlink" title="二、 Storage"></a>二、 Storage</h1><p>iOS app安装之后的目录如下：<br>1、Document目录：目录存储用户数据或其他应该定期备份的信息。<br>2、AppName.app目录：这是应用程序的程序包目录，包括应用程序本身，在AppStore上下载的APP是需要脱壳的才能将程序用IDA反编译的。<br>3、Library目录：这个目录下有两个子目录Caches和Preference，Caches目录存储应用程序专用的支持文件，保存应用程序再次启动过程中需要的信息，而Preference目录包含程序的偏好设置。</p>
 <p>数据库文件：<br>1、Sqlite db：存储app使用过程中的一些用户数据</p>
@@ -466,7 +466,8 @@
 <li>将Cookie的一部分 存放在 Keychain中，并且加密，另外一部分存放在别处(或者就在 另一处Keychain)，被逆向的难度也大大增加.</li>
 <li>将网页Cookie和App Cookie 的验证分开，这样的情况还没遇到过</li>
 </ul>
-<h1 id="四、-安全检测CheckList"><a href="#四、-安全检测CheckList" class="headerlink" title="四、 安全检测CheckList"></a>四、 安全检测CheckList</h1><pre><code>{% asset_link iOS安全检查点.xlsx %}
+<h1 id="四、-安全检测CheckList"><a href="#四、-安全检测CheckList" class="headerlink" title="四、 安全检测CheckList"></a>四、 安全检测CheckList</h1><p>附件：点击即可下载</p>
+<pre><code>{% asset_link iOS安全检查点.xlsx %}
 </code></pre>
       
     </div>
