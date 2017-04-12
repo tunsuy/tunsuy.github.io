@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="鱼儿塘">
 <meta property="og:description" content="下面从Android的几大组件详细的谈谈一些注意事项和安全编码建议，以及一些测试方法
 一、 Android-activity1、 注意事项1.1、app内使用的私有Activity不应配置 intent-filter，如果配置了 intent-filter 需设置 exported 属性为false。1.2、使用默认 taskAffinity1.3、使用默认 launchMode1.4、启动Act">
-<meta property="og:updated_time" content="2017-04-12T03:14:45.267Z">
+<meta property="og:updated_time" content="2017-04-12T03:31:45.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈Android下App的安全性问题">
 <meta name="twitter:description" content="下面从Android的几大组件详细的谈谈一些注意事项和安全编码建议，以及一些测试方法
@@ -460,7 +460,8 @@
 <h2 id="2、-webview-UXSS"><a href="#2、-webview-UXSS" class="headerlink" title="2、 webview UXSS"></a>2、 webview UXSS</h2><p>2.1、服务端禁止 <code>frame</code> 嵌套 <code>X-FRAME-OPTIONS:DENY</code>。<br>2.2、客户端使用 <code>setAllowFileAccess(false)</code> 方法禁止 <code>webview</code> 访问本地域。<br>2.3、客户端使用 <code>onPageStarted (WebView view, String url, Bitmap favicon)</code> 方法在跳转前进行跨域判断。<br>2.4、客户端对 <code>iframe object</code> 标签属性进行过滤。</p>
 <h1 id="六、-Android开发的安全防护"><a href="#六、-Android开发的安全防护" class="headerlink" title="六、 Android开发的安全防护"></a>六、 Android开发的安全防护</h1><p>安卓应用在开发过程中有很多安全保护的方案</p>
 <p>1、使用混淆保护,对APK代码进行基础的防护。<br>2、使用伪加密保护方式，通过java代码对APK(压缩文件)进行伪加密，其修改原理是修改连续4位字节标记为”PK0102”的后第5位字节，奇数表示不加密偶数表示加密。伪加密后的APK不但可以防止PC端对它的解压和查看也同样能防止反编译工具编译。<br>3、通过标志尾添加其他数据从而防止PC工具解压反编译，这样处理后把APK看做压缩文件的PC端来说这个文件被破坏了，所以你要对其进行解压或者查看都会提示文件已损坏，用反编译工具也会提示文件已损坏，但是它却不会影响在Android系统里面的正常运行和安装而且也能兼容到所有系统<br>4、验证签名信息,通过本地或网络对签名的信息进行验证<br>5、网上针对app防止反编译的做法是可以使用加壳技术</p>
-<h1 id="七、-安全检测CheckList"><a href="#七、-安全检测CheckList" class="headerlink" title="七、 安全检测CheckList"></a>七、 安全检测CheckList</h1><a href="/2016/08/25/谈谈Android下App的安全性问题/Android安全检查点.xlsx" title="Android安全检查点.xlsx">Android安全检查点.xlsx</a>
+<h1 id="七、-安全检测CheckList"><a href="#七、-安全检测CheckList" class="headerlink" title="七、 安全检测CheckList"></a>七、 安全检测CheckList</h1><p>附件：点击即可下载</p>
+<a href="/2016/08/25/谈谈Android下App的安全性问题/Android安全检查点.xlsx" title="Android安全检查点.xlsx">Android安全检查点.xlsx</a>
 
       
     </div>
