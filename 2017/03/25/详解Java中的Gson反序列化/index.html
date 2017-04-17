@@ -108,31 +108,31 @@
 
 
 
-<meta name="description" content="在这篇文章中，我们将看到如何将复杂的JSON实体反序列化为已有的Java对象。我们将看到怎么使用GSON的deserialiser，以控制JSON实体映射到Java对象。
+<meta name="description" content="译自 GSON DESERIALISER EXAMPLE
+在这篇文章中，我们将看到如何将复杂的JSON实体反序列化为已有的Java对象。我们将看到怎么使用GSON的deserialiser，以控制JSON实体映射到Java对象。
 一、 前言请注意，在这篇文章中我们将使用术语解析或反序列化。
-下面列出的所有代码均放在：。
-二、 简单例子比方说，我们有以下的JSON实体123456&amp;#123;  &apos;title&apos;:    &apos;Java Puzzlers: Tra">
+下面列出的所有代码均放在：。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入详解Java中的Gson反序列化">
 <meta property="og:url" content="https://tunsuy.github.io/2017/03/25/详解Java中的Gson反序列化/index.html">
 <meta property="og:site_name" content="鱼儿塘">
-<meta property="og:description" content="在这篇文章中，我们将看到如何将复杂的JSON实体反序列化为已有的Java对象。我们将看到怎么使用GSON的deserialiser，以控制JSON实体映射到Java对象。
+<meta property="og:description" content="译自 GSON DESERIALISER EXAMPLE
+在这篇文章中，我们将看到如何将复杂的JSON实体反序列化为已有的Java对象。我们将看到怎么使用GSON的deserialiser，以控制JSON实体映射到Java对象。
 一、 前言请注意，在这篇文章中我们将使用术语解析或反序列化。
-下面列出的所有代码均放在：。
-二、 简单例子比方说，我们有以下的JSON实体123456&amp;#123;  &apos;title&apos;:    &apos;Java Puzzlers: Tra">
+下面列出的所有代码均放在：。">
 <meta property="og:image" content="https://java-creed-examples.googlecode.com/svn/gson/Gson Deserialiser Example">
 <meta property="og:image" content="https://tunsuy.github.io/2017/03/25/详解Java中的Gson反序列化/Json-Object-Hierarchy.png">
 <meta property="og:image" content="https://tunsuy.github.io/2017/03/25/详解Java中的Gson反序列化/Book-Json-Object-Hierarchy.png">
 <meta property="og:image" content="https://tunsuy.github.io/2017/03/25/详解Java中的Gson反序列化/Book-and-Authors-Json-Objects-Hierarchy.png">
 <meta property="og:image" content="https://tunsuy.github.io/2017/03/25/详解Java中的Gson反序列化/New-JSON-Object-Hierarchy.png">
 <meta property="og:image" content="https://tunsuy.github.io/2017/03/25/详解Java中的Gson反序列化/Delegating-Deserialisation-to-Context.png">
-<meta property="og:updated_time" content="2017-04-17T05:19:07.439Z">
+<meta property="og:updated_time" content="2017-04-17T08:40:23.903Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入详解Java中的Gson反序列化">
-<meta name="twitter:description" content="在这篇文章中，我们将看到如何将复杂的JSON实体反序列化为已有的Java对象。我们将看到怎么使用GSON的deserialiser，以控制JSON实体映射到Java对象。
+<meta name="twitter:description" content="译自 GSON DESERIALISER EXAMPLE
+在这篇文章中，我们将看到如何将复杂的JSON实体反序列化为已有的Java对象。我们将看到怎么使用GSON的deserialiser，以控制JSON实体映射到Java对象。
 一、 前言请注意，在这篇文章中我们将使用术语解析或反序列化。
-下面列出的所有代码均放在：。
-二、 简单例子比方说，我们有以下的JSON实体123456&amp;#123;  &apos;title&apos;:    &apos;Java Puzzlers: Tra">
+下面列出的所有代码均放在：。">
 <meta name="twitter:image" content="https://java-creed-examples.googlecode.com/svn/gson/Gson Deserialiser Example">
 
 
@@ -443,9 +443,11 @@
       
 
       
-        <p>在这篇文章中，我们将看到如何将复杂的JSON实体反序列化为已有的Java对象。我们将看到怎么使用GSON的<code>deserialiser</code>，以控制JSON实体映射到Java对象。</p>
+        <p>译自 <a href="http://www.javacreed.com/gson-deserialiser-example/" target="_blank" rel="external">GSON DESERIALISER EXAMPLE</a></p>
+<p>在这篇文章中，我们将看到如何将复杂的JSON实体反序列化为已有的Java对象。我们将看到怎么使用GSON的<code>deserialiser</code>，以控制JSON实体映射到Java对象。</p>
 <h1 id="一、-前言"><a href="#一、-前言" class="headerlink" title="一、 前言"></a>一、 前言</h1><p>请注意，在这篇文章中我们将使用术语解析或反序列化。</p>
 <p>下面列出的所有代码均放在：<img src="https://java-creed-examples.googlecode.com/svn/gson/Gson Deserialiser Example" alt=" https://java-creed-examples.googlecode.com/svn/gson/Gson Deserialiser Example">。</p>
+<a id="more"></a>
 <h1 id="二、-简单例子"><a href="#二、-简单例子" class="headerlink" title="二、 简单例子"></a>二、 简单例子</h1><p>比方说，我们有以下的JSON实体<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  'title':    'Java Puzzlers: Traps, Pitfalls, and Corner Cases',</div><div class="line">  'isbn-10':  '032133678X',</div><div class="line">  'isbn-13':  '978-0321336781',</div><div class="line">  'authors':  ['Joshua Bloch', 'Neal Gafter']</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>上述JSON包括四个字段，其中之一是一个数组。这些字段代表我们的书。默认情况下，GSON希望在Java中的变量名跟JSON中是一样的。因此，我们应该创建具有如下字段名的类：title，isbn-10，isbn-13和authors。但在Java中，变量名不能包含减号。</p>
 <p>那怎么解决上面的问题呢？  </p>
