@@ -1,6 +1,8 @@
 https://tunsuy.github.io/2017/03/25/详解Java中的Gson反序列化/
+https://tunsuy.github.io/2017/03/15/Protobuf协议代码生成器之wire/
 https://tunsuy.github.io/2017/03/10/使用Spring实现Java中的缓存/
 https://tunsuy.github.io/2017/03/05/Python中的异步编程详解/
+https://tunsuy.github.io/2017/02/20/为Protobuf编译器protoc编写插件/
 https://tunsuy.github.io/2017/02/18/高效Python编程之方法参数/
 https://tunsuy.github.io/2017/02/07/深入了解Python中的装饰器/
 https://tunsuy.github.io/2016/12/18/深入详解Java的NIO之Buffer/
