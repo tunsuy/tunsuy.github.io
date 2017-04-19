@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://tunsuy.github.io/2017/03/22/%E6%B7%B1%E5%85%A5%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84Gson%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
+    <lastmod>2017-04-19T09:50:04.077Z</lastmod>
+    <data>
+        <display>
+        <title>深入详解Java中的Gson序列化</title>
+        <pubTime>2017-03-22T09:46:38.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>gson</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://tunsuy.github.io/2017/03/25/%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84Gson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
     <lastmod>2017-04-19T07:20:07.497Z</lastmod>
     <data>
@@ -656,28 +678,6 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2016/04/14/selenium%E8%BF%9C%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8/</loc>
-    <lastmod>2017-03-14T05:14:10.313Z</lastmod>
-    <data>
-        <display>
-        <title>selenium远程启动浏览器</title>
-        <pubTime>2016-04-14T11:08:23.000Z</pubTime>
-        
-        <tag>web</tag>
-         
-        <tag>selenium</tag>
-         
-         
-           
-             
-              <breadCrumb title="selenium" url="https://tunsuy.github.io/categories/selenium/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://tunsuy.github.io/2015/04/27/%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B9%8C%E4%BA%91%E7%BD%91%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2017-03-14T05:14:10.313Z</lastmod>
     <data>
@@ -693,6 +693,28 @@
            
              
               <breadCrumb title="linux" url="https://tunsuy.github.io/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/04/14/selenium%E8%BF%9C%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8/</loc>
+    <lastmod>2017-03-14T05:14:10.313Z</lastmod>
+    <data>
+        <display>
+        <title>selenium远程启动浏览器</title>
+        <pubTime>2016-04-14T11:08:23.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>selenium</tag>
+         
+         
+           
+             
+              <breadCrumb title="selenium" url="https://tunsuy.github.io/categories/selenium/"/>
           
         </display>
     </data>
@@ -766,28 +788,6 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2016/10/15/mongodb%E9%9B%86%E7%BE%A43-0-X%E5%8D%87%E7%BA%A73-2-X/</loc>
-    <lastmod>2017-03-14T05:14:10.036Z</lastmod>
-    <data>
-        <display>
-        <title>mongodb集群3.0.X升级3.2.X</title>
-        <pubTime>2016-10-15T02:07:58.000Z</pubTime>
-        
-        <tag>linux</tag>
-         
-        <tag>mongodb</tag>
-         
-         
-           
-             
-              <breadCrumb title="mongodb" url="https://tunsuy.github.io/categories/mongodb/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://tunsuy.github.io/2016/08/11/Python%EF%BC%9Abuilder-pattern%E2%80%94%E5%BB%BA%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2017-03-14T05:14:10.036Z</lastmod>
     <data>
@@ -803,6 +803,28 @@
            
              
               <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/10/15/mongodb%E9%9B%86%E7%BE%A43-0-X%E5%8D%87%E7%BA%A73-2-X/</loc>
+    <lastmod>2017-03-14T05:14:10.036Z</lastmod>
+    <data>
+        <display>
+        <title>mongodb集群3.0.X升级3.2.X</title>
+        <pubTime>2016-10-15T02:07:58.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>mongodb</tag>
+         
+         
+           
+             
+              <breadCrumb title="mongodb" url="https://tunsuy.github.io/categories/mongodb/"/>
           
         </display>
     </data>
@@ -834,6 +856,26 @@
 
     
   <url>
+    <loc>https://tunsuy.github.io/2016/05/13/Java%EF%BC%9AArrayList%E5%92%8CLinkedList%E7%9A%84%E5%AF%B9%E6%AF%94/</loc>
+    <lastmod>2017-03-14T05:14:09.848Z</lastmod>
+    <data>
+        <display>
+        <title>Java：ArrayList和LinkedList的对比</title>
+        <pubTime>2016-05-13T02:00:53.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://tunsuy.github.io/2016/05/19/iOS%E4%B8%8B%E4%BD%BF%E7%94%A8XCTest%E8%BF%9B%E8%A1%8C%E5%8F%91%E5%8C%85%E5%89%8DChecklist%E6%A3%80%E6%9F%A5/</loc>
     <lastmod>2017-03-14T05:14:09.848Z</lastmod>
     <data>
@@ -849,26 +891,6 @@
            
              
               <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tunsuy.github.io/2016/05/13/Java%EF%BC%9AArrayList%E5%92%8CLinkedList%E7%9A%84%E5%AF%B9%E6%AF%94/</loc>
-    <lastmod>2017-03-14T05:14:09.848Z</lastmod>
-    <data>
-        <display>
-        <title>Java：ArrayList和LinkedList的对比</title>
-        <pubTime>2016-05-13T02:00:53.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-         
-           
-             
-              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
           
         </display>
     </data>
@@ -982,28 +1004,6 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2015/06/12/calabash-ios%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/</loc>
-    <lastmod>2017-03-14T05:14:09.484Z</lastmod>
-    <data>
-        <display>
-        <title>calabash-ios原理分析</title>
-        <pubTime>2015-06-12T07:10:51.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-        <tag>自动化测试</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://tunsuy.github.io/2015/03/10/centos%E4%B8%8B%E5%AE%89%E8%A3%85mongodb%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2017-03-14T05:14:09.484Z</lastmod>
     <data>
@@ -1019,6 +1019,28 @@
            
              
               <breadCrumb title="mongodb" url="https://tunsuy.github.io/categories/mongodb/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/06/12/calabash-ios%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2017-03-14T05:14:09.484Z</lastmod>
+    <data>
+        <display>
+        <title>calabash-ios原理分析</title>
+        <pubTime>2015-06-12T07:10:51.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>自动化测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
           
         </display>
     </data>
@@ -1070,30 +1092,6 @@
 
     
   <url>
-    <loc>https://tunsuy.github.io/2016/07/10/appium-ios%E8%87%AA%E5%8A%A8%E5%8C%96%E5%85%A5%E9%97%A8/</loc>
-    <lastmod>2017-03-14T05:14:09.342Z</lastmod>
-    <data>
-        <display>
-        <title>appium-ios自动化入门</title>
-        <pubTime>2016-07-10T07:13:01.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-        <tag>appium</tag>
-         
-        <tag>自动化测试</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://tunsuy.github.io/2016/11/16/App%E4%B8%89%E6%96%B9%E4%BA%A4%E4%BA%92%E9%80%BB%E8%BE%91%E5%AE%9E%E8%B7%B5/</loc>
     <lastmod>2017-03-14T05:14:09.342Z</lastmod>
     <data>
@@ -1106,6 +1104,30 @@
         <tag>go</tag>
          
         <tag>服务端</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/07/10/appium-ios%E8%87%AA%E5%8A%A8%E5%8C%96%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2017-03-14T05:14:09.342Z</lastmod>
+    <data>
+        <display>
+        <title>appium-ios自动化入门</title>
+        <pubTime>2016-07-10T07:13:01.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>appium</tag>
+         
+        <tag>自动化测试</tag>
          
          
            

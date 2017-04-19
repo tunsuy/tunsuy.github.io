@@ -1,0 +1,1143 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="baidu-site-verification" content="1AtMgOQafj" />
+
+<meta name="google-site-verification" content="OBsr4k89YaSgNU5IJZxIMjW5YvAMvXQzodsx1oFR_iY" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="http://fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Menlo:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,gson,序列化" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="译自 GSON SERIALISER EXAMPLE
+Java对象可以使用Gson API（Homepage）转换成JSON字符串。在本文中，我们将看到我们如何使用默认的Gson实现和自定义实现将Java对象转换为JSON字符串。
+下面列出的所有代码均放在：http://java-creed-examples.googlecode.com/svn/gson/Gson Serialiser Exam">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入详解Java中的Gson序列化">
+<meta property="og:url" content="https://tunsuy.github.io/2017/03/22/深入详解Java中的Gson序列化/index.html">
+<meta property="og:site_name" content="鱼儿塘">
+<meta property="og:description" content="译自 GSON SERIALISER EXAMPLE
+Java对象可以使用Gson API（Homepage）转换成JSON字符串。在本文中，我们将看到我们如何使用默认的Gson实现和自定义实现将Java对象转换为JSON字符串。
+下面列出的所有代码均放在：http://java-creed-examples.googlecode.com/svn/gson/Gson Serialiser Exam">
+<meta property="og:updated_time" content="2017-04-19T09:50:04.077Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入详解Java中的Gson序列化">
+<meta name="twitter:description" content="译自 GSON SERIALISER EXAMPLE
+Java对象可以使用Gson API（Homepage）转换成JSON字符串。在本文中，我们将看到我们如何使用默认的Gson实现和自定义实现将Java对象转换为JSON字符串。
+下面列出的所有代码均放在：http://java-creed-examples.googlecode.com/svn/gson/Gson Serialiser Exam">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6391721495294379000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tunsuy.github.io/2017/03/22/深入详解Java中的Gson序列化/"/>
+
+
+
+
+
+  <title> 深入详解Java中的Gson序列化 | 鱼儿塘 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鱼儿塘</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2017/03/22/深入详解Java中的Gson序列化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                深入详解Java中的Gson序列化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T17:46:38+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/22/深入详解Java中的Gson序列化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/深入详解Java中的Gson序列化/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/22/深入详解Java中的Gson序列化/" class="leancloud_visitors" data-flag-title="深入详解Java中的Gson序列化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>译自 <a href="http://www.javacreed.com/gson-serialiser-example/" target="_blank" rel="external">GSON SERIALISER EXAMPLE</a></p>
+<p>Java对象可以使用Gson API（Homepage）转换成JSON字符串。在本文中，我们将看到我们如何使用默认的Gson实现和自定义实现将Java对象转换为JSON字符串。</p>
+<p>下面列出的所有代码均放在：<a href="http://java-creed-examples.googlecode.com/svn/gson/Gson Serialiser Example/" target="_blank" rel="external">http://java-creed-examples.googlecode.com/svn/gson/Gson Serialiser Example/</a></p>
+<a id="more"></a>
+<h1 id="一、-简单例子"><a href="#一、-简单例子" class="headerlink" title="一、 简单例子"></a>一、 简单例子</h1><p>看下面的一个类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javacreed.examples.gson.part1;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> String[] authors;</div><div class="line">  <span class="keyword">private</span> String isbn10;</div><div class="line">  <span class="keyword">private</span> String isbn13;</div><div class="line">  <span class="keyword">private</span> String title;</div><div class="line"></div><div class="line">  <span class="comment">// Methods removed for brevity</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这是一个代表一本书的简单Java类。现在我们需要将这个类序列化成以下的JSON对象。<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"title"</span>: <span class="string">"Java Puzzlers: Traps, Pitfalls, and Corner Cases"</span>,</div><div class="line">  <span class="attr">"isbn-10"</span>: <span class="string">"032133678X"</span>,</div><div class="line">  <span class="attr">"isbn-13"</span>: <span class="string">"978-0321336781"</span>,</div><div class="line">  <span class="attr">"authors"</span>: [</div><div class="line">    <span class="string">"Joshua Bloch"</span>,</div><div class="line">    <span class="string">"Neal Gafter"</span></div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Gson可以在没有任何特殊配置的情况下序列化Book类，只需使用默认配置即可。 Gson使用Java字段名作为JSON名称，并相应地对其值进行序列化。</p>
+<p>但是我们仔细查看上面显示的JSON示例，我们将看到ISBN字段包含负号：isbn-10和isbn-13。不幸的是，我们无法使用默认的Gson配置获取这些字段名称。解决此问题的一种方法是使用注释。使用注释，我们可以定义JSON字段名称，而Gson将使用另外的字段名。另一种方法是使用 <code>JsonSerialiser</code>，如以下示例所示。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javacreed.examples.gson.part1;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.Type;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.google.gson.JsonArray;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonElement;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonObject;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonPrimitive;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonSerializationContext;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonSerializer;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookSerialiser</span> <span class="keyword">implements</span> <span class="title">JsonSerializer</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> JsonElement <span class="title">serialize</span><span class="params">(<span class="keyword">final</span> Book book, <span class="keyword">final</span> Type typeOfSrc, <span class="keyword">final</span> JsonSerializationContext context)</span> </span>&#123;</div><div class="line">        <span class="keyword">final</span> JsonObject jsonObject = <span class="keyword">new</span> JsonObject();</div><div class="line">        jsonObject.addProperty(<span class="string">"title"</span>, book.getTitle());</div><div class="line">        jsonObject.addProperty(<span class="string">"isbn-10"</span>, book.getIsbn10());</div><div class="line">        jsonObject.addProperty(<span class="string">"isbn-13"</span>, book.getIsbn13());</div><div class="line"></div><div class="line">        <span class="keyword">final</span> JsonArray jsonAuthorsArray = <span class="keyword">new</span> JsonArray();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">final</span> String author : book.getAuthors()) &#123;</div><div class="line">            <span class="keyword">final</span> JsonPrimitive jsonAuthor = <span class="keyword">new</span> JsonPrimitive(author);</div><div class="line">            jsonAuthorsArray.add(jsonAuthor);</div><div class="line">        &#125;</div><div class="line">        jsonObject.add(<span class="string">"authors"</span>, jsonAuthorsArray);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> jsonObject;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>让我们一步步来解释下上面的过程</p>
+<p>如果我们要序列化这个Java对象，我们首先需要创建 <code>JsonElement</code> 的正确实例。在我们的例子中，我们返回一个 <code>JsonObject</code> 的实例，因为我们的Book是一个对象，如下所示。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> JsonObject jsonObject = <span class="keyword">new</span> JsonObject();</div></pre></td></tr></table></figure></p>
+<p>该对象将使用我们喜欢的名称填充我们的字段，如下所示<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// The variable 'book' is passed as a parameter to the serialize() method</span></div><div class="line">    <span class="keyword">final</span> JsonObject jsonObject = <span class="keyword">new</span> JsonObject();</div><div class="line">    jsonObject.addProperty(<span class="string">"title"</span>, book.getTitle());</div><div class="line">    jsonObject.addProperty(<span class="string">"isbn-10"</span>, book.getIsbn10());</div><div class="line">    jsonObject.addProperty(<span class="string">"isbn-13"</span>, book.getIsbn13());</div></pre></td></tr></table></figure></p>
+<p>使用 <code>addProperty()</code> 方法，我们可以添加任何的java基本类型(String和Number)。请注意，属性名称必须是唯一的，否则将替换以前的值。这可以看作是一个 <code>Map</code>，它将所有的值保存在以他们的名字作为的索引上。</p>
+<p>更复杂的对象（如Java对象和数组）无法使用上述方法添加。 <code>JsonObject</code> 有另一个方法叫做 <code>add</code>，可以如下所示使用。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// The variable 'book' is passed as a parameter to the serialize() method</span></div><div class="line">    jsonObject.addProperty(<span class="string">"title"</span>, book.getTitle());</div><div class="line">    jsonObject.addProperty(<span class="string">"isbn-10"</span>, book.getIsbn10());</div><div class="line">    jsonObject.addProperty(<span class="string">"isbn-13"</span>, book.getIsbn13());</div><div class="line"></div><div class="line">    <span class="keyword">final</span> JsonArray jsonAuthorsArray = <span class="keyword">new</span> JsonArray();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">final</span> String author : book.getAuthors()) &#123;</div><div class="line">      <span class="keyword">final</span> JsonPrimitive jsonAuthor = <span class="keyword">new</span> JsonPrimitive(author);</div><div class="line">      jsonAuthorsArray.add(jsonAuthor);</div><div class="line">    &#125;</div><div class="line">    jsonObject.add(<span class="string">"authors"</span>, jsonAuthorsArray);</div></pre></td></tr></table></figure></p>
+<p>我们首先创建 <code>JsonArray</code> 并将所有author添加到里面。与Java不同，我们不需要在初始化时定义数组的大小。事实上，我们可以将JsonArray类作为一个列表而不是数组。最后，将 <code>jsonAuthorsArray</code> 变量添加到json对象。请注意，我们可以在添加其元素之前将 <code>jsonAuthorsArray</code> 添加到 <code>jsonObject</code>。</p>
+<p>在我们可以使用我们自定义序列化类之前，我们需要用Gson注册，如下所示。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javacreed.examples.gson.part1;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.google.gson.Gson;</div><div class="line"><span class="keyword">import</span> com.google.gson.GsonBuilder;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">final</span> String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    <span class="comment">// Configure GSON</span></div><div class="line">    <span class="keyword">final</span> GsonBuilder gsonBuilder = <span class="keyword">new</span> GsonBuilder();</div><div class="line">    gsonBuilder.registerTypeAdapter(Book.class, <span class="keyword">new</span> BookSerialiser());</div><div class="line">    gsonBuilder.setPrettyPrinting();</div><div class="line">    <span class="keyword">final</span> Gson gson = gsonBuilder.create();</div><div class="line"></div><div class="line">    <span class="keyword">final</span> Book javaPuzzlers = <span class="keyword">new</span> Book();</div><div class="line">    javaPuzzlers.setTitle(<span class="string">"Java Puzzlers: Traps, Pitfalls, and Corner Cases"</span>);</div><div class="line">    javaPuzzlers.setIsbn10(<span class="string">"032133678X"</span>);</div><div class="line">    javaPuzzlers.setIsbn13(<span class="string">"978-0321336781"</span>);</div><div class="line">    javaPuzzlers.setAuthors(<span class="keyword">new</span> String[] &#123; <span class="string">"Joshua Bloch"</span>, <span class="string">"Neal Gafter"</span> &#125;);</div><div class="line"></div><div class="line">    <span class="comment">// Format to JSON</span></div><div class="line">    <span class="keyword">final</span> String json = gson.toJson(javaPuzzlers);</div><div class="line">    System.out.println(json);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>通过注册自定义的序列化类，每当类型为Book的对象被序列化时，Gson都将使用此序列化类。</p>
+<p>在上面的例子中，我们还指示Gson格式化JSON对象，通过调用下面语言格式化打印。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gsonBuilder.setPrettyPrinting();</div></pre></td></tr></table></figure></p>
+<p>虽然这对于教程和调试是有用的，但请避免在生产环境中进行格式化打印，因为格式化可能会产生较大的JSON对象（在文本大小方面）。此外，还有轻微的性能成本，因为Gson必须格式化JSON对象并进行相应的缩进。</p>
+<h1 id="二、-嵌套对象"><a href="#二、-嵌套对象" class="headerlink" title="二、 嵌套对象"></a>二、 嵌套对象</h1><p>在本例中，我们将介绍如何对嵌套对象进行序列化，即对象中的对象。这里我们将介绍一个新的实体,如下所示：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "title": "Java Puzzlers: Traps, Pitfalls, and Corner Cases",</div><div class="line">  "isbn": "032133678X",</div><div class="line">  "authors": [</div><div class="line">    &#123;</div><div class="line">      "id": 1,</div><div class="line">      "name": "Joshua Bloch"</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      "id": 2,</div><div class="line">      "name": "Neal Gafter"</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div><div class="line">`</div></pre></td></tr></table></figure></p>
+<p>请注意，在上一个示例中，作者只是一个字符串数组，如下所示<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">"authors": [</div><div class="line">    "Joshua Bloch",</div><div class="line">    "Neal Gafter"</div><div class="line">  ]</div></pre></td></tr></table></figure></p>
+<p>在这个例子中，作者是JSON对象，而不仅仅是原始图形，如下所示。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      <span class="string">"id"</span>: <span class="number">1</span>,</div><div class="line">      <span class="string">"name"</span>: <span class="string">"Joshua Bloch"</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>JSON author有一个id和一个name。因此Author类如下所示。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javacreed.examples.gson.part2;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Author</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> <span class="keyword">int</span> id;</div><div class="line">  <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">  <span class="comment">// Methods removed for brevity</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个类很简单。它包括两个字段，两个都是 <code>JsonPrimitive</code> 类型。 Book类需要被修改为包含Author类对象的数组，如下所示。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javacreed.examples.gson.part2;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Author[] authors;</div><div class="line">  <span class="keyword">private</span> String isbn;</div><div class="line">  <span class="keyword">private</span> String title;</div><div class="line"></div><div class="line">  <span class="comment">// Methods removed for brevity</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>authors字段从String数组更改为Author数组。为了适应这种变化，必须修改 <code>BookSerialiser</code> 类，如下所示。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javacreed.examples.gson.part2;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.Type;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.google.gson.JsonElement;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonObject;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonSerializationContext;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonSerializer;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookSerialiser</span> <span class="keyword">implements</span> <span class="title">JsonSerializer</span>&lt;<span class="title">Book</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> JsonElement <span class="title">serialize</span><span class="params">(<span class="keyword">final</span> Book book, <span class="keyword">final</span> Type typeOfSrc, <span class="keyword">final</span> JsonSerializationContext context)</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> JsonObject jsonObject = <span class="keyword">new</span> JsonObject();</div><div class="line">    jsonObject.addProperty(<span class="string">"title"</span>, book.getTitle());</div><div class="line">    jsonObject.addProperty(<span class="string">"isbn"</span>, book.getIsbn());</div><div class="line"></div><div class="line">    <span class="keyword">final</span> JsonElement jsonAuthros = context.serialize(book.getAuthors());</div><div class="line">    jsonObject.add(<span class="string">"authors"</span>, jsonAuthros);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> jsonObject;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>author的序列化委托给上下文(<code>JsonSerializationContext</code>的一个实例)，其作为参数传递给 <code>serialize()</code> 方法。上下文将序列化给定的对象并返回一个 <code>JsonElement</code> 类型对象。上下文将尝试找到可以序列化给定对象的序列化类，如果没有找到，则使用默认机制。这里我们暂时不会为Author类编写自定义的序列化类，而是使用默认的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javacreed.examples.gson.part2;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.google.gson.Gson;</div><div class="line"><span class="keyword">import</span> com.google.gson.GsonBuilder;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">final</span> String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    <span class="comment">// Configure GSON</span></div><div class="line">    <span class="keyword">final</span> GsonBuilder gsonBuilder = <span class="keyword">new</span> GsonBuilder();</div><div class="line">    gsonBuilder.registerTypeAdapter(Book.class, <span class="keyword">new</span> BookSerialiser());</div><div class="line">    gsonBuilder.setPrettyPrinting();</div><div class="line">    <span class="keyword">final</span> Gson gson = gsonBuilder.create();</div><div class="line"></div><div class="line">    <span class="keyword">final</span> Author joshuaBloch = <span class="keyword">new</span> Author();</div><div class="line">    joshuaBloch.setId(<span class="number">1</span>);</div><div class="line">    joshuaBloch.setName(<span class="string">"Joshua Bloch"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">final</span> Author nealGafter = <span class="keyword">new</span> Author();</div><div class="line">    nealGafter.setId(<span class="number">2</span>);</div><div class="line">    nealGafter.setName(<span class="string">"Neal Gafter"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">final</span> Book javaPuzzlers = <span class="keyword">new</span> Book();</div><div class="line">    javaPuzzlers.setTitle(<span class="string">"Java Puzzlers: Traps, Pitfalls, and Corner Cases"</span>);</div><div class="line">    javaPuzzlers.setIsbn(<span class="string">"032133678X"</span>);</div><div class="line">    javaPuzzlers.setAuthors(<span class="keyword">new</span> Author[] &#123; joshuaBloch, nealGafter &#125;);</div><div class="line"></div><div class="line">    <span class="keyword">final</span> String json = gson.toJson(javaPuzzlers);</div><div class="line">    System.out.println(json);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面对Author类编写自定义的序列化类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javacreed.examples.gson.part2;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.Type;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.google.gson.JsonElement;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonObject;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonSerializationContext;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonSerializer;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthorSerialiser</span> <span class="keyword">implements</span> <span class="title">JsonSerializer</span>&lt;<span class="title">Author</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> JsonElement <span class="title">serialize</span><span class="params">(<span class="keyword">final</span> Author author, <span class="keyword">final</span> Type typeOfSrc, <span class="keyword">final</span> JsonSerializationContext context)</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> JsonObject jsonObject = <span class="keyword">new</span> JsonObject();</div><div class="line">    jsonObject.addProperty(<span class="string">"id"</span>, author.getId());</div><div class="line">    jsonObject.addProperty(<span class="string">"name"</span>, author.getName());</div><div class="line"></div><div class="line">    <span class="keyword">return</span> jsonObject;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>同样的，为了使用这个新的序列化类，我们需要注册它。</p>
+<h1 id="三、-对象引用"><a href="#三、-对象引用" class="headerlink" title="三、 对象引用"></a>三、 对象引用</h1><p>看下面的例子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javacreed.examples.gson.part3;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.google.gson.Gson;</div><div class="line"><span class="keyword">import</span> com.google.gson.GsonBuilder;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example1</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">final</span> String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    <span class="comment">// Configure GSON</span></div><div class="line">    <span class="keyword">final</span> GsonBuilder gsonBuilder = <span class="keyword">new</span> GsonBuilder();</div><div class="line">    gsonBuilder.setPrettyPrinting();</div><div class="line">    <span class="keyword">final</span> Gson gson = gsonBuilder.create();</div><div class="line"></div><div class="line">    <span class="keyword">final</span> Author joshuaBloch = <span class="keyword">new</span> Author();</div><div class="line">    joshuaBloch.setId(<span class="number">1</span>);</div><div class="line">    joshuaBloch.setName(<span class="string">"Joshua Bloch"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">final</span> Author nealGafter = <span class="keyword">new</span> Author();</div><div class="line">    nealGafter.setId(<span class="number">2</span>);</div><div class="line">    nealGafter.setName(<span class="string">"Neal Gafter"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">final</span> Book javaPuzzlers = <span class="keyword">new</span> Book();</div><div class="line">    javaPuzzlers.setTitle(<span class="string">"Java Puzzlers: Traps, Pitfalls, and Corner Cases"</span>);</div><div class="line">    javaPuzzlers.setIsbn(<span class="string">"032133678X"</span>);</div><div class="line">    javaPuzzlers.setAuthors(<span class="keyword">new</span> Author[] &#123; joshuaBloch, nealGafter &#125;);</div><div class="line"></div><div class="line">    <span class="keyword">final</span> Book effectiveJava = <span class="keyword">new</span> Book();</div><div class="line">    effectiveJava.setTitle(<span class="string">"Effective Java (2nd Edition)"</span>);</div><div class="line">    effectiveJava.setIsbn(<span class="string">"0321356683"</span>);</div><div class="line">    effectiveJava.setAuthors(<span class="keyword">new</span> Author[] &#123; joshuaBloch &#125;);</div><div class="line"></div><div class="line">    <span class="keyword">final</span> Book[] books = <span class="keyword">new</span> Book[] &#123; javaPuzzlers, effectiveJava &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">final</span> String json = gson.toJson(books);</div><div class="line">    System.out.println(json);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里我们有两个作者和两本书。其中一个作者在两本书之间共享。最后注意到，我们目前没有使用任何定制的序列化类。执行上述代码时会产生以下内容。<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"authors"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"Joshua Bloch"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">2</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"Neal Gafter"</span></div><div class="line">      &#125;</div><div class="line">    ],</div><div class="line">    <span class="attr">"isbn"</span>: <span class="string">"032133678X"</span>,</div><div class="line">    <span class="attr">"title"</span>: <span class="string">"Java Puzzlers: Traps, Pitfalls, and Corner Cases"</span></div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"authors"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"Joshua Bloch"</span></div><div class="line">      &#125;</div><div class="line">    ],</div><div class="line">    <span class="attr">"isbn"</span>: <span class="string">"0321356683"</span>,</div><div class="line">    <span class="attr">"title"</span>: <span class="string">"Effective Java (2nd Edition)"</span></div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>我们有两个JSON book和三个JSON author。author：Joshua Bloch，如下所示，是重复的。<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">   <span class="attr">"id"</span>: <span class="number">1</span>,</div><div class="line">   <span class="attr">"name"</span>: <span class="string">"Joshua Bloch"</span></div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p>这增加了JSON对象的大小，特别是对于更复杂的对象。理想情况下，JSON对象只包含作者的ID，而不是整个对象。这类似于关系数据库，其中该书具有作者表的外键。</p>
+<p>Book类被修改为增加一个方法，该方法仅返回作者ID，如下所示。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javacreed.examples.gson.part3;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Author[] authors;</div><div class="line">  <span class="keyword">private</span> String isbn;</div><div class="line">  <span class="keyword">private</span> String title;</div><div class="line"></div><div class="line">  <span class="keyword">public</span> Author[] getAuthors() &#123;</div><div class="line">    <span class="keyword">return</span> authors;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">public</span> <span class="keyword">int</span>[] getAuthorsIds() &#123;</div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span>[] ids = <span class="keyword">new</span> <span class="keyword">int</span>[authors.length];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ids.length; i++) &#123;</div><div class="line">      ids[i] = authors[i].getId();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ids;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// Other methods removed for brevity</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当序列化书籍时，我们将使用作者的ID而不是作者对象，如下所示。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javacreed.examples.gson.part3;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.Type;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.google.gson.JsonElement;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonObject;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonSerializationContext;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonSerializer;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookSerialiser</span> <span class="keyword">implements</span> <span class="title">JsonSerializer</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> JsonElement <span class="title">serialize</span><span class="params">(<span class="keyword">final</span> Book book, <span class="keyword">final</span> Type typeOfSrc, <span class="keyword">final</span> JsonSerializationContext context)</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> JsonObject jsonObject = <span class="keyword">new</span> JsonObject();</div><div class="line">    jsonObject.addProperty(<span class="string">"title"</span>, book.getTitle());</div><div class="line">    jsonObject.addProperty(<span class="string">"isbn"</span>, book.getIsbn());</div><div class="line"></div><div class="line">    <span class="keyword">final</span> JsonElement jsonAuthros = context.serialize(book.getAuthorsIds());</div><div class="line">    jsonObject.add(<span class="string">"authors"</span>, jsonAuthros);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> jsonObject;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用该自定义序列化类，将得到如下输出内容：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javacreed.examples.gson.part3;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.Type;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.google.gson.JsonElement;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonObject;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonSerializationContext;</div><div class="line"><span class="keyword">import</span> com.google.gson.JsonSerializer;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookSerialiser</span> <span class="keyword">implements</span> <span class="title">JsonSerializer</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> JsonElement <span class="title">serialize</span><span class="params">(<span class="keyword">final</span> Book book, <span class="keyword">final</span> Type typeOfSrc, <span class="keyword">final</span> JsonSerializationContext context)</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> JsonObject jsonObject = <span class="keyword">new</span> JsonObject();</div><div class="line">    jsonObject.addProperty(<span class="string">"title"</span>, book.getTitle());</div><div class="line">    jsonObject.addProperty(<span class="string">"isbn"</span>, book.getIsbn());</div><div class="line"></div><div class="line">    <span class="keyword">final</span> JsonElement jsonAuthros = context.serialize(book.getAuthorsIds());</div><div class="line">    jsonObject.add(<span class="string">"authors"</span>, jsonAuthros);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> jsonObject;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="tunsuy WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="tunsuy Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/gson/" rel="tag"># gson</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/20/深入详解Java中的Gson注解/" rel="next" title="深入详解Java中的Gson注解">
+                <i class="fa fa-chevron-left"></i> 深入详解Java中的Gson注解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/25/详解Java中的Gson反序列化/" rel="prev" title="深入详解Java中的Gson反序列化">
+                深入详解Java中的Gson反序列化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/22/深入详解Java中的Gson序列化/"
+           data-title="深入详解Java中的Gson序列化" data-url="https://tunsuy.github.io/2017/03/22/深入详解Java中的Gson序列化/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/headpic.jpg"
+               alt="tunsuy" />
+          <p class="site-author-name" itemprop="name">tunsuy</p>
+           
+              <p class="site-description motion-element" itemprop="description">一切只为变得更好</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tunsuy/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=mKGtr6mqrq_sq9jp6bb79-U" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-简单例子"><span class="nav-text">一、 简单例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-嵌套对象"><span class="nav-text">二、 嵌套对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-对象引用"><span class="nav-text">三、 对象引用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tunsuy</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"blogdis"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("QNtye0Peaz21qnUyw7RluVTO-gzGzoHsz", "MBm8aORfutl1RHYXFcEWQb01");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>
