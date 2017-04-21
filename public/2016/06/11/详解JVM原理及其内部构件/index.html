@@ -1,0 +1,1147 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="baidu-site-verification" content="1AtMgOQafj" />
+
+<meta name="google-site-verification" content="OBsr4k89YaSgNU5IJZxIMjW5YvAMvXQzodsx1oFR_iY" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="http://fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Menlo:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,jvm,虚拟机" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="节选自：http://www.cubrid.org/blog/dev-platform/understanding-jvm-internals/
+一、 JVM特性1、 简介1、虚拟机栈：最流行的计算机架构比如intel x86架构和arm架构都是基于寄存器运行的，然而，jvm是基于栈运行的  
+2、符号引用：所有的类型（类和接口）除了原始类型（即基本类型）都是被符号引用所引用的，代替显示的通过内存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详解JVM原理及其内部构件">
+<meta property="og:url" content="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/index.html">
+<meta property="og:site_name" content="鱼儿塘">
+<meta property="og:description" content="节选自：http://www.cubrid.org/blog/dev-platform/understanding-jvm-internals/
+一、 JVM特性1、 简介1、虚拟机栈：最流行的计算机架构比如intel x86架构和arm架构都是基于寄存器运行的，然而，jvm是基于栈运行的  
+2、符号引用：所有的类型（类和接口）除了原始类型（即基本类型）都是被符号引用所引用的，代替显示的通过内存">
+<meta property="og:image" content="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/java-code-execution-process.png">
+<meta property="og:image" content="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/class-loader-delegation-model.png">
+<meta property="og:image" content="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/runtime-data-access-configuration.png">
+<meta property="og:updated_time" content="2017-03-14T10:12:50.320Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="详解JVM原理及其内部构件">
+<meta name="twitter:description" content="节选自：http://www.cubrid.org/blog/dev-platform/understanding-jvm-internals/
+一、 JVM特性1、 简介1、虚拟机栈：最流行的计算机架构比如intel x86架构和arm架构都是基于寄存器运行的，然而，jvm是基于栈运行的  
+2、符号引用：所有的类型（类和接口）除了原始类型（即基本类型）都是被符号引用所引用的，代替显示的通过内存">
+<meta name="twitter:image" content="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/java-code-execution-process.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6391721495294379000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/"/>
+
+
+
+
+
+  <title> 详解JVM原理及其内部构件 | 鱼儿塘 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鱼儿塘</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                详解JVM原理及其内部构件
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-11T12:54:40+08:00">
+                2016-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/06/11/详解JVM原理及其内部构件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/11/详解JVM原理及其内部构件/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/06/11/详解JVM原理及其内部构件/" class="leancloud_visitors" data-flag-title="详解JVM原理及其内部构件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>节选自：<a href="http://www.cubrid.org/blog/dev-platform/understanding-jvm-internals/" target="_blank" rel="external">http://www.cubrid.org/blog/dev-platform/understanding-jvm-internals/</a></p>
+<h1 id="一、-JVM特性"><a href="#一、-JVM特性" class="headerlink" title="一、 JVM特性"></a>一、 JVM特性</h1><h2 id="1、-简介"><a href="#1、-简介" class="headerlink" title="1、 简介"></a>1、 简介</h2><p>1、虚拟机栈：最流行的计算机架构比如intel x86架构和arm架构都是基于寄存器运行的，然而，jvm是基于栈运行的  </p>
+<p>2、符号引用：所有的类型（类和接口）除了原始类型（即基本类型）都是被符号引用所引用的，代替显示的通过内存地址引用<br>译者注：符号引用即变量  </p>
+<p>3、GC垃圾回收：一个类实例通过用户代码显示的创建，而通过GC自动回收，不用手动干预。  </p>
+<p>4、基本数据类型平台独立：传统的编程语言比如c++根据不同的平台有不同的int类型内存大小，而jvm显示的定义了基本数据类型的内存大小，跟平台是无关的。  </p>
+<a id="more"></a>
+<p>5、网络字节序：java类文件使用的时候网络字节序。为的是保持平台无关性：Intel x86架构使用的是小端字节序，而RISC 系列架构使用的大端字节序，所有一个固定的字节序必须被保持。jvm使用的网络字节序是被用于网络传输的。网络字节序是大端字节序。  </p>
+<p>虽然java 是sun公司开发的，但是任何的供应商只要遵循jvm规范，都可以开发和提供jvm虚拟机。正因为这个原因，有各种各样的jvm，包括oracle Hotspot jvm 和IBM JVM。Google的安卓系统上的Dalvik VM也是JVM中的一种，但是它没有遵循JVM规范。不同于java VMs的虚拟机栈，Dalvik VM是基于寄存器架构的。Dalvik VM会将java字节码转换成基于寄存器的指令集。</p>
+<h2 id="2、-Java字节码"><a href="#2、-Java字节码" class="headerlink" title="2、 Java字节码"></a>2、 Java字节码</h2><p>为了实现平台无关性，JVM使用java字节码，java字节码是处于java（用户语言）和机器语言的一种中间语言，java字节码是发布java代码最小的单元。<br>在解释java字节码之前，让我们先来看看它，这个列子是发生在开发进程中的真实列子的总结。</p>
+<h1 id="二、-JVM结构"><a href="#二、-JVM结构" class="headerlink" title="二、 JVM结构"></a>二、 JVM结构</h1><h2 id="1、-执行流程"><a href="#1、-执行流程" class="headerlink" title="1、 执行流程"></a>1、 执行流程</h2><p>java代码是按照下图所示的流程执行的</p>
+<img src="/2016/06/11/详解JVM原理及其内部构件/java-code-execution-process.png" alt="java-code-execution-process.png" title="">
+<p>类加载器将javac编译的java字节码加载进运行时数据区；而执行机则执行java字节码</p>
+<h2 id="2、-类加载器"><a href="#2、-类加载器" class="headerlink" title="2、 类加载器"></a>2、 类加载器</h2><p>java提供了动态加载特性；类加载器是在运行时而不是编译时，将加载和链接它所引用到的类。JVM的类加载器执行这个动态加载。<br>类加载器具有如下这些特性：</p>
+<p>1、分层结构：类加载器是以父子关系组成的一个分层结构，Bootstrap 加载器是所有加载器的父类。</p>
+<p>2、委托模式：基于这个分层结构，类加载器之间是委托加载的。当一个类加载的时候，这个父类加载器将被检查来确定这个类是否在这个父类加载器中，如果父类加载器已经有了这个类，则直接使用，否则，这个类加载器将加载这个类。</p>
+<p>3、可见性：一个子类加载器可以找到父类加载器中的类，但是，一个父子类加载器不能找到子类加载器中的类。</p>
+<p>4、不能卸载：一个类加载器可以加载类但是不能卸载类，代替卸载的是，这个类加载器可以被删除，然后重新创建一个类加载器。</p>
+<p>每一个类加载器有自己的名字空间用来存储加载的类。当一个类加载器加载一个类时，它根据FQCN （全类名匹配）在存储在名字空间中的类来搜索类，并且检查其是否已经被加载过了。如果一个类有相同的名字但是在不同的名字空间，类加载器会认为它是一个不同的类。如图</p>
+<img src="/2016/06/11/详解JVM原理及其内部构件/class-loader-delegation-model.png" alt="class-loader-delegation-model.png" title="">
+<h2 id="3、-运行时数据区"><a href="#3、-运行时数据区" class="headerlink" title="3、 运行时数据区"></a>3、 运行时数据区</h2><img src="/2016/06/11/详解JVM原理及其内部构件/runtime-data-access-configuration.png" alt="runtime-data-access-configuration.png" title="">
+<p>运行时数据区是一个内存区域，是在JVM程序在操作系统上运行时分配的。这个运行时区分为6个区域：  </p>
+<ul>
+<li>线程私有：PC寄存器（程序计数器），JVM栈，本地方法栈</li>
+<li>线程共享：堆，方法区，运行时常量池</li>
+</ul>
+<p>1、PC寄存器：又叫程序计数器，存在于每一个线程中，在线程开始的时候被创建，它存储正在被执行的JVM指令地址</p>
+<p>2、JVM栈：存在于每一个线程中，在线程开始的时候被创建。它是一个个结构体（栈帧）的栈空间。JVM将栈帧入栈和出栈  </p>
+<ul>
+<li>栈帧：一个栈帧当一个方法在JVM中执行的时候被创建，然后被添加进这个线程的JVM栈中。当这个方法结束的时候，这个栈帧就被移除了。每个栈帧包括本地变量组的引用，操作栈和该方法所属的类的运行时常量池。本地变量组和操作栈的大小在编译时就被确定了，因此，一个栈帧的大小是根据方法来确定的。</li>
+<li>本地变量组：它的索引从0开始，0表示这个方法所属的类实例的引用，所以方法参数是从索引1开始保存在这个本地变量组中的。最后才是依次保存该方法的本地变量。</li>
+<li>操作栈：表示一个方法的实际工作空间。每个方法在操作栈和本地变量组之间交换数据。对其他方法的调用结果进行出栈和入栈。操作栈所需要的空间在编译时就被确定了。</li>
+</ul>
+<p>3、本地方法栈：表示其他语言（非java）写的本地代码栈。换句话说，它是一个被JNI调用的C/C++代码执行时使用的栈空间。</p>
+<p>4、方法区：这个方法区被所有的线程共享。当JVM开始的时候被创建。它存储运行时常量池，域和方法信息，静态变量和被JVM读取的每个类和接口的方法字节码。方法区根据不同的JVM供应商而被实现为了不同的格式。Oracle Hotspot JVM 叫它永生代。对于每个JVM供应商，这个方法区对于GC是可选的。</p>
+<p>5、运行时常量池：这个区域包含在方法区中，它是JVM操作中的一个很核心的角色。因此，JVM规范分开描述了它的重要性。包含了每个类和接口的常量，方法和域的引用。简单的说，当一个方法和域被引用的时候，JVM搜索这个方法和域在运行时常量池中的实际的地址</p>
+<p>6、堆：存储实例和对象的一个空间。是GC的一个操作目标。这个空间在讨论JVM性能的时候被经常提到。这JVM供应商能确定这个堆怎么配置或者不被回收。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="tunsuy WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="tunsuy Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/02/基于docker的moa服务/" rel="next" title="基于docker的moa服务">
+                <i class="fa fa-chevron-left"></i> 基于docker的moa服务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/15/docker自定义daemon选项/" rel="prev" title="docker自定义daemon选项">
+                docker自定义daemon选项 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/11/详解JVM原理及其内部构件/"
+           data-title="详解JVM原理及其内部构件" data-url="https://tunsuy.github.io/2016/06/11/详解JVM原理及其内部构件/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/headpic.jpg"
+               alt="tunsuy" />
+          <p class="site-author-name" itemprop="name">tunsuy</p>
+           
+              <p class="site-description motion-element" itemprop="description">一切只为变得更好</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tunsuy/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=mKGtr6mqrq_sq9jp6bb79-U" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-JVM特性"><span class="nav-text">一、 JVM特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-简介"><span class="nav-text">1、 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-Java字节码"><span class="nav-text">2、 Java字节码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-JVM结构"><span class="nav-text">二、 JVM结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-执行流程"><span class="nav-text">1、 执行流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-类加载器"><span class="nav-text">2、 类加载器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-运行时数据区"><span class="nav-text">3、 运行时数据区</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tunsuy</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"blogdis"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("QNtye0Peaz21qnUyw7RluVTO-gzGzoHsz", "MBm8aORfutl1RHYXFcEWQb01");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>

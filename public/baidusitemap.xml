@@ -1,0 +1,1144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2017/03/22/%E6%B7%B1%E5%85%A5%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84Gson%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
+    <lastmod>2017-04-19T09:50:04.077Z</lastmod>
+    <data>
+        <display>
+        <title>深入详解Java中的Gson序列化</title>
+        <pubTime>2017-03-22T09:46:38.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>gson</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2017/03/25/%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84Gson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
+    <lastmod>2017-04-19T07:20:07.497Z</lastmod>
+    <data>
+        <display>
+        <title>深入详解Java中的Gson反序列化</title>
+        <pubTime>2017-03-25T05:13:12.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>gson</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2017/03/20/%E6%B7%B1%E5%85%A5%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84Gson%E6%B3%A8%E8%A7%A3/</loc>
+    <lastmod>2017-04-19T07:18:27.286Z</lastmod>
+    <data>
+        <display>
+        <title>深入详解Java中的Gson注解</title>
+        <pubTime>2017-03-20T07:14:37.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>gson</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2017/02/20/%E4%B8%BAProtobuf%E7%BC%96%E8%AF%91%E5%99%A8protoc%E7%BC%96%E5%86%99%E6%8F%92%E4%BB%B6/</loc>
+    <lastmod>2017-04-19T03:44:04.410Z</lastmod>
+    <data>
+        <display>
+        <title>为Protobuf编译器protoc编写插件</title>
+        <pubTime>2017-02-20T01:31:47.000Z</pubTime>
+        
+        <tag>protobuf</tag>
+         
+        <tag>python</tag>
+         
+        <tag>json</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2017/03/15/Protobuf%E5%8D%8F%E8%AE%AE%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%E4%B9%8Bwire/</loc>
+    <lastmod>2017-04-18T11:18:15.614Z</lastmod>
+    <data>
+        <display>
+        <title>Protobuf协议代码生成器之wire</title>
+        <pubTime>2017-03-15T10:09:10.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>android</tag>
+         
+        <tag>protobuf</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2017/03/10/%E4%BD%BF%E7%94%A8Spring%E5%AE%9E%E7%8E%B0Java%E4%B8%AD%E7%9A%84%E7%BC%93%E5%AD%98/</loc>
+    <lastmod>2017-04-18T04:14:32.496Z</lastmod>
+    <data>
+        <display>
+        <title>使用Spring实现Java中的缓存</title>
+        <pubTime>2017-03-10T04:11:14.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>spring</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/09/20/%E8%B0%88%E8%B0%88%E5%9C%A8%E7%BA%BF%E6%94%AF%E4%BB%98%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2017-04-12T03:31:59.242Z</lastmod>
+    <data>
+        <display>
+        <title>谈谈在线支付的安全性问题</title>
+        <pubTime>2016-09-20T03:02:43.000Z</pubTime>
+        
+        <tag>测试</tag>
+         
+        <tag>安全</tag>
+         
+         
+           
+             
+              <breadCrumb title="安全" url="https://tunsuy.github.io/categories/%E5%AE%89%E5%85%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/08/25/%E8%B0%88%E8%B0%88Android%E4%B8%8BApp%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2017-04-12T03:31:45.682Z</lastmod>
+    <data>
+        <display>
+        <title>谈谈Android下App的安全性问题</title>
+        <pubTime>2016-08-25T02:24:56.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+        <tag>测试</tag>
+         
+        <tag>安全</tag>
+         
+         
+           
+             
+              <breadCrumb title="安全" url="https://tunsuy.github.io/categories/%E5%AE%89%E5%85%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/08/20/%E8%B0%88%E8%B0%88iOS%E4%B8%8BApp%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2017-04-12T03:31:09.616Z</lastmod>
+    <data>
+        <display>
+        <title>谈谈iOS下App的安全性问题</title>
+        <pubTime>2016-08-20T01:22:44.000Z</pubTime>
+        
+        <tag>测试</tag>
+         
+        <tag>安全</tag>
+         
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="安全" url="https://tunsuy.github.io/categories/%E5%AE%89%E5%85%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/09/18/%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F%E4%B9%8BAPI%E8%B0%83%E7%94%A8%E7%89%88%E6%9C%AC%E6%A3%80%E6%9F%A5/</loc>
+    <lastmod>2017-04-11T08:17:29.747Z</lastmod>
+    <data>
+        <display>
+        <title>代码扫描之API调用版本检查</title>
+        <pubTime>2016-09-18T02:09:21.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>python</tag>
+         
+        <tag>sqlite</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/03/20/redmine%E6%95%B0%E6%8D%AE%E5%AE%9A%E6%9C%9F%E5%A4%87%E4%BB%BD%E6%9C%BA%E5%88%B6/</loc>
+    <lastmod>2017-04-11T07:24:09.572Z</lastmod>
+    <data>
+        <display>
+        <title>redmine数据定期备份机制</title>
+        <pubTime>2015-03-20T07:21:24.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>redmine</tag>
+         
+         
+           
+             
+              <breadCrumb title="redmine" url="https://tunsuy.github.io/categories/redmine/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/06/25/%E6%B5%85%E5%B0%9DPython%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/</loc>
+    <lastmod>2017-04-10T12:06:04.881Z</lastmod>
+    <data>
+        <display>
+        <title>浅尝Python代码执行过程</title>
+        <pubTime>2016-06-25T10:09:37.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/07/05/%E6%B7%B1%E5%85%A5%E8%AF%A6%E8%A7%A3Java%E8%BF%AD%E4%BB%A3%E5%99%A8/</loc>
+    <lastmod>2017-04-10T12:05:29.166Z</lastmod>
+    <data>
+        <display>
+        <title>深入详解Java迭代器</title>
+        <pubTime>2016-07-05T10:16:54.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/05/25/%E8%B0%88%E8%B0%88linux%E4%B8%8BBash%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC/</loc>
+    <lastmod>2017-04-10T12:05:09.372Z</lastmod>
+    <data>
+        <display>
+        <title>谈谈linux下Bash中的函数返回值</title>
+        <pubTime>2016-05-25T11:28:34.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>shell</tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="https://tunsuy.github.io/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/02/20/hexo-github%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2017-04-01T07:39:15.678Z</lastmod>
+    <data>
+        <display>
+        <title>hexo+github博客部署问题记录</title>
+        <pubTime>2015-02-20T06:46:31.000Z</pubTime>
+        
+        <tag>blog</tag>
+         
+        <tag>github</tag>
+         
+        <tag>hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="blog" url="https://tunsuy.github.io/categories/blog/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/10/08/redmine-%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/</loc>
+    <lastmod>2017-03-31T09:58:35.049Z</lastmod>
+    <data>
+        <display>
+        <title>redmine-数据统计</title>
+        <pubTime>2016-10-08T12:11:06.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>redmine</tag>
+         
+         
+           
+             
+              <breadCrumb title="redmine" url="https://tunsuy.github.io/categories/redmine/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/12/13/%E6%B7%B1%E5%85%A5%E8%AF%A6%E8%A7%A3Java%E7%9A%84NIO%E4%B9%8BChannel/</loc>
+    <lastmod>2017-03-21T09:43:58.901Z</lastmod>
+    <data>
+        <display>
+        <title>深入详解Java的NIO之Channel</title>
+        <pubTime>2016-12-13T09:30:58.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/12/18/%E6%B7%B1%E5%85%A5%E8%AF%A6%E8%A7%A3Java%E7%9A%84NIO%E4%B9%8BBuffer/</loc>
+    <lastmod>2017-03-21T09:39:00.535Z</lastmod>
+    <data>
+        <display>
+        <title>深入详解Java的NIO之Buffer</title>
+        <pubTime>2016-12-18T12:03:09.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2017/02/18/%E9%AB%98%E6%95%88Python%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0/</loc>
+    <lastmod>2017-03-18T04:05:41.079Z</lastmod>
+    <data>
+        <display>
+        <title>高效Python编程之方法参数</title>
+        <pubTime>2017-02-18T03:31:28.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2017/03/05/Python%E4%B8%AD%E7%9A%84%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2017-03-18T03:55:36.250Z</lastmod>
+    <data>
+        <display>
+        <title>Python中的异步编程详解</title>
+        <pubTime>2017-03-05T03:36:37.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2017/02/07/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3Python%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8/</loc>
+    <lastmod>2017-03-18T03:53:59.645Z</lastmod>
+    <data>
+        <display>
+        <title>深入了解Python中的装饰器</title>
+        <pubTime>2017-02-07T03:39:34.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/05/15/%E5%9F%BA%E4%BA%8Eruby-trello%E7%9A%84trello%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2017-03-14T10:14:58.497Z</lastmod>
+    <data>
+        <display>
+        <title>基于ruby-trello的trello系统数据写入工具</title>
+        <pubTime>2015-05-15T03:19:08.000Z</pubTime>
+        
+        <tag>ruby</tag>
+         
+         
+           
+             
+              <breadCrumb title="ruby" url="https://tunsuy.github.io/categories/ruby/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/06/11/%E8%AF%A6%E8%A7%A3JVM%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E5%86%85%E9%83%A8%E6%9E%84%E4%BB%B6/</loc>
+    <lastmod>2017-03-14T10:12:50.320Z</lastmod>
+    <data>
+        <display>
+        <title>详解JVM原理及其内部构件</title>
+        <pubTime>2016-06-11T04:54:40.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/09/13/Java%EF%BC%9A%E9%87%8D%E6%B8%A9%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/</loc>
+    <lastmod>2017-03-14T10:11:00.465Z</lastmod>
+    <data>
+        <display>
+        <title>Java：重温数据结构-链表</title>
+        <pubTime>2016-09-13T01:59:43.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>数据结构</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/10/09/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%92%8C%E9%9B%86%E5%90%88/</loc>
+    <lastmod>2017-03-14T10:09:22.742Z</lastmod>
+    <data>
+        <display>
+        <title>深入理解Java中的线程安全和集合</title>
+        <pubTime>2016-10-09T11:20:00.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/12/09/%E8%87%AA%E7%BC%96%E8%AF%91mongo3-2%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2017-03-14T05:14:10.767Z</lastmod>
+    <data>
+        <display>
+        <title>自编译mongo3.2测试</title>
+        <pubTime>2016-12-09T02:13:44.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>mongodb</tag>
+         
+         
+           
+             
+              <breadCrumb title="mongodb" url="https://tunsuy.github.io/categories/mongodb/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/04/06/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E6%B5%8B%E8%AF%95%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3/</loc>
+    <lastmod>2017-03-14T05:14:10.767Z</lastmod>
+    <data>
+        <display>
+        <title>移动互联网测试的所思所想</title>
+        <pubTime>2015-04-06T03:11:34.000Z</pubTime>
+        
+        <tag>测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="杂谈" url="https://tunsuy.github.io/categories/%E6%9D%82%E8%B0%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/09/23/%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8BiOS%E6%97%A5%E5%BF%97/</loc>
+    <lastmod>2017-03-14T05:14:10.678Z</lastmod>
+    <data>
+        <display>
+        <title>实现浏览器中实时查看iOS日志</title>
+        <pubTime>2016-09-23T07:32:34.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>https</tag>
+         
+        <tag>web</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/06/10/%E5%88%A9%E7%94%A8leakcanay%E6%A3%80%E6%B5%8Bandroid%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/</loc>
+    <lastmod>2017-03-14T05:14:10.589Z</lastmod>
+    <data>
+        <display>
+        <title>利用leakcanary检测android内存泄露</title>
+        <pubTime>2015-06-10T07:21:24.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+        <tag>测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="android" url="https://tunsuy.github.io/categories/android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/05/10/%E5%88%A9%E7%94%A8drozer%E8%BF%9B%E8%A1%8CAndroid%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2017-03-14T05:14:10.499Z</lastmod>
+    <data>
+        <display>
+        <title>利用drozer进行Android渗透测试</title>
+        <pubTime>2015-05-10T07:18:59.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+        <tag>测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="android" url="https://tunsuy.github.io/categories/android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/06/02/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84moa%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2017-03-14T05:14:10.407Z</lastmod>
+    <data>
+        <display>
+        <title>基于docker的moa服务</title>
+        <pubTime>2016-06-02T04:15:17.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>docker</tag>
+         
+         
+           
+             
+              <breadCrumb title="docker" url="https://tunsuy.github.io/categories/docker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/04/27/%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B9%8C%E4%BA%91%E7%BD%91%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2017-03-14T05:14:10.313Z</lastmod>
+    <data>
+        <display>
+        <title>本地化乌云网操作记录</title>
+        <pubTime>2015-04-27T11:26:51.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>web</tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="https://tunsuy.github.io/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/04/14/selenium%E8%BF%9C%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8/</loc>
+    <lastmod>2017-03-14T05:14:10.313Z</lastmod>
+    <data>
+        <display>
+        <title>selenium远程启动浏览器</title>
+        <pubTime>2016-04-14T11:08:23.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>selenium</tag>
+         
+         
+           
+             
+              <breadCrumb title="selenium" url="https://tunsuy.github.io/categories/selenium/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/07/18/redmine%E7%B3%BB%E7%BB%9F%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E4%B9%8Bsearch%E5%8A%9F%E8%83%BD/</loc>
+    <lastmod>2017-03-14T05:14:10.220Z</lastmod>
+    <data>
+        <display>
+        <title>redmine系统二次开发之search功能</title>
+        <pubTime>2016-07-18T04:30:24.000Z</pubTime>
+        
+        <tag>redmine</tag>
+         
+        <tag>web</tag>
+         
+         
+           
+             
+              <breadCrumb title="redmine" url="https://tunsuy.github.io/categories/redmine/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/08/18/Python%EF%BC%9Aiterator-pattern%E2%80%94%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-03-14T05:14:10.127Z</lastmod>
+    <data>
+        <display>
+        <title>Python：iterator pattern—迭代器模式</title>
+        <pubTime>2016-08-18T08:53:38.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/10/27/redmine%E8%BF%81%E7%A7%BB%EF%BC%9A%E4%BB%8Ewindows%E4%B8%8B%E8%BF%81%E7%A7%BB%E5%88%B0linux/</loc>
+    <lastmod>2017-03-14T05:14:10.127Z</lastmod>
+    <data>
+        <display>
+        <title>redmine迁移：从windows下迁移到linux</title>
+        <pubTime>2015-10-27T11:24:22.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>redmine</tag>
+         
+         
+           
+             
+              <breadCrumb title="redmine" url="https://tunsuy.github.io/categories/redmine/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/08/11/Python%EF%BC%9Abuilder-pattern%E2%80%94%E5%BB%BA%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-03-14T05:14:10.036Z</lastmod>
+    <data>
+        <display>
+        <title>Python：builder pattern—建造者模式</title>
+        <pubTime>2016-08-11T10:00:47.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://tunsuy.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/10/15/mongodb%E9%9B%86%E7%BE%A43-0-X%E5%8D%87%E7%BA%A73-2-X/</loc>
+    <lastmod>2017-03-14T05:14:10.036Z</lastmod>
+    <data>
+        <display>
+        <title>mongodb集群3.0.X升级3.2.X</title>
+        <pubTime>2016-10-15T02:07:58.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>mongodb</tag>
+         
+         
+           
+             
+              <breadCrumb title="mongodb" url="https://tunsuy.github.io/categories/mongodb/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/03/04/linux%E4%B8%8B%E9%83%A8%E7%BD%B2redmine/</loc>
+    <lastmod>2017-03-14T05:14:09.939Z</lastmod>
+    <data>
+        <display>
+        <title>linux下部署redmine</title>
+        <pubTime>2015-03-04T11:23:51.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>ruby</tag>
+         
+        <tag>redmine</tag>
+         
+         
+           
+             
+              <breadCrumb title="redmine" url="https://tunsuy.github.io/categories/redmine/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/05/13/Java%EF%BC%9AArrayList%E5%92%8CLinkedList%E7%9A%84%E5%AF%B9%E6%AF%94/</loc>
+    <lastmod>2017-03-14T05:14:09.848Z</lastmod>
+    <data>
+        <display>
+        <title>Java：ArrayList和LinkedList的对比</title>
+        <pubTime>2016-05-13T02:00:53.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://tunsuy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/05/19/iOS%E4%B8%8B%E4%BD%BF%E7%94%A8XCTest%E8%BF%9B%E8%A1%8C%E5%8F%91%E5%8C%85%E5%89%8DChecklist%E6%A3%80%E6%9F%A5/</loc>
+    <lastmod>2017-03-14T05:14:09.848Z</lastmod>
+    <data>
+        <display>
+        <title>iOS下使用UI-Testing进行发包前Checklist检查</title>
+        <pubTime>2016-05-19T07:16:22.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>自动化测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/08/11/ios%EF%BC%9A%E6%80%A7%E8%83%BD%E4%B9%8B%E5%8D%A1%E9%A1%BF%E6%A3%80%E6%B5%8B/</loc>
+    <lastmod>2017-03-14T05:14:09.756Z</lastmod>
+    <data>
+        <display>
+        <title>iOS：性能之卡顿检测</title>
+        <pubTime>2016-08-11T11:11:51.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>性能</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/04/28/ios%EF%BC%9AUIWebView%E4%B8%8EWKWebView%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</loc>
+    <lastmod>2017-03-14T05:14:09.756Z</lastmod>
+    <data>
+        <display>
+        <title>iOS：UIWebView与WKWebView注意事项</title>
+        <pubTime>2016-04-28T09:14:51.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/06/21/ios%EF%BC%9Ahttps-ATS%E6%94%B9%E9%80%A0%E8%BF%87%E7%A8%8B/</loc>
+    <lastmod>2017-03-14T05:14:09.669Z</lastmod>
+    <data>
+        <display>
+        <title>iOS：https/ATS改造过程</title>
+        <pubTime>2016-06-21T05:14:11.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>https</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/03/15/gitbook%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2017-03-14T05:14:09.578Z</lastmod>
+    <data>
+        <display>
+        <title>gitbook使用相关</title>
+        <pubTime>2015-03-15T11:25:49.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="git" url="https://tunsuy.github.io/categories/git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/06/15/docker%E8%87%AA%E5%AE%9A%E4%B9%89daemon%E9%80%89%E9%A1%B9/</loc>
+    <lastmod>2017-03-14T05:14:09.576Z</lastmod>
+    <data>
+        <display>
+        <title>docker自定义daemon选项</title>
+        <pubTime>2016-06-15T04:10:23.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>docker</tag>
+         
+         
+           
+             
+              <breadCrumb title="docker" url="https://tunsuy.github.io/categories/docker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/03/10/centos%E4%B8%8B%E5%AE%89%E8%A3%85mongodb%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2017-03-14T05:14:09.484Z</lastmod>
+    <data>
+        <display>
+        <title>centos下安装mongodb记录</title>
+        <pubTime>2015-03-10T11:26:20.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>mongdb</tag>
+         
+         
+           
+             
+              <breadCrumb title="mongodb" url="https://tunsuy.github.io/categories/mongodb/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2015/06/12/calabash-ios%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2017-03-14T05:14:09.484Z</lastmod>
+    <data>
+        <display>
+        <title>calabash-ios原理分析</title>
+        <pubTime>2015-06-12T07:10:51.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>自动化测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/06/20/calabash-android%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2017-03-14T05:14:09.416Z</lastmod>
+    <data>
+        <display>
+        <title>calabash-android原理分析</title>
+        <pubTime>2016-06-20T07:16:39.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+        <tag>自动化测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="android" url="https://tunsuy.github.io/categories/android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/06/28/calabash-ios%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2017-03-14T05:14:09.416Z</lastmod>
+    <data>
+        <display>
+        <title>calabash-ios安装详解</title>
+        <pubTime>2016-06-28T06:48:31.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>自动化测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/11/16/App%E4%B8%89%E6%96%B9%E4%BA%A4%E4%BA%92%E9%80%BB%E8%BE%91%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2017-03-14T05:14:09.342Z</lastmod>
+    <data>
+        <display>
+        <title>App三方交互逻辑实践</title>
+        <pubTime>2016-11-16T07:28:06.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>go</tag>
+         
+        <tag>服务端</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://tunsuy.github.io/2016/07/10/appium-ios%E8%87%AA%E5%8A%A8%E5%8C%96%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2017-03-14T05:14:09.342Z</lastmod>
+    <data>
+        <display>
+        <title>appium-ios自动化入门</title>
+        <pubTime>2016-07-10T07:13:01.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+        <tag>appium</tag>
+         
+        <tag>自动化测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="https://tunsuy.github.io/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+</urlset>

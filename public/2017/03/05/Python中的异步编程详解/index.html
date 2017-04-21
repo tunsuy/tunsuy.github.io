@@ -1,0 +1,1139 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="baidu-site-verification" content="1AtMgOQafj" />
+
+<meta name="google-site-verification" content="OBsr4k89YaSgNU5IJZxIMjW5YvAMvXQzodsx1oFR_iY" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="http://fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Menlo:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,异步编程,线程,协程,异步IO" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="一、 协程和线程多线程的Python程序总是让你看起来像是同时在运行多个函数。但是多线程有三大问题：
+
+它们需要特殊的工具来协调各个线程之间的安全。这让编写代码比单线程程序更加的苦难。并且这让代码变得更加的难以维护和扩展。
+线程需要更多的内存，每个执行中的线程大概需要8M。这对于现在大部分计算机来说可能不算什么。但是如果你想让你的程序同时运行成千上万的功能，这可能就会导致有些线程不工作了。
+开启一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python中的异步编程详解">
+<meta property="og:url" content="https://tunsuy.github.io/2017/03/05/Python中的异步编程详解/index.html">
+<meta property="og:site_name" content="鱼儿塘">
+<meta property="og:description" content="一、 协程和线程多线程的Python程序总是让你看起来像是同时在运行多个函数。但是多线程有三大问题：
+
+它们需要特殊的工具来协调各个线程之间的安全。这让编写代码比单线程程序更加的苦难。并且这让代码变得更加的难以维护和扩展。
+线程需要更多的内存，每个执行中的线程大概需要8M。这对于现在大部分计算机来说可能不算什么。但是如果你想让你的程序同时运行成千上万的功能，这可能就会导致有些线程不工作了。
+开启一">
+<meta property="og:updated_time" content="2017-03-18T03:55:36.250Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python中的异步编程详解">
+<meta name="twitter:description" content="一、 协程和线程多线程的Python程序总是让你看起来像是同时在运行多个函数。但是多线程有三大问题：
+
+它们需要特殊的工具来协调各个线程之间的安全。这让编写代码比单线程程序更加的苦难。并且这让代码变得更加的难以维护和扩展。
+线程需要更多的内存，每个执行中的线程大概需要8M。这对于现在大部分计算机来说可能不算什么。但是如果你想让你的程序同时运行成千上万的功能，这可能就会导致有些线程不工作了。
+开启一">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6391721495294379000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tunsuy.github.io/2017/03/05/Python中的异步编程详解/"/>
+
+
+
+
+
+  <title> Python中的异步编程详解 | 鱼儿塘 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鱼儿塘</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tunsuy.github.io/2017/03/05/Python中的异步编程详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tunsuy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/headpic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鱼儿塘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python中的异步编程详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-05T11:36:37+08:00">
+                2017-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/05/Python中的异步编程详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/05/Python中的异步编程详解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/05/Python中的异步编程详解/" class="leancloud_visitors" data-flag-title="Python中的异步编程详解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、-协程和线程"><a href="#一、-协程和线程" class="headerlink" title="一、 协程和线程"></a>一、 协程和线程</h1><p>多线程的Python程序总是让你看起来像是同时在运行多个函数。但是多线程有三大问题：</p>
+<ul>
+<li>它们需要特殊的工具来协调各个线程之间的安全。这让编写代码比单线程程序更加的苦难。并且这让代码变得更加的难以维护和扩展。</li>
+<li>线程需要更多的内存，每个执行中的线程大概需要8M。这对于现在大部分计算机来说可能不算什么。但是如果你想让你的程序同时运行成千上万的功能，这可能就会导致有些线程不工作了。</li>
+<li>开启一个线程的代价是很高的。如果你频繁的创建和销毁一个线程，那么这开销将会是很大的，将拖慢整个系统。</li>
+</ul>
+<a id="more"></a>
+<p>Python用协程将解决这些问题。协程让你的Python程序看起来有很多同时工作的函数功能。它们被实现为作为生成器的扩展功能。开启一个生成器协程的代价就只相当于一个函数调用。一旦开启协程，它们的内存消耗少于1KB。</p>
+<p>关于Python的协程发展，这篇文章讲的比较好 <a href="http://shangliuyan.github.io/2015/07/06/python%E7%9A%84%E5%8D%8F%E7%A8%8B/" target="_blank" rel="external">python的协程</a></p>
+<p>下面先来看看Python中的生成器</p>
+<h1 id="二、-生成器"><a href="#二、-生成器" class="headerlink" title="二、 生成器"></a>二、 生成器</h1><p>简单来说，生成器就是一个生产值的方法。一个方法通常返回一个值之后，内存调用栈中就会将该方法的调用信息给销毁了。当我们再次调用该方法时，又会从入口开始从头执行，它是一次性执行的。但是一个生成器能够 <code>yield</code> 一个值，并且暂停该方法的执行吗，同时将线程控制器交给调用者。当我们想要得到其他值的时候，又可以再次恢复这个方法的执行。示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">simple_gen</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">yield</span> <span class="string">"Hello"</span></div><div class="line">    <span class="keyword">yield</span> <span class="string">"World"</span></div><div class="line"></div><div class="line"></div><div class="line">gen = simple_gen()</div><div class="line">print(next(gen))</div><div class="line">print(next(gen))</div></pre></td></tr></table></figure></p>
+<p>注：一个生成器方法被调用时不会直接返回任何的值，而是当返回一个生成器对象（类似于迭代器）。我们可以对这个生成器调用 <code>next()</code> 方法来获取每一个值，或者运行 <code>for</code> 循环。</p>
+<p>生成器有什么用呢？</p>
+<p>假如你的老板要求你写一个方法来生成100以内的序列（一个 <code>range()</code> 的超级简化版本）。你可能这样实现它：你定义一个空列表，然后将数字添加进入，最后返回该列表。后来这个需求变更了，需要生成千万的序列。这时如果你在一个列表中存储千万的数据，这将导致内存溢出。这时，生成器可以解决这个问题：你可以生成这些数据，但是不用存储在列表中，下面是示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_nums</span><span class="params">()</span>:</span></div><div class="line">    num = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        <span class="keyword">yield</span> num</div><div class="line">        num = num + <span class="number">1</span></div><div class="line"></div><div class="line"></div><div class="line">nums = generate_nums()</div><div class="line"></div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> nums:</div><div class="line">    print(x)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> x &gt; <span class="number">9</span>:</div><div class="line">        <span class="keyword">break</span></div></pre></td></tr></table></figure></p>
+<h1 id="三、-协程"><a href="#三、-协程" class="headerlink" title="三、 协程"></a>三、 协程</h1><p>在上一节中，我们已经看见了，使用生成器我们可以从方法上下文中拿到数据。那如果我们也想要传递一些数据给该方法上下文中的变量呢？这就是协程发挥的作用了。<code>yield</code> 关键字能够用来获取数据，也能作为一个表达式。我们能够对生成器对象使用 <code>send()</code> 方法来传递数据给方法。这就是所谓的 <code>“基于生成器的协程”</code>。示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">coro</span><span class="params">()</span>:</span></div><div class="line">    hello = <span class="keyword">yield</span> <span class="string">"Hello"</span></div><div class="line">    <span class="keyword">yield</span> hello</div><div class="line"></div><div class="line"></div><div class="line">c = coro()</div><div class="line">print(next(c))</div><div class="line">print(c.send(<span class="string">"World"</span>))</div></pre></td></tr></table></figure></p>
+<p>这段代码是怎样工作的呢？首先我们执行 <code>next(c)</code>, 第一次拿到 <code>coro()</code> 中的数据 <code>Hello</code> (此时 <code>coro()</code> 方法暂停，等待下一次恢复)。然后我们通过 <code>send()</code> 方法向方法 <code>coro()</code> 传递一个值 <code>World</code>，此时 <code>coro()</code> 方法恢复执行，并且将我们发送的数据赋值给 <code>hello</code> 变量。并开始往下执行直到遇到下一个 <code>yield</code> ，此时方法返回 <code>World</code> 。</p>
+<p>Python的生成器是协程coroutine的一种形式，但它的局限性在于只能向它的直接调用者yield值。这意味着那些包含yield的代码不能想其他代码那样被分离出来放到一个单独的函数中。这也正是 <code>yield from</code> 要解决的。</p>
+<h1 id="四、-yield-from"><a href="#四、-yield-from" class="headerlink" title="四、 yield from"></a>四、 yield from</h1><p> <code>yield from</code> 允许一个generator生成器将其部分操作委派给另一个生成器。其产生的主要动力在于使生成器能够很容易分为多个拥有send和throw方法的子生成器，像一个大函数可以分为多个子函数一样简单。示例：<br> <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">accumulate</span><span class="params">()</span>:</span>    <span class="comment"># 子生成器，将传进的非None值累加，传进的值若为None，则返回累加结果</span></div><div class="line"><span class="meta">... </span>    tally = <span class="number">0</span></div><div class="line"><span class="meta">... </span>    <span class="keyword">while</span> <span class="number">1</span>:</div><div class="line"><span class="meta">... </span>        next = <span class="keyword">yield</span></div><div class="line"><span class="meta">... </span>        <span class="keyword">if</span> next <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line"><span class="meta">... </span>            <span class="keyword">return</span> tally</div><div class="line"><span class="meta">... </span>        tally += next</div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">gather_tallies</span><span class="params">(tallies)</span>:</span>    <span class="comment"># 外部生成器，将累加操作任务委托给子生成器</span></div><div class="line"><span class="meta">... </span>    <span class="keyword">while</span> <span class="number">1</span>:</div><div class="line"><span class="meta">... </span>        tally = <span class="keyword">yield</span> <span class="keyword">from</span> accumulate()</div><div class="line"><span class="meta">... </span>        tallies.append(tally)</div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>tallies = []</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>acc = gather_tallies(tallies)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>next(acc)    <span class="comment"># 使累加生成器准备好接收传入值</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</div><div class="line"><span class="meta">... </span>    acc.send(i)</div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>acc.send(<span class="keyword">None</span>)    <span class="comment"># 结束第一次累加</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</div><div class="line"><span class="meta">... </span>    acc.send(i)</div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>acc.send(<span class="keyword">None</span>)    <span class="comment"># 结束第二次累加</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>tallies    <span class="comment"># 输出最终结果</span></div><div class="line">[<span class="number">6</span>, <span class="number">10</span>]</div></pre></td></tr></table></figure></p>
+<p>基于生成器的协程在Python2.5以上就有了，但是在Python3.5，又有了更加灵活强大的协程支持 <code>async/await</code> 以及本地协程。</p>
+<h1 id="五、-异步I-O"><a href="#五、-异步I-O" class="headerlink" title="五、 异步I/O"></a>五、 异步I/O</h1><p>从Python3.4起，有了一个叫做 <code>asyncio</code> 的新模块，提供了很多好的API来处理异步程序。我们可以使用协程和asyncio模块更加容易的处理异常程序。示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> asyncio</div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">import</span> random</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@asyncio.coroutine</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_date</span><span class="params">(num, loop)</span>:</span></div><div class="line">    end_time = loop.time() + <span class="number">50.0</span></div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        print(<span class="string">"Loop: &#123;&#125; Time: &#123;&#125;"</span>.format(num, datetime.datetime.now()))</div><div class="line">        <span class="keyword">if</span> (loop.time() + <span class="number">1.0</span>) &gt;= end_time:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        <span class="keyword">yield</span> <span class="keyword">from</span> asyncio.sleep(random.randint(<span class="number">0</span>, <span class="number">5</span>))</div><div class="line"></div><div class="line"></div><div class="line">loop = asyncio.get_event_loop()</div><div class="line"></div><div class="line">asyncio.ensure_future(display_date(<span class="number">1</span>, loop))</div><div class="line">asyncio.ensure_future(display_date(<span class="number">2</span>, loop))</div><div class="line"></div><div class="line">loop.run_forever()</div></pre></td></tr></table></figure></p>
+<p>这段代码中，我们创建了一个协程 <code>display_date(num, loop)</code> 。它使用一个 <code>yield from</code> 来等待子协程 <code>asyncio.sleep()</code> 的返回结果。<code>asyncio.sleep()</code> 是一个协程，在给定的时间之后完成。因此我们传递随机的时间给它。然后我们使用 <code>asyncio.ensure_future()</code> 在默认时间循环中调度 <code>display_date()</code> 协程的执行。</p>
+<p>通过输出，我们可以看到两个协程在并发的执行。当我们使用 <code>yield from</code> 时，这事件循环知道它将耗时一会，所以它会自动中断这个协程的执行，转而去执行另外一个。因此看起来是并发的执行（但不是并行，因为事件循环是一个单线程）。</p>
+<p>正如你知道的，<code>yield from</code> 是一个语法糖：<code>for x in asyncio.sleep(random.randint(0, 5)): yield x</code>。</p>
+<h1 id="六、-原生协程"><a href="#六、-原生协程" class="headerlink" title="六、 原生协程"></a>六、 原生协程</h1><p>在Python3.5起，提供了 <code>async/await</code> 来支持原生协程。上一节的代码可以这样重写：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> asyncio</div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">import</span> random</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">display_date</span><span class="params">(num, loop, )</span>:</span></div><div class="line">    end_time = loop.time() + <span class="number">50.0</span></div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        print(<span class="string">"Loop: &#123;&#125; Time: &#123;&#125;"</span>.format(num, datetime.datetime.now()))</div><div class="line">        <span class="keyword">if</span> (loop.time() + <span class="number">1.0</span>) &gt;= end_time:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        <span class="keyword">await</span> asyncio.sleep(random.randint(<span class="number">0</span>, <span class="number">5</span>))</div><div class="line"></div><div class="line"></div><div class="line">loop = asyncio.get_event_loop()</div><div class="line"></div><div class="line">asyncio.ensure_future(display_date(<span class="number">1</span>, loop))</div><div class="line">asyncio.ensure_future(display_date(<span class="number">2</span>, loop))</div><div class="line"></div><div class="line">loop.run_forever()</div></pre></td></tr></table></figure></p>
+<h1 id="七、-两种模式对比"><a href="#七、-两种模式对比" class="headerlink" title="七、 两种模式对比"></a>七、 两种模式对比</h1><p>原生协程和基于生成器的协程在功能上没有什么差异，除了使用的关键字不同而已。两者之间不能混用，比如在原生中使用 <code>yield/yield from</code> ，在基于生成器的协程中使用 <code>await</code> 。</p>
+<p>尽管有使用上的不同，但是我们也可以对他们进行互操作。我们只需要增加 <code>@types.coroutine</code> 装饰器到旧的基于生成器协程上。也就是说，我们能够在原生协程中使用 <code>await</code> 来等待一个基于生成器的协程，在基于生成器的协程中使用 <code>yield from</code> 来等待一个原生协程。示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> asyncio</div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">import</span> random</div><div class="line"><span class="keyword">import</span> types</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@types.coroutine</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_sleep_func</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">yield</span> <span class="keyword">from</span> asyncio.sleep(random.randint(<span class="number">0</span>, <span class="number">5</span>))</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">display_date</span><span class="params">(num, loop, )</span>:</span></div><div class="line">    end_time = loop.time() + <span class="number">50.0</span></div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        print(<span class="string">"Loop: &#123;&#125; Time: &#123;&#125;"</span>.format(num, datetime.datetime.now()))</div><div class="line">        <span class="keyword">if</span> (loop.time() + <span class="number">1.0</span>) &gt;= end_time:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        <span class="keyword">await</span> my_sleep_func()</div><div class="line"></div><div class="line"></div><div class="line">loop = asyncio.get_event_loop()</div><div class="line"></div><div class="line">asyncio.ensure_future(display_date(<span class="number">1</span>, loop))</div><div class="line">asyncio.ensure_future(display_date(<span class="number">2</span>, loop))</div><div class="line"></div><div class="line">loop.run_forever()</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="tunsuy WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="tunsuy Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/20/为Protobuf编译器protoc编写插件/" rel="next" title="为Protobuf编译器protoc编写插件">
+                <i class="fa fa-chevron-left"></i> 为Protobuf编译器protoc编写插件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/10/使用Spring实现Java中的缓存/" rel="prev" title="使用Spring实现Java中的缓存">
+                使用Spring实现Java中的缓存 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/05/Python中的异步编程详解/"
+           data-title="Python中的异步编程详解" data-url="https://tunsuy.github.io/2017/03/05/Python中的异步编程详解/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/headpic.jpg"
+               alt="tunsuy" />
+          <p class="site-author-name" itemprop="name">tunsuy</p>
+           
+              <p class="site-description motion-element" itemprop="description">一切只为变得更好</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tunsuy/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=mKGtr6mqrq_sq9jp6bb79-U" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-协程和线程"><span class="nav-text">一、 协程和线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-生成器"><span class="nav-text">二、 生成器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-协程"><span class="nav-text">三、 协程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、-yield-from"><span class="nav-text">四、 yield from</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、-异步I-O"><span class="nav-text">五、 异步I/O</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、-原生协程"><span class="nav-text">六、 原生协程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、-两种模式对比"><span class="nav-text">七、 两种模式对比</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tunsuy</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"blogdis"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("QNtye0Peaz21qnUyw7RluVTO-gzGzoHsz", "MBm8aORfutl1RHYXFcEWQb01");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+</body>
+</html>
