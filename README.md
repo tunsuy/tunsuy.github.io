@@ -19,6 +19,12 @@
 [Angularjs基础知识](https://github.com/tunsuy/tunsuy.github.io/blob/master/Angularjs%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.md)  
 [Angularjs集成桩机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/Angularjs%E9%9B%86%E6%88%90%E6%A1%A9%E6%9C%BA%E5%88%B6.md)
 
+## Java进阶
+[Java中的线程技术](https://github.com/tunsuy/tunsuy.github.io/blob/master/Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF.md)
+[Spring中的AOP技术](https://github.com/tunsuy/tunsuy.github.io/blob/master/Spring%E4%B8%AD%E7%9A%84AOP%E6%8A%80%E6%9C%AF.md)
+[Spring之web详解](https://github.com/tunsuy/tunsuy.github.io/blob/master/Spring%E4%B9%8Bweb%E8%AF%A6%E8%A7%A3.md)
+[定时任务库Quartz](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E5%BA%93Quartz.md)
+
 ## 架构设计
 [分布式锁](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81.md)  
 [配置管理架构设计](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.md)
