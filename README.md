@@ -10,7 +10,7 @@
 * [openstack中api参数传递机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/openstack%E4%B8%ADapi%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6.md)  
 * [openstack中的定时机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/openstack%E4%B8%AD%E7%9A%84%E5%AE%9A%E6%97%B6%E6%9C%BA%E5%88%B6.md)  
 * [openstack自动执行机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/openstack%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E6%9C%BA%E5%88%B6.md)  
-* [keystonemiddleware原理]()
+* [keystonemiddleware原理](https://github.com/tunsuy/tunsuy.github.io/blob/master/keystonemiddleware%E5%8E%9F%E7%90%86.md)
 
 ## python进阶
 * [python工具制作](https://github.com/tunsuy/tunsuy.github.io/blob/master/python%E5%B7%A5%E5%85%B7%E5%88%B6%E4%BD%9C.md)  
