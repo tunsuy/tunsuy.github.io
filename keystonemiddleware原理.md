@@ -30,7 +30,7 @@ password = xxx
 user_domain_name = op_service
 insecure = true
 ```
-注：上述流程都需要使用到配置文件中的相关配置
+注：上述流程都需要使用到配置文件中的相关配置  
 这些字段都是在keystonemiddleware里面定义好了的，配置文件中不能变更
 
 
@@ -93,7 +93,7 @@ except ksm_exceptions.InvalidToken:
 为新增的代码片段。
 
 ##### 请求证书内容
-keystonemiddleware中使用keystoneClient客户端去请求证书内容，
+keystonemiddleware中使用keystoneClient客户端去请求证书内容，  
 其中keystoneClient就是访问的配置文件中定义的auth_url地址（auth_url节点服务器就是获取token的地方）。
 
 
