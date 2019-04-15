@@ -30,10 +30,16 @@
 ## 架构设计
 * [分布式锁](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81.md)  
 * [配置管理架构设计](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.md)
-* [keepalive原理解析](https://github.com/tunsuy/tunsuy.github.io/blob/master/keepalive%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90.md)
 * [zookeeper认证机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/zookeeper%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6.md)
 * [新服务架构设计](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E6%96%B0%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.md)
 * [openstack中服务启动设计](https://github.com/tunsuy/tunsuy.github.io/blob/master/openstack%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.md)
+
+## 技术栈
+* [haproxy性能测试](https://github.com/tunsuy/tunsuy.github.io/blob/master/haproxy%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95.md)
+* [rabbitmq实践](https://github.com/tunsuy/tunsuy.github.io/blob/master/rabbitmq%E5%AE%9E%E8%B7%B5.md)
+* [证书校验机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E8%AF%81%E4%B9%A6%E9%AA%8C%E8%AF%81%E8%BF%87%E7%A8%8B.md)
+* [keepalive原理解析](https://github.com/tunsuy/tunsuy.github.io/blob/master/keepalive%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90.md)
+
 
 ## 其他
 * [代码札记](https://app.cacher.io/library/personal)
