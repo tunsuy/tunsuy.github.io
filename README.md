@@ -43,3 +43,7 @@
 
 ## 其他
 * [代码札记](https://app.cacher.io/library/personal)
+* [ssh免密登陆]
+* [sqlalchemy中的session]
+* [数据库锁机制]
+* [基于python的selenium实战]
