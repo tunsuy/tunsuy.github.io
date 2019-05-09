@@ -43,7 +43,7 @@
 
 ## 其他
 * [代码札记](https://app.cacher.io/library/personal)
-* [ssh免密登陆]
-* [sqlalchemy中的session]
-* [数据库锁机制]
-* [基于python的selenium实战]
+* [ssh免密登陆](https://github.com/tunsuy/tunsuy.github.io/blob/master/ssh%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86.md)
+* [sqlalchemy中的session](https://github.com/tunsuy/tunsuy.github.io/blob/master/sqlalchemy%E4%B8%AD%E7%9A%84session.md)
+* [数据库锁机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81%E6%9C%BA%E5%88%B6.md)
+* [基于python的selenium实战](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E5%9F%BA%E4%BA%8Epython%E7%9A%84selenium%E5%AE%9E%E6%88%98.md)
