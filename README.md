@@ -16,6 +16,8 @@
 * [python工具制作](https://github.com/tunsuy/tunsuy.github.io/blob/master/python%E5%B7%A5%E5%85%B7%E5%88%B6%E4%BD%9C.md)  
 * [python插件机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/python%E6%8F%92%E4%BB%B6%E6%9C%BA%E5%88%B6.md)
 * [python中LLT的mock妙用](https://github.com/tunsuy/tunsuy.github.io/blob/master/python%E4%B8%ADLLT%E7%9A%84mock%E5%A6%99%E7%94%A8.md)
+* [基于python的ssl认证](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E5%9F%BA%E4%BA%8Epython%E7%9A%84ssl%E8%AE%A4%E8%AF%81.md)
+* [基于python的selenium实战](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E5%9F%BA%E4%BA%8Epython%E7%9A%84selenium%E5%AE%9E%E6%88%98.md)
 
 ## web开发
 * [Angularjs基础知识](https://github.com/tunsuy/tunsuy.github.io/blob/master/Angularjs%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.md)  
@@ -39,11 +41,11 @@
 * [rabbitmq实践](https://github.com/tunsuy/tunsuy.github.io/blob/master/rabbitmq%E5%AE%9E%E8%B7%B5.md)
 * [证书校验机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E8%AF%81%E4%B9%A6%E9%AA%8C%E8%AF%81%E8%BF%87%E7%A8%8B.md)
 * [keepalive原理解析](https://github.com/tunsuy/tunsuy.github.io/blob/master/keepalive%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90.md)
-
+* [数据库锁机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81%E6%9C%BA%E5%88%B6.md)
+* [sqlalchemy中的session](https://github.com/tunsuy/tunsuy.github.io/blob/master/sqlalchemy%E4%B8%AD%E7%9A%84session.md)
 
 ## 其他
 * [代码札记](https://app.cacher.io/library/personal)
 * [ssh免密登陆](https://github.com/tunsuy/tunsuy.github.io/blob/master/ssh%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86.md)
-* [sqlalchemy中的session](https://github.com/tunsuy/tunsuy.github.io/blob/master/sqlalchemy%E4%B8%AD%E7%9A%84session.md)
-* [数据库锁机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81%E6%9C%BA%E5%88%B6.md)
-* [基于python的selenium实战](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E5%9F%BA%E4%BA%8Epython%E7%9A%84selenium%E5%AE%9E%E6%88%98.md)
+* [curl常用操作](https://github.com/tunsuy/tunsuy.github.io/blob/master/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C.md)
+* [Git常用操作](https://github.com/tunsuy/tunsuy.github.io/blob/master/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C.md)
