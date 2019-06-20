@@ -44,9 +44,11 @@
 * [keepalive原理解析](https://github.com/tunsuy/tunsuy.github.io/blob/master/keepalive%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90.md)
 * [数据库锁机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81%E6%9C%BA%E5%88%B6.md)
 * [sqlalchemy中的session](https://github.com/tunsuy/tunsuy.github.io/blob/master/sqlalchemy%E4%B8%AD%E7%9A%84session.md)
+* [haproxy实战](https://github.com/tunsuy/tunsuy.github.io/blob/master/haproxy%E5%AE%9E%E6%88%98.md)
 
 ## 其他
 * [代码札记](https://app.cacher.io/library/personal)
 * [ssh免密登陆](https://github.com/tunsuy/tunsuy.github.io/blob/master/ssh%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86.md)
+* [记一次请求丢失的问题定位过程](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%AF%B7%E6%B1%82%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D%E8%BF%87%E7%A8%8B.md)
 * [curl常用操作](https://github.com/tunsuy/tunsuy.github.io/blob/master/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C.md)
 * [Git常用操作](https://github.com/tunsuy/tunsuy.github.io/blob/master/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C.md)
