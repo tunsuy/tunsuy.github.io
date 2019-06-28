@@ -36,6 +36,7 @@
 * [zookeeper认证机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/zookeeper%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6.md)
 * [新服务架构设计](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E6%96%B0%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.md)
 * [openstack中服务启动设计](https://github.com/tunsuy/tunsuy.github.io/blob/master/openstack%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.md)
+* [任务管理框架设计](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1.md)
 
 ## 技术栈
 * [haproxy性能测试](https://github.com/tunsuy/tunsuy.github.io/blob/master/haproxy%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95.md)
@@ -52,3 +53,5 @@
 * [记一次请求丢失的问题定位过程](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%AF%B7%E6%B1%82%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D%E8%BF%87%E7%A8%8B.md)
 * [curl常用操作](https://github.com/tunsuy/tunsuy.github.io/blob/master/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C.md)
 * [Git常用操作](https://github.com/tunsuy/tunsuy.github.io/blob/master/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C.md)
+* [技术好文汇总](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E6%8A%80%E6%9C%AF%E5%A5%BD%E6%96%87%E6%B1%87%E6%80%BB.md)
+
