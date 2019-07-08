@@ -23,6 +23,7 @@
 ## web开发
 * [Angularjs基础知识](https://github.com/tunsuy/tunsuy.github.io/blob/master/Angularjs%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.md)  
 * [Angularjs集成桩机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/Angularjs%E9%9B%86%E6%88%90%E6%A1%A9%E6%9C%BA%E5%88%B6.md)
+* [Angular之$interval内存泄漏问题](https://github.com/tunsuy/tunsuy.github.io/blob/master/Angular%E4%B9%8B%24interval%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E9%97%AE%E9%A2%98.md)
 
 ## Java进阶
 * [Java中的线程技术](https://github.com/tunsuy/tunsuy.github.io/blob/master/Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF.md)
@@ -46,6 +47,8 @@
 * [数据库锁机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81%E6%9C%BA%E5%88%B6.md)
 * [sqlalchemy中的session](https://github.com/tunsuy/tunsuy.github.io/blob/master/sqlalchemy%E4%B8%AD%E7%9A%84session.md)
 * [haproxy实战](https://github.com/tunsuy/tunsuy.github.io/blob/master/haproxy%E5%AE%9E%E6%88%98.md)
+* [haproxy中的SSL策略](https://github.com/tunsuy/tunsuy.github.io/blob/master/haproxy%E4%B8%AD%E7%9A%84SSL%E7%AD%96%E7%95%A5.md)
+* [haproxy日志解析](https://github.com/tunsuy/tunsuy.github.io/blob/master/haproxy%E6%97%A5%E5%BF%97%E8%A7%A3%E6%9E%90.md)
 
 ## 其他
 * [代码札记](https://app.cacher.io/library/personal)
