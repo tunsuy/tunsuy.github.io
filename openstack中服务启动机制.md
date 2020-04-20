@@ -1,3 +1,5 @@
+从今天开始将陆陆续续发表一些openstack相关的文章。
+
 # openstack服务的启动
 
 基本所有的openstack服务都依赖 evenlet 完成各种并发任务，它的进程可分为两类：  
@@ -6,17 +8,18 @@
 无论是 `WSGIService` 还是 `Service` 类型的进程，每当接收到一个请求(http 或 rpc)，都会在线程池中分配一个协程处理该请求
 
 ## 一、WSGIService的启动
-karbor-api 由 **karbor/cmd/api.py** 启动，它初始化一个 WSGIService(由 **karbor/service.py** 定义) 对象。
+下面以nova服务为例。  
+nova-api 由 **nova/cmd/api.py** 启动，它初始化一个 WSGIService(由 **service.py** 定义) 对象。
 ```python
 def main():
     objects.register_all()
-    CONF(sys.argv[1:], project='karbor',
+    CONF(sys.argv[1:], project='nova',
          version=version.version_string())
-    logging.setup(CONF, "karbor")
+    logging.setup(CONF, "nova")
 
     rpc.init(CONF)
     launcher = service.get_launcher()
-    server = service.WSGIService('osapi_karbor')
+    server = service.WSGIService('osapi_nova')
     launcher.launch_service(server, workers=server.workers)
     launcher.wait()
 ```
@@ -51,14 +54,14 @@ def launch(conf, service, workers=1, restart_method='reload'):
         launcher = ProcessLauncher(conf, restart_method=restart_method)
     launcher.launch_service(service, workers=workers)
 ```
-可以看到这里使用到了两种启动器，在进一步讲解启动的过程中先介绍下karbor中的启动器
+可以看到这里使用到了两种启动器，在进一步讲解启动的过程中先介绍下openstack中的启动器
 
 ## 二、Openstack中的Launcher
 Openstack中有一个叫Launcher的概念，即专门用来启动服务的，这个类被放在了oslo_service这个包里面，Launcher分为两种:  
 一种是**ServiceLauncher**；  
 另一种为**ProcessLauncher**。  
-ServiceLauncher用来启动单进程的服务，如karbor-protection，karbor-operation；  
-而ProcessLauncher用来启动有多个worker子进程的服务，如各类api服务(nova-api、karbor-api)等
+ServiceLauncher用来启动单进程的服务；  
+而ProcessLauncher用来启动有多个worker子进程的服务，如各类api服务(nova-api、cinder-api)等
 
 **oslo_service/service.py**  
 ### 1、ServiceLauncher  
@@ -232,10 +235,10 @@ def server(sock, site,
 看，是不是看到熟悉的一幕了！sock.accept() 监听请求，每当接收到一个新请求，调用 pool.spawn_n() 启动一个协程处理该请求
 
 ## 四、Service的启动
-Service 类型的进程同样由 karbor/cmd/* 目录下某些文件创建：
-- **Karbor-protection: karbor/cmd/protection.py**
+Service 类型的进程同样由 nova/cmd/* 目录下某些文件创建：
+- **nova-schedule: nova/cmd/schedule.py**
 - ……  
-作为消息中间件的消费者，它们监听各自的 queue，每当有 rpc 请求来临时，它们创建一个新的协程处理 rpc 请求。以karbor-protection为例，启动时初始化一个 Server(由 **karbor/service.py** 定义) 对象。  
+作为消息中间件的消费者，它们监听各自的 queue，每当有 rpc 请求来临时，它们创建一个新的协程处理 rpc 请求。以nova-schedule为例，启动时初始化一个 Server(由 **service.py** 定义) 对象。  
 整个Launcher过程跟WSGIServer一样，只是service的start()有些区别而已
 ```python
 def start(self):
@@ -255,7 +258,7 @@ class RPCServer(msg_server.MessageHandlingServer):
         self._target = target
 ```
 该类继承自**MessageHandlingServer**；  
-注：karbor 的各个组件都依赖 oslo.messaging 访问消息服务器，通过 **oslo/messaging/server.py** 初始化一个 MessageHandlingServer 的对象，监听消息队列。  
+注：nova 的各个组件都依赖 oslo.messaging 访问消息服务器，通过 **oslo/messaging/server.py** 初始化一个 MessageHandlingServer 的对象，监听消息队列。  
 最终调用了该service的start方法
 ```python
 def start(self, override_pool_size=None):
