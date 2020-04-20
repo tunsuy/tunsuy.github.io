@@ -1,9 +1,9 @@
-# Karbor服务的启动
+# openstack服务的启动
 
-Karbor 依赖 evenlet 完成各种并发任务，它的进程可分为两类：  
-1、 **WSGIService**: 接收和处理 http 请求，依赖 eventlet.wsgi 的 wsgi server 处理 http 请求，karbor-api 是唯一的 WSGIService 类型的进程  
-2、 **Service**: 接收和处理 rpc 请求，非 karbor-api 以外的其它 karbor 进程，如 karbor-protection，karbor-operation等
-无论是 WSGIService 还是 Service 类型的进程，每当接收到一个请求(http 或 rpc)，都会在线程池中分配一个协程处理该请求
+基本所有的openstack服务都依赖 evenlet 完成各种并发任务，它的进程可分为两类：  
+1、 **WSGIService**: 接收和处理 http 请求，依赖`eventlet.wsgi` 的 `wsgi server` 处理 http 请求，比如`nova-api`  
+2、 **Service**: 接收和处理 rpc 请求，如 `nova-operation`等  
+无论是 `WSGIService` 还是 `Service` 类型的进程，每当接收到一个请求(http 或 rpc)，都会在线程池中分配一个协程处理该请求
 
 ## 一、WSGIService的启动
 karbor-api 由 **karbor/cmd/api.py** 启动，它初始化一个 WSGIService(由 **karbor/service.py** 定义) 对象。
@@ -53,7 +53,7 @@ def launch(conf, service, workers=1, restart_method='reload'):
 ```
 可以看到这里使用到了两种启动器，在进一步讲解启动的过程中先介绍下karbor中的启动器
 
-## 二、Karbor中的Launcher
+## 二、Openstack中的Launcher
 Openstack中有一个叫Launcher的概念，即专门用来启动服务的，这个类被放在了oslo_service这个包里面，Launcher分为两种:  
 一种是**ServiceLauncher**；  
 另一种为**ProcessLauncher**。  
