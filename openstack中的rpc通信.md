@@ -1,4 +1,4 @@
-# Karbor中的rpc通信
+# Openstack中的rpc通信
 
 一般称调用者为 client，被调用者为 server，client 和 server 可以分布在不同的主机中，每当 client 调用 server 时，server 端创建一个线程处理 client 端的请求，所以 server 端是一个并发服务器。  
 RPC 支持同步和异步这两种调用：  
