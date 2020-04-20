@@ -28,7 +28,7 @@ OpenStack RPC 模块提供了 **rpc.call，rpc.cast, rpc.fanout_cast** 三种 RP
 
 
 以karbor中创建策略的调度为例  
-Karbor收到一个创建策略的rest api请求之后，进入**kangaroo/api/services.py**的service类create方法中
+Karbor收到一个创建策略的rest api请求之后，进入service类create方法中
 ```python
 def create(self, req, **kwargs):
     …    
@@ -56,7 +56,7 @@ def create(self, req, **kwargs):
             created_ops.append(created_op)
 
 ```
-在**self.scheduled_operations.create()**方法的层层调用之后，最终进入**karbor/services/operationengine/rpcapi.py**中，调用了openstack的相关api
+在**self.scheduled_operations.create()**方法的层层调用之后，最终进入**rpcapi.py**中，调用了openstack的相关api
 ```python
 def __init__(self):
     super(OperationEngineAPI, self).__init__()
