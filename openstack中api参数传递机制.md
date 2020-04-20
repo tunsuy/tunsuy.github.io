@@ -1,4 +1,4 @@
-# Karbor消息参数的传递
+# api消息参数的传递
 
 在服务启动之后，WSGIServer就开始在监听client的请求了  
 注：关于服务的启动，在前面几篇文档中已有详细说明，请移步查看  
@@ -12,12 +12,12 @@ def create(self, req, **kwargs):
     :param kwargs:
     :return:
     """
-    context = req.environ['karbor.context']
+    context = req.environ['test.context']
     services = objects.PlanList.get_all_by_project(context,
                                                    context.project_id,
                                                    None, None)
 ```
-这就涉及到plan app的注册过程
+这就涉及到plan app的注册过程  
 在**router.py**的APIRouter中，mapper中plan对应的controller是resource类型的对象
 ```python
 class APIRouter(wsgi_common.Router):
@@ -28,7 +28,8 @@ class APIRouter(wsgi_common.Router):
     def __init__(self, mapper):
         plans_resources = plans.create_resource()
 ```
-可以看到create_resource()方法返回的是一个wsgi.py的Resource对象，而Resource类又继承自wsgi.py的Application类，Resource实现了Application的__call__方法，这个方法会在对象创建的时候被自动调用
+可以看到create_resource()方法返回的是一个wsgi.py的Resource对象，  
+而Resource类又继承自wsgi.py的Application类，Resource实现了Application的__call__方法，这个方法会在对象创建的时候被自动调用
 ```python
 def __call__(self, request):
     """WSGI method that controls (de)serialization and method dispatch."""
@@ -74,7 +75,7 @@ def _process_stack(self, request, action, action_args,
     action_args.update(contents)
 
     project_id = action_args.pop("project_id", None)
-    context = request.environ.get('karbor.context')
+    context = request.environ.get('test.context')
     if (context and project_id and (project_id != context.project_id)):
         msg = _("Malformed request url")
         return Fault(webob.exc.HTTPBadRequest(explanation=msg))
@@ -83,7 +84,8 @@ def _process_stack(self, request, action, action_args,
     response, post = self.pre_process_extensions(extensions,
        
 ```
-meth为从控制器中根据action的值获取相应的方法（例如：**cinder.api.v1.volumes.VolumeController.create**）； extensions为根据控制器和action的值获取相应的扩展方法；  
+meth为从控制器中根据action的值获取相应的方法（例如：**cinder.api.v1.volumes.VolumeController.create**）；   
+extensions为根据控制器和action的值获取相应的扩展方法；  
 ```python
 def pre_process_extensions(self, extensions, request, action_args):
     # List of callables for post-processing extensions
