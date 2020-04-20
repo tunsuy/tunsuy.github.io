@@ -1,12 +1,12 @@
-# karbor定时任务
+# Openstack定时任务
 
 在介绍karbor的定时任务之前，先看下openstack的定时任务机制
 
 ## 一、openstack定时任务
 
-OpenStack 定时任务实现由两种实现方法，一种是通过 periodic_task 函数装饰器， 另外一种是由 DynamicLoopingCall 和 FixedIntervalLoopingCall 类通过协程来实现。
+OpenStack 定时任务实现由两种实现方法，一种是通过 `periodic_task` 函数装饰器， 另外一种是由 `DynamicLoopingCall` 和 `FixedIntervalLoopingCall` 类通过协程来实现。
 
-这两种定时任务的目的也完全不一样，前者一般都是用来装饰 manager 类方法，用来实现资源定时刷新、状态报告等；后者通过 wait() 调用进行阻 塞，等待某些某些特定事件发生！
+这两种定时任务的目的也完全不一样，前者一般都是用来装饰 `manager` 类方法，用来实现资源定时刷新、状态报告等；后者通过 `wait()` 调用进行阻 塞，等待某些某些特定事件发生！
 
 
 ## 二、karbor中的定时任务
