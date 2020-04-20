@@ -2,14 +2,12 @@
 
 在介绍karbor的定时任务之前，先看下openstack的定时任务机制
 
-## 一、openstack定时任务
+## 定时任务的方式
 
 OpenStack 定时任务实现由两种实现方法，一种是通过 `periodic_task` 函数装饰器， 另外一种是由 `DynamicLoopingCall` 和 `FixedIntervalLoopingCall` 类通过协程来实现。
 
 这两种定时任务的目的也完全不一样，前者一般都是用来装饰 `manager` 类方法，用来实现资源定时刷新、状态报告等；后者通过 `wait()` 调用进行阻 塞，等待某些某些特定事件发生！
 
-
-## 二、karbor中的定时任务
 
 ### 函数装饰器 
 #### 1、operationengine
@@ -51,10 +49,10 @@ protection进程心跳
 
 这里就顺便说说protection的心跳机制
 #### 进程心跳
-* protection进程定时发送自己的uuid给operationengine；
-* operationengine持有protection_uuid字典，将该字典的uuid值重置为0；  
-* operationengine的定时进程监控任务会每执行一次就将其持有的protection_uuid字典中所有的protection_uuid加1；然后找到所有uuid值超过3的进程id，进入死亡进程处理逻辑（即任务的续作流程）
-注：protection_uuid字典值超过3则认为该已经3次循环都没收到该protection的心跳了
+* `protection`进程定时发送自己的`uuid`给`operationengine`；
+* `operationengine`持有`protection_uuid`字典，将该字典的`uuid`值重置为0；  
+* `operationengine`的定时进程监控任务会每执行一次就将其持有的`protection_uuid`字典中所有的`protection_uuid`加1；然后找到所有uuid值超过3的进程id，进入死亡进程处理逻辑（即任务的续作流程）
+注：`protection_uuid`字典值超过3则认为该已经3次循环都没收到该`protection`的心跳了
 
 ### FixedIntervalLoopingCall类
 karbor中很多地方也用了这种方式  
