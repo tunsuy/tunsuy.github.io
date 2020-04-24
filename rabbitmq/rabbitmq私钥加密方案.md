@@ -2,14 +2,14 @@
 
 
 ## 整体方案
-1、kmc加密rabbitmq私钥密码a，存储到文件f1
-2、rabbitmq启动前，kmc解密文件f得到明文密码b
-3、通过安全随机数得到明文密码b的加密密钥c
-4、采用 `rabbitmqctl encode 明文密码b 密钥c` 命令得到加密密码d
-5、将密钥c写入临时文件f2
-6、将密码d和临时文件f2写入rabbitmq.config配置文件中
-7、启动rabbitmq
-8、删除临时文件f2
+1、加密rabbitmq私钥密码a，存储到文件f1  
+2、rabbitmq启动前，解密文件f得到明文密码b  
+3、通过安全随机数得到明文密码b的加密密钥c  
+4、采用 `rabbitmqctl encode 明文密码b 密钥c` 命令得到加密密码d  
+5、将密钥c写入临时文件f2  
+6、将密码d和临时文件f2写入rabbitmq.config配置文件中  
+7、启动rabbitmq  
+8、删除临时文件f2  
 
 ## 私钥加密配置示例
 ```sh
