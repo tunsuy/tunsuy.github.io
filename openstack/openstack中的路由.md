@@ -1,4 +1,4 @@
-# Karbor中的路由
+# Openstack中的路由
 
 ## 一、服务的加载及初始化
 osapi-karbor 服务启动的过程中，调用 deploy.loadpp 使用 config 方式从 **api-paste.ini** 文件来 load 名为osapi_karbor 的应用，其入口在文件的 **[composite:osapi_karbor]**部分：
@@ -85,7 +85,7 @@ class DJRouter(APIRouter):
                        action='list',
                        conditions={"method": ['GET']})
 ```
-进入**kangaroo/api/task.py**中，有如下create_resource（）方法
+进入**/api/task.py**中，有如下create_resource（）方法
 ```python
 def create_resource():
     return wsgi.Resource(TaskController())
