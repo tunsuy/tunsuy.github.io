@@ -11,13 +11,13 @@ stevedore使用setuptools的entry points来定义并加载插件。entry point�
     
 ### 二：插件的使用方式
     在stevedore中，有三种使用插件的方式：Drivers、Hooks、Extensions
-1：Drivers        
+#### 1：Drivers        
 一个名字对应一个entry point。使用时根据插件的命名空间和名字，定位到单独的插件  
 
-2：Hooks  
+#### 2：Hooks  
 一个名字对应多个entry point。允许同一个命名空间中的插件具有相同的名字，根据给定的命名空间和名字，加载该名字对应的多个插件。  
 
-3：Extensions  
+#### 3：Extensions  
 多个名字，多个entry point。给定命名空间，加载该命名空间中所有的插件，当然也允许同一个命名空间中的插件具有相同的名字。
 
 ### 三、插件加载流程
@@ -26,7 +26,7 @@ stevedore使用setuptools的entry points来定义并加载插件。entry point�
 将该文件目录下的clients目录下的所有客户端文件import进项目中  
 注：以后想增加一个客户端，则只需将编写的客户端文件放在clients目录下即可  
 
-2、	加载配置文件中定义的provider_registry（/etc/karbor/karbor.conf）  
+2、	加载配置文件中定义的provider_registry 
 使用了stevedore库的driver加载方式来加载插件  
 以这个例子来说：
 ```python
