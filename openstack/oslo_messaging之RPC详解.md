@@ -6,7 +6,7 @@
 
 Transport 就是 RPC 调用过程中，使用的消息通信介质，如果我们使用 rabbitmq，那么需要指定 rabbitmq 服务器的连接地址，以及用户名，密码等参数。
 RPC 调用的 client 和 server 端都需要指定一个 transport 作为消息的 broker.
-oslo.messaging 中通过 oslo_messaging.get_transport 函数返回一个 transport 对象，如：
+oslo.messaging 中通过 `oslo_messaging.get_transport` 函数返回一个 transport 对象，如：
 ```python
 def get_rpc_transport(conf, url=None,
                       allowed_remote_exmods=None):
@@ -38,7 +38,7 @@ def _get_transport(conf, url=None, allowed_remote_exmods=None,
 
     return transport_cls(mgr.driver)
 ```
-返回值mgr 的driver 属性为某一消息队列的驱动（或具体消息队列调用的封装）。该driver的具体值和传入的URL 有关系。如果指明使用的消息队列为RibbitMQ。所以，此处driver 的值为RabbitDriver 类的一个实例。RabbitDriver 类的实现在oslo_messaging/_drivers/impl_rabbit.py 中。具体如何在driver.DriverManager（）方法中调用到RabbitDriver 类暂不研究。
+返回值mgr 的driver 属性为某一消息队列的驱动（或具体消息队列调用的封装）。该driver的具体值和传入的URL 有关系。如果指明使用的消息队列为RibbitMQ。所以，此处driver 的值为RabbitDriver 类的一个实例。RabbitDriver 类的实现在`oslo_messaging/_drivers/impl_rabbit.py` 中。具体如何在`driver.DriverManager（）`方法中调用到RabbitDriver 类暂不研究。
 
 ### TransportURL
 消息传输的URL，格式如下：
@@ -53,10 +53,10 @@ TransportURL.parse(conf, url)
 继承自`NamedExtensionManager`，通过stevedore库的能力从名字空间中加载消息驱动插件
 
 ### RabbitDriver
-RabbitDriver 类继承了amqpdriver.AMQPDriverBase 及base.BaseDriver 方法，如：send， _send, send_notification,listen,cleanup 等方法。
+RabbitDriver 类继承了`amqpdriver.AMQPDriverBase` 及`base.BaseDriver` 方法，如：`send， _send, send_notification,listen,cleanup` 等方法。
 
 先看RabbitDriver 的初始化：
-oslo_messaging/_drivers/impl_rabbit.py
+`oslo_messaging/_drivers/impl_rabbit.py`
 ```python
 class RabbitDriver(amqpdriver.AMQPDriverBase):
     """RabbitMQ Driver
@@ -102,9 +102,9 @@ class RabbitDriver(amqpdriver.AMQPDriverBase):
             allowed_remote_exmods
         )
 ```
-重点看pool.ConnectionPool() 的初始化过程。在pool.ConnectionPool 类中，实现了建立连接，获取连接，归还连接，清空连接池等方法。该类初始化过程中，传入了连接池的TCP 连接数量的上 ，下限值，及具体的连接类。
+重点看`pool.ConnectionPool()` 的初始化过程。在`pool.ConnectionPool` 类中，实现了建立连接，获取连接，归还连接，清空连接池等方法。该类初始化过程中，传入了连接池的TCP 连接数量的上 ，下限值，及具体的连接类。
 
-oslo_messaging/_drivers/pool.py
+`oslo_messaging/_drivers/pool.py`
 ```python
 class ConnectionPool(Pool):
     """Class that implements a Pool of Connections."""
@@ -116,9 +116,9 @@ class ConnectionPool(Pool):
         super(ConnectionPool, self).__init__(max_size, min_size, ttl,
                                              self._on_expire)
 ```
-总的来说，ConnectionPool维护了一个连接池，保管连接实例，但目前连接池为空，没有建立好的连接实例。何时调用create() 建立连接？带着这个疑问继续往下走。
+总的来说，`ConnectionPool`维护了一个连接池，保管连接实例，但目前连接池为空，没有建立好的连接实例。何时调用create() 建立连接？带着这个疑问继续往下走。
 
-返回到_get_transport ，完成了driver.DriverManager() 方法的调用，接着执行transport_cls(mgr.driver) 实例化一个transport，该transport中还未建立TCP 连接。
+返回到`_get_transport` ，完成了`driver.DriverManager()` 方法的调用，接着执行`transport_cls(mgr.driver)` 实例化一个transport，该transport中还未建立TCP 连接。
 
 
 ## Target
@@ -138,14 +138,14 @@ class Target(object):
         self.fanout = fanout
         self.accepted_namespaces = [namespace] + (legacy_namespaces or [])
 ```
-这里的 exchange, topic, namespace, server， fanout 等参数会被用于完成 exchange 的声明，队列的创建，binding 的创建以及 routing key 的选择等。而 namespace, version 等参数是 oslo.messaging 为了实现更精确的匹配规则创建的概念。
+这里的 `exchange, topic, namespace, server， fanout` 等参数会被用于完成 exchange 的声明，队列的创建，binding 的创建以及 routing key 的选择等。而 `namespace, version` 等参数是 `oslo.messaging` 为了实现更精确的匹配规则创建的概念。
 
 RPC 中的各个组件都需要使用这个 Target 对象，他们在使用时需要指定的参数如下：
-RPC Server: 必须指定 topic 和 server，还可以指定 exchange
-RPC endpoint: 可以指定 namespace 和 version
-RPC client: 必须指定 topic，其他均为可选项
-Notification Server：必须指定 topic，还可以指定 exchange
-Notifier: 必须指定 topic，还可以指定 exchange
+* RPC Server: 必须指定 topic 和 server，还可以指定 exchange
+* RPC endpoint: 可以指定 namespace 和 version
+* RPC client: 必须指定 topic，其他均为可选项
+* Notification Server：必须指定 topic，还可以指定 exchange
+* Notifier: 必须指定 topic，还可以指定 exchange
 
 例如：在伪代码 `target= messaging.Target(topic='test',server='server1')` 中，指定了消息发往的服务器是监听 ’test’ topic 的server1 服务器。
 
@@ -159,8 +159,8 @@ def get_rpc_server(transport, target, endpoints,
     return RPCServer(transport, target, dispatcher, executor)
 ```
 这里是 endpoints 参数是一个列表，包含所有的 endpoints 对象。
-executor: 执行器，表示使用协程还是线程执行
-access_policy：方法访问权限控制，默认不能访问私有方法(_开始)
+* executor: 执行器，表示使用协程还是线程执行
+* access_policy：方法访问权限控制，默认不能访问私有方法(_开始)
 
 ### Endpoints
 RPC Server 通过 Endpoint，将方法暴露出去，供 Client 端进行调用。一个 RPC Server 可以指定多个 Endpoint 对象。
@@ -213,7 +213,7 @@ RPC Server 通过 Endpoint，将方法暴露出去，供 Client 端进行调用�
         return self._driver.listen(target, batch_size,
                                    batch_timeout)
 ```
-也就是各驱动自己的监听方法，如果是rabbitmq，则是RabbitDriver，而它又继承自AMQPDriverBase，所以，进入如下方法
+也就是各驱动自己的监听方法，如果是rabbitmq，则是`RabbitDriver`，而它又继承自`AMQPDriverBase`，所以，进入如下方法
 ```python
 def listen(self, target, batch_size, batch_timeout):
 	conn = self._get_connection(rpc_common.PURPOSE_LISTEN)
@@ -253,7 +253,7 @@ def listen(self, target, batch_size, batch_timeout):
                             rabbit_ha_queues=self.rabbit_ha_queues,
                             rabbit_queue_ttl=self.rabbit_transient_queues_ttl)
 ```
-exchange名为topic_fanout，queue名为topic_fanout_uuid
+exchange名为`topic_fanout`，queue名为`topic_fanout_uuid`
 
 注：因为使用rabbitmq做rpc时，server端就是消费者，client就是生产者，故这里的方法名是消费者队列
 
@@ -264,19 +264,21 @@ def __init__(self, transport, target,
                  timeout=None, version_cap=None, serializer=None, retry=None,
                  call_monitor_timeout=None, transport_options=None):
 ```
-RPCClient 的作用就是通过 Target 中设置的参数来找到 RPC 调用需要发送的 exchange 和 routing key。虽然 target 是在创建 RPC Client 的时候指定的，在某些调用中也可以通过 RPCCLient 的 prepare() 方法重载 target 中的属性。例如在某些调用中设置一个特殊的 Target namespace 或者 version.
+RPCClient 的作用就是通过 Target 中设置的参数来找到 RPC 调用需要发送的 exchange 和 routing key。虽然 target 是在创建 RPC Client 的时候指定的，在某些调用中也可以通过 RPCCLient 的 prepare() 方法重载 target 中的属性。例如在某些调用中设置一个特殊的` Target namespace` 或者 version.
 
 ### Call调用
-RPCClient 可以发起 call 调用，此时线程会阻塞直至收到调用的返回结果。call() 调用会在调用时创建一个用于接收返回消息的 direct exchange 和队列，并监听在此队列上。
-call() 方法接收的参数分别为请求的 context dict，需要调用的方法，和方法的参数。由于 call 调用是阻塞的，因此程序中的 call() 是保证按顺序执行的。
+RPCClient 可以发起 call 调用，此时线程会阻塞直至收到调用的返回结果。  
+`call()` 调用会在调用时创建一个用于接收返回消息的 direct exchange 和队列，并监听在此队列上。  
+`call()` 方法接收的参数分别为请求的 context dict，需要调用的方法，和方法的参数。由于 call 调用是阻塞的，因此程序中的 call() 是保证按顺序执行的。
 
 ### Cast调用
-cast 调用是以非阻塞的方式来进行 RPC 调用（例如 Nova 中的虚拟机重启）。cast 调用可以发送到 fanout exchange 中。由于 cast() 是非阻塞的，因此程序中的 cast 调用不会保证按顺序执行。
+cast 调用是以非阻塞的方式来进行 RPC 调用（例如 Nova 中的虚拟机重启）。  
+cast 调用可以发送到 `fanout exchange` 中。由于 cast() 是非阻塞的，因此程序中的 cast 调用不会保证按顺序执行。
 
 ### 建立连接
-深入分下RPClient的call() 或cast() 方法，会发现最终会调用_BaseCallContext类中的call() 或cast()方法，以call() 为例，看一下最后的call() 方法的实现。
+深入分下RPClient的call() 或cast() 方法，会发现最终会调用`_BaseCallContext`类中的call() 或cast()方法，以call() 为例，看一下最后的call() 方法的实现。
 
-oslo_messaging/rpc/client.py
+`oslo_messaging/rpc/client.py`
 ```python
 class _BaseCallContext(object):
     def call(self, ctxt, method, **kwargs):
@@ -310,7 +312,7 @@ class _BaseCallContext(object):
 ```
 前文说到：transport 为RPCTransport 类的实例，进入该类的_send() 方法
 
-oslo_messaging/transport.py
+`oslo_messaging/transport.py`
 ```python
     def _send(self, target, ctxt, message, wait_for_reply=None, timeout=None,
               call_monitor_timeout=None, retry=None, transport_options=None):
@@ -324,9 +326,9 @@ oslo_messaging/transport.py
                                  retry=retry,
                                  transport_options=transport_options)
 ```
-回到具体的RabbitDriver 类，看具体的send 方法。在RabbitDriver 类中，send方法继承于基类AMQPDriverBase中的send()方法，最后调用了该基类的_send() 方法.
+回到具体的`RabbitDriver` 类，看具体的send 方法。在`RabbitDriver` 类中，send方法继承于基类`AMQPDriverBase`中的send()方法，最后调用了该基类的_send() 方法.
 
-oslo_messaging/_drivers/amqpdriver.py
+`oslo_messaging/_drivers/amqpdriver.py`
 ```python
     def _send(self, target, ctxt, message,
               wait_for_reply=None, timeout=None, call_monitor_timeout=None,
@@ -389,16 +391,16 @@ oslo_messaging/_drivers/amqpdriver.py
             if wait_for_reply:
                 self._waiter.unlisten(msg_id)
 ```
-无论是call()或cast() 方法，都会调用_get_connection()从连接池拿到一个连接，如果连接池为空，会建立连接。下面重点看一下_get_connection()方法的执行流程，这是建立通信的关键。
+无论是call()或cast() 方法，都会调用`_get_connection()`从连接池拿到一个连接，如果连接池为空，会建立连接。下面重点看一下`_get_connection()`方法的执行流程，这是建立通信的关键。
 
-oslo_messaging/_drivers/amqpdriver.py
+`oslo_messaging/_drivers/amqpdriver.py`
 ```python
     def _get_connection(self, purpose=rpc_common.PURPOSE_SEND):
         return rpc_common.ConnectionContext(self._connection_pool,
                                             purpose=purpose)
 ```
 
-oslo_messaging/_drivers/common.py
+`oslo_messaging/_drivers/common.py`
 ```python
 class ConnectionContext(Connection):
     def __init__(self, connection_pool, purpose):
@@ -414,11 +416,11 @@ class ConnectionContext(Connection):
         self.pooled = pooled
         self.connection.pooled = pooled
 ```
-看了ConnectionContext类的初始化方法，我们还应当留意该类实现的__enter__()、__exit__()、__del__()方法，它们都默默做了一些工作。
+看了`ConnectionContext`类的初始化方法，我们还应当留意该类实现的`__enter__()、__exit__()、__del__()`方法，它们都默默做了一些工作。
 
-再看self.connection = connection_pool.get()一句的具体调用：
+再看`self.connection = connection_pool.get()`一句的具体调用：
 
-oslo_messaging/_drivers/pool.py
+`oslo_messaging/_drivers/pool.py`
 ```python
 class Pool(object):    
     def get(self):
@@ -445,18 +447,18 @@ class Pool(object):
                 self._current_size -= 1
             raise
 ```
-在调用call() 方法后，我们看到了create()方法的调用，可见在oslo.messaing 中建立连接采取了一种滞后的方法，即真正第一次有远程方法调用时，开始建立连接。
+在调用`call()` 方法后，我们看到了create()方法的调用，可见在`oslo.messaing` 中建立连接采取了一种滞后的方法，即真正第一次有远程方法调用时，开始建立连接。
 
-oslo_messaging/_drivers/pool.py
+`oslo_messaging/_drivers/pool.py`
 ```python
 def create(self, purpose=common.PURPOSE_SEND):
     LOG.debug('Pool creating new connection')
     #self.connection_cls 是在驱动实例化时赋值，返回RabbitDriver类初始化函数，查看connection_cls的值
     return self.connection_cls(self.conf, self.url, purpose)
 ```
-通过_get_connection得到一个pool.ConnectionContext 实例，返回到_send() 方法,继续执行分支。以 topic = target.topic 分支为例，继续往下看。进入该分支：
+通过`_get_connection`得到一个`pool.ConnectionContext` 实例，返回到_send() 方法,继续执行分支。以 `topic = target.topic` 分支为例，继续往下看。进入该分支：
 
-oslo_messaging/_drivers/amqpdriver.py
+`oslo_messaging/_drivers/amqpdriver.py`
 ```python
 topic = target.topic
 exchange = self._get_exchange(target) #获得交换器名字
@@ -470,9 +472,9 @@ LOG.debug(log_msg)
 conn.topic_send(exchange_name=exchange, topic=topic, 
                 msg=msg, timeout=timeout, retry=retry)
 ```
-初次看conn.topic_send 一句，发现ConnectionContext类并没有topic_send() 方法，实际上调用的还是impl_rabbit.py /Connection 类的方法。
+初次看`conn.topic_send` 一句，发现`ConnectionContext`类并没有`topic_send()` 方法，实际上调用的还是`impl_rabbit.py /Connection` 类的方法。
 
-oslo_messaging/_drivers/impl_rabbit.py
+`oslo_messaging/_drivers/impl_rabbit.py`
 ```python
 class Connection(object):  
    def topic_send(self, exchange_name, topic, msg, timeout=None, retry=None):
@@ -503,11 +505,11 @@ class Connection(object):
         with self._connection_lock:
             self.ensure(method, retry=retry, error_callback=_error_callback) # 带入了retry 值
 ```
-关于进入ensure() 方法后的执行流程，不同于从ensure_connection(）调用ensure() 的是，这次传给ensure () method 的值变了，并且ensure() 方法内部调用autoretry() 方法时， self.channel 也有值了。
+关于进入`ensure()` 方法后的执行流程，不同于从`ensure_connection()`调用ensure() 的是，这次传给`ensure () `方法 的值变了，并且`ensure()` 方法内部调用`autoretry()` 方法时， `self.channel` 也有值了。
 
-回到oslo_messaging/_drivers/amqpdriver.py的 _send() 方法中， 如果是一个call 同步调用，还会单独建立一个TCP连接，等待回复消息。
+回到`oslo_messaging/_drivers/amqpdriver.py`的 `_send()` 方法中， 如果是一个call 同步调用，还会单独建立一个TCP连接，等待回复消息。
 
-oslo_messaging/_drivers/amqpdriver.py
+`oslo_messaging/_drivers/amqpdriver.py`
 ```python
 class ReplyWaiter(object):    
     def wait(self, msg_id, timeout, call_monitor_timeout):
