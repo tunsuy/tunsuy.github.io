@@ -1,17 +1,17 @@
 # oslo_log详解
 
-
+openstack中的日志由oslo_log统一实现，延续了openstack一贯的封装大法，以十分友好的方式将接口提供给各个组件使用。
 
 ## context中的TLS
 
-在oslo_context库的context.log入口定义了一个TLS线程变量
+在`oslo_context`库的`context.log`入口定义了一个TLS线程变量
 ```python
 _request_store = threading.local()
 ```
 凡是引入该context的都会首先初始化这样一个变量
 
 oslo_context库提供一个接口供调用方更新自己的context
-oslo_context/context.log#RequestContext
+`oslo_context/context.log#RequestContext`
 ```python
 def update_store(self):
 	"""Store the context in the current thread."""
@@ -29,7 +29,7 @@ def get_current():
 ```
 
 ## 初始化log
-oslo_log/log.py提供了一个外部接口`setup`
+`oslo_log/log.py`提供了一个外部接口`setup`
 ```python
 def setup(conf, product_name, version='unknown'):
     """Setup logging for the current application."""
@@ -39,7 +39,7 @@ def setup(conf, product_name, version='unknown'):
         _setup_logging_from_conf(conf, product_name, version)
     sys.excepthook = _create_logging_excepthook(product_name)
 ```
-该方法配合oslo_conf库非常优雅的实现了让调用方初始化log。
+该方法配合oslo_conf库非常优雅的实现了让调用方初始化log。  
 调用方只需要在配置文件中配置相关的参数，然后在程序启动的时候，调用下该方法，后续就只需调用相应的日志等级方法打印日志`self.log.info("xxxx")`
 
 下面来说下内部做了哪些初始化
@@ -119,7 +119,7 @@ def getLogger(name=None, project='unknown', version='unknown'):
     return _loggers[name]
 ```
 
-该类`KeywordArgumentAdapter`继承自logging库的__init__.py中的`LoggerAdapter`类
+该类`KeywordArgumentAdapter`继承自logging库的__init__.py中的`LoggerAdapter`类  
 并传递了这样一个logger类对`KeywordArgumentAdapter`进行实例化
 
 进入logging库的__init__.py中的`getLogger`方法
@@ -283,7 +283,7 @@ def callHandlers(self, record):
 ```
 到了这里我们发现，最终会调用在setup中介绍到的各个`handler`的`handle`方法
 
-这里以`WatchedFileHandler`处理器为例
+这里以`WatchedFileHandler`处理器为例  
 所有的handler均继承自logging库的__init__.py中的`Handler`类，调用各子类的handle方法实际上是调用的该基类的handle
 ```python
 def handle(self, record):
