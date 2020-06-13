@@ -64,7 +64,7 @@ II、**provides**：前面我们说rebind的时候有提过上前一个任务提
 III、**inject**：一个不可变的name->value字典， 他指定了必须在atome执行之前自动注入到当前atom区域的初始化输入值。通过这种方式允许提供给atom一个不需要提供给其他atom/dependents的local本地值  
 IV、**requires**：一个set/list， 用于指定execute method运行必要的输入  
 
-**以创建复制的on_main任务为例说明：**  
+**举例说明：**  
 通过**dj_manager**的入口文件找到**copy**方法
 通过创建flow的层层方法往下看，进入**dj_copy_resource_flow**文件中的_create_hook_task方法中。
 ```python
@@ -80,22 +80,22 @@ IV、**requires**：一个set/list， 用于指定execute method运行必要的�
 
     # catch all the exception triggered by method
     def __(*args, **kwargs):
-    try:
-    method(*args, **kwargs)
-    except Exception as err:
-    LOG.exception(err)
+	try:
+	    method(*args, **kwargs)
+	except Exception as err:
+	    LOG.exception(err)
 
-    task = self.workflow_engine.create_task(__,
-    name=task_name,
-    inject=injects,
-    requires=requires)
-    return task
+        task = self.workflow_engine.create_task(__,
+		name=task_name,
+		inject=injects,
+		requires=requires)
+        return task
 
 ```
  
 这里将inject和requires参数传递进workflow文件的TaskFlowEngine类的create_task方法
 ```python
-	def create_task(self, function, requires=None, provides=None,
+def create_task(self, function, requires=None, provides=None,
                     inject=None, **kwargs):
         name = kwargs.get('name', None)
         auto_extract = kwargs.get('auto_extract', True)
@@ -120,7 +120,7 @@ IV、**requires**：一个set/list， 用于指定execute method运行必要的�
 1、在engine入口文件中，通过一些执行前编译、准备、检查等操作，初始化了一些实例变量，其中就有self._runtime.  
 2、调用builder的build方法
 ```python
-	try:
+try:
       closed = False
       machine, memory = self._runtime.builder.build(
       self._statistics, timeout=timeout,
@@ -138,7 +138,7 @@ IV、**requires**：一个set/list， 用于指定execute method运行必要的�
  
 然后再complete_an_atom方法中进行调用，并将结果进行传入，它会捕获task的异常
 ```python
- 	def complete_an_atom(fut):
+ def complete_an_atom(fut):
       # This completes a single atom saving its result in
       # storage and preparing whatever predecessors or successors will
       # now be ready to execute (or revert or retry...); it also
