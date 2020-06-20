@@ -1,7 +1,10 @@
-### 简介
-Keepalived监控服务器集群上的HAproxy，利用Keepalived的VIP漂移技术，若集群上的HAproxy都工作正常，则VIP与优先级别高的服务器（主服务器）绑定，当主服务器当掉时，则与从服务器绑定，而VIP则是暴露给外部访问的ip；HAproxy利用Keepalived生产的VIP对多台集群进行负载，当某台服务器当掉，则将其移除，恢复后加入集群。
+要实现haproxy的高可用，可以使用keepalived来实现，下面简要说下keepalived相关原理
+
+#### 原理
+Keepalived监控服务器集群上的HAproxy，利用Keepalived的VIP漂移技术，若集群上的HAproxy都工作正常，则VIP与优先级别高的服务器（主服务器）绑定，当主服务器当掉时，则与从服务器绑定，而VIP则是暴露给外部访问的ip；HAproxy利用Keepalived产生的VIP对多台集群进行负载，当某台服务器当掉，则将其移除，恢复后加入集群。
 #### 1、	配置文件
-keepalived.conf
+keepalived.conf  
+
 配置文件解析：
 #####  I、global_defs区域
 主要是配置故障发生时的通知对象以及机器标识
@@ -32,7 +35,7 @@ Master、backup、fault
 ##### 问：什么时候进行健康检查
 根据配置文件中设置的时间间隔执行健康检查脚本
 ##### 问：什么时候判断是否需要切换
-I、 如果配置文件中state都是设置的backup（非抢占式），则根据健康检查脚本的执行结果（true/false）或者自身节点是否异常决定，如果失败或者异常则切换，VIP自动漂移到备节点。
+I、 如果配置文件中state都是设置的backup（非抢占式），则根据健康检查脚本的执行结果（true/false）或者自身节点是否异常决定，如果失败或者异常则切换，VIP自动漂移到备节点。  
 II、如果配置文件中state设置的是master（抢占式），则根据健康检查脚本的执行结果（true/false）或者自身节点是否异常决定，此时还会根据优先级来判断是否切换，规则如下：
 ##### I.“weight”值为正数时
 在vrrp_script中指定的脚本如果检测成功，那么Master节点的权值将是“weight值与”priority“值之和，如果脚本检测失败，那么Master节点的权值保持为“priority”值，因此切换策略为：
