@@ -91,11 +91,13 @@ Nov 26 07:21:52 localhost haproxy[20695]: 127.0.0.1:41150 [26/Nov/2015:07:21:45.
 ## 六、打印headers
 有时候我们可以需要通过在haproxy的日志中增加header的打印，来定位问题，具体操作如下：
 在frontend的配置中增加：
+```sh
 frontend http-in
     ...
     capture request header Host len 20
     capture request header Referer len 60
 	...
+```
 比如我在http的request的headers中增加了时间戳，在haproxy中则可以通过设置获取到
 ```sh
 7d36a3ee44b42b45caf70b90f82f4/quotas HTTP/1.1"
