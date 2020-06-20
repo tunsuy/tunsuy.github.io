@@ -1,3 +1,5 @@
+在测试之前，我们先说下http的相关状态
+
 ### HTTP状态
 * CLOSE_WAIT：haproxy向backend发起的连接，backend发起了FIN，haproxy没有回应FIN
 * FIN_WAIT2： client向haproxy发起的连接，haproxy发起了FIN，没有收到client发送的FIN
@@ -8,8 +10,11 @@ CLOSE_WAIT和FIN_WAIT2的连接基本是一一对应的关系，可以推测：
 * haproxy向client发起FIN，并得到了client的回应，进入FIN_WAIT2状态
 * client迟迟不发送FIN给haproxy，导致haproxy与client的连接一直出于FIN_WAIT2状态，haproxy与backend的连接也始终为CLOSE_WAIT状态。
 
+可以看下http的四次挥手的过程，就能够更加的明白这两个状态。网上很多这样的教程，自行google。
+
 ### 性能优化
 下面是一个初步试验
+
 #### 测试代码
 ```python
 import json
@@ -109,6 +114,7 @@ if __name__ == "__main__":
     test_api_thread(int(args[1]))
 
 ```
+
 #### 测试结果
 ```sh
 2019-04-11 22:22:39.657 localhost haproxy [pid:28229]info  25.10.0.104:38370 [11/Apr/2019:22:21:59.602] test_8799~ b_def_test_8799/controller1 44/30005/-1/-1/40053 503 212 - - sC-- 231/166/166/80/+3 0/0 "GET /v1.5/xxx/api HTTP/1.1"
@@ -117,8 +123,16 @@ if __name__ == "__main__":
 2019-04-11 22:22:39.701 localhost haproxy [pid:28229]info  25.10.0.104:38378 [11/Apr/2019:22:21:59.626] test_8799~ b_def_test_8799/controller1 57/30005/-1/-1/40073 503 212 - - sC-- 228/163/163/77/+3 0/0 "GET /v1.5/xxx/api HTTP/1.1"
 2019-04-11 22:22:39.704 localhost haproxy [pid:28229]info  25.10.0.104:38382 [11/Apr/2019:22:21:59.646] test_8799~ b_def_test_8799/controller1 48/30007/-1/-1/40057 503 212 - - sC-- 227/162/162/76/+3 0/0 "GET /v1.5/xxx/api HTTP/1.1"
 ```
-其中sC表示haproxy的session状态flag，完整的flag官方定义如下：
+其中sC表示haproxy的session状态flag 
+```sh
+The "timeout connect" stroke before a connection to the server could
+          complete. When this happens in HTTP mode, the status code is likely a
+          503 or 504 here.
+```
+
+完整的flag官方定义如下：
 https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#9.1
+
 #### 参数调整
 根据系统配置调整相关的参数。 
 * timeout参数调整参考：https://delta.blue/blog/haproxy-timeouts
