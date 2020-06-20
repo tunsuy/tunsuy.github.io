@@ -3,9 +3,9 @@
 ### 主要数据结构
 ```sh
 frontend test
-    bind 21.57.0.212:8799 ssl crt /opt/huawei/dj/DJSecurity/server-cert/haproxy/haproxy-cert.pem
+    bind 21.57.0.212:8799 ssl crt /opt/haproxy/haproxy-cert.pem
     mode http
-    default_backend b_def_karbor_8799
+    default_backend b_def_ts_8888
 ```
 
 1、proxy：一个proxy可以认为是一个客户，通过一个proxy的流量有着相同的转发规则。haproxy进程可以容纳多个proxy，对应于配置中的listen
