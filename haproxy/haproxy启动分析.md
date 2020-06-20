@@ -8,31 +8,22 @@ frontend test
     default_backend b_def_ts_8888
 ```
 
-1、proxy：一个proxy可以认为是一个客户，通过一个proxy的流量有着相同的转发规则。haproxy进程可以容纳多个proxy，对应于配置中的listen
-er或frontend
-例如上面配置中的test
+1、proxy：一个proxy可以认为是一个客户，通过一个proxy的流量有着相同的转发规则。haproxy进程可以容纳多个proxy，对应于配置中的listener或frontend。例如上面配置中的test
 
-2、listener：一个监听fd的封装，一个proxy可以有多个listener，对应于配置中的bind，每个listener可以有自己的最大连接数。
-例如上面配置中的bind
+2、listener：一个监听fd的封装，一个proxy可以有多个listener，对应于配置中的bind，每个listener可以有自己的最大连接数。例如上面配置中的bind
 
 3、connection：一个具体连接fd的封装，可以通过fdtab[fd].owner找到。
 
-4、task：haproxy的一个执行调度单位，想执行点东西一般先激活一个task去执行，比如当socket有事件的时候，把task加入run
-queue，然后执行task。
+4、task：haproxy的一个执行调度单位，想执行点东西一般先激活一个task去执行，比如当socket有事件的时候，把task加入run queue，然后执行task。
 task有两类，一类是等待执行的task，比如3秒后做health check，挂在wait queue上，3秒后执行，另一类是马上需要执行的task，挂在run queue上，按『顺序』执行，决定task执行顺序的是task的nice值，类似于UniX进程调度的nice值。
 
 5、stream：stream用于表示一个转发流，可以认为是一个http的transaction，包含前端连接和后端两部分，stream和task是1：1的关系。
 
-6、stream_interface：stream的成员，一个stream有2个stream_interface，分别表示前端和后端，可以认为是connection的一种中转形式，因为haprox
-y都是异步操作，如果想发数据，不能直接发，需要调用stream_interface的发送，实际上并没有发送，只是注册了写事件，等poll触发后才可
-以通过connection发送。
+6、stream_interface：stream的成员，一个stream有2个stream_interface，分别表示前端和后端，可以认为是connection的一种中转形式，因为haproxy都是异步操作，如果想发数据，不能直接发，需要调用stream_interface的发送，实际上并没有发送，只是注册了写事件，等poll触发后才可以通过connection发送。
 
-7、session：以前版本里的session相当于现在的stream，现在的session已经简化了，只记录了该stream的一些基本属性信息，比如属于哪个frontend
-，listener，accept时间等，用于记录统计。
+7、session：以前版本里的session相当于现在的stream，现在的session已经简化了，只记录了该stream的一些基本属性信息，比如属于哪个frontend，listener，accept时间等，用于记录统计。
 
-8、channel：对数据通道的封装，比如超时，状态，标志，统计等，都在这里设置，一个stream里有2个channel，分别对应请求和响应，channel
-并不负责发送和接收，只是维护数据及其状态，另外一个channel的作用就是封装http和tcp的channel为一个统一的接口，因为tcp和http不一样
-，需要统一接口。
+8、channel：对数据通道的封装，比如超时，状态，标志，统计等，都在这里设置，一个stream里有2个channel，分别对应请求和响应，channel并不负责发送和接收，只是维护数据及其状态，另外一个channel的作用就是封装http和tcp的channel为一个统一的接口，因为tcp和http不一样，需要统一接口。
 
 9、buffer：channel操作的对象，真正存储数据的地方。
 
