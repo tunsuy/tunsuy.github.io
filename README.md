@@ -22,6 +22,7 @@
 * [基于python的selenium实战](https://github.com/tunsuy/tunsuy.github.io/blob/master/python/%E5%9F%BA%E4%BA%8Epython%E7%9A%84selenium%E5%AE%9E%E6%88%98.md)
 * [调试Python在线程序](https://github.com/tunsuy/tunsuy.github.io/blob/master/python/%E8%B0%83%E8%AF%95Python%E5%9C%A8%E7%BA%BF%E7%A8%8B%E5%BA%8F.md)
 * [使用 C 或 C++ 扩展 Python](https://github.com/tunsuy/tunsuy.github.io/blob/master/python/%E4%BD%BF%E7%94%A8C%E6%88%96C%2B%2B%E6%89%A9%E5%B1%95Python.md)
+* [Python中的GIL机制详解](https://github.com/tunsuy/tunsuy.github.io/blob/master/python/Python%E4%B8%AD%E7%9A%84GIL%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3.md)
 
 ## Web技术栈
 * [wsgi中间件pipeline实战](https://github.com/tunsuy/tunsuy.github.io/blob/master/web/wsgi%E4%B8%AD%E9%97%B4%E4%BB%B6pipeline%E5%AE%9E%E6%88%98.md)
@@ -64,6 +65,7 @@
 * [ssh免密登陆](https://github.com/tunsuy/tunsuy.github.io/blob/master/linux/ssh%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86.md)
 * [解决日志没有换行的问题](https://github.com/tunsuy/tunsuy.github.io/blob/master/linux/%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97%E6%B2%A1%E6%9C%89%E6%8D%A2%E8%A1%8C%E7%9A%84%E9%97%AE%E9%A2%98.md)
 * [curl常用操作](https://github.com/tunsuy/tunsuy.github.io/blob/master/linux/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C.md)
+* [进程间通信详解](https://github.com/tunsuy/tunsuy.github.io/blob/master/linux/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E8%AF%A6%E8%A7%A3.md)
 
 ## 其他
 * [代码札记](https://app.cacher.io/library/personal)
