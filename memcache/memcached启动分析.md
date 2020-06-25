@@ -490,9 +490,11 @@ void dispatch_conn_new(int sfd, enum conn_states init_state, int event_flags,
 向worker线程的notify_send_fd属性发送一个字符'c'通知worker线程有新客户端连接分配给它了  
 后续worker线程的event_base监听到notify_receive_fd的可读事件就开始工作了, 因为这里使用pipe线程通信技术，所以notify_send_fd写数据，触发notify_receive_fd的可读事件.
 
-`注：1、memcache的消息是预先分配的，默认先分配64个CQ_ITEM消息实例，这样可以避免较多的内存碎片产生。所以CQ_ITEM *item = cqi_new()如果是第一次调用，则先分配64个CQ_ITEM实例，然后返回第一个；之后再次调用这个函数时，则是直接从预先分配的CQ_ITEM链表中获取。
+```sh
+注：1、memcache的消息是预先分配的，默认先分配64个CQ_ITEM消息实例，这样可以避免较多的内存碎片产生。所以CQ_ITEM *item = cqi_new()如果是第一次调用，则先分配64个CQ_ITEM实例，然后返回第一个；之后再次调用这个函数时，则是直接从预先分配的CQ_ITEM链表中获取。
 
-2、子线程的选择是采用轮询的方式，每次选择的线程总是上次选择线程的下一个线程。`
+2、子线程的选择是采用轮询的方式，每次选择的线程总是上次选择线程的下一个线程。
+```
 
 ## worker线程获取客户端连接
 worker线程的回调在master里就指定好了，参考：thread.c::setup_thread()，  
