@@ -81,8 +81,8 @@ void assoc_init(const int htable_init) {
 }
 
 ```
-在memcached中，保存着一份hash表用来存放memcached key。默认这个hash表是2^16(65536)个key。后续会根据规则动态扩容这个hash表的。如果希望启动的时候，这个hash表更大，可以-o 参数调节。
-hash表中， memcached key作为key，value是item指针，并不是item value。
+在memcached中，保存着一份hash表用来存放memcached key。默认这个hash表是2^16(65536)个key。后续会根据规则动态扩容这个hash表的。如果希望启动的时候，这个hash表更大，可以-o 参数调节。  
+hash表中， memcached key作为key，value是item指针，并不是item value。  
 
 ## 初始化slabs
 ```c++
@@ -173,7 +173,7 @@ void slabs_init(const size_t limit, const double factor, const bool prealloc, co
     }
 }
 ```
-hash桶中初始化的是key。slabs初始化的是这些key对应的value
+hash桶中初始化的是key。slabs初始化的是这些key对应的value  
 在初始化slab的时候，下一个slab的size（chunk size）总是大于等于当前slab的size的。
 
 ## 初始化worker线程
@@ -266,9 +266,9 @@ worker线程和main线程，组成了libevent的reactor模式
 
 这个函数主要是完成n个子线程的初始化以及开启执行。其中setup_thread函数完成线程结构体LIBEVENT_THREAD成员初始化，
 
-首先将给子线程分配一个libevent实例，然后将notify_receive_fd加入这个libevent的可读事件。
-接着为这个子线程的消息队列分配内存，并初始化。
-最后为这个子线程创建后缀缓存，暂时还不知道这缓存的用处。
+首先将给子线程分配一个libevent实例，然后将notify_receive_fd加入这个libevent的可读事件。  
+接着为这个子线程的消息队列分配内存，并初始化。  
+最后为这个子线程创建后缀缓存，暂时还不知道这缓存的用处。  
 create_worker函数用于开启子线程，第一个参数为回调函数，第二个参数为回调函数的参数。回调函数即线程执行函数。在这个回调函数worker_libevent又调用了register_thread_initialized这个函数，注册这个子线程。最后调用libevent的event_base_loop函数开启子线程的事件循环。
 
 ```c++
@@ -418,7 +418,7 @@ void event_handler(const int fd, const short which, void *arg) {
 }
 
 ```
-可以看到这个event_handler里面只是做了一些错误检查，然后就立即交给drive_machine函数进行处理了
+可以看到这个event_handler里面只是做了一些错误检查，然后就立即交给drive_machine函数进行处理了  
 这个drive_machine逻辑如下:
 ```c+
 addrlen = sizeof(addr);
@@ -444,7 +444,7 @@ addrlen = sizeof(addr);
     stop = true;
 
 ```
-可以看到master线程的tcp服务器有新客户端连接进入后，drive_machine处理逻辑会立即获取这个memcached客户端连接fd为sfd，并交给了dispatch_conn_new函数进行处理
+可以看到master线程的tcp服务器有新客户端连接进入后，drive_machine处理逻辑会立即获取这个memcached客户端连接fd为sfd，并交给了dispatch_conn_new函数进行处理  
 dispatch_conn_new函数核心逻辑如下:
 ```c++
 void dispatch_conn_new(int sfd, enum conn_states init_state, int event_flags,
@@ -485,17 +485,18 @@ void dispatch_conn_new(int sfd, enum conn_states init_state, int event_flags,
 }
 
 ```
-选择一个worker线程用于处理这个客户端连接后续的读写操作
-声明了一个CQ_ITEM结构体代表这个客户端的连接，并保存到worker线程的new_conn_queue属性上，这个属性是个数组，并且被当成队列使用了
-向worker线程的notify_send_fd属性发送一个字符'c'通知worker线程有新客户端连接分配给它了
+选择一个worker线程用于处理这个客户端连接后续的读写操作  
+声明了一个CQ_ITEM结构体代表这个客户端的连接，并保存到worker线程的new_conn_queue属性上，这个属性是个数组，并且被当成队列使用了  
+向worker线程的notify_send_fd属性发送一个字符'c'通知worker线程有新客户端连接分配给它了  
 后续worker线程的event_base监听到notify_receive_fd的可读事件就开始工作了, 因为这里使用pipe线程通信技术，所以notify_send_fd写数据，触发notify_receive_fd的可读事件.
 
-注：1、memcache的消息是预先分配的，默认先分配64个CQ_ITEM消息实例，这样可以避免较多的内存碎片产生。所以CQ_ITEM *item = cqi_new()如果是第一次调用，则先分配64个CQ_ITEM实例，然后返回第一个；之后再次调用这个函数时，则是直接从预先分配的CQ_ITEM链表中获取。
+`注：1、memcache的消息是预先分配的，默认先分配64个CQ_ITEM消息实例，这样可以避免较多的内存碎片产生。所以CQ_ITEM *item = cqi_new()如果是第一次调用，则先分配64个CQ_ITEM实例，然后返回第一个；之后再次调用这个函数时，则是直接从预先分配的CQ_ITEM链表中获取。
 
-2、子线程的选择是采用轮询的方式，每次选择的线程总是上次选择线程的下一个线程。
+2、子线程的选择是采用轮询的方式，每次选择的线程总是上次选择线程的下一个线程。`
 
 ## worker线程获取客户端连接
-worker线程的回调在master里就指定好了，参考：thread.c::setup_thread()，worker的回调函数被指定为了thread_libevent_process，结合master的处理流程，这个worker的回调函数只有在master得到新连接时被触发
+worker线程的回调在master里就指定好了，参考：thread.c::setup_thread()，  
+worker的回调函数被指定为了thread_libevent_process，结合master的处理流程，这个worker的回调函数只有在master得到新连接时被触发
 ```c++
 static void thread_libevent_process(int fd, short which, void *arg) {
     LIBEVENT_THREAD *me = arg;
@@ -576,7 +577,7 @@ static void thread_libevent_process(int fd, short which, void *arg) {
     }
 }
 ```
-worker调用cq_pop从队列中获取客户端连接后，然后就交给了conn_new函数进行处理
+worker调用cq_pop从队列中获取客户端连接后，然后就交给了conn_new函数进行处理  
 conn_new函数把客户端的读写事件交给了event_handler函数进行处理，核心代码如下
 ```c++
 event_set(&c->event, sfd, event_flags, event_handler, (void *)c);
@@ -660,10 +661,12 @@ static int try_read_command_ascii(conn *c) {
 ```
 process_command就是具体的命令处理了。
 
-总结：主线程启动及分配请求流程：
-server_sockets——>
-server_socket——>
-conn_new——>
-event_handler——>
-drive_machine——>
+总结：主线程启动及分配请求流程：  
+```sh
+server_sockets——>  
+server_socket——>  
+conn_new——>  
+event_handler——>  
+drive_machine——>  
 try_read_command（这里会判定，是文本协议还是二进制协议）
+```
