@@ -16,7 +16,7 @@
 * （2）WARM queue：如果一个 item 不是 FETCHED，永远不会进入这个队列，该队列里面的 item TTL 时间相对较长，这个队列的 lock 竞争会很少。该队列 tail 处的一个 item 如果再一次被访问，会 bump 回到 head，否则移动到 COLD 队列。
 * （3）COLD queue：包含了最不活跃的 item，一旦该队列内存满了，该队列 tail 处的 item 会被 evict。
   如果一个 item 被激活了，那么会异步移动到 WARM 队列，如果某个时间段内大量的 COLD item 被激活了，bump 操作可能会处于满负载，这个时候它会什么也不做（不移动到 WARM queue），避免影响工作线程的性能。
-  *（4）TEMP queue：该队列中的 item TTL 通常只有几秒，该列队中的 item 永远不会发生 bump，也不会进入其他队列，节省了 CPU 时间，也避免了 lock 竞争。
+* （4）TEMP queue：该队列中的 item TTL 通常只有几秒，该列队中的 item 永远不会发生 bump，也不会进入其他队列，节省了 CPU 时间，也避免了 lock 竞争。
 
 HOT 和 WARM LAU queue 有内存使用的限制，而 COLD 和 TEMP 队列没有内存使用限制，这主要是为了避免一些不经常使用的 item 长期占据在相对活跃的队列中。
 
