@@ -42,29 +42,33 @@ memcache的惰性删除机制和LRU算法淘汰机制
 ## memcached 的内存分配是怎样工作的？为什么不用 malloc 或 free 呢？为什么要用 slabs ？
 事实上，这是编译时的选项。默认情况下 memcached 用内部的 slab 作为分配器的。你真的很需要使用内建的 slab 分配器。一开始， memcached 的确用 malloc/free 分配所有东西。然而，这并不能同操作系统的内存管理器很好地工作。你的操作系统花在查找连续内存块用以 malloc() 的时间超出了 memcached 本身的操作运行时间。
 
-slab 分配器就是用来解决这个问题的。在 memcached 内部以块为单位来分配和重用内存。因为内存被分为不同大小的 slab ，如果你的数据项没有完全符合服务器选择的 slab 的大小，这的确会导致浪费内存。 Steven Grimm 已经在这方面做了相当有效的改进。
+slab 分配器就是用来解决这个问题的。在 memcached 内部以块为单位来分配和重用内存。因为内存被分为不同大小的 slab ，如果你的数据项没有完全符合服务器选择的 slab 的大小，这的确会导致浪费内存。   Steven Grimm 已经在这方面做了相当有效的改进。
 
 如果你试图用 malloc/free 分配内存，你可以在构建中定义 'USE_SYSTEM_MALLIC' 。它可能没有经过很好测试，所以不用指望能得到开发者的支持。
 
 ## 储存list类型的数据
-在memcached储存list类型的数据可以认为是存储序列化数组的单个数据项，也可以是在不操作整个数据集的前提下添加删除大集合内的数据项。或者两者皆有。
-需要考虑的是memcached对数据项大小有1M的限制，所以在memcached存储整个集合可能不是一个好的方案。
-Steven Grimm提出了一个较好的方案：
-http://lists.danga.com/pipermail/memcached/2007-July/004578.html
-Chris Hondl和Paul Stacey详细说明了另一种方案：
-http://lists.danga.com/pipermail/memcached/2007-July/004581.html
+在memcached储存list类型的数据可以认为是存储序列化数组的单个数据项，也可以是在不操作整个数据集的前提下添加删除大集合内的数据项。或者两者皆有。  
+需要考虑的是memcached对数据项大小有1M的限制，所以在memcached存储整个集合可能不是一个好的方案。  
+Steven Grimm提出了一个较好的方案：  
+http://lists.danga.com/pipermail/memcached/2007-July/004578.html  
+Chris Hondl和Paul Stacey详细说明了另一种方案：  
+http://lists.danga.com/pipermail/memcached/2007-July/004581.html  
 两种方案的结合可能会产生具有相当规模的List。在某一范围内的IDs可以用不同的键储存，数据用各自的键储存。
 
 ## 用get_muti发起批量请求
-如果你刚开始使用memcached，你可能会写出像下面一样的代码：
+如果你刚开始使用memcached，你可能会写出像下面一样的代码：  
+```sh
 greet = get("Foo")
 person = get("Bar")
 place = get("Baz")
+```
 当你调整性能时，你可能会发现每次调用get()都会有以下过程：
+```sh
 get("Foo") - client - server - client
 get("Bar") - client - server - client
 get("Baz") - client - server - client
-许多客户端都支持一次从单个memcached实例中获取多个键，有些客户端支持并行获取。如果有3个键在3台memcached上，请求会被同时发出，你只要等待最慢的那台返回数据后就可以得到所有数据。如果你有很多数据要取，这可以大大提高速度。
+```
+许多客户端都支持一次从单个memcached实例中获取多个键，有些客户端支持并行获取。如果有3个键在3台memcached上，请求会被同时发出，你只要等待最慢的那台返回数据后就可以得到所有数据。如果你有很多数据要取，这可以大大提高速度。  
 很多有关发出组合和并行请求的技术方案可以在邮件列表中找到http://lists.danga.com/pipermail/memcached/2007-July/004528.html 
 
  
