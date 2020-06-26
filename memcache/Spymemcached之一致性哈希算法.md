@@ -63,11 +63,11 @@ private void updateKetamaNode(TreeMap<Long, MemcachedNode> newNodeMap, int numRe
 
 }
 ```
-对上面代码解读如下：
+对上面代码解读如下：  
 `getNodeRepetitions()`方法负责读取配置信息，返回一个真实的Memcached节点对应的虚拟节点数，
 默认情况下返回160，也就是说一个Memcached节点在一致性哈希环上对应有160个虚拟节点。
 
-`getKeyForNode()`根据传进去的MemcacheNode对象和虚拟节点索引生成key值，返回值示例：“127.0.0.1:11311-0”
+`getKeyForNode()`根据传进去的MemcacheNode对象和虚拟节点索引生成key值，返回值示例：“127.0.0.1:11311-0”  
 `computeMd5()`根据key生成16位的MD5摘要， 因此digest数组共16位
 
 下面这段代码很关键：
@@ -77,7 +77,7 @@ Long k = ((long) (digest[3 + h * 4] & 0xFF) << 24)
 		| ((long) (digest[1 + h * 4] & 0xFF) << 8)
 		| (digest[h * 4] & 0xFF);
 ```
-结合`for (int i = 0; i < numReps / 4; i++) {...}`，我们知道：
+结合`for (int i = 0; i < numReps / 4; i++) {...}`，我们知道：  
 将digest数组按每四位一组，通过位操作产生一个最大32位的长整数。之所以是32位是因为一致性哈希环取值范围为0～2^32; 回到上面的例子，对于一个Memcached节点譬如“127.0.0.1:11311”, 将通过for循环产生“127.0.0.1:11311-0”，“127.0.0.1:11311-1”… “127.0.0.1:11311-39”共40个副本，对于每个副本譬如“127.0.0.1:11311-0”, 将会产生4个长整数，对应一致性哈希环上的4个位置，所以默认配置的情况下，一个Memcached节点将在一致性哈希环上占据4×40=160个位置。
 
 以k为key将MemcacheNode对象放到TreeMap里：
