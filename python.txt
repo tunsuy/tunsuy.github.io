@@ -26,3 +26,25 @@ GIL是python为了处理线程并发引入的一种全局变量锁，也即是�
 * 赋值给变量
 * 作为函数返回值
 而python的闭包就是应用了这些特性，cpython在代码对象数据结构中定义了两个变量co_freevars和co_cellvars
+
+说说python的wsgi
+wsgi是python的web规范，类似于java的servlet规范，一个web系统一般都涉及到请求的处理，回复的处理，网络连接等操作，每个系统都需要自己实现一遍，另外，由于每个系统的实现不一样，导致无法随意的移植到任何其他web服务器上。
+为了解决这种异构性，以及实现业务与web服务的解耦，每个语言都会推出一套规范，只要web服务器和应用都遵循该规范，那么就可以任意的移植，并且团队也只需要关注自身业务逻辑，而不需要关注web网络的相关处理。
+对于python的wsgi而言，由如下几部分组成：
+1、web server
+2、application
+3、middleware（可选）
+其中，web server通过将socket封装成environ对象（包含请求的相关信息，header、body等等），并且提供一个start_response回调方法
+application是一个可调用对象（也就是实现了__call__方法），web server调用application对象，传递environ和start_response参数进来，application处理完了之后，将结果通过start_response回调给web server，由web server返回给请求调用方
+middleware就是一个个中间件，处于web server和application之间，一般用来做一些业务之外的公共事项，比如鉴权、日志搜集等等
+
+说说python中的协程
+协程有的也称为用户态线程，是一种主动式的任务调度方式，区别于线程的抢占式调度。
+python最开始的协程是通过生成器来实现的，通过yield实现函数的执行、暂停和继续，因为协程是多任务间的协作，这就涉及到各个任务间的数据传递，python通过定义了send方法来传递参数给一个协程，随后有定义了yield from关键字来支持获取协程的结果。
+在python3.4时，为了让协程的编写方式跟生成器分开，体现协程概念，推出了asyncio库，随后在3.6正式推出wait和notify等协程原语。
+
+那你说说yield在底层是怎么实现的，与了解吗
+Python在解释代码时，是将代码块加载为一个叫PyFrameObject的对象，这个对象代表了当前运行的栈帧。PyFrameObject里有个f_lasti变量用于保存代码当前执行到了字节码的哪个位置。在第二次执行a.next()时，生成器对象把之前携带了f_lasti的PyFrameObject当参数传给PyEval_EvalFrameEx，在PyEval_EvalFrameEx里的执行一个JUMPTO就直接跳转到了上一次结束生成器时的字节码位置。所以生成器对象每次执行结束都把字节码的偏移量记录下来，并把运行状态保存在PyFrameObject里，下一次运行时生成器时，python解释器直接按照偏移量寻找下一个字节码指令。
+
+说说python中的asyncio的实现机制
+
