@@ -39,6 +39,8 @@ SSO 访问流程主要有以下步骤：
 * 发放票据：SSO服务器会产生一个随机的Service Ticket。
 * 验证票据：SSO服务器验证票据Service Ticket的合法性，验证通过后，允许客户端访问服务。
 * 传输用户信息：SSO服务器验证票据通过后，传输用户认证结果信息给客户端。 
+
+
 通俗来说，就是这样一个流程：用户通过浏览器访问应用服务器，应用服务器后端发现没有携带ST，则会要求浏览器重定向到cas server去获取ST，cas server发现浏览器没有携带cookie，而是通过用户名密码请求过来的，请通过用户名密码进行认证，认证通过则生成TGC，同时生成TGT，TGC与TGT通过key-value形式关联起来，并通过TGT签发一个ST，然后将ST和TGC返回给浏览器，浏览器将TGC作为cookie保存起来，并将ST加入用户请求中，发给应用服务器。应用服务器拿到ST，然后传递给cas server进行验证该ST的合法性，验证通过则接受请求，开始处理业务逻辑。当后续的用户通过浏览器请求应用服务器时，就会直接携带TGC，应用服务器将浏览器重定向到cas server进行获取ST，cas server通过TGC和TGT的缓存对应，直接拿到TGT生成ST给浏览器，然后浏览器携带ST向应用服务器发起请求。
 
 下面是基于redis数据库做的sso数据结构设计方案
@@ -99,8 +101,9 @@ ticket.st:{ST-id}
 }
 ```
 
+下面是redis的相关命令介绍
 ## redis缓存
-### 查看所有keys
+### 1、查看所有keys
 ```sh
 30.1.3.29:26661> keys *
 1) "ticket.st:ST-268-kuBYeNH1jarbho0d9yonUlnQ-sso"
@@ -120,13 +123,13 @@ rename-command KEYS ""
 ```
 去掉该keys重命名
 
-### 查看类型
+### 2、查看类型
 ```sh
 30.1.3.29:26661> type "ticket.st:ST-268-kuBYeNH1jarbho0d9yonUlnQ-sso"
 hash
 ```
 
-### hash类型
+### 3、hash类型
 
 ##### 查看hash类型的所有key
 ```sh
@@ -155,7 +158,7 @@ hash
 
 还有其他一些命令：`hgetall key`，`hvals key`， `hget key field`
 
-### 有序集合zset
+### 4、有序集合zset
 ##### 查看集合个数
 ```sh
 30.1.3.29:26661> zcard "ticket.tgts:"
@@ -174,7 +177,7 @@ hash
 "1589460268224"
 ```
 
-### 集合set
+### 5、集合set
 ##### 查看元素个数
 ```sh
 30.1.3.29:26661> scard "ticket.userId:f4fe1232f30646ed84b397da39041e0f"
@@ -188,8 +191,8 @@ hash
 ```
 
 ##### 其他命令
-增加元素：`sadd key member [member ...]`
-随机获取元素：`srandmember langs count`
-判断元是否存在：`sismember key member`
-移除元素：`srem key member [member ...]`
-弹出元素：`spop key [count]`
+* 增加元素：`sadd key member [member ...]`
+* 随机获取元素：`srandmember langs count`
+* 判断元是否存在：`sismember key member`
+* 移除元素：`srem key member [member ...]`
+* 弹出元素：`spop key [count]`
