@@ -5,7 +5,7 @@
 ```python
 [entry_points]
 console_scripts =
-    ascagent = ascagent.main:main
+    test = test.main:main
 ```
 2、增加setup.py文件，进行安装部署使用
 ```python
