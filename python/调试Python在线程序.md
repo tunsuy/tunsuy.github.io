@@ -2,7 +2,7 @@
 
 GDB 7+ 支持使用 Python 语言扩展 GDB 功能 - Extending GDB using Python ， 比如，可以通过编写代码可视化展现某些库独有的数据结构（比如 C++ STL 类型）。
 
-##通用调试方法
+## 通用调试方法
 以下命令不限于调试Python程序。
 
 查看进程号：
@@ -32,8 +32,8 @@ lsof -p *pid*
 ## GDB调试
 
 ## 安装依赖
-目前来说调试python 的条件比较苛刻， 只针对特定版本的python版本 和 centos 系统。
-对于 centos6.x 系统， 目前已经开发出的 debuginfo 包是针对python3.4 版本
+目前来说调试python 的条件比较苛刻， 只针对特定版本的python版本 和 centos 系统。  
+对于 centos6.x 系统， 目前已经开发出的 debuginfo 包是针对python3.4 版本  
 对于 centos7.x 系统， 目前针对python3.4 和python3.6 版本
 
 安装debuginfo包
@@ -49,7 +49,7 @@ sudo yum install python-debuginfo
 ```
 
 ## 下载libpython.py脚本　　
-地址：https://github.com/python/cpython/blob/master/Tools/gdb/libpython.py
+地址：https://github.com/python/cpython/blob/master/Tools/gdb/libpython.py  
 注：不同的系统该脚本不一样，比如有的可能是叫`pythonx.x-gdb.py`
 
 ## 进入gdb
@@ -207,7 +207,7 @@ local 'x' = 12
 
 
  ## 参考链接
- https://ialloc.org/blog/python-runtime-debugging/
- https://sourceware.org/gdb/current/onlinedocs/gdb/Python.html
- https://wiki.python.org/moin/DebuggingWithGdb
+ https://ialloc.org/blog/python-runtime-debugging/  
+ https://sourceware.org/gdb/current/onlinedocs/gdb/Python.html  
+ https://wiki.python.org/moin/DebuggingWithGdb  
  https://mozillazg.com/2017/07/debug-running-python-process-with-gdb.html
