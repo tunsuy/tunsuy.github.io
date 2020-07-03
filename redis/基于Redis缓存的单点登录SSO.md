@@ -4,7 +4,7 @@
 
 ## 术语
 
-CAS系统中设计5种票据： `TGC 、 ST 、 PGT 、 PGTIOU 、 PT`。其中`TGT、ST`是`CAS1.0`协议中就有的票据，`PGT、PGTIOU、PT`是`CAS2.0`协议中有的票据。
+CAS系统中一般涉及多种票据，以及相关术语，以下详细介绍介绍。
 
 * `Ticket-granting cookie(TGC)`：存放`用户身份认证凭证的cookie`，在浏览器和CAS Server间通讯时使用，并且只能基于`安全通道传输（Https）`，是CAS Server用来明确`用户身份的凭证`；
 * `Service ticket(ST)`：服务票据，服务的惟一标识码,由CAS Server发出（Http传送），`ST`是CAS`为用户签发的访问某service的票据`。用户访问service时，service发现用户没有ST，则要求用户去CAS获取ST。用户向CAS发出获取ST的请求，如果用户的`请求中包含cookie`，则CAS会`以此cookie值为key查询缓存中有无TGT`，如果存在TGT，则用此`TGT签发一个ST`，返回给用户。用户凭借ST去访问service，service拿ST去CAS验证，验证通过后，允许用户访问资源。`一个特定的服务只能有一个惟一的ST`；
@@ -22,10 +22,10 @@ CAS系统中设计5种票据： `TGC 、 ST 、 PGT 、 PGTIOU 、 PT`。其中`
 ### 结构体系
 从结构体系看， CAS 包括两部分： CAS Server 和 CAS Client 。
 
-##### CAS Server
+##### 1、CAS Server
 CAS Server 负责完成对用户的认证工作 , 需要独立部署 , CAS Server 会处理用户名 / 密码等凭证 (Credentials) 。
 
-##### CAS Client
+##### 2、CAS Client
 负责处理对客户端受保护资源的访问请求，需要对请求方进行身份认证时，重定向到 CAS Server 进行认证。（原则上，客户端应用不再接受任何的用户名密码等 Credentials ）。
 
 CAS Client 与受保护的客户端应用部署在一起，以 Filter 方式保护受保护的资源。
@@ -39,7 +39,9 @@ SSO 访问流程主要有以下步骤：
 * 发放票据：SSO服务器会产生一个随机的Service Ticket。
 * 验证票据：SSO服务器验证票据Service Ticket的合法性，验证通过后，允许客户端访问服务。
 * 传输用户信息：SSO服务器验证票据通过后，传输用户认证结果信息给客户端。 
+通俗来说，就是这样一个流程：用户通过浏览器访问应用服务器，应用服务器后端发现没有携带ST，则会要求浏览器重定向到cas server去获取ST，cas server发现浏览器没有携带cookie，而是通过用户名密码请求过来的，请通过用户名密码进行认证，认证通过则生成TGC，同时生成TGT，TGC与TGT通过key-value形式关联起来，并通过TGT签发一个ST，然后将ST和TGC返回给浏览器，浏览器将TGC作为cookie保存起来，并将ST加入用户请求中，发给应用服务器。应用服务器拿到ST，然后传递给cas server进行验证该ST的合法性，验证通过则接受请求，开始处理业务逻辑。当后续的用户通过浏览器请求应用服务器时，就会直接携带TGC，应用服务器将浏览器重定向到cas server进行获取ST，cas server通过TGC和TGT的缓存对应，直接拿到TGT生成ST给浏览器，然后浏览器携带ST向应用服务器发起请求。
 
+下面是基于redis数据库做的sso数据结构设计方案
 ## 数据结构设计
 ### TGT对象(HASH类型)
 属性：
