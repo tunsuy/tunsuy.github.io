@@ -5,12 +5,12 @@ stevedore是用来实现动态加载代码的开源模块。它是在OpenStack�
 stevedore使用setuptools的entry points来定义并加载插件。entry point引用的是定义在模块中的对象，比如类、函数、实例等，只要在import模块时能够被创建的对象都可以。
 
 ### 一：插件的名字和命名空间
-    一般来讲，entry point的名字是公开的，用户可见的，经常出现在配置文件中。而命名空间，也就是entry point组名却是一种实现细节，一般是面向开发者而非最终用户的。可以用Python的包名作为entry  point命名空间，以保证唯一性，但这不是必须的。  
-    entry points的主要特征就是，它可以是独立注册的，也就是说插件的开发和安装可以完全独立于使用它的应用，只要开发者和使用者在命名空间和API上达成一致即可。  
-    命名空间被用来搜索entry points。entry points的名字在给定的发布包中必须是唯一的，但在一个命名空间中可以不唯一。也就是说，同一个发布包内不允许出现同名的entry point，但是如果是两个独立的发布包，却可以使用完全相同的entrypoint组名和entry point名来注册插件。
+一般来讲，entry point的名字是公开的，用户可见的，经常出现在配置文件中。而命名空间，也就是entry point组名却是一种实现细节，一般是面向开发者而非最终用户的。可以用Python的包名作为entry  point命名空间，以保证唯一性，但这不是必须的。  
+entry points的主要特征就是，它可以是独立注册的，也就是说插件的开发和安装可以完全独立于使用它的应用，只要开发者和使用者在命名空间和API上达成一致即可。  
+命名空间被用来搜索entry points。entry points的名字在给定的发布包中必须是唯一的，但在一个命名空间中可以不唯一。也就是说，同一个发布包内不允许出现同名的entry point，但是如果是两个独立的发布包，却可以使用完全相同的entrypoint组名和entry point名来注册插件。
     
 ### 二：插件的使用方式
-    在stevedore中，有三种使用插件的方式：Drivers、Hooks、Extensions
+在stevedore中，有三种使用插件的方式：Drivers、Hooks、Extensions
 #### 1：Drivers        
 一个名字对应一个entry point。使用时根据插件的命名空间和名字，定位到单独的插件  
 
