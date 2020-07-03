@@ -129,7 +129,7 @@ void initConfigValues() {
 ```
 
 ### 创建事件循环
-在Redis中，事件循环是用一个叫aeEventLoop的struct来表示的。「创建事件循环」这一步主要就是创建一个aeEventLoop结构，并存储到server全局变量（即前面提到的redisServer类型的结构）中。另外，事件循环的执行依赖系统底层的I/O多路复用机制(I/O multiplexing)，比如Linux系统上的epoll机制[1]。因此，这一步也包含对于底层I/O多路复用机制的初始化（调用系统API）。
+在Redis中，事件循环是用一个叫aeEventLoop的struct来表示的。「创建事件循环」这一步主要就是创建一个aeEventLoop结构，并存储到server全局变量（即前面提到的redisServer类型的结构）中。另外，事件循环的执行依赖系统底层的I/O多路复用机制(I/O multiplexing)，比如Linux系统上的epoll机制。因此，这一步也包含对于底层I/O多路复用机制的初始化（调用系统API）。
 ```c++
 aeEventLoop *aeCreateEventLoop(int setsize) {
     aeEventLoop *eventLoop;
@@ -166,7 +166,7 @@ err:
 ```
 
 ### 开启socket监听
-服务器程序需要监听才能收到请求。根据配置，这一步可能会打开两种监听：对于TCP连接的监听和对于Unix domain socket[2]的监听。「Unix domain socket」是一种高效的进程间通信(IPC[3])机制，在POSIX规范[4]中也有明确的定义[5]，用于在同一台主机上的两个不同进程之间进行通信，比使用TCP协议性能更高（因为省去了协议栈的开销）。当使用Redis客户端连接同一台机器上的Redis服务器时，可以选择使用「Unix domain socket」进行连接。但不管是哪一种监听，程序都会获得文件描述符，并存储到server全局变量中。对于TCP的监听来说，由于监听的IP地址和端口可以绑定多个，因此获得的用于监听TCP连接的文件描述符也可以包含多个。后面，程序就可以拿这一步获得的文件描述符去注册I/O事件回调了。
+服务器程序需要监听才能收到请求。根据配置，这一步可能会打开两种监听：对于TCP连接的监听和对于Unix domain socket的监听。Unix domain socket是一种高效的进程间通信(IPC)机制，在POSIX规范中也有明确的定义，用于在同一台主机上的两个不同进程之间进行通信，比使用TCP协议性能更高（因为省去了协议栈的开销）。当使用Redis客户端连接同一台机器上的Redis服务器时，可以选择使用「Unix domain socket」进行连接。但不管是哪一种监听，程序都会获得文件描述符，并存储到server全局变量中。对于TCP的监听来说，由于监听的IP地址和端口可以绑定多个，因此获得的用于监听TCP连接的文件描述符也可以包含多个。后面，程序就可以拿这一步获得的文件描述符去注册I/O事件回调了。
 ```c++
 int listenToPort(int port, int *fds, int *count) {
     int j;
@@ -259,7 +259,7 @@ long long aeCreateTimeEvent(aeEventLoop *eventLoop, long long milliseconds,
 ```
 
 ### 注册I/O事件回调
-Redis服务端最主要的工作就是监听I/O事件，从中分析出来自客户端的命令请求，执行命令，然后返回响应结果。对于I/O事件的监听，自然也是依赖事件循环。前面提到过，Redis可以打开两种监听：对于TCP连接的监听和对于Unix domain socket的监听。因此，这里就包含对于这两种I/O事件的回调的注册，两个回调函数分别是acceptTcpHandler和acceptUnixHandler。对于来自Redis客户端的请求的处理，就会走到这两个函数中去。另外，其实Redis在这里还会注册一个I/O事件，用于通过管道(pipe[6])机制与module进行双向通信。
+Redis服务端最主要的工作就是监听I/O事件，从中分析出来自客户端的命令请求，执行命令，然后返回响应结果。对于I/O事件的监听，自然也是依赖事件循环。前面提到过，Redis可以打开两种监听：对于TCP连接的监听和对于Unix domain socket的监听。因此，这里就包含对于这两种I/O事件的回调的注册，两个回调函数分别是acceptTcpHandler和acceptUnixHandler。对于来自Redis客户端的请求的处理，就会走到这两个函数中去。另外，其实Redis在这里还会注册一个I/O事件，用于通过管道(pipe)机制与module进行双向通信。
 ```c++
  /* Create an event handler for accepting new connections in TCP and Unix
  * domain sockets. */
