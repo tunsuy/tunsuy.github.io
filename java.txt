@@ -20,3 +20,40 @@ volatile关键字是什么意思，底层是怎么实现的？
 4、BlockingQueue：当核心线程池满了的时候，对于新来的请求，会优先放入该队列
 5、RejectedExecutionHandler：当执行中的线程达到最大线程队列大小的时候，对于新来的请求则执行该拒绝策略，默认提供了4种类型的策略
 
+说一说访问权限
+java中有四种 访问权限
+1、private：同一个类可访问
+2、default：同一个类和同一个包可访问
+3、protected：同一个类、同一个包、不同包的子类可访问
+4、public：任何地方可访问
+
+说一说ReentrantLock
+ReentrantLock是一个可重入锁，同时也是一个独占锁，它具有跟synchronized同样的锁机制和内存语义。它额外提供了定时锁、中断锁、锁投票更功能，分为公平锁和非公平锁
+ReentrantLock通过一个FIFO的队列（同时也是一个双向链表）来管理等待该锁的线程，在公平锁的机制下，线程根据FIFO依次排队获取锁，而非公平锁的机制下，则是竞争获取锁
+ReentrantLock中有一个实现了AQS（）的内部类，所有的锁逻辑都是通过这个内部类来实现的，ReentrantLock只是提供了对外友好的接口。
+内部通过state属性来记录锁定的状态，同时实现可重入。当一个线程执行的时候，会首先获取该状态，如果为0.表示没有线程持有该锁，然后会通过CAS操作系统原语去更新state，同时将锁线程更新为本线程；如果state不为0，表示已经有线程持有该锁，然后检查该线程是否为本线程，如果是，则更新state计数；如果不是，有两种情况，如果只是尝试获取锁，那么久直接退出，如果是直接锁定，则会将生成本线程的一个节点加入队列中，等待获取锁。
+
+既然说了ReentrantLock，那再说说ReentrantReadWriteLock呢，以及他们的区别
+ReentrantReadWriteLock使用两把锁来解决问题，一个读锁，一个写锁
+线程进入读锁的前提条件：
+1、没有其他线程的写锁，
+2、没有写请求或者有写请求，但调用线程和持有锁的线程是同一个
+线程进入写锁的前提条件：
+1、没有其他线程的读锁
+2、没有其他线程的写锁
+具有如下的特性：
+1、重入方面其内部的WriteLock可以获取ReadLock，但是反过来ReadLock想要获得WriteLock则不行。 
+2、WriteLock可以降级为ReadLock，顺序是：先获得WriteLock再获得ReadLock，然后释放WriteLock，这时候线程将保持Readlock的持有。反过来ReadLock想要升级为WriteLock则不可能 
+3、ReadLock可以被多个线程持有并且在作用时排斥任何的WriteLock，而WriteLock则是完全的互斥。这一特性最为重要，因为对于高读取频率而相对较低写入的数据结构，使用此类锁同步机制则可以提高并发量。 
+4、不管是ReadLock还是WriteLock都支持Interrupt，语义与ReentrantLock一致。 
+5、WriteLock支持Condition并且与ReentrantLock语义一致，而ReadLock则不能使用Condition，否则抛出UnsupportedOperationException异常。 
+
+知道java的线程间协作吗？
+java的线程间协作有两种方式
+1、notify/wait/notifyall: 因为java中的对象都有一个内置的锁对象，因为java对每个对象也都提供了这三个原语来操作这个锁对象。
+2、使用Condition：condition提供了await/signal/signalall方法，分别对应object的那三个方法
+
+说一说java中的同步阻塞队列（LinkedBlockingQueue）
+LinkedBlockingQueue是一个单链表形式的多线程同步阻塞队列，可以指定队列大小
+使用了两个互斥锁putLock和takeLock来控制队列的竞争访问，当从队列中加入元素的时候进行putLock锁定，当从队列中取出元素的时候进行takeLock锁定。
+使用了两个条件变量notEmpty和notFull来进行队列空和满的通知或阻塞，当take一个空队列的时候，使用notEmpty.wait等待，当put一个满队列的时候，使用notFull.wait等待；同时当队列由空变为不空时，使用notEmpty.signal通知等待线程，当队列由满变为不满时，使用notFull.signal通知等待线程
