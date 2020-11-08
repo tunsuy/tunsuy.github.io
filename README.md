@@ -23,6 +23,7 @@
 * [调试Python在线程序](https://github.com/tunsuy/tunsuy.github.io/blob/master/python/%E8%B0%83%E8%AF%95Python%E5%9C%A8%E7%BA%BF%E7%A8%8B%E5%BA%8F.md)
 * [使用 C 或 C++ 扩展 Python](https://github.com/tunsuy/tunsuy.github.io/blob/master/python/%E4%BD%BF%E7%94%A8C%E6%88%96C%2B%2B%E6%89%A9%E5%B1%95Python.md)
 * [Python中的GIL机制详解](https://github.com/tunsuy/tunsuy.github.io/blob/master/python/Python%E4%B8%AD%E7%9A%84GIL%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3.md)
+* [Python中的闭包原理](https://github.com/tunsuy/tunsuy.github.io/blob/master/python/Python%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85.md)
 
 ## Web技术栈
 * [wsgi中间件pipeline实战](https://github.com/tunsuy/tunsuy.github.io/blob/master/web/wsgi%E4%B8%AD%E9%97%B4%E4%BB%B6pipeline%E5%AE%9E%E6%88%98.md)
@@ -33,6 +34,9 @@
 * [Angularjs基础知识](https://github.com/tunsuy/tunsuy.github.io/blob/master/web/Angularjs%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.md)  
 * [Angularjs集成桩机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/web/Angularjs%E9%9B%86%E6%88%90%E6%A1%A9%E6%9C%BA%E5%88%B6.md)
 * [Angular之$interval内存泄漏问题](https://github.com/tunsuy/tunsuy.github.io/blob/master/web/Angular%E4%B9%8B%24interval%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E9%97%AE%E9%A2%98.md)
+* [CAS之单点登出逻辑详解](https://github.com/tunsuy/tunsuy.github.io/blob/master/web/CAS%E4%B9%8B%E5%8D%95%E7%82%B9%E7%99%BB%E5%87%BA%E9%80%BB%E8%BE%91%E8%AF%A6%E8%A7%A3.md)
+* [CAS之单点登录client逻辑详解](https://github.com/tunsuy/tunsuy.github.io/blob/master/web/CAS%E4%B9%8B%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95client%E9%80%BB%E8%BE%91%E8%AF%A6%E8%A7%A3.md)
+* [Tomcat与Servlet的关系](https://github.com/tunsuy/tunsuy.github.io/blob/master/web/Tomcat%E4%B8%8EServlet%E7%9A%84%E5%85%B3%E7%B3%BB.md)
 
 ## Java进阶
 * [Java中的线程技术](https://github.com/tunsuy/tunsuy.github.io/blob/master/java/Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF.md)
@@ -52,6 +56,7 @@
 * [数据库锁机制](https://github.com/tunsuy/tunsuy.github.io/blob/master/database/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81%E6%9C%BA%E5%88%B6.md)
 * [sqlalchemy中的session](https://github.com/tunsuy/tunsuy.github.io/blob/master/database/sqlalchemy%E4%B8%AD%E7%9A%84session.md)
 * [PostgreSQL连接问题](https://github.com/tunsuy/tunsuy.github.io/blob/master/database/PostgreSQL%E8%BF%9E%E6%8E%A5%E9%97%AE%E9%A2%98.md)
+* [Postgresql访问控制](https://github.com/tunsuy/tunsuy.github.io/blob/master/database/Postgresql%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6.md)
 
 ## 技术栈
 * [Haproxy系列](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E6%8A%80%E6%9C%AF%E6%A0%88.md)
@@ -66,6 +71,7 @@
 * [解决日志没有换行的问题](https://github.com/tunsuy/tunsuy.github.io/blob/master/linux/%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97%E6%B2%A1%E6%9C%89%E6%8D%A2%E8%A1%8C%E7%9A%84%E9%97%AE%E9%A2%98.md)
 * [curl常用操作](https://github.com/tunsuy/tunsuy.github.io/blob/master/linux/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C.md)
 * [进程间通信详解](https://github.com/tunsuy/tunsuy.github.io/blob/master/linux/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E8%AF%A6%E8%A7%A3.md)
+* [线程、进程和锁](https://github.com/tunsuy/tunsuy.github.io/blob/master/linux/%E7%BA%BF%E7%A8%8B%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E9%94%81.md)
 
 ## 其他
 * [代码札记](https://app.cacher.io/library/personal)
