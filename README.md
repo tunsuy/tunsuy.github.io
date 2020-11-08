@@ -44,6 +44,12 @@
 * [Spring之web详解](https://github.com/tunsuy/tunsuy.github.io/blob/master/java/Spring%E4%B9%8Bweb%E8%AF%A6%E8%A7%A3.md)
 * [定时任务库Quartz](https://github.com/tunsuy/tunsuy.github.io/blob/master/java/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E5%BA%93Quartz.md)
 
+## Spring
+* [SpringCloudConsul服务注册原理](https://github.com/tunsuy/tunsuy.github.io/blob/master/SpringCloudConsul%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E5%8E%9F%E7%90%86.md)
+* [Spring、Spring MVC和Spring Boot](https://github.com/tunsuy/tunsuy.github.io/blob/master/Spring%E3%80%81Spring%20MVC%E5%92%8CSpring%20Boot.md)
+* [使用SpringFramework+CXF实现rest服务](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E4%BD%BF%E7%94%A8SpringFramework%2BCXF%E5%AE%9E%E7%8E%B0rest%E6%9C%8D%E5%8A%A1.md)
+* [使用SpringFramework+Restlet实现rest服务](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E4%BD%BF%E7%94%A8SpringFramework%2BRestlet%E5%AE%9E%E7%8E%B0rest%E6%9C%8D%E5%8A%A1.md)
+
 ## 架构设计
 * [分布式锁](https://github.com/tunsuy/tunsuy.github.io/blob/master/architecture/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81.md)  
 * [配置管理架构设计](https://github.com/tunsuy/tunsuy.github.io/blob/master/architecture/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.md)
@@ -64,6 +70,7 @@
 * [Rabbitmq系列](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E6%8A%80%E6%9C%AF%E6%A0%88.md)
 * [Redis系列](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E6%8A%80%E6%9C%AF%E6%A0%88.md)
 * [Zookeeper系列](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E6%8A%80%E6%9C%AF%E6%A0%88.md)
+* [微服务与分布式](https://github.com/tunsuy/tunsuy.github.io/blob/master/%E6%8A%80%E6%9C%AF%E6%A0%88.md)
 
 ## Linux
 * [linux下如何启动一个后台进程](https://github.com/tunsuy/tunsuy.github.io/blob/master/linux/linux%E4%B8%8B%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AA%E5%90%8E%E5%8F%B0%E8%BF%9B%E7%A8%8B.md)
