@@ -43,6 +43,10 @@
 * [Spring中的AOP技术](https://github.com/tunsuy/tunsuy.github.io/blob/master/java/Spring%E4%B8%AD%E7%9A%84AOP%E6%8A%80%E6%9C%AF.md)
 * [Spring之web详解](https://github.com/tunsuy/tunsuy.github.io/blob/master/java/Spring%E4%B9%8Bweb%E8%AF%A6%E8%A7%A3.md)
 * [定时任务库Quartz](https://github.com/tunsuy/tunsuy.github.io/blob/master/java/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E5%BA%93Quartz.md)
+* [Java：你需要的是哪种锁](https://github.com/tunsuy/tunsuy.github.io/blob/master/java/Java：你需要的是哪种锁.md)
+* [一文搞定ThreadLocal原理](https://github.com/tunsuy/tunsuy.github.io/blob/master/java/一文搞定ThreadLocal原理.md)
+* [你真的了解Java中的线程池吗](https://github.com/tunsuy/tunsuy.github.io/blob/master/java/你真的了解Java中的线程池吗.md)
+* [基于AQS的ReentrantLock实现原理](https://github.com/tunsuy/tunsuy.github.io/blob/master/java/基于AQS的ReentrantLock实现原理.md)
 
 ## Spring
 * [SpringCloudConsul服务注册原理](https://github.com/tunsuy/tunsuy.github.io/blob/master/SpringCloudConsul%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E5%8E%9F%E7%90%86.md)
